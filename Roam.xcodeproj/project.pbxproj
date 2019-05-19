@@ -14,6 +14,8 @@
 		EDE119FC2290B1AE00853117 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE119FA2290B1AE00853117 /* LaunchScreen.storyboard */; };
 		EDE11A072290B1AE00853117 /* RoamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE11A062290B1AE00853117 /* RoamTests.swift */; };
 		EDE11A122290B1AE00853117 /* RoamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE11A112290B1AE00853117 /* RoamUITests.swift */; };
+		EDF153282290D23A00FD8BB2 /* MealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF153272290D23A00FD8BB2 /* MealCell.swift */; };
+		EDF1532E2290DD6A00FD8BB2 /* PandaMealCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF1532D2290DD6A00FD8BB2 /* PandaMealCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		EDE11A0D2290B1AE00853117 /* RoamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE11A112290B1AE00853117 /* RoamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoamUITests.swift; sourceTree = "<group>"; };
 		EDE11A132290B1AE00853117 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDF153272290D23A00FD8BB2 /* MealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCell.swift; sourceTree = "<group>"; };
+		EDF1532D2290DD6A00FD8BB2 /* PandaMealCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaMealCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,10 +78,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED7A434F2290CB57005AF0E7 /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				EDE119F52290B1AC00853117 /* Main.storyboard */,
+				EDE119FA2290B1AE00853117 /* LaunchScreen.storyboard */,
+			);
+			path = StoryBoard;
+			sourceTree = "<group>";
+		};
+		ED7A43502290CB5D005AF0E7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EDF1532D2290DD6A00FD8BB2 /* PandaMealCollectionView.swift */,
+				EDE119F32290B1AC00853117 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		ED7A43512290CB65005AF0E7 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				EDE119F82290B1AE00853117 /* Assets.xcassets */,
+				EDE119F12290B1AC00853117 /* AppDelegate.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		EDE119E52290B1AC00853117 = {
 			isa = PBXGroup;
 			children = (
 				EDE119F02290B1AC00853117 /* Roam */,
+				ED7A43512290CB65005AF0E7 /* Helper */,
 				EDE11A052290B1AE00853117 /* RoamTests */,
 				EDE11A102290B1AE00853117 /* RoamUITests */,
 				EDE119EF2290B1AC00853117 /* Products */,
@@ -97,12 +129,10 @@
 		EDE119F02290B1AC00853117 /* Roam */ = {
 			isa = PBXGroup;
 			children = (
-				EDE119F12290B1AC00853117 /* AppDelegate.swift */,
-				EDE119F32290B1AC00853117 /* ViewController.swift */,
-				EDE119F52290B1AC00853117 /* Main.storyboard */,
-				EDE119F82290B1AE00853117 /* Assets.xcassets */,
-				EDE119FA2290B1AE00853117 /* LaunchScreen.storyboard */,
 				EDE119FD2290B1AE00853117 /* Info.plist */,
+				ED7A434F2290CB57005AF0E7 /* StoryBoard */,
+				EDF153262290D1B400FD8BB2 /* Cells */,
+				ED7A43502290CB5D005AF0E7 /* Controllers */,
 			);
 			path = Roam;
 			sourceTree = "<group>";
@@ -123,6 +153,14 @@
 				EDE11A132290B1AE00853117 /* Info.plist */,
 			);
 			path = RoamUITests;
+			sourceTree = "<group>";
+		};
+		EDF153262290D1B400FD8BB2 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EDF153272290D23A00FD8BB2 /* MealCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,8 +294,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDF153282290D23A00FD8BB2 /* MealCell.swift in Sources */,
 				EDE119F42290B1AC00853117 /* ViewController.swift in Sources */,
 				EDE119F22290B1AC00853117 /* AppDelegate.swift in Sources */,
+				EDF1532E2290DD6A00FD8BB2 /* PandaMealCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
