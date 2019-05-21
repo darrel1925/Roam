@@ -10,8 +10,10 @@
 		25415B45EE49F441FA87D006 /* Pods_RoamUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08D94F7F78C6C06616E128F2 /* Pods_RoamUITests.framework */; };
 		38158C652290D8DE00FFCE15 /* SignInWithEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38158C642290D8DE00FFCE15 /* SignInWithEmailViewController.swift */; };
 		38571D5E2290B54600C460C7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38571D5D2290B54600C460C7 /* LoginViewController.swift */; };
+		ED3C45D622948432006D17B0 /* PandaExpressFoodItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3C45D522948432006D17B0 /* PandaExpressFoodItems.swift */; };
+		ED3C45DA22948A0A006D17B0 /* ItemDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3C45D922948A0A006D17B0 /* ItemDescriptionCell.swift */; };
+		ED3C45DC22948EA4006D17B0 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3C45DB22948EA4006D17B0 /* TitleCell.swift */; };
 		EDE119F22290B1AC00853117 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE119F12290B1AC00853117 /* AppDelegate.swift */; };
-		EDE119F42290B1AC00853117 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE119F32290B1AC00853117 /* ViewController.swift */; };
 		EDE119F72290B1AC00853117 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE119F52290B1AC00853117 /* Main.storyboard */; };
 		EDE119F92290B1AE00853117 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDE119F82290B1AE00853117 /* Assets.xcassets */; };
 		EDE119FC2290B1AE00853117 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE119FA2290B1AE00853117 /* LaunchScreen.storyboard */; };
@@ -52,9 +54,11 @@
 		69F20F3A5F30D55D229589E5 /* Pods-RoamTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamTests.release.xcconfig"; path = "Target Support Files/Pods-RoamTests/Pods-RoamTests.release.xcconfig"; sourceTree = "<group>"; };
 		81BC988E71796CD90919DF30 /* Pods-RoamUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamUITests.release.xcconfig"; path = "Target Support Files/Pods-RoamUITests/Pods-RoamUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AD2ABD13AC92B1CEFE2954A3 /* Pods-RoamTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamTests.debug.xcconfig"; path = "Target Support Files/Pods-RoamTests/Pods-RoamTests.debug.xcconfig"; sourceTree = "<group>"; };
+		ED3C45D522948432006D17B0 /* PandaExpressFoodItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaExpressFoodItems.swift; sourceTree = "<group>"; };
+		ED3C45D922948A0A006D17B0 /* ItemDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDescriptionCell.swift; sourceTree = "<group>"; };
+		ED3C45DB22948EA4006D17B0 /* TitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		EDE119EE2290B1AC00853117 /* Roam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE119F12290B1AC00853117 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EDE119F32290B1AC00853117 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EDE119F62290B1AC00853117 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EDE119F82290B1AE00853117 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EDE119FB2290B1AE00853117 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -131,6 +135,41 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		ED3C45D0229481C1006D17B0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				EDE119F82290B1AE00853117 /* Assets.xcassets */,
+				EDE119F12290B1AC00853117 /* AppDelegate.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		ED3C45D1229481C4006D17B0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				ED3C45D922948A0A006D17B0 /* ItemDescriptionCell.swift */,
+				ED3C45DB22948EA4006D17B0 /* TitleCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		ED3C45D2229481C7006D17B0 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				EDE119FA2290B1AE00853117 /* LaunchScreen.storyboard */,
+				EDE119F52290B1AC00853117 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		ED3C45D4229483C8006D17B0 /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				ED3C45D522948432006D17B0 /* PandaExpressFoodItems.swift */,
+			);
+			path = Structs;
+			sourceTree = "<group>";
+		};
 		EDE119E52290B1AC00853117 = {
 			isa = PBXGroup;
 			children = (
@@ -156,12 +195,11 @@
 		EDE119F02290B1AC00853117 /* Roam */ = {
 			isa = PBXGroup;
 			children = (
-				EDE119F12290B1AC00853117 /* AppDelegate.swift */,
-				EDE119F32290B1AC00853117 /* ViewController.swift */,
-				EDE119F52290B1AC00853117 /* Main.storyboard */,
-				EDE119F82290B1AE00853117 /* Assets.xcassets */,
-				EDE119FA2290B1AE00853117 /* LaunchScreen.storyboard */,
 				EDE119FD2290B1AE00853117 /* Info.plist */,
+				ED3C45D4229483C8006D17B0 /* Structs */,
+				ED3C45D2229481C7006D17B0 /* Storyboards */,
+				ED3C45D1229481C4006D17B0 /* Cells */,
+				ED3C45D0229481C1006D17B0 /* Helpers */,
 				38571D5F2290B55100C460C7 /* ViewControllers */,
 			);
 			path = Roam;
@@ -409,9 +447,11 @@
 				EDF153322290F64100FD8BB2 /* PandaMealSelectionController.swift in Sources */,
 				38571D5E2290B54600C460C7 /* LoginViewController.swift in Sources */,
 				38158C652290D8DE00FFCE15 /* SignInWithEmailViewController.swift in Sources */,
-				EDE119F42290B1AC00853117 /* ViewController.swift in Sources */,
 				EDF153302290F58800FD8BB2 /* HomePageViewController.swift in Sources */,
+				ED3C45DC22948EA4006D17B0 /* TitleCell.swift in Sources */,
+				ED3C45D622948432006D17B0 /* PandaExpressFoodItems.swift in Sources */,
 				EDE119F22290B1AC00853117 /* AppDelegate.swift in Sources */,
+				ED3C45DA22948A0A006D17B0 /* ItemDescriptionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
