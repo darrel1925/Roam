@@ -87,5 +87,8 @@ class WendysMealSelectionViewController: UIViewController, UITableViewDataSource
         }
     }
     
+    @IBAction func onBackButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
 }

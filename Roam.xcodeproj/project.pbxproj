@@ -16,6 +16,8 @@
 		ED4CA6A72294B6A00022A095 /* WendysFoodItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CA6A62294B6A00022A095 /* WendysFoodItems.swift */; };
 		ED4CA6AB2294F6180022A095 /* WendysMealSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CA6AA2294F6180022A095 /* WendysMealSelectionViewController.swift */; };
 		ED4CA6AD2294F9F20022A095 /* WendysItemDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CA6AC2294F9F20022A095 /* WendysItemDescriptionCell.swift */; };
+		ED4CA6AF22950C090022A095 /* PandaSideSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CA6AE22950C090022A095 /* PandaSideSelectionController.swift */; };
+		ED4CA6B1229521190022A095 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CA6B0229521190022A095 /* File.swift */; };
 		EDE119F22290B1AC00853117 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE119F12290B1AC00853117 /* AppDelegate.swift */; };
 		EDE119F72290B1AC00853117 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE119F52290B1AC00853117 /* Main.storyboard */; };
 		EDE119F92290B1AE00853117 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDE119F82290B1AE00853117 /* Assets.xcassets */; };
@@ -63,6 +65,8 @@
 		ED4CA6A62294B6A00022A095 /* WendysFoodItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WendysFoodItems.swift; sourceTree = "<group>"; };
 		ED4CA6AA2294F6180022A095 /* WendysMealSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WendysMealSelectionViewController.swift; sourceTree = "<group>"; };
 		ED4CA6AC2294F9F20022A095 /* WendysItemDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WendysItemDescriptionCell.swift; sourceTree = "<group>"; };
+		ED4CA6AE22950C090022A095 /* PandaSideSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PandaSideSelectionController.swift; path = Roam/ViewControllers/PandaSideSelectionController.swift; sourceTree = SOURCE_ROOT; };
+		ED4CA6B0229521190022A095 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		EDE119EE2290B1AC00853117 /* Roam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE119F12290B1AC00853117 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDE119F62290B1AC00853117 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 			children = (
 				EDE119F82290B1AE00853117 /* Assets.xcassets */,
 				EDE119F12290B1AC00853117 /* AppDelegate.swift */,
+				ED4CA6B0229521190022A095 /* File.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -166,6 +171,7 @@
 			children = (
 				EDE119FA2290B1AE00853117 /* LaunchScreen.storyboard */,
 				EDE119F52290B1AC00853117 /* Main.storyboard */,
+				ED4CA6AE22950C090022A095 /* PandaSideSelectionController.swift */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -469,6 +475,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED4CA6AF22950C090022A095 /* PandaSideSelectionController.swift in Sources */,
 				EDF153322290F64100FD8BB2 /* PandaMealSelectionController.swift in Sources */,
 				38571D5E2290B54600C460C7 /* LoginViewController.swift in Sources */,
 				38158C652290D8DE00FFCE15 /* SignInWithEmailViewController.swift in Sources */,
@@ -478,6 +485,7 @@
 				ED4CA6A72294B6A00022A095 /* WendysFoodItems.swift in Sources */,
 				ED3C45D622948432006D17B0 /* PandaExpressFoodItems.swift in Sources */,
 				ED4CA6AD2294F9F20022A095 /* WendysItemDescriptionCell.swift in Sources */,
+				ED4CA6B1229521190022A095 /* File.swift in Sources */,
 				EDE119F22290B1AC00853117 /* AppDelegate.swift in Sources */,
 				ED3C45DA22948A0A006D17B0 /* ItemDescriptionCell.swift in Sources */,
 			);
