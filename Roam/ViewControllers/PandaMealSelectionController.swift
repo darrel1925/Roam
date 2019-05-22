@@ -18,6 +18,9 @@ class PandaMealSelectionController: UIViewController, UITableViewDelegate, UITab
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorColor = .white
+        self.navigationController!.navigationBar.tintColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
+
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -88,6 +91,42 @@ class PandaMealSelectionController: UIViewController, UITableViewDelegate, UITab
     
     @IBAction func onBackButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // TODO: figure out a way to know what food item i am customizing on the next screen
+            // i might need to make differnt View controllers
+        
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPath(for: cell)!
+        let section = indexPath.section
+        let row = indexPath.row
+        
+        let PandaSideSelectionVC = segue.destination as! PandaSideSelectionController
+        
+        switch section {
+            case 1:
+                PandaSideSelectionVC.foodItem  = "Plate"
+            case 3:
+                PandaSideSelectionVC.foodItem = "BiggerPlate"
+            case 5:
+                PandaSideSelectionVC.foodItem = "Bowl"
+            default:
+                PandaSideSelectionVC.foodItem = "FamilyFeast"
+        }
+        
+        switch row {
+            case 0:
+                PandaSideSelectionVC.foodSize  = "Half"
+            case 1:
+                PandaSideSelectionVC.foodItem = "Full"
+            default:
+                PandaSideSelectionVC.foodItem = "Food size cannot be determined"
+        }
+        
+        
+        print("Prepared")
     }
     
 }
