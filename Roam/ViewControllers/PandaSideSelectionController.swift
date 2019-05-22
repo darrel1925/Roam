@@ -27,46 +27,17 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
         //tableView.separatorColor = .white
     }
     
-    func numFullChoices() -> Int {
-        switch foodItem {
-            case "Plate":
-                return PandaExpress.Plate.Selection.Full.choices.count
-            case "Bigger Plate":
-                return PandaExpress.BiggerPlate.Selection.Full.choices.count
-            case "Bowl":
-                return PandaExpress.Bowl.Selection.Full.choices.count
-            case "Family Feast":
-                return PandaExpress.FamilyFeast.Selection.Full.choices.count
-            default:
-                return 0
-        }
-    }
-    
-    func numHalfChoices() -> Int {
-        switch foodItem {
-            case "Plate":
-                return PandaExpress.Plate.Selection.Half.choices.count
-            case "Bigger Plate":
-                return PandaExpress.BiggerPlate.Selection.Half.choices.count
-            case "Bowl":
-                return PandaExpress.Bowl.Selection.Half.choices.count
-            case "Family Feast":
-                return PandaExpress.FamilyFeast.Selection.Half.choices.count
-            default:
-                return 0
-        }
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section  == 0 {
+            print("hello")
             return 1
         }
         if foodSize == "Full" {
-            print("Section: \(section) is Full with \(numFullChoices()) rows")
+            print("Section: \(section) is \(foodSize) with \(numFullChoices()) rows")
             return numFullChoices()
         }
         else {
-            print("Section: \(section) is: Half with \(numHalfChoices()) rows")
+            print("Section: \(section) is: \(foodSize) with \(numHalfChoices()) rows")
             return numHalfChoices()
         }
     }
@@ -82,21 +53,108 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
         switch section {
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SideSelectionTitleCell") as! SideSelectionTitleCell
-                cell.headerLabel.text = PandaExpress.Plate.Selection.Half.header
-                cell.priceLabel.text = "$" + String(format: "%.2f", PandaExpress.Plate.price)
-                cell.descriptionLabel.text = PandaExpress.Plate.description[1]
-                return cell
-            
+                if foodSize == "Half" {
+                    switch foodItem {
+                    case "Plate":
+                        cell.headerLabel.text = PandaExpress.Plate.Selection.Half.header
+                        cell.priceLabel.text = "$" + String(format: "%.2f", PandaExpress.Plate.price)
+                        cell.descriptionLabel.text = PandaExpress.Plate.description[0]
+                        return cell
+                    case "Bigger Plate":
+                        cell.headerLabel.text = PandaExpress.BiggerPlate.Selection.Half.header
+                        cell.priceLabel.text = "$" + String(format: "%.2f", PandaExpress.BiggerPlate.price)
+                        cell.descriptionLabel.text = PandaExpress.BiggerPlate.description[0]
+                        return cell                    case "Bowl":
+                        return cell
+                    case "Family Feast":
+                        cell.headerLabel.text = PandaExpress.FamilyFeast.Selection.Half.header
+                        cell.priceLabel.text = "$" + String(format: "%.2f", PandaExpress.FamilyFeast.price)
+                        cell.descriptionLabel.text = PandaExpress.FamilyFeast.description[0]
+                        return cell
+                    default:
+                        let cellError = UITableViewCell()
+                        cellError.textLabel?.text = "Error"
+                        return cellError
+                        
+                    }
+                } else {
+                    switch foodItem {
+                    case "Plate":
+                        cell.headerLabel.text = PandaExpress.Plate.Selection.Full.header
+                        cell.priceLabel.text = "$" + String(format: "%.2f", PandaExpress.Plate.price)
+                        cell.descriptionLabel.text = PandaExpress.Plate.description[1]
+                        return cell
+                    case "Bigger Plate":
+                        cell.headerLabel.text = PandaExpress.BiggerPlate.Selection.Full.header
+                        cell.priceLabel.text = "$" + String(format: "%.2f", PandaExpress.BiggerPlate.price)
+                        cell.descriptionLabel.text = PandaExpress.BiggerPlate.description[1]
+                        return cell                    case "Bowl":
+                            return cell
+                    case "Family Feast":
+                        cell.headerLabel.text = PandaExpress.FamilyFeast.Selection.Full.header
+                        cell.priceLabel.text = "$" + String(format: "%.2f", PandaExpress.FamilyFeast.price)
+                        cell.descriptionLabel.text = PandaExpress.FamilyFeast.description[1]
+                        return cell
+                    default:
+                        let cellError = UITableViewCell()
+                        cellError.textLabel?.text = "Error"
+                        return cellError
+                    }
+                }
+
             case 1:
-                print(row)
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SideOptionCell") as! SideOptionCell
-                cell.headerLabel.text = PandaExpress.Plate.Selection.Half.choices[row]
-                return cell
-            
+                if foodSize == "Half" {
+                    switch foodItem {
+                    case "Plate":
+                        cell.headerLabel.text = PandaExpress.Plate.Selection.Half.choices[row]
+                        cell.selectedItemLabel.text = PandaExpress.SideOption.Half.name[0]
+                        return cell
+                    case "Bigger Plate":
+                        cell.headerLabel.text = PandaExpress.BiggerPlate.Selection.Half.choices[row]
+                        cell.selectedItemLabel.text = PandaExpress.SideOption.Half.name[0]
+                        return cell
+                    case "Bowl":
+                        cell.headerLabel.text = PandaExpress.Bowl.Selection.Half.choices[row]
+                        cell.selectedItemLabel.text = PandaExpress.SideOption.Half.name[0]
+                        return cell
+                    case "Family Feast":
+                        cell.headerLabel.text = PandaExpress.FamilyFeast.Selection.Half.choices[row]
+                        cell.selectedItemLabel.text = PandaExpress.SideOption.Half.name[0]
+                        return cell
+                    default:
+                        let cellError = UITableViewCell()
+                        cellError.textLabel?.text = "Error"
+                        return cellError
+                    }
+                } else {
+                    switch foodItem {
+                    case "Plate":
+                        cell.headerLabel.text = PandaExpress.Plate.Selection.Full.choices[row]
+                        cell.selectedItemLabel.text = PandaExpress.SideOption.Full.name[0]
+                        return cell
+                    case "Bigger Plate":
+                        cell.headerLabel.text = PandaExpress.BiggerPlate.Selection.Full.choices[row]
+                        cell.selectedItemLabel.text = PandaExpress.SideOption.Full.name[0]
+                        return cell
+                    case "Bowl":
+                        cell.headerLabel.text = PandaExpress.Bowl.Selection.Full.choices[row]
+                        cell.selectedItemLabel.text = PandaExpress.SideOption.Full.name[0]
+                        return cell
+                    case "Family Feast":
+                        cell.headerLabel.text = PandaExpress.FamilyFeast.Selection.Full.choices[row]
+                        cell.selectedItemLabel.text = PandaExpress.SideOption.Full.name[0]
+                        return cell
+                    default:
+                        let cellError = UITableViewCell()
+                        cellError.textLabel?.text = "Error"
+                        return cellError
+                    }
+                }
             default:
-                let cell = UITableViewCell()
-                cell.textLabel?.text = "Error"
-                return cell
+                let cellError = UITableViewCell()
+                cellError.textLabel?.text = "Error"
+                return cellError
         }
     }
     
@@ -106,5 +164,35 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
     
     @IBAction func onBackButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func numFullChoices() -> Int {
+        switch foodItem {
+        case "Plate":
+            return PandaExpress.Plate.Selection.Full.choices.count
+        case "Bigger Plate":
+            return PandaExpress.BiggerPlate.Selection.Full.choices.count
+        case "Bowl":
+            return PandaExpress.Bowl.Selection.Full.choices.count
+        case "Family Feast":
+            return PandaExpress.FamilyFeast.Selection.Full.choices.count
+        default:
+            return 0
+        }
+    }
+    
+    func numHalfChoices() -> Int {
+        switch foodItem {
+        case "Plate":
+            return PandaExpress.Plate.Selection.Half.choices.count
+        case "Bigger Plate":
+            return PandaExpress.BiggerPlate.Selection.Half.choices.count
+        case "Bowl":
+            return PandaExpress.Bowl.Selection.Half.choices.count
+        case "Family Feast":
+            return PandaExpress.FamilyFeast.Selection.Half.choices.count
+        default:
+            return 0
+        }
     }
 }

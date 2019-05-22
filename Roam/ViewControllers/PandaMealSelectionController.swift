@@ -109,20 +109,20 @@ class PandaMealSelectionController: UIViewController, UITableViewDelegate, UITab
             case 1:
                 PandaSideSelectionVC.foodItem  = "Plate"
             case 3:
-                PandaSideSelectionVC.foodItem = "BiggerPlate"
+                PandaSideSelectionVC.foodItem = "Bigger Plate"
             case 5:
                 PandaSideSelectionVC.foodItem = "Bowl"
             default:
-                PandaSideSelectionVC.foodItem = "FamilyFeast"
+                PandaSideSelectionVC.foodItem = "Family Feast"
         }
         
         switch row {
             case 0:
                 PandaSideSelectionVC.foodSize  = "Half"
             case 1:
-                PandaSideSelectionVC.foodItem = "Full"
+                PandaSideSelectionVC.foodSize = "Full"
             default:
-                PandaSideSelectionVC.foodItem = "Food size cannot be determined"
+                PandaSideSelectionVC.foodSize = "Food size cannot be determined"
         }
         
         
