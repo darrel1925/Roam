@@ -17,6 +17,7 @@ class PandaMealSelectionController: UIViewController, UITableViewDelegate, UITab
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorColor = .white
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -60,7 +61,7 @@ class PandaMealSelectionController: UIViewController, UITableViewDelegate, UITab
                 case 1:
                     cell.headerLabel.text = PandaExpress.Plate.header[row]
                     cell.descriptionLabel.text = PandaExpress.Plate.description[row]
-                    cell.priceLabel.text = "$\(PandaExpress.Plate.price)"
+                    cell.priceLabel.text = "$" + String(format: "%.2f", PandaExpress.Plate.price)
                 case 3:
                     cell.headerLabel.text = PandaExpress.BiggerPlate.header[row]
                     cell.descriptionLabel.text = PandaExpress.BiggerPlate.description[row]
@@ -79,7 +80,6 @@ class PandaMealSelectionController: UIViewController, UITableViewDelegate, UITab
             }
             return cell
         }
-        return UITableViewCell()
     }
     
 
