@@ -12,12 +12,17 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
 
     @IBOutlet weak var menuBar: UINavigationBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var numOrdersLabel: UILabel!
+    @IBOutlet weak var totalPriceLabel: UILabel!
+    @IBOutlet weak var fadeButton: UIButton!
     
     let settingsLauncher = SettingsLauncher()
     let blackView = UIView()
     
     var foodItem: String!
     var foodSize: String!
+    var numOrders = 1.0
+    var totalPrice: Double!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +30,15 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
         tableView.delegate = self
         tableView.dataSource = self
         //tableView.separatorColor = .white
+        
+        totalPriceLabel.layer.masksToBounds = true
+        totalPriceLabel.layer.cornerRadius = 20
+        
+        numOrdersLabel.layer.masksToBounds = true
+        numOrdersLabel.layer.cornerRadius = 20
+        
+        fadeButton.layer.masksToBounds = true
+        fadeButton.layer.cornerRadius = 20
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,7 +78,11 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
                         cell.headerLabel.text = PandaExpress.BiggerPlate.Selection.Half.header
                         cell.priceLabel.text = "$" + String(format: "%.2f", PandaExpress.BiggerPlate.price)
                         cell.descriptionLabel.text = PandaExpress.BiggerPlate.description[0]
-                        return cell                    case "Bowl":
+                        return cell
+                    case "Bowl":
+                        cell.headerLabel.text = PandaExpress.Bowl.Selection.Half.header
+                        cell.priceLabel.text = "$" + String(format: "%.2f", PandaExpress.Bowl.price)
+                        cell.descriptionLabel.text = PandaExpress.Bowl.description[0]
                         return cell
                     case "Family Feast":
                         cell.headerLabel.text = PandaExpress.FamilyFeast.Selection.Half.header
@@ -88,8 +106,12 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
                         cell.headerLabel.text = PandaExpress.BiggerPlate.Selection.Full.header
                         cell.priceLabel.text = "$" + String(format: "%.2f", PandaExpress.BiggerPlate.price)
                         cell.descriptionLabel.text = PandaExpress.BiggerPlate.description[1]
-                        return cell                    case "Bowl":
-                            return cell
+                        return cell
+                    case "Bowl":
+                        cell.headerLabel.text = PandaExpress.Bowl.Selection.Full.header
+                        cell.priceLabel.text = "$" + String(format: "%.2f", PandaExpress.Bowl.price)
+                        cell.descriptionLabel.text = PandaExpress.Bowl.description[1]
+                        return cell
                     case "Family Feast":
                         cell.headerLabel.text = PandaExpress.FamilyFeast.Selection.Full.header
                         cell.priceLabel.text = "$" + String(format: "%.2f", PandaExpress.FamilyFeast.price)
@@ -193,6 +215,42 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
             return PandaExpress.FamilyFeast.Selection.Half.choices.count
         default:
             return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            settingsLauncher.showSettings()
+        }
+    }
+
+        
+    @IBAction func onPlusButton(_ sender: Any) {
+        numOrders += 1
+        
+        numOrdersLabel.text = "\(Int(numOrders))"
+        totalPriceLabel.text = "ADD $" + String(format: "%.2f", totalPrice * numOrders)
+        
+        fadeButton.backgroundColor = .black
+        fadeButton.alpha = 1
+        
+        UIView.animate(withDuration: 0.5) {
+            self.fadeButton.alpha = 0.01
+        }
+    }
+    
+    @IBAction func onMinusButton(_ sender: Any) {
+        if numOrders > 1 {
+            numOrders -= 1
+            
+            numOrdersLabel.text = "\(Int(numOrders))"
+            totalPriceLabel.text = "ADD $" + String(format: "%.2f", totalPrice * numOrders)
+            
+            fadeButton.alpha = 1
+            
+            UIView.animate(withDuration: 0.5) {
+                self.fadeButton.alpha = 0.01
+            }
         }
     }
 }

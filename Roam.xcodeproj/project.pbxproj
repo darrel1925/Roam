@@ -133,6 +133,7 @@
 				38158C642290D8DE00FFCE15 /* SignInWithEmailViewController.swift */,
 				EDF1532F2290F58800FD8BB2 /* HomePageViewController.swift */,
 				EDF153312290F64100FD8BB2 /* PandaMealSelectionController.swift */,
+				ED4CA6AE22950C090022A095 /* PandaSideSelectionController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -177,7 +178,6 @@
 			children = (
 				EDE119FA2290B1AE00853117 /* LaunchScreen.storyboard */,
 				EDE119F52290B1AC00853117 /* Main.storyboard */,
-				ED4CA6AE22950C090022A095 /* PandaSideSelectionController.swift */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";

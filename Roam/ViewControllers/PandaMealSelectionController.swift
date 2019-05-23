@@ -108,12 +108,16 @@ class PandaMealSelectionController: UIViewController, UITableViewDelegate, UITab
         switch section {
             case 1:
                 PandaSideSelectionVC.foodItem  = "Plate"
+                PandaSideSelectionVC.totalPrice = PandaExpress.Plate.price
             case 3:
                 PandaSideSelectionVC.foodItem = "Bigger Plate"
+                PandaSideSelectionVC.totalPrice = PandaExpress.BiggerPlate.price
             case 5:
                 PandaSideSelectionVC.foodItem = "Bowl"
+                PandaSideSelectionVC.totalPrice = PandaExpress.Bowl.price
             default:
                 PandaSideSelectionVC.foodItem = "Family Feast"
+                PandaSideSelectionVC.totalPrice = PandaExpress.FamilyFeast.price
         }
         
         switch row {
