@@ -9,13 +9,24 @@
 import UIKit
 
 
-class SettingsLauncher: NSObject {
+class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
     
     let blackView = UIView()
-    let tableView = UITableView()
+    var tableView: UITableView!
+    var foodItem: String!
+    var foodSize: String!
+    var rowClicked: Int!
 
-    func showSettings() {
-
+    func showSettings(tableView: UITableView, foodSize: String, foodItem: String, rowClicked: Int) {
+        
+        print("Food size is: \(foodSize), food item is: \(foodItem)" )
+        self.foodSize = foodSize
+        self.foodItem = foodItem
+        self.rowClicked = rowClicked
+        
+        self.tableView = tableView
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
         // entire applications window
         if let window = UIApplication.shared.keyWindow {
             // 0 = black  |  alpha = transpancy
@@ -57,6 +68,287 @@ class SettingsLauncher: NSObject {
                 self.tableView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: window.frame.height)
             }
         }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        } else {
+            print("num rows in section is: \(numEntreesOrSides())")
+            return numEntreesOrSides()
+            
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let row = indexPath.row
+        
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "EntreeTitleCell") as! EntreeTitleCell
+            cell.titleLabel.text = self.foodItem
+            return cell
+        }
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ChooseEntreeCell") as! ChooseEntreeCell
+            if entreesOrSides() == "Side" {
+                if foodSize == "Half" {
+                    print("Side | Half")
+                    cell.entreeLabel.text = PandaExpress.SideOption.Half.name[row]
+                    cell.priceLabel.text = "$ \(PandaExpress.SideOption.Half.price[row])"
+                    return cell
+                }
+                // they clicked on a Full side
+                else {
+                    print("Side | Full")
+                    cell.entreeLabel.text = PandaExpress.SideOption.Full.name[row]
+                    cell.priceLabel.text = "$ \(PandaExpress.SideOption.Full.price[row])"
+                    return cell
+                }
+            }
+            // they clicked on an entree
+            else {
+                print("Entree | Entree")
+                cell.entreeLabel.text = PandaExpress.EntreeOption.name[row]
+                cell.priceLabel.text = "$ \(PandaExpress.EntreeOption.price[row])"
+                return cell
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath)
+    }
+    
+    
+    func numSideOptions() -> Int {
+        switch self.foodSize {
+        case "Half":
+            return PandaExpress.SideOption.Half.name.count
+        case "Full":
+            return PandaExpress.SideOption.Full.name.count
+        default:
+            return 0
+        }
+    }
+    
+    func numEntreeOptions() -> Int {
+        return PandaExpress.EntreeOption.name.count
+    }
+    
+    func numEntreesOrSides() -> Int {
+        print("rowClicked: \(self.rowClicked)")
+        switch foodSize
+        {
+            case "Full":
+                if self.foodItem == "Plate"
+                {
+                    if self.rowClicked <= 0
+                    {
+                        return PandaExpress.SideOption.Full.name.count
+                    }
+                    else
+                    {
+                        return PandaExpress.EntreeOption.name.count
+                    }
+                }
+                else if foodItem == "Bigger Plate"
+                {
+                    if self.rowClicked <= 0
+                    {
+                        return PandaExpress.SideOption.Full.name.count
+                    }
+                    else
+                    {
+                        return PandaExpress.EntreeOption.name.count
+                    }
+                }
+                else if foodItem == "Bowl"
+                {
+                    if self.rowClicked <= 0
+                    {
+                        return PandaExpress.SideOption.Full.name.count
+                    }
+                    else
+                    {
+                        return PandaExpress.EntreeOption.name.count
+                    }
+                }
+                else if foodItem == "Family Feast"
+                {
+                    if self.rowClicked <= 1
+                    {
+                        return PandaExpress.SideOption.Full.name.count
+                    }
+                    else
+                    {
+                        return PandaExpress.EntreeOption.name.count
+                    }
+                }
+            case "Half":
+                if self.foodItem == "Plate"
+                {
+                    if self.rowClicked <= 1
+                    {
+                        return PandaExpress.SideOption.Full.name.count
+                    }
+                    else
+                    {
+                        return PandaExpress.EntreeOption.name.count
+                    }
+                }
+                else if foodItem == "Bigger Plate"
+                {
+                    if self.rowClicked <= 1
+                    {
+                        return PandaExpress.SideOption.Full.name.count
+                    }
+                    else
+                    {
+                        return PandaExpress.EntreeOption.name.count
+                    }
+                }
+                else if foodItem == "Bowl"
+                {
+                    if self.rowClicked <= 1
+                    {
+                        return PandaExpress.SideOption.Full.name.count
+                    }
+                    else
+                    {
+                        return PandaExpress.EntreeOption.name.count
+                    }
+                }
+                else if foodItem == "Family Feast"
+                {
+                    if self.rowClicked <= 2
+                    {
+                        return PandaExpress.SideOption.Full.name.count
+                    }
+                    else
+                    {
+                        return PandaExpress.EntreeOption.name.count
+                    }
+                }
+            default:
+                return 0
+        }
+    return 0
+    }
+    
+    func entreesOrSides() -> String {
+        switch foodSize
+        {
+        case "Full":
+            if self.foodItem == "Plate"
+            {
+                if self.rowClicked <= 0
+                {
+                    return "Side"
+                }
+                else
+                {
+                    return "Entree"
+                }
+            }
+            else if foodItem == "Bigger Plate"
+            {
+                if self.rowClicked <= 0
+                {
+                    return "Side"
+                    
+                }
+                else
+                {
+                    return "Entree"
+                    
+                }
+            }
+            else if foodItem == "Bowl"
+            {
+                if self.rowClicked <= 0
+                {
+                    return "Side"
+                }
+                else
+                {
+                    return "Entree"
+                    
+                }
+            }
+            else if foodItem == "Family Feast"
+            {
+                if self.rowClicked <= 1
+                {
+                    return "Side"
+                    
+                }
+                else
+                {
+                    return "Entree"
+                    
+                }
+            }
+        case "Half":
+            if self.foodItem == "Plate"
+            {
+                if self.rowClicked <= 1
+                {
+                    return "Side"
+                    
+                }
+                else
+                {
+                    return "Entree"
+                    
+                }
+            }
+            else if foodItem == "Bigger Plate"
+            {
+                if self.rowClicked <= 1
+                {
+                    return "Side"
+                    
+                }
+                else
+                {
+                    return "Entree"
+                    
+                }
+            }
+            else if foodItem == "Bowl"
+            {
+                if self.rowClicked <= 1
+                {
+                    return "Side"
+                    
+                }
+                else
+                {
+                    return "Entree"
+                    
+                }
+            }
+            else if foodItem == "Family Feast"
+            {
+                if self.rowClicked <= 2
+                {
+                    return "Side"
+                    
+                }
+                else
+                {
+                    return "Entree"
+                    
+                }
+            }
+        default:
+            return ""
+        }
+        return ""
     }
     
     override init() {

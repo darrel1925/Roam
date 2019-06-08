@@ -15,8 +15,10 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var numOrdersLabel: UILabel!
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var fadeButton: UIButton!
+    @IBOutlet weak var orderTableView: UITableView!
+  //  @IBOutlet var orderTableView: UITableView!
     
-    let settingsLauncher = SettingsLauncher()
+    var settingsLauncher = SettingsLauncher()
     let blackView = UIView()
     
     var foodItem: String!
@@ -47,11 +49,11 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
             return 1
         }
         if foodSize == "Full" {
-            print("Section: \(section) is \(foodSize) with \(numFullChoices()) rows")
+            print("Section: \(section) is \(String(describing: foodSize)) with \(numFullChoices()) rows")
             return numFullChoices()
         }
         else {
-            print("Section: \(section) is: \(foodSize) with \(numHalfChoices()) rows")
+            print("Section: \(section) is: \(String(describing: foodSize)) with \(numHalfChoices()) rows")
             return numHalfChoices()
         }
     }
@@ -180,10 +182,7 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
-    @IBAction func showMenu(_ sender: Any) {
-        settingsLauncher.showSettings()
-    }
-    
+
     @IBAction func onBackButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -219,11 +218,16 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // your not clicking on the title
         if indexPath.section == 1 {
-            settingsLauncher.showSettings()
+            settingsLauncher = SettingsLauncher()
+            settingsLauncher.showSettings(tableView: orderTableView, foodSize: self.foodSize, foodItem: self.foodItem, rowClicked: indexPath.row)
         }
     }
+    @IBAction func showMenu(_ sender: Any) {
 
+        
+    }
         
     @IBAction func onPlusButton(_ sender: Any) {
         numOrders += 1

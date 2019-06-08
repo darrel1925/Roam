@@ -45,6 +45,7 @@ class LoginViewController: UIViewController {
         self.performSegue(withIdentifier: "loginSegue", sender: nil )
     }
     @IBAction func OnLogin(_ sender: Any) {
+        self.performSegue(withIdentifier: "toHomePage", sender: nil)
     }
     
     override func viewDidLoad() {
