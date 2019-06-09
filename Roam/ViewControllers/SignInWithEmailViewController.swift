@@ -23,7 +23,7 @@ class SignInWithEmailViewController: UIViewController {
         user.password = passwordFieldOutlet.text
         user.signUpInBackground { (success, error) in
             if success{
-            
+        self.performSegue(withIdentifier: "toHomePage", sender: nil)
             }else{
                 print("error occured \(error)")
                 
