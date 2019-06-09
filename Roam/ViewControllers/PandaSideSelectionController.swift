@@ -16,7 +16,7 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var fadeButton: UIButton!
     @IBOutlet weak var orderTableView: UITableView!
-  //  @IBOutlet var orderTableView: UITableView!
+    //  @IBOutlet var orderTableView: UITableView!
     
     var settingsLauncher = SettingsLauncher()
     let blackView = UIView()
@@ -41,6 +41,7 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
         
         fadeButton.layer.masksToBounds = true
         fadeButton.layer.cornerRadius = 20
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
