@@ -22,8 +22,8 @@ In [this link](https://devpost.com/software/roam-d9gbya), you will find the init
 
 ## Authors
 
-* **Darrel Muonekwu** - *Backend-Design/Api-Integration* - [LinkedIn](https://www.linkedin.com/in/darrelmuonekwu/) [Git](https://github.com/darrel1925)
-* **Chinenye Ogbuchiekwe** - *Server-Side Development/Frontend-Design* - [LinkedIn](https://www.linkedin.com/in/chinenye-ogbuchiekwe/) [Git](https://github.com/ChinenyeO)
+* **Darrel Muonekwu** - *Backend-Design/Api-Integration* - [[LinkedIn]](https://www.linkedin.com/in/darrelmuonekwu/) [[Git]](https://github.com/darrel1925)
+* **Chinenye Ogbuchiekwe** - *Server-Side Development/Frontend-Design* - [[LinkedIn]](https://www.linkedin.com/in/chinenye-ogbuchiekwe/) [[Git]](https://github.com/ChinenyeO)
 
 
 
