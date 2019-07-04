@@ -1,78 +1,29 @@
 # Roam
+
+## Overview
 Roam is a sharing economy app made by university students for university students. This app aims to invent a new way for 
 students to request and receive items from local stores and shops around campus! Roam has two types of users:
 
-Consumers - Students who request to have meals, snacks, scantrons, etc. delivered straight to their classrooms, or study sessions
-Roamers - Students who pick items up and deliver them to consumers around campus
+**Consumers** - Students who request to have meals, snacks, scantrons, etc. delivered straight to their classrooms, or study sessions</br>
+**Roamers** - Students who pick items up and deliver them to consumers around campus</br>
 
-Roamers would be a few of the tens of thousands of students on campus picking up items and delivering them to other students. Ideally, students would roam in between classes and roamers will be compensated for their deliveries by delivery fees paid by the consumer! Our app is meant to save university students' time and provide a quick and easy source of income for roamers!
-Ottomotive is a mock sharing-economy company with a mission of empowering those who don't have access to cars with an opportunity to make an income! We used Smartcar's API to access information from smart cars to create the interface for a web application that would allow its users to grant other users access to their vehicle in order to drive or Uber, Lyft, or for another ridesharing or diving company, earning income for themselves as well as those who are renting out their cars. 
+Roamers would be a few of the tens of thousands of students on campus picking up items and delivering them to other students. Ideally, students would roam in between classes and roamers will be compensated for their deliveries by delivery fees and tips paid by the consumer! Our app is meant to save university students' time and provide a quick and easy source of income for roamers!
 
-In [this link](https://sachacks.hackerearth.com/sprints/sachacks/dashboard/e94f6e2/submission/), you will find the initial designs for our webpage starting from the 4th picture onward.<br />
+In [this link](https://devpost.com/software/roam-d9gbya), you will find the initial designs for our mobile. However, we have done a major redesign since the conception of the app.<br />
 
-Unfortuanlety, this project was concieved and excuted in one night so our sebsite is NOT fully functioning at this time.
-
-
-## Getting Started
-
-
-You will need:  
-1.) Download the 'Ottomotive' file from the repsitory<br />
-2.) Download the [pythonsdkmaster](https://github.com/smartcar/python-sdk) from the Smartcar repsitory<br />
-3.) Install PIP:  If you’re using Python 2.7.9 (or greater) or Python 3.4 (or greater), then PIP comes installed with Python by default. If you’re using an older version of Python, you’ll need to use the installation described in [this link](https://packaging.python.org/tutorials/installing-packages).<br /><br />
-4.) Install tornado using pip your Command Line using the command:  
-	```
-    >>> pip install tornado
-	```
-	<br /><br />
-5.) You will also need to know your <br />
-    - Client ID<br />
-    - Client Secret<br />
-    - Redirect URIs<br />
-    Which can all be found once you create an account with [Smartcar](https://smartcar.com/)<br />
-    - Your specific information will need to be included into the beinning 'Ottmotive.py' file<br /><br />
-6.) You will aslo need need to download Smartcar's [Python SDK](https://github.com/smartcar/python-sdk)<br /><br />
-    
-### Installing
-In your Command Line:<br />
-1.) Navigate to the directoy where the file is saved:<br />
-2.) Begin the program<br /><br />
-
-For example, If I had saved both 'Ottomotive' and 'pythonsdkmaster' to my desktop, to begin the program I would run the command:
-
-```
->>> cd '/Users/darrelm/Desktop/Ottomotive/'
->>> python run.py
-```
-## Running The Program<br />
-
-1.) You will need to navigate to you default webbrowser and type in the you local host name<br />
-	- For example, I would type in the URL 'http://localhost:5000'<br />
-2.) You will be redireted to a page that asks if you allow Smartcar access to your (demo) vehicle's information<br />
-3.) Assumung you click yes, you will be redirected to our Ottomitve webpage<br />
 
 ## Built With
 
-* [Tornado](https://www.tornadoweb.org/) - The web framework used
-* [Python](https://www.python.org/) - Used to fetch vehicle information
-* [smartcar](https://smartcar.com/) - Used to get all car ingo
+* [Swift](https://developer.apple.com/swift/) - Front end language used for our app
+* [XCode](https://developer.apple.com/xcode/) - Used to format and build the app
+* [Parse](https://parseplatform.org/) - Backend server used to store user information
+* [BrainTree](https://www.braintreepayments.com/) - Used to process in-app purchases
 
 
 ## Authors
 
-* **Ryan Shu** - *Backend-Programming/html-programming* - [Git](https://github.com/ryanshuzzz)
-* **Darrel Muonekwu** - *Backend-Programming/html-programming* - [Git](https://github.com/darrel1925)
-* **Mylinh Pham** - *html design/Frontend-Programming* - [Git](https://github.com/darrel1925)
-* **Scott Sanchez** - *Website-Design* -
-See also the list of [contributors](https://github.com/ryanshuzzz/ottomotive/contributors) who participated in this project.
+* **Darrel Muonekwu** - *Backend-Design/Api-Integration* - [LinkedIn](https://www.linkedin.com/in/darrelmuonekwu/) [Git](https://github.com/darrel1925)
+* **Chinenye Ogbuchiekwe** - *Server-Side Development/Frontend-Design* - [LinkedIn](https://www.linkedin.com/in/chinenye-ogbuchiekwe/) [Git](https://github.com/ChinenyeO)
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* The Smartcar Team
-* SacHacks
 
 
