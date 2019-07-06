@@ -11,6 +11,7 @@ import UIKit
 class PandaMealSelectionController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
+    let order = Order()
     
     override func viewDidLoad() {
         super.viewDidLoad()

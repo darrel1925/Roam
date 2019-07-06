@@ -18,7 +18,7 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var orderTableView: UITableView!
     //  @IBOutlet var orderTableView: UITableView!
     
-    var settingsLauncher = SettingsLauncher()
+    var settingsLauncher : SettingsLauncher!
     let blackView = UIView()
     
     var foodItem: String!
@@ -222,7 +222,7 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
         // your not clicking on the title
         if indexPath.section == 1 {
             settingsLauncher = SettingsLauncher()
-            settingsLauncher.showSettings(tableView: orderTableView, foodSize: self.foodSize, foodItem: self.foodItem, rowClicked: indexPath.row)
+            settingsLauncher.showSettings(tableView: orderTableView, mainTableView: tableView, foodSize: self.foodSize, foodItem: self.foodItem, indexPathClicked: indexPath    )
         }
     }
     @IBAction func showMenu(_ sender: Any) {
@@ -240,7 +240,7 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
         fadeButton.alpha = 1
         
         UIView.animate(withDuration: 0.5) {
-            self.fadeButton.alpha = 0.01
+            self.fadeButton.alpha = 0.1
         }
     }
     
@@ -254,8 +254,17 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
             fadeButton.alpha = 1
             
             UIView.animate(withDuration: 0.5) {
-                self.fadeButton.alpha = 0.01
+                self.fadeButton.alpha = 0.1
             }
+        }
+    }
+    @IBAction func addToCart(_ sender: Any) {
+        print("Fade button pressed")
+        
+        fadeButton.alpha = 1
+        
+        UIView.animate(withDuration: 0.5) {
+            self.fadeButton.alpha = 0.1
         }
     }
 }

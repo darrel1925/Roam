@@ -16,7 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        createUsersOrder()
+        
         Parse.initialize(with: ParseClientConfiguration(block: {
             (configuration: ParseMutableClientConfiguration) in
             configuration.applicationId = "myAppId"
@@ -28,11 +30,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let loginVC = main.instantiateViewController(withIdentifier: "LoginViewController" )
                 
                 //window?.rootViewController
-                
             }
             
         }))
         return true
+    }
+    
+    func createUsersOrder() {
+        
+//        if UserDefaults.standard.object(forKey: "order") == nil {
+//            // create order
+//            let usersOrder = Order()
+//            usersOrder.p = "hi"
+//            // save new order to user defaults
+//            UserDefaults.standard.set(try? PropertyListEncoder().encode(usersOrder), forKey: "order")
+//            print("order created")
+//        }
+//        else {
+//            if let data = UserDefaults.standard.value(forKey: "order") as? Data {
+//                let newOrder = try? PropertyListDecoder().decode(Order.self, from: data)
+//
+//            }
+//
+//            print("order already was made")
+//        }
     }
     
     

@@ -13,16 +13,21 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
     
     var button: UIButton!
     let blackView = UIView()
+    var mainTableView: UITableView!
     var tableView: UITableView!
     var foodItem: String!
     var foodSize: String!
-    var rowClicked: Int!
+    var indexPathClicked: IndexPath!
+    
+    var chosenFoodName: String!
+    var chosenFoodPrice: String!
 
-    func showSettings(tableView: UITableView, foodSize: String, foodItem: String, rowClicked: Int) {
+    func showSettings(tableView: UITableView, mainTableView: UITableView, foodSize: String, foodItem: String, indexPathClicked: IndexPath) {
         
         self.foodSize = foodSize
         self.foodItem = foodItem
-        self.rowClicked = rowClicked
+        self.indexPathClicked = indexPathClicked
+        self.mainTableView = mainTableView
         
         self.tableView = tableView
         self.tableView.dataSource = self
@@ -71,10 +76,6 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
                 
             }, completion: nil)
             
-            
-
-
-            
             // add Tap Gesture to dismiss the everything
             blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDismiss)))
         }
@@ -96,9 +97,20 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func buttonAction(sender: UIButton!) {
-            print("Button tapped")
+        print("Button tapped")
+        
+        
+        
+        let cell = mainTableView.cellForRow(at: self.indexPathClicked) as! SideOptionCell
+        
+        cell.selectedItemLabel.text = chosenFoodName + " " + chosenFoodPrice
+        
+        handleDismiss()
     }
-
+    
+    func dismissWindow() {
+        
+    }
     
     /********************************************************/
     /***************** TABLE VIEW FUNCTIONS *****************/
@@ -122,7 +134,7 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "EntreeTitleCell") as! EntreeTitleCell
-            cell.titleLabel.text = titleSelection()[self.rowClicked]
+            cell.titleLabel.text = titleSelection()[self.indexPathClicked.row]
             
             return cell
         }
@@ -160,6 +172,11 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.cellForRow(at: indexPath) as! ChooseEntreeCell
             cell.checkView.image = UIImage(named: "check")
         }
+        
+        // vaiables to change labels on PandaExpressSideSelection
+        let cell = tableView.cellForRow(at: indexPath) as! ChooseEntreeCell
+        self.chosenFoodName = cell.entreeLabel.text
+        self.chosenFoodPrice = cell.priceLabel.text
     }
     
     
@@ -173,7 +190,7 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
             case "Full":
                 if self.foodItem == "Plate"
                 {
-                    if self.rowClicked <= 0
+                    if self.indexPathClicked.row <= 0
                     {
                         return PandaExpress.SideOption.Full.name.count
                     }
@@ -184,7 +201,7 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
                 }
                 else if foodItem == "Bigger Plate"
                 {
-                    if self.rowClicked <= 0
+                    if self.indexPathClicked.row <= 0
                     {
                         return PandaExpress.SideOption.Full.name.count
                     }
@@ -195,7 +212,7 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
                 }
                 else if foodItem == "Bowl"
                 {
-                    if self.rowClicked <= 0
+                    if self.indexPathClicked.row <= 0
                     {
                         return PandaExpress.SideOption.Full.name.count
                     }
@@ -206,7 +223,7 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
                 }
                 else if foodItem == "Family Feast"
                 {
-                    if self.rowClicked <= 1
+                    if self.indexPathClicked.row <= 1
                     {
                         return PandaExpress.SideOption.Full.name.count
                     }
@@ -218,7 +235,7 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
             case "Half":
                 if self.foodItem == "Plate"
                 {
-                    if self.rowClicked <= 1
+                    if self.indexPathClicked.row <= 1
                     {
                         return PandaExpress.SideOption.Full.name.count
                     }
@@ -229,7 +246,7 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
                 }
                 else if foodItem == "Bigger Plate"
                 {
-                    if self.rowClicked <= 1
+                    if self.indexPathClicked.row <= 1
                     {
                         return PandaExpress.SideOption.Full.name.count
                     }
@@ -240,7 +257,7 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
                 }
                 else if foodItem == "Bowl"
                 {
-                    if self.rowClicked <= 1
+                    if self.indexPathClicked.row <= 1
                     {
                         return PandaExpress.SideOption.Full.name.count
                     }
@@ -251,7 +268,7 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
                 }
                 else if foodItem == "Family Feast"
                 {
-                    if self.rowClicked <= 2
+                    if self.indexPathClicked.row <= 2
                     {
                         return PandaExpress.SideOption.Full.name.count
                     }
@@ -272,7 +289,7 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
         case "Full":
             if self.foodItem == "Plate"
             {
-                if self.rowClicked <= 0
+                if self.indexPathClicked.row <= 0
                 {
                     return "Side"
                 }
@@ -283,7 +300,7 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
             }
             else if foodItem == "Bigger Plate"
             {
-                if self.rowClicked <= 0
+                if self.indexPathClicked.row <= 0
                 {
                     return "Side"
                     
@@ -296,7 +313,7 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
             }
             else if foodItem == "Bowl"
             {
-                if self.rowClicked <= 0
+                if self.indexPathClicked.row <= 0
                 {
                     return "Side"
                 }
@@ -308,7 +325,7 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
             }
             else if foodItem == "Family Feast"
             {
-                if self.rowClicked <= 1
+                if self.indexPathClicked.row <= 1
                 {
                     return "Side"
                     
@@ -322,7 +339,7 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
         case "Half":
             if self.foodItem == "Plate"
             {
-                if self.rowClicked <= 1
+                if self.indexPathClicked.row <= 1
                 {
                     return "Side"
                     
@@ -335,7 +352,7 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
             }
             else if foodItem == "Bigger Plate"
             {
-                if self.rowClicked <= 1
+                if self.indexPathClicked.row <= 1
                 {
                     return "Side"
                     
@@ -348,7 +365,7 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
             }
             else if foodItem == "Bowl"
             {
-                if self.rowClicked <= 1
+                if self.indexPathClicked.row <= 1
                 {
                     return "Side"
                     
@@ -361,7 +378,7 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
             }
             else if foodItem == "Family Feast"
             {
-                if self.rowClicked <= 2
+                if self.indexPathClicked.row <= 2
                 {
                     return "Side"
                     
