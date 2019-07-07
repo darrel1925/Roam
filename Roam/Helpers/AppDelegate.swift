@@ -38,22 +38,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func createUsersOrder() {
         
-//        if UserDefaults.standard.object(forKey: "order") == nil {
-//            // create order
-//            let usersOrder = Order()
-//            usersOrder.p = "hi"
-//            // save new order to user defaults
-//            UserDefaults.standard.set(try? PropertyListEncoder().encode(usersOrder), forKey: "order")
-//            print("order created")
-//        }
-//        else {
-//            if let data = UserDefaults.standard.value(forKey: "order") as? Data {
-//                let newOrder = try? PropertyListDecoder().decode(Order.self, from: data)
-//
-//            }
-//
-//            print("order already was made")
-//        }
+        if UserDefaults.standard.object(forKey: "order") == nil {
+            // create order
+            var order = Order()
+            order.p = "hi"
+            
+            // save new order to user defaults
+            Order.setOrder(order: order)
+
+            print("order created")
+        }
+        else {
+            
+            let order = Order.getOrder()
+            print("Order recieved from defauts: \(order.p)")
+        }
     }
     
     

@@ -8,11 +8,34 @@
 
 import Foundation
 
-struct Order {
+struct Order: Codable {
     
-    static let itemNames = [String:Double]()
+    var itemNames = [[String:String]]()
     
-    static let itemExtras = [[String]]()
+    var itemExtras = [[String]]()
     
-    static var p: String!
+    var p: String!
+    
+    
+    static func getOrder() -> Order {
+        let defaults = UserDefaults.standard
+        guard let orderData = defaults.object(forKey: "order") as? Data else {
+            // couldn't retrieved the order
+            return Order()
+        }
+        
+        // Use PropertyListDecoder to convert Data into Player
+        guard let order = try? PropertyListDecoder().decode(Order.self, from: orderData) else {
+            // couldn't retrieved the order
+            return Order()
+        }
+        // order was successfuly retrieved
+        return order
+    }
+    
+    static func setOrder(order: Order) {
+        // save new order to user defaults
+        let defaults = UserDefaults.standard
+        defaults.set(try? PropertyListEncoder().encode(order), forKey: "order")
+    }
 }

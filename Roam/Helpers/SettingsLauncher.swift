@@ -99,13 +99,15 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
     @objc func buttonAction(sender: UIButton!) {
         print("Button tapped")
         
-        
-        
-        let cell = mainTableView.cellForRow(at: self.indexPathClicked) as! SideOptionCell
-        
-        cell.selectedItemLabel.text = chosenFoodName + " " + chosenFoodPrice
-        
-        handleDismiss()
+        if chosenFoodPrice != nil {
+            let cell = mainTableView.cellForRow(at: self.indexPathClicked) as! SideOptionCell
+            
+            cell.selectedItemLabel.text = chosenFoodName + " + " + chosenFoodPrice
+            
+            handleDismiss()
+        } else {
+            // TODO: Notify user to choose an option
+        }
     }
     
     func dismissWindow() {
@@ -175,8 +177,16 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
         
         // vaiables to change labels on PandaExpressSideSelection
         let cell = tableView.cellForRow(at: indexPath) as! ChooseEntreeCell
-        self.chosenFoodName = cell.entreeLabel.text
+        
+        // formats price to a '$0.00'
         self.chosenFoodPrice = cell.priceLabel.text
+        let index = self.chosenFoodPrice.index(self.chosenFoodPrice.endIndex, offsetBy: -5)
+        let mySubstring = self.chosenFoodPrice[index...] // playground
+        
+        self.chosenFoodPrice = String(mySubstring)
+        self.chosenFoodName = cell.entreeLabel.text
+
+        //self.chosenFoodPrice.remove(at: self.chosenFoodPrice.startIndex)
     }
     
     

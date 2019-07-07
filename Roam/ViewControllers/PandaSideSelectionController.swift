@@ -36,6 +36,7 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
         totalPriceLabel.layer.masksToBounds = true
         totalPriceLabel.layer.cornerRadius = 20
         
+        numOrdersLabel.text = "1"
         numOrdersLabel.layer.masksToBounds = true
         numOrdersLabel.layer.cornerRadius = 20
         
@@ -44,19 +45,17 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
         
     }
     
+    /********************************************************/
+    /***************** TABLE VIEW FUNCTIONS *****************/
+    /********************************************************/
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section  == 0 {
             print("hello")
             return 1
         }
-        if foodSize == "Full" {
-            print("Section: \(section) is \(String(describing: foodSize)) with \(numFullChoices()) rows")
-            return numFullChoices()
-        }
-        else {
-            print("Section: \(section) is: \(String(describing: foodSize)) with \(numHalfChoices()) rows")
-            return numHalfChoices()
-        }
+        
+        return getNumRows()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -183,9 +182,27 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
-
-    @IBAction func onBackButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // your not clicking on the title
+        if indexPath.section == 1 {
+            settingsLauncher = SettingsLauncher()
+            settingsLauncher.showSettings(tableView: orderTableView, mainTableView: tableView, foodSize: self.foodSize, foodItem: self.foodItem, indexPathClicked: indexPath    )
+        }
+    }
+    
+    /********************************************************/
+    /******************* HELPER FUNCTIONS *******************/
+    /********************************************************/
+    
+    func getNumRows() -> Int {
+        if foodSize == "Full" {
+            print("Section: \(1) is \(String(describing: foodSize)) with \(numFullChoices()) rows")
+            return numFullChoices()
+        }
+        else {
+            print("Section: \(1) is: \(String(describing: foodSize)) with \(numHalfChoices()) rows")
+            return numHalfChoices()
+        }
     }
     
     func numFullChoices() -> Int {
@@ -202,7 +219,6 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
             return 0
         }
     }
-    
     func numHalfChoices() -> Int {
         switch foodItem {
         case "Plate":
@@ -218,18 +234,74 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // your not clicking on the title
-        if indexPath.section == 1 {
-            settingsLauncher = SettingsLauncher()
-            settingsLauncher.showSettings(tableView: orderTableView, mainTableView: tableView, foodSize: self.foodSize, foodItem: self.foodItem, indexPathClicked: indexPath    )
+    func fadeTotalAmtButton() {
+        fadeButton.alpha = 1
+        
+        UIView.animate(withDuration: 0.5) {
+            self.fadeButton.alpha = 0.1
         }
     }
+    
+    func addToOrder() {
+        var meal = [String:String]()
+        
+        if allFoodItemsHaveBeenChosen() {
+            for row in 0..<getNumRows() {
+                let indexPath = IndexPath(row: row, section: 1)
+                let cell = tableView.cellForRow(at: indexPath) as! SideOptionCell
+                
+                let orderStr = cell.selectedItemLabel.text
+                let orderArr = orderStr!.components(separatedBy: " + ")
+                
+                let mealName = orderArr[0]
+                let mealPrice = orderArr[1]
+                
+                meal[mealName] = mealPrice
+                
+            }
+            // get the user's order
+            var order = Order.getOrder()
+            // add meal to order
+            order.itemNames.append(meal)
+            // store the user's order
+            Order.setOrder(order: order)
+        }
+    }
+    
+    func allFoodItemsHaveBeenChosen() -> Bool {
+        for row in 0..<getNumRows() {
+            let indexPath = IndexPath(row: row, section: 1)
+            let cell = tableView.cellForRow(at: indexPath) as! SideOptionCell
+            let orderStr = cell.selectedItemLabel.text
+            
+            // if orderStr does not contain '+'
+            if !(orderStr?.contains("+"))! {
+                // present alert
+                let message = "Make sure to choose all of your sides and entrees so we can get your order right!"
+                let alert = UIAlertController(title: "Incomplete Order", message: message, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "I'll fix it!", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                
+                return false
+            }
+        }
+        
+        return true
+    }
+    
+    /********************************************************/
+    /******************* ACTION FUNCTIONS *******************/
+    /********************************************************/
+    
     @IBAction func showMenu(_ sender: Any) {
 
         
     }
-        
+    
+    @IBAction func onBackButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func onPlusButton(_ sender: Any) {
         numOrders += 1
         
@@ -237,11 +309,7 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
         totalPriceLabel.text = "ADD $" + String(format: "%.2f", totalPrice * numOrders)
         
         fadeButton.backgroundColor = .black
-        fadeButton.alpha = 1
-        
-        UIView.animate(withDuration: 0.5) {
-            self.fadeButton.alpha = 0.1
-        }
+        fadeTotalAmtButton()
     }
     
     @IBAction func onMinusButton(_ sender: Any) {
@@ -251,20 +319,12 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
             numOrdersLabel.text = "\(Int(numOrders))"
             totalPriceLabel.text = "ADD $" + String(format: "%.2f", totalPrice * numOrders)
             
-            fadeButton.alpha = 1
-            
-            UIView.animate(withDuration: 0.5) {
-                self.fadeButton.alpha = 0.1
-            }
+            fadeTotalAmtButton()
         }
     }
     @IBAction func addToCart(_ sender: Any) {
         print("Fade button pressed")
-        
-        fadeButton.alpha = 1
-        
-        UIView.animate(withDuration: 0.5) {
-            self.fadeButton.alpha = 0.1
-        }
+        addToOrder()
+        fadeTotalAmtButton()
     }
 }
