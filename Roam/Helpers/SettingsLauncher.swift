@@ -13,21 +13,24 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
     
     var button: UIButton!
     let blackView = UIView()
+    var PandaVC: PandaSideSelectionController!
     var mainTableView: UITableView!
     var tableView: UITableView!
     var foodItem: String!
     var foodSize: String!
     var indexPathClicked: IndexPath!
     
+    
     var chosenFoodName: String!
     var chosenFoodPrice: String!
 
-    func showSettings(tableView: UITableView, mainTableView: UITableView, foodSize: String, foodItem: String, indexPathClicked: IndexPath) {
+    func showSettings(tableView: UITableView, mainTableView: UITableView, foodSize: String, foodItem: String, indexPathClicked: IndexPath, PandaVC: PandaSideSelectionController) {
         
         self.foodSize = foodSize
         self.foodItem = foodItem
         self.indexPathClicked = indexPathClicked
         self.mainTableView = mainTableView
+        self.PandaVC = PandaVC
         
         self.tableView = tableView
         self.tableView.dataSource = self
@@ -81,7 +84,11 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    
+    
     @objc func handleDismiss() {
+        // to update the total price
+        PandaVC.getNewTotalPrice()
         
         UIView.animate(withDuration: 0.5) {
             self.blackView.alpha = 0
@@ -99,20 +106,16 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
     @objc func buttonAction(sender: UIButton!) {
         print("Button tapped")
         
+        // if user selected an item
         if chosenFoodPrice != nil {
             let cell = mainTableView.cellForRow(at: self.indexPathClicked) as! SideOptionCell
             
-            cell.selectedItemLabel.text = chosenFoodName + " + " + chosenFoodPrice
+            cell.selectedItemLabel.text = chosenFoodName + " + $" + chosenFoodPrice
             
             handleDismiss()
-        } else {
-            // TODO: Notify user to choose an option
         }
     }
     
-    func dismissWindow() {
-        
-    }
     
     /********************************************************/
     /***************** TABLE VIEW FUNCTIONS *****************/
@@ -173,20 +176,18 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
             tableView.reloadData()
             let cell = tableView.cellForRow(at: indexPath) as! ChooseEntreeCell
             cell.checkView.image = UIImage(named: "check")
-        }
         
-        // vaiables to change labels on PandaExpressSideSelection
-        let cell = tableView.cellForRow(at: indexPath) as! ChooseEntreeCell
         
-        // formats price to a '$0.00'
+        // vaiables to change labels on this tableView
+        
+        // formats price to a '0.00' , by getting the last 4 chars
         self.chosenFoodPrice = cell.priceLabel.text
-        let index = self.chosenFoodPrice.index(self.chosenFoodPrice.endIndex, offsetBy: -5)
-        let mySubstring = self.chosenFoodPrice[index...] // playground
+        let index = self.chosenFoodPrice.index(self.chosenFoodPrice.endIndex, offsetBy: -4)
+        let substring = self.chosenFoodPrice[index...] // playground
         
-        self.chosenFoodPrice = String(mySubstring)
+        self.chosenFoodPrice = String(substring)
         self.chosenFoodName = cell.entreeLabel.text
-
-        //self.chosenFoodPrice.remove(at: self.chosenFoodPrice.startIndex)
+        }
     }
     
     

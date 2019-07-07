@@ -14,9 +14,6 @@ struct Order: Codable {
     
     var itemExtras = [[String]]()
     
-    var p: String!
-    
-    
     static func getOrder() -> Order {
         let defaults = UserDefaults.standard
         guard let orderData = defaults.object(forKey: "order") as? Data else {

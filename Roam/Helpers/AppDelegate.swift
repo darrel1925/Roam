@@ -40,18 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if UserDefaults.standard.object(forKey: "order") == nil {
             // create order
-            var order = Order()
-            order.p = "hi"
+            let order = Order()
             
             // save new order to user defaults
             Order.setOrder(order: order)
 
             print("order created")
-        }
-        else {
-            
-            let order = Order.getOrder()
-            print("Order recieved from defauts: \(order.p)")
         }
     }
     

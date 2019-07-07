@@ -25,9 +25,12 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
     var foodSize: String!
     var numOrders = 1.0
     var totalPrice: Double!
+    var originalPrice: Double!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        originalPrice = totalPrice
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -44,6 +47,7 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
         fadeButton.layer.cornerRadius = 20
         
     }
+    
     
     /********************************************************/
     /***************** TABLE VIEW FUNCTIONS *****************/
@@ -132,19 +136,19 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
                     switch foodItem {
                     case "Plate":
                         cell.headerLabel.text = PandaExpress.Plate.Selection.Half.choices[row]
-                        cell.selectedItemLabel.text = PandaExpress.SideOption.Half.name[0]
+                        cell.selectedItemLabel.text = PandaExpress.SideOption.Half.name[0] + " + $0.00"
                         return cell
                     case "Bigger Plate":
                         cell.headerLabel.text = PandaExpress.BiggerPlate.Selection.Half.choices[row]
-                        cell.selectedItemLabel.text = PandaExpress.SideOption.Half.name[0]
+                        cell.selectedItemLabel.text = PandaExpress.SideOption.Half.name[0] + " + $0.00"
                         return cell
                     case "Bowl":
                         cell.headerLabel.text = PandaExpress.Bowl.Selection.Half.choices[row]
-                        cell.selectedItemLabel.text = PandaExpress.SideOption.Half.name[0]
+                        cell.selectedItemLabel.text = PandaExpress.SideOption.Half.name[0] + " + $0.00"
                         return cell
                     case "Family Feast":
                         cell.headerLabel.text = PandaExpress.FamilyFeast.Selection.Half.choices[row]
-                        cell.selectedItemLabel.text = PandaExpress.SideOption.Half.name[0]
+                        cell.selectedItemLabel.text = PandaExpress.SideOption.Half.name[0] + " + $0.00"
                         return cell
                     default:
                         let cellError = UITableViewCell()
@@ -155,19 +159,19 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
                     switch foodItem {
                     case "Plate":
                         cell.headerLabel.text = PandaExpress.Plate.Selection.Full.choices[row]
-                        cell.selectedItemLabel.text = PandaExpress.SideOption.Full.name[0]
+                        cell.selectedItemLabel.text = PandaExpress.SideOption.Full.name[0] + " + $0.00"
                         return cell
                     case "Bigger Plate":
                         cell.headerLabel.text = PandaExpress.BiggerPlate.Selection.Full.choices[row]
-                        cell.selectedItemLabel.text = PandaExpress.SideOption.Full.name[0]
+                        cell.selectedItemLabel.text = PandaExpress.SideOption.Full.name[0] + " + $0.00"
                         return cell
                     case "Bowl":
                         cell.headerLabel.text = PandaExpress.Bowl.Selection.Full.choices[row]
-                        cell.selectedItemLabel.text = PandaExpress.SideOption.Full.name[0]
+                        cell.selectedItemLabel.text = PandaExpress.SideOption.Full.name[0] + " + $0.00"
                         return cell
                     case "Family Feast":
                         cell.headerLabel.text = PandaExpress.FamilyFeast.Selection.Full.choices[row]
-                        cell.selectedItemLabel.text = PandaExpress.SideOption.Full.name[0]
+                        cell.selectedItemLabel.text = PandaExpress.SideOption.Full.name[0] + " + $0.00"
                         return cell
                     default:
                         let cellError = UITableViewCell()
@@ -186,7 +190,7 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
         // your not clicking on the title
         if indexPath.section == 1 {
             settingsLauncher = SettingsLauncher()
-            settingsLauncher.showSettings(tableView: orderTableView, mainTableView: tableView, foodSize: self.foodSize, foodItem: self.foodItem, indexPathClicked: indexPath    )
+            settingsLauncher.showSettings(tableView: orderTableView, mainTableView: tableView, foodSize: self.foodSize, foodItem: self.foodItem, indexPathClicked: indexPath, PandaVC: self)
         }
     }
     
@@ -245,50 +249,36 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
     func addToOrder() {
         var meal = [String:String]()
         
-        if allFoodItemsHaveBeenChosen() {
-            for row in 0..<getNumRows() {
-                let indexPath = IndexPath(row: row, section: 1)
-                let cell = tableView.cellForRow(at: indexPath) as! SideOptionCell
-                
-                let orderStr = cell.selectedItemLabel.text
-                let orderArr = orderStr!.components(separatedBy: " + ")
-                
-                let mealName = orderArr[0]
-                let mealPrice = orderArr[1]
-                
-                meal[mealName] = mealPrice
-                
-            }
-            // get the user's order
-            var order = Order.getOrder()
-            // add meal to order
-            order.itemNames.append(meal)
-            // store the user's order
-            Order.setOrder(order: order)
-        }
+        meal["name"] = "Pamda Express - \(foodItem!)"
+        meal["numOrders"] = String(format: "%.2f",numOrders)
+        meal["price"] = String(format: "%.2f", totalPrice)
+        
+        print(foodItem, totalPrice , numOrders)
+
+        // get the user's order
+        var order = Order.getOrder()
+        // add meal to order
+        order.itemNames.append(meal)
+        print(order.itemNames)
+        // store the user's order
+        Order.setOrder(order: order)
+        
+        dismiss(animated: true, completion: nil)
     }
-    
-    func allFoodItemsHaveBeenChosen() -> Bool {
+
+
+    func getNewTotalPrice() {
+        var total = 0.0
         for row in 0..<getNumRows() {
             let indexPath = IndexPath(row: row, section: 1)
             let cell = tableView.cellForRow(at: indexPath) as! SideOptionCell
-            let orderStr = cell.selectedItemLabel.text
+            let itemArr = cell.selectedItemLabel.text!.components(separatedBy: " + $")
             
-            // if orderStr does not contain '+'
-            if !(orderStr?.contains("+"))! {
-                // present alert
-                let message = "Make sure to choose all of your sides and entrees so we can get your order right!"
-                let alert = UIAlertController(title: "Incomplete Order", message: message, preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "I'll fix it!", style: UIAlertAction.Style.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-                
-                return false
-            }
+            total += Double(itemArr[1])!
         }
-        
-        return true
+        totalPrice = total + originalPrice
+        totalPriceLabel.text = "ADD $" + String(format: "%.2f", totalPrice * numOrders)
     }
-    
     /********************************************************/
     /******************* ACTION FUNCTIONS *******************/
     /********************************************************/
