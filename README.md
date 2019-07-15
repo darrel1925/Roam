@@ -11,6 +11,11 @@ Roamers would be a few of the tens of thousands of students on campus picking up
 
 In [this link](https://devpost.com/software/roam-d9gbya), you will find the initial designs for our mobile. However, we have done a major redesign since the conception of the app.<br />
 
+## Video Walkthrough
+
+Here's a short walkthrough of implemented ordering flow:
+
+<img src="http://g.recordit.co/PkPIhxyYLF.gif" width=200>
 
 ## Built With
 
