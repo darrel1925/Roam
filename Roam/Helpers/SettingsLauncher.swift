@@ -24,15 +24,15 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
     var chosenFoodName: String!
     var chosenFoodPrice: String!
 
-    func showSettings(tableView: UITableView, mainTableView: UITableView, foodSize: String, foodItem: String, indexPathClicked: IndexPath, PandaVC: PandaSideSelectionController) {
+    func showSettings(indexPathClicked: IndexPath, PandaVC: PandaSideSelectionController) {
         
-        self.foodSize = foodSize
-        self.foodItem = foodItem
+        self.foodSize = PandaVC.foodSize
+        self.foodItem = PandaVC.foodItem
         self.indexPathClicked = indexPathClicked
-        self.mainTableView = mainTableView
+        self.mainTableView = PandaVC.tableView
         self.PandaVC = PandaVC
         
-        self.tableView = tableView
+        self.tableView = PandaVC.orderTableView
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.alpha = 1
@@ -83,8 +83,6 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
             blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDismiss)))
         }
     }
-    
-    
     
     @objc func handleDismiss() {
         // to update the total price

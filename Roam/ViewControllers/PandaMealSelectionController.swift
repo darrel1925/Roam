@@ -11,19 +11,28 @@ import UIKit
 class PandaMealSelectionController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
-    let order = Order()
     
+    let button = UIButton.init(type: .roundedRect)
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorColor = .white
-        self.navigationController!.navigationBar.tintColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
-
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        showCartButton()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        // send button just below the bottom of the screen
+        UIView.animate(withDuration: 0.5, animations: {
+            self.button.center.y = self.view.frame.height * 1.05
+        })
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if [0,2,4,6].contains(section) {
             print("even section: \(section)")
@@ -129,9 +138,39 @@ class PandaMealSelectionController: UIViewController, UITableViewDelegate, UITab
             default:
                 PandaSideSelectionVC.foodSize = "Food size cannot be determined"
         }
-        
-        
         print("Prepared")
     }
     
+    
+    func showCartButton() {
+        let order = Order.getOrder()
+        
+        if order.itemNames.count > 0 {
+            
+            // create and format button
+            button.frame = CGRect(x: 150.0, y: self.view.frame.height, width: self.view.frame.width * 0.8, height: 50.0)
+            button.setTitle("View \(order.itemNames.count) Items in Cart", for: .normal)
+            button.setTitleColor(.white, for: .normal)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 18.0, weight: .medium)
+            button.backgroundColor = .black
+            button.center.x = self.view.center.x
+            button.layer.cornerRadius = 20
+            
+            self.view.addSubview(button)
+            button.addTarget(self, action: #selector(handleDismis(_:)), for: .touchUpInside)
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.button.center.y = self.view.frame.height * 0.95
+            })
+        }
+    }
+    
+    @objc func handleDismis(_: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let OrderVC = storyboard.instantiateViewController(withIdentifier: "OrderViewController")
+        self.navigationController?.present(OrderVC, animated: true, completion: {
+            print("VC Presented")
+        })
+    }
+
 }

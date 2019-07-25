@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,23 +17,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+        FirebaseApp.configure()
         createUsersOrder()
         
-        Parse.initialize(with: ParseClientConfiguration(block: {
-            (configuration: ParseMutableClientConfiguration) in
-            configuration.applicationId = "myAppId"
-            configuration.server = "https://roam-uci.herokuapp.com/parse"
-            
-            if PFUser.current() != nil{
-                let main = UIStoryboard(name: "Main", bundle: nil)
-                
-                let loginVC = main.instantiateViewController(withIdentifier: "LoginViewController" )
-                
-                //window?.rootViewController
+        Auth.auth().addStateDidChangeListener { auth, user in
+            if let _ = user {
+                self.presentLoginController()
+            } else {
+                // No user is signed in.
             }
-            
-        }))
+        }
+        
+//        Parse.initialize(with: ParseClientConfiguration(block: {
+//            (configuration: ParseMutableClientConfiguration) in
+//            configuration.applicationId = "myAppId"
+//            configuration.server = "https://roam-uci.herokuapp.com/parse"
+//
+//            if PFUser.current() != nil{
+//                let main = UIStoryboard(name: "Main", bundle: nil)
+//
+//                let loginVC = main.instantiateViewController(withIdentifier: "LoginViewController" )
+//
+//                //window?.rootViewController
+//            }
+//
+//        }))
         return true
     }
     
@@ -47,6 +56,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             print("order created")
         }
+    }
+    
+    func presentLoginController() {
+        let main = UIStoryboard(name: "Main", bundle: nil)
+        let HomeVC = main.instantiateViewController(withIdentifier: "HomePage" )
     }
     
     

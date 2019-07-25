@@ -190,7 +190,7 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
         // your not clicking on the title
         if indexPath.section == 1 {
             settingsLauncher = SettingsLauncher()
-            settingsLauncher.showSettings(tableView: orderTableView, mainTableView: tableView, foodSize: self.foodSize, foodItem: self.foodItem, indexPathClicked: indexPath, PandaVC: self)
+            settingsLauncher.showSettings(indexPathClicked: indexPath, PandaVC: self)
         }
     }
     
@@ -249,8 +249,8 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
     func addToOrder() {
         var meal = [String:String]()
         
-        meal["name"] = "Pamda Express - \(foodItem!)"
-        meal["numOrders"] = String(format: "%.2f",numOrders)
+        meal["name"] = "Panda Express - \(foodItem!)"
+        meal["numOrders"] = String(Int(numOrders))
         meal["price"] = String(format: "%.2f", totalPrice)
         
         print(foodItem, totalPrice , numOrders)
