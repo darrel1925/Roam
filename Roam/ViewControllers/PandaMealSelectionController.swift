@@ -12,17 +12,27 @@ class PandaMealSelectionController: UIViewController, UITableViewDelegate, UITab
     
     @IBOutlet weak var tableView: UITableView!
     
+    let button = UIButton.init(type: .roundedRect)
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorColor = .white
-        self.navigationController!.navigationBar.tintColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
-
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        showCartButton()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        // send button just below the bottom of the screen
+        UIView.animate(withDuration: 0.5, animations: {
+            self.button.center.y = self.view.frame.height * 1.05
+        })
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if [0,2,4,6].contains(section) {
             print("even section: \(section)")
@@ -97,40 +107,80 @@ class PandaMealSelectionController: UIViewController, UITableViewDelegate, UITab
         
         // TODO: figure out a way to know what food item i am customizing on the next screen
             // i might need to make differnt View controllers
+        let PandaSideSelectionVC = segue.destination as? PandaSideSelectionController
+        
+        if PandaSideSelectionVC == nil { return }
+        
         
         let cell = sender as! UITableViewCell
         let indexPath = tableView.indexPath(for: cell)!
         let section = indexPath.section
         let row = indexPath.row
         
-        let PandaSideSelectionVC = segue.destination as! PandaSideSelectionController
-        
         switch section {
             case 1:
-                PandaSideSelectionVC.foodItem  = "Plate"
-                PandaSideSelectionVC.totalPrice = PandaExpress.Plate.price
+                PandaSideSelectionVC!.foodItem  = "Plate"
+                PandaSideSelectionVC!.totalPrice = PandaExpress.Plate.price
             case 3:
-                PandaSideSelectionVC.foodItem = "Bigger Plate"
-                PandaSideSelectionVC.totalPrice = PandaExpress.BiggerPlate.price
+                PandaSideSelectionVC!.foodItem = "Bigger Plate"
+                PandaSideSelectionVC!.totalPrice = PandaExpress.BiggerPlate.price
             case 5:
-                PandaSideSelectionVC.foodItem = "Bowl"
-                PandaSideSelectionVC.totalPrice = PandaExpress.Bowl.price
+                PandaSideSelectionVC!.foodItem = "Bowl"
+                PandaSideSelectionVC!.totalPrice = PandaExpress.Bowl.price
             default:
-                PandaSideSelectionVC.foodItem = "Family Feast"
-                PandaSideSelectionVC.totalPrice = PandaExpress.FamilyFeast.price
+                PandaSideSelectionVC!.foodItem = "Family Feast"
+                PandaSideSelectionVC!.totalPrice = PandaExpress.FamilyFeast.price
         }
         
         switch row {
             case 0:
-                PandaSideSelectionVC.foodSize  = "Half"
+                PandaSideSelectionVC!.foodSize  = "Half"
             case 1:
-                PandaSideSelectionVC.foodSize = "Full"
+                PandaSideSelectionVC!.foodSize = "Full"
             default:
-                PandaSideSelectionVC.foodSize = "Food size cannot be determined"
+                PandaSideSelectionVC!.foodSize = "Food size cannot be determined"
         }
-        
-        
         print("Prepared")
     }
     
+    
+    func showCartButton() {
+        let order = Order.getOrder()
+        
+        if order.itemNames.count > 0 {
+            
+            // create and format button
+            button.frame = CGRect(x: 150.0, y: self.view.frame.height, width: self.view.frame.width * 0.8, height: 50.0)
+            button.setTitle("View \(StripeCart.cartItems.count) Items in Cart", for: .normal)
+            button.setTitleColor(.white, for: .normal)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 18.0, weight: .medium)
+            button.backgroundColor = .black
+            button.center.x = self.view.center.x
+            button.layer.cornerRadius = 20
+            
+            self.view.addSubview(button)
+            button.addTarget(self, action: #selector(handleDismis(_:)), for: .touchUpInside)
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.button.center.y = self.view.frame.height * 0.95
+            })
+        }
+    }
+    
+    @objc func handleDismis(_: UIButton) {
+        showShoppingCart()
+    }
+
+    @IBAction func toCartClicked(_ sender: Any) {
+        showShoppingCart()
+    }
+    
+    func showShoppingCart() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let CheckOutVC = storyboard.instantiateViewController(withIdentifier: "CheckOutController")
+        self.navigationController?.present(CheckOutVC, animated: true, completion: {
+            print("CheckOutVC Presented")
+        })
+
+    }
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,23 +17,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        Parse.initialize(with: ParseClientConfiguration(block: {
-            (configuration: ParseMutableClientConfiguration) in
-            configuration.applicationId = "myAppId"
-            configuration.server = "https://roam-uci.herokuapp.com/parse"
-            
-            if PFUser.current() != nil{
-                let main = UIStoryboard(name: "Main", bundle: nil)
-                
-                let loginVC = main.instantiateViewController(withIdentifier: "LoginViewController" )
-                
-                //window?.rootViewController
-                
+        FirebaseApp.configure()
+        createUsersOrder()
+        
+        Auth.auth().addStateDidChangeListener { auth, user in
+            if let _ = user {
+                self.presentHomePage()
+            } else {
+                // No user is signed in.
             }
-            
-        }))
+        }
         return true
+    }
+    
+    func createUsersOrder() {
+        
+        if UserDefaults.standard.object(forKey: "order") == nil {
+            // create order
+            let order = Order()
+            
+            // save new order to user defaults
+            Order.setOrder(order: order)
+
+            print("order created")
+        }
+    }
+    
+    func presentHomePage() {
+        if let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomePage") as? HomeScreenController {
+            if let window = self.window, let rootViewController = window.rootViewController {
+                var currentController = rootViewController
+                while let presentedController = currentController.presentedViewController {
+                    currentController = presentedController
+                }
+                currentController.present(controller, animated: true, completion: nil)
+            }
+        }
     }
     
     

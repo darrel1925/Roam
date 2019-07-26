@@ -7,27 +7,47 @@
 //
 
 import UIKit
+import Firebase
 
 class HomePageViewController: UIViewController {
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-        
         
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidAppear(_ animated: Bool) {
+        if let user = Auth.auth().currentUser {
+            // add all of our info to our User class to use globally
+            if UserService.userListener == nil {
+                UserService.getCurrentUser()
+            }
+        }
     }
-    */
-
+    
+    func presentLoginController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateInitialViewController()
+        present(controller!, animated: true, completion: nil)
+    }
+    
+    @IBAction func logoutClicked(_ sender: Any) {
+        
+        if let user = Auth.auth().currentUser {
+            
+            do {
+                try Auth.auth().signOut()
+                // removes event listener from fb user reference
+                UserService.logoutUser()
+                presentLoginController()
+            } catch {
+                // TOTO: show error message
+                print("could not log out")
+            }
+        }
+        else {
+            presentLoginController()
+        }
+    }
 }

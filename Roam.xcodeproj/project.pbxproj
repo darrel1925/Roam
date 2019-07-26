@@ -8,15 +8,33 @@
 
 /* Begin PBXBuildFile section */
 		25415B45EE49F441FA87D006 /* Pods_RoamUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08D94F7F78C6C06616E128F2 /* Pods_RoamUITests.framework */; };
-		38158C652290D8DE00FFCE15 /* SignInWithEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38158C642290D8DE00FFCE15 /* SignInWithEmailViewController.swift */; };
 		38571D5E2290B54600C460C7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38571D5D2290B54600C460C7 /* LoginViewController.swift */; };
+		9A6912A822E958A60058BF2D /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6912A722E958A60058BF2D /* UserService.swift */; };
+		9A6912AA22E979E80058BF2D /* CheckOutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6912A922E979E80058BF2D /* CheckOutController.swift */; };
+		9A6912AD22E980480058BF2D /* ShoppingCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6912AC22E980480058BF2D /* ShoppingCartCell.swift */; };
+		9A6912B022E9815F0058BF2D /* StripeCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6912AF22E9815F0058BF2D /* StripeCart.swift */; };
+		9A6912B222E981D80058BF2D /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6912B122E981D80058BF2D /* Product.swift */; };
+		9A9019BE22E6EC860097AC04 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A9019BD22E6EC860097AC04 /* GoogleService-Info.plist */; };
+		9A9019C322E7F5530097AC04 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9019C222E7F5530097AC04 /* Styles.swift */; };
+		9A9019C522E7F7370097AC04 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9019C422E7F7370097AC04 /* LoginController.swift */; };
+		9A9019C722E949F80097AC04 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9019C622E949F80097AC04 /* User.swift */; };
+		9A9019C922E94E000097AC04 /* SignInWithEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9019C822E94E000097AC04 /* SignInWithEmailViewController.swift */; };
+		9A97CF3722B766310063B29A /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A97CF3622B766310063B29A /* Order.swift */; };
+		9A9D8F8622D1BC4C00C49EB6 /* CartButtonLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D8F8522D1BC4C00C49EB6 /* CartButtonLauncher.swift */; };
+		9A9D8F8822D2C95500C49EB6 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D8F8722D2C95500C49EB6 /* OrderViewController.swift */; };
+		9A9D8F8D22D2DCF000C49EB6 /* YourOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D8F8C22D2DCF000C49EB6 /* YourOrderCell.swift */; };
+		9A9D8F8F22D2DD1200C49EB6 /* OrderDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D8F8E22D2DD1200C49EB6 /* OrderDetailsCell.swift */; };
+		9A9D8F9122D2DD2800C49EB6 /* SubtotalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D8F9022D2DD2800C49EB6 /* SubtotalCell.swift */; };
+		9A9D8F9322D2DD4E00C49EB6 /* ChargesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D8F9222D2DD4E00C49EB6 /* ChargesCell.swift */; };
+		9A9D8F9522D2DD6600C49EB6 /* TotalPriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D8F9422D2DD6600C49EB6 /* TotalPriceCell.swift */; };
+		9A9D8F9722DEC72800C49EB6 /* HomeScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D8F9622DEC72700C49EB6 /* HomeScreenController.swift */; };
 		ED3C45D622948432006D17B0 /* PandaExpressFoodItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3C45D522948432006D17B0 /* PandaExpressFoodItems.swift */; };
 		ED3C45DA22948A0A006D17B0 /* ItemDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3C45D922948A0A006D17B0 /* ItemDescriptionCell.swift */; };
 		ED3C45DC22948EA4006D17B0 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3C45DB22948EA4006D17B0 /* TitleCell.swift */; };
 		ED4CA6A72294B6A00022A095 /* WendysFoodItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CA6A62294B6A00022A095 /* WendysFoodItems.swift */; };
 		ED4CA6AB2294F6180022A095 /* WendysMealSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CA6AA2294F6180022A095 /* WendysMealSelectionViewController.swift */; };
 		ED4CA6AF22950C090022A095 /* PandaSideSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CA6AE22950C090022A095 /* PandaSideSelectionController.swift */; };
-		ED4CA6B1229521190022A095 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CA6B0229521190022A095 /* File.swift */; };
+		ED4CA6B1229521190022A095 /* SettingsLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CA6B0229521190022A095 /* SettingsLauncher.swift */; };
 		ED4CA6B3229541E50022A095 /* SideSelectionTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CA6B2229541E50022A095 /* SideSelectionTitleCell.swift */; };
 		ED4CA6B5229542100022A095 /* SideOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CA6B4229542100022A095 /* SideOptionCell.swift */; };
 		EDC9A438229D18AA004402EF /* ChooseEntreeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC9A437229D18A9004402EF /* ChooseEntreeCell.swift */; };
@@ -55,12 +73,30 @@
 		040EA67AA1E0F2D37889E8EB /* Pods_Roam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Roam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		06A74FB8499013DCB4B57E14 /* Pods-Roam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Roam.release.xcconfig"; path = "Target Support Files/Pods-Roam/Pods-Roam.release.xcconfig"; sourceTree = "<group>"; };
 		08D94F7F78C6C06616E128F2 /* Pods_RoamUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoamUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		38158C642290D8DE00FFCE15 /* SignInWithEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithEmailViewController.swift; sourceTree = "<group>"; };
 		38571D5D2290B54600C460C7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
 		59E3B0AE760DEE1ECBDBB212 /* Pods-Roam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Roam.debug.xcconfig"; path = "Target Support Files/Pods-Roam/Pods-Roam.debug.xcconfig"; sourceTree = "<group>"; };
 		61D8B8464BC567D8ACC37B95 /* Pods-RoamUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamUITests.debug.xcconfig"; path = "Target Support Files/Pods-RoamUITests/Pods-RoamUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		69F20F3A5F30D55D229589E5 /* Pods-RoamTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamTests.release.xcconfig"; path = "Target Support Files/Pods-RoamTests/Pods-RoamTests.release.xcconfig"; sourceTree = "<group>"; };
 		81BC988E71796CD90919DF30 /* Pods-RoamUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamUITests.release.xcconfig"; path = "Target Support Files/Pods-RoamUITests/Pods-RoamUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9A6912A722E958A60058BF2D /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		9A6912A922E979E80058BF2D /* CheckOutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutController.swift; sourceTree = "<group>"; };
+		9A6912AC22E980480058BF2D /* ShoppingCartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartCell.swift; sourceTree = "<group>"; };
+		9A6912AF22E9815F0058BF2D /* StripeCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeCart.swift; sourceTree = "<group>"; };
+		9A6912B122E981D80058BF2D /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		9A9019BD22E6EC860097AC04 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9A9019C222E7F5530097AC04 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		9A9019C422E7F7370097AC04 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		9A9019C622E949F80097AC04 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		9A9019C822E94E000097AC04 /* SignInWithEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithEmailViewController.swift; sourceTree = "<group>"; };
+		9A97CF3622B766310063B29A /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		9A9D8F8522D1BC4C00C49EB6 /* CartButtonLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartButtonLauncher.swift; sourceTree = "<group>"; };
+		9A9D8F8722D2C95500C49EB6 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		9A9D8F8C22D2DCF000C49EB6 /* YourOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourOrderCell.swift; sourceTree = "<group>"; };
+		9A9D8F8E22D2DD1200C49EB6 /* OrderDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsCell.swift; sourceTree = "<group>"; };
+		9A9D8F9022D2DD2800C49EB6 /* SubtotalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtotalCell.swift; sourceTree = "<group>"; };
+		9A9D8F9222D2DD4E00C49EB6 /* ChargesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargesCell.swift; sourceTree = "<group>"; };
+		9A9D8F9422D2DD6600C49EB6 /* TotalPriceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalPriceCell.swift; sourceTree = "<group>"; };
+		9A9D8F9622DEC72700C49EB6 /* HomeScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenController.swift; sourceTree = "<group>"; };
 		AD2ABD13AC92B1CEFE2954A3 /* Pods-RoamTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamTests.debug.xcconfig"; path = "Target Support Files/Pods-RoamTests/Pods-RoamTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED3C45D522948432006D17B0 /* PandaExpressFoodItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaExpressFoodItems.swift; sourceTree = "<group>"; };
 		ED3C45D922948A0A006D17B0 /* ItemDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDescriptionCell.swift; sourceTree = "<group>"; };
@@ -68,7 +104,7 @@
 		ED4CA6A62294B6A00022A095 /* WendysFoodItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WendysFoodItems.swift; sourceTree = "<group>"; };
 		ED4CA6AA2294F6180022A095 /* WendysMealSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WendysMealSelectionViewController.swift; sourceTree = "<group>"; };
 		ED4CA6AE22950C090022A095 /* PandaSideSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PandaSideSelectionController.swift; path = Roam/ViewControllers/PandaSideSelectionController.swift; sourceTree = SOURCE_ROOT; };
-		ED4CA6B0229521190022A095 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		ED4CA6B0229521190022A095 /* SettingsLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLauncher.swift; sourceTree = "<group>"; };
 		ED4CA6B2229541E50022A095 /* SideSelectionTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideSelectionTitleCell.swift; sourceTree = "<group>"; };
 		ED4CA6B4229542100022A095 /* SideOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideOptionCell.swift; sourceTree = "<group>"; };
 		EDC9A437229D18A9004402EF /* ChooseEntreeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseEntreeCell.swift; sourceTree = "<group>"; };
@@ -132,12 +168,60 @@
 			children = (
 				ED4CA6AA2294F6180022A095 /* WendysMealSelectionViewController.swift */,
 				38571D5D2290B54600C460C7 /* LoginViewController.swift */,
-				38158C642290D8DE00FFCE15 /* SignInWithEmailViewController.swift */,
+				9A9019C822E94E000097AC04 /* SignInWithEmailViewController.swift */,
 				EDF1532F2290F58800FD8BB2 /* HomePageViewController.swift */,
 				EDF153312290F64100FD8BB2 /* PandaMealSelectionController.swift */,
 				ED4CA6AE22950C090022A095 /* PandaSideSelectionController.swift */,
+				9A9D8F8722D2C95500C49EB6 /* OrderViewController.swift */,
+				9A9D8F9622DEC72700C49EB6 /* HomeScreenController.swift */,
+				9A9019C422E7F7370097AC04 /* LoginController.swift */,
+				9A6912A922E979E80058BF2D /* CheckOutController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		9A6912A622E958910058BF2D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9A6912A722E958A60058BF2D /* UserService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		9A6912AB22E9800F0058BF2D /* ShoppingCart */ = {
+			isa = PBXGroup;
+			children = (
+				9A6912AC22E980480058BF2D /* ShoppingCartCell.swift */,
+			);
+			path = ShoppingCart;
+			sourceTree = "<group>";
+		};
+		9A6912AE22E9814C0058BF2D /* Stripe */ = {
+			isa = PBXGroup;
+			children = (
+				9A6912AF22E9815F0058BF2D /* StripeCart.swift */,
+			);
+			path = Stripe;
+			sourceTree = "<group>";
+		};
+		9A9019BF22E7F4940097AC04 /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				9A9019C222E7F5530097AC04 /* Styles.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
+		9A9D8F8922D2D8A500C49EB6 /* OrderScreen */ = {
+			isa = PBXGroup;
+			children = (
+				9A9D8F8C22D2DCF000C49EB6 /* YourOrderCell.swift */,
+				9A9D8F8E22D2DD1200C49EB6 /* OrderDetailsCell.swift */,
+				9A9D8F9022D2DD2800C49EB6 /* SubtotalCell.swift */,
+				9A9D8F9222D2DD4E00C49EB6 /* ChargesCell.swift */,
+				9A9D8F9422D2DD6600C49EB6 /* TotalPriceCell.swift */,
+			);
+			path = OrderScreen;
 			sourceTree = "<group>";
 		};
 		E1BEBD96B9FF2901C641FDCB /* Pods */ = {
@@ -156,9 +240,11 @@
 		ED3C45D0229481C1006D17B0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				9A9019BF22E7F4940097AC04 /* Style */,
 				EDE119F82290B1AE00853117 /* Assets.xcassets */,
 				EDE119F12290B1AC00853117 /* AppDelegate.swift */,
-				ED4CA6B0229521190022A095 /* File.swift */,
+				ED4CA6B0229521190022A095 /* SettingsLauncher.swift */,
+				9A9D8F8522D1BC4C00C49EB6 /* CartButtonLauncher.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -166,10 +252,12 @@
 		ED3C45D1229481C4006D17B0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				9A6912AB22E9800F0058BF2D /* ShoppingCart */,
 				ED3C45D922948A0A006D17B0 /* ItemDescriptionCell.swift */,
 				ED3C45DB22948EA4006D17B0 /* TitleCell.swift */,
 				ED4CA6A82294F36F0022A095 /* PandaExpress */,
 				ED4CA6A92294F3980022A095 /* Wendys */,
+				9A9D8F8922D2D8A500C49EB6 /* OrderScreen */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -188,6 +276,9 @@
 			children = (
 				ED4CA6A62294B6A00022A095 /* WendysFoodItems.swift */,
 				ED3C45D522948432006D17B0 /* PandaExpressFoodItems.swift */,
+				9A97CF3622B766310063B29A /* Order.swift */,
+				9A9019C622E949F80097AC04 /* User.swift */,
+				9A6912B122E981D80058BF2D /* Product.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -235,7 +326,10 @@
 		EDE119F02290B1AC00853117 /* Roam */ = {
 			isa = PBXGroup;
 			children = (
+				9A6912AE22E9814C0058BF2D /* Stripe */,
+				9A6912A622E958910058BF2D /* Services */,
 				EDE119FD2290B1AE00853117 /* Info.plist */,
+				9A9019BD22E6EC860097AC04 /* GoogleService-Info.plist */,
 				ED3C45D4229483C8006D17B0 /* Structs */,
 				ED3C45D2229481C7006D17B0 /* Storyboards */,
 				ED3C45D1229481C4006D17B0 /* Cells */,
@@ -371,6 +465,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A9019BE22E6EC860097AC04 /* GoogleService-Info.plist in Resources */,
 				EDE119FC2290B1AE00853117 /* LaunchScreen.storyboard in Resources */,
 				EDE119F92290B1AE00853117 /* Assets.xcassets in Resources */,
 				EDE119F72290B1AC00853117 /* Main.storyboard in Resources */,
@@ -485,19 +580,36 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED4CA6AF22950C090022A095 /* PandaSideSelectionController.swift in Sources */,
+				9A9D8F8622D1BC4C00C49EB6 /* CartButtonLauncher.swift in Sources */,
 				ED4CA6B5229542100022A095 /* SideOptionCell.swift in Sources */,
 				EDC9A438229D18AA004402EF /* ChooseEntreeCell.swift in Sources */,
+				9A9019C522E7F7370097AC04 /* LoginController.swift in Sources */,
+				9A6912B222E981D80058BF2D /* Product.swift in Sources */,
+				9A9D8F8F22D2DD1200C49EB6 /* OrderDetailsCell.swift in Sources */,
 				EDF153322290F64100FD8BB2 /* PandaMealSelectionController.swift in Sources */,
+				9A9D8F9522D2DD6600C49EB6 /* TotalPriceCell.swift in Sources */,
 				38571D5E2290B54600C460C7 /* LoginViewController.swift in Sources */,
 				EDC9A43A229D18DA004402EF /* EntreeTitleCell.swift in Sources */,
-				38158C652290D8DE00FFCE15 /* SignInWithEmailViewController.swift in Sources */,
+				9A97CF3722B766310063B29A /* Order.swift in Sources */,
 				EDF153302290F58800FD8BB2 /* HomePageViewController.swift in Sources */,
+				9A6912B022E9815F0058BF2D /* StripeCart.swift in Sources */,
+				9A9D8F9122D2DD2800C49EB6 /* SubtotalCell.swift in Sources */,
+				9A9D8F8822D2C95500C49EB6 /* OrderViewController.swift in Sources */,
 				ED4CA6AB2294F6180022A095 /* WendysMealSelectionViewController.swift in Sources */,
+				9A9019C322E7F5530097AC04 /* Styles.swift in Sources */,
+				9A6912AD22E980480058BF2D /* ShoppingCartCell.swift in Sources */,
+				9A6912A822E958A60058BF2D /* UserService.swift in Sources */,
 				ED3C45DC22948EA4006D17B0 /* TitleCell.swift in Sources */,
 				ED4CA6A72294B6A00022A095 /* WendysFoodItems.swift in Sources */,
 				ED3C45D622948432006D17B0 /* PandaExpressFoodItems.swift in Sources */,
-				ED4CA6B1229521190022A095 /* File.swift in Sources */,
+				9A9019C922E94E000097AC04 /* SignInWithEmailViewController.swift in Sources */,
+				9A6912AA22E979E80058BF2D /* CheckOutController.swift in Sources */,
+				9A9019C722E949F80097AC04 /* User.swift in Sources */,
+				ED4CA6B1229521190022A095 /* SettingsLauncher.swift in Sources */,
+				9A9D8F9322D2DD4E00C49EB6 /* ChargesCell.swift in Sources */,
 				EDE119F22290B1AC00853117 /* AppDelegate.swift in Sources */,
+				9A9D8F9722DEC72800C49EB6 /* HomeScreenController.swift in Sources */,
+				9A9D8F8D22D2DCF000C49EB6 /* YourOrderCell.swift in Sources */,
 				ED4CA6B3229541E50022A095 /* SideSelectionTitleCell.swift in Sources */,
 				ED3C45DA22948A0A006D17B0 /* ItemDescriptionCell.swift in Sources */,
 			);
