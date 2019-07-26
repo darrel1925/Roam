@@ -7,24 +7,47 @@
 //
 
 import UIKit
+import Firebase
 
 class HomePageViewController: UIViewController {
 
-    @IBOutlet weak var toShoppinCart: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        toShoppinCart.layer.cornerRadius = 20
-        showShoppingCart()
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
         
     }
     
-    func showShoppingCart() {
-        // if there is an order show this button
+    override func viewDidAppear(_ animated: Bool) {
+        if let user = Auth.auth().currentUser {
+            // add all of our info to our User class to use globally
+            if UserService.userListener == nil {
+                UserService.getCurrentUser()
+            }
+        }
+    }
+    
+    func presentLoginController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateInitialViewController()
+        present(controller!, animated: true, completion: nil)
+    }
+    
+    @IBAction func logoutClicked(_ sender: Any) {
         
-        // else hide this button
-        toShoppinCart.alpha = 0
+        if let user = Auth.auth().currentUser {
+            
+            do {
+                try Auth.auth().signOut()
+                // removes event listener from fb user reference
+                UserService.logoutUser()
+                presentLoginController()
+            } catch {
+                // TOTO: show error message
+                print("could not log out")
+            }
+        }
+        else {
+            presentLoginController()
+        }
     }
 }

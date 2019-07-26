@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+
 class SignInWithEmailViewController: UIViewController {
 
     @IBOutlet weak var usernameField: UITextField!
@@ -30,16 +31,39 @@ class SignInWithEmailViewController: UIViewController {
         let password = passwordField.text ?? "fakePassword"
         activityIndicator.startAnimating()
         
-        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+        
+        Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if let error = error {
                 debugPrint(error)
                 self.activityIndicator.stopAnimating()
                 return
             }
             
+            guard let fireUser = result?.user else { return }
+            let roamUser = User.init(id: fireUser.uid, email: fireUser.email ?? "error", username: username, stripeId: "")
+            
+            self.createFireStoreUser(user: roamUser)
             print("registered succesfully")
             self.activityIndicator.stopAnimating()
             self.performSegue(withIdentifier: "toHomePage", sender:  nil)
+        }
+    }
+    
+    func createFireStoreUser(user: User) {
+        // Add a new document in collection "Users"
+        let db = Firestore.firestore()
+        
+
+        let newUserRef = db.collection("users").document(user.id)
+            
+        let data = User.modelToData(user: user)
+            
+        newUserRef.setData(data) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
         }
     }
     

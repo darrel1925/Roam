@@ -21,11 +21,15 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
     var settingsLauncher : SettingsLauncher!
     let blackView = UIView()
     
+    var itemName: String!
     var foodItem: String!
     var foodSize: String!
     var numOrders = 1.0
     var totalPrice: Double!
     var originalPrice: Double!
+    var foodDescription: String!
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,21 +80,25 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
                 if foodSize == "Half" {
                     switch foodItem {
                     case "Plate":
+                        self.itemName = PandaExpress.Plate.Selection.Half.header
                         cell.headerLabel.text = PandaExpress.Plate.Selection.Half.header
                         cell.priceLabel.text = "$" + String(format: "%.2f", PandaExpress.Plate.price)
                         cell.descriptionLabel.text = PandaExpress.Plate.description[0]
                         return cell
                     case "Bigger Plate":
+                        self.itemName = PandaExpress.BiggerPlate.Selection.Half.header
                         cell.headerLabel.text = PandaExpress.BiggerPlate.Selection.Half.header
                         cell.priceLabel.text = "$" + String(format: "%.2f", PandaExpress.BiggerPlate.price)
                         cell.descriptionLabel.text = PandaExpress.BiggerPlate.description[0]
                         return cell
                     case "Bowl":
+                        self.itemName = PandaExpress.Bowl.Selection.Half.header
                         cell.headerLabel.text = PandaExpress.Bowl.Selection.Half.header
                         cell.priceLabel.text = "$" + String(format: "%.2f", PandaExpress.Bowl.price)
                         cell.descriptionLabel.text = PandaExpress.Bowl.description[0]
                         return cell
                     case "Family Feast":
+                        self.itemName = PandaExpress.FamilyFeast.Selection.Half.header
                         cell.headerLabel.text = PandaExpress.FamilyFeast.Selection.Half.header
                         cell.priceLabel.text = "$" + String(format: "%.2f", PandaExpress.FamilyFeast.price)
                         cell.descriptionLabel.text = PandaExpress.FamilyFeast.description[0]
@@ -104,21 +112,26 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
                 } else {
                     switch foodItem {
                     case "Plate":
+                        self.itemName = PandaExpress.Plate.Selection.Full.header
+
                         cell.headerLabel.text = PandaExpress.Plate.Selection.Full.header
                         cell.priceLabel.text = "$" + String(format: "%.2f", PandaExpress.Plate.price)
                         cell.descriptionLabel.text = PandaExpress.Plate.description[1]
                         return cell
                     case "Bigger Plate":
+                        self.itemName = PandaExpress.BiggerPlate.Selection.Full.header
                         cell.headerLabel.text = PandaExpress.BiggerPlate.Selection.Full.header
                         cell.priceLabel.text = "$" + String(format: "%.2f", PandaExpress.BiggerPlate.price)
                         cell.descriptionLabel.text = PandaExpress.BiggerPlate.description[1]
                         return cell
                     case "Bowl":
+                        self.itemName = PandaExpress.Bowl.Selection.Full.header
                         cell.headerLabel.text = PandaExpress.Bowl.Selection.Full.header
                         cell.priceLabel.text = "$" + String(format: "%.2f", PandaExpress.Bowl.price)
                         cell.descriptionLabel.text = PandaExpress.Bowl.description[1]
                         return cell
                     case "Family Feast":
+                        self.itemName = PandaExpress.FamilyFeast.Selection.Full.header
                         cell.headerLabel.text = PandaExpress.FamilyFeast.Selection.Full.header
                         cell.priceLabel.text = "$" + String(format: "%.2f", PandaExpress.FamilyFeast.price)
                         cell.descriptionLabel.text = PandaExpress.FamilyFeast.description[1]
@@ -249,11 +262,16 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
     func addToOrder() {
         var meal = [String:String]()
         
+        let totalAsDouble = Double(totalPrice)
+        let product = Product(name: itemName!, price: totalAsDouble , amountOrdered: Int(numOrders), description: foodDescription!)
+        
+        StripeCart.addItemToCart(item: product)
+        
+        
         meal["name"] = "Panda Express - \(foodItem!)"
         meal["numOrders"] = String(Int(numOrders))
         meal["price"] = String(format: "%.2f", totalPrice)
         
-        print(foodItem, totalPrice , numOrders)
 
         // get the user's order
         var order = Order.getOrder()
@@ -266,25 +284,27 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
         dismiss(animated: true, completion: nil)
     }
 
-
-    func getNewTotalPrice() {
+    // to update the total price var in PandaSideSelectionVC
+    func getOrderDetails() {
+        foodDescription = ""
         var total = 0.0
         for row in 0..<getNumRows() {
             let indexPath = IndexPath(row: row, section: 1)
             let cell = tableView.cellForRow(at: indexPath) as! SideOptionCell
             let itemArr = cell.selectedItemLabel.text!.components(separatedBy: " + $")
             
+            foodDescription += itemArr[0] + ", "
             total += Double(itemArr[1])!
         }
         totalPrice = total + originalPrice
         totalPriceLabel.text = "ADD $" + String(format: "%.2f", totalPrice * numOrders)
     }
+    
     /********************************************************/
     /******************* ACTION FUNCTIONS *******************/
     /********************************************************/
     
     @IBAction func showMenu(_ sender: Any) {
-
         
     }
     
@@ -313,7 +333,7 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
         }
     }
     @IBAction func addToCart(_ sender: Any) {
-        print("Fade button pressed")
+        getOrderDetails()
         addToOrder()
         fadeTotalAmtButton()
     }

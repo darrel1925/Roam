@@ -22,26 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Auth.auth().addStateDidChangeListener { auth, user in
             if let _ = user {
-                self.presentLoginController()
+                self.presentHomePage()
             } else {
                 // No user is signed in.
             }
         }
-        
-//        Parse.initialize(with: ParseClientConfiguration(block: {
-//            (configuration: ParseMutableClientConfiguration) in
-//            configuration.applicationId = "myAppId"
-//            configuration.server = "https://roam-uci.herokuapp.com/parse"
-//
-//            if PFUser.current() != nil{
-//                let main = UIStoryboard(name: "Main", bundle: nil)
-//
-//                let loginVC = main.instantiateViewController(withIdentifier: "LoginViewController" )
-//
-//                //window?.rootViewController
-//            }
-//
-//        }))
         return true
     }
     
@@ -58,9 +43,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func presentLoginController() {
-        let main = UIStoryboard(name: "Main", bundle: nil)
-        let HomeVC = main.instantiateViewController(withIdentifier: "HomePage" )
+    func presentHomePage() {
+        if let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomePage") as? HomeScreenController {
+            if let window = self.window, let rootViewController = window.rootViewController {
+                var currentController = rootViewController
+                while let presentedController = currentController.presentedViewController {
+                    currentController = presentedController
+                }
+                currentController.present(controller, animated: true, completion: nil)
+            }
+        }
     }
     
     

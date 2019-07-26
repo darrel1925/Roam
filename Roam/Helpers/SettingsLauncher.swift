@@ -85,8 +85,6 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func handleDismiss() {
-        // to update the total price
-        PandaVC.getNewTotalPrice()
         
         UIView.animate(withDuration: 0.5) {
             self.blackView.alpha = 0
@@ -175,13 +173,11 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.cellForRow(at: indexPath) as! ChooseEntreeCell
             cell.checkView.image = UIImage(named: "check")
         
-        
-        // vaiables to change labels on this tableView
-        
+            
         // formats price to a '0.00' , by getting the last 4 chars
         self.chosenFoodPrice = cell.priceLabel.text
         let index = self.chosenFoodPrice.index(self.chosenFoodPrice.endIndex, offsetBy: -4)
-        let substring = self.chosenFoodPrice[index...] // playground
+        let substring = self.chosenFoodPrice[index...]
         
         self.chosenFoodPrice = String(substring)
         self.chosenFoodName = cell.entreeLabel.text
