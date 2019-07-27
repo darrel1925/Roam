@@ -266,20 +266,7 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
         let product = Product(name: itemName!, price: totalAsDouble , amountOrdered: Int(numOrders), description: foodDescription!)
         
         StripeCart.addItemToCart(item: product)
-        
-        
-        meal["name"] = "Panda Express - \(foodItem!)"
-        meal["numOrders"] = String(Int(numOrders))
-        meal["price"] = String(format: "%.2f", totalPrice)
-        
 
-        // get the user's order
-        var order = Order.getOrder()
-        // add meal to order
-        order.itemNames.append(meal)
-        print(order.itemNames)
-        // store the user's order
-        Order.setOrder(order: order)
         
         dismiss(animated: true, completion: nil)
     }

@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import Firebase
+import Stripe
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,40 +19,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        createUsersOrder()
-        
-        Auth.auth().addStateDidChangeListener { auth, user in
-            if let _ = user {
-                self.presentHomePage()
-            } else {
-                // No user is signed in.
-            }
-        }
+        setUpStripe()
+        checkIfUserLoggedIn()
+
         return true
     }
     
-    func createUsersOrder() {
-        
-        if UserDefaults.standard.object(forKey: "order") == nil {
-            // create order
-            let order = Order()
-            
-            // save new order to user defaults
-            Order.setOrder(order: order)
-
-            print("order created")
+    
+    func checkIfUserLoggedIn() {
+        Auth.auth().addStateDidChangeListener { auth, user in
+            if let _ = user {
+                self.presentHomePage()
+            }
         }
     }
     
+    func setUpStripe() {
+        STPPaymentConfiguration.shared().publishableKey = "pk_test_QsXnOULAU1t7NqNDJ4ZCWegx00EVMwPd5T"
+    }
+    
     func presentHomePage() {
-        if let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomePage") as? HomeScreenController {
-            if let window = self.window, let rootViewController = window.rootViewController {
-                var currentController = rootViewController
-                while let presentedController = currentController.presentedViewController {
-                    currentController = presentedController
-                }
-                currentController.present(controller, animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let HomePageVC = storyboard.instantiateViewController(withIdentifier :"HomePage") as! HomePageViewController
+        let navController = UINavigationController.init(rootViewController: HomePageVC)
+        
+        if let window = self.window, let rootViewController = window.rootViewController {
+            var currentController = rootViewController
+            while let presentedController = currentController.presentedViewController {
+                currentController = presentedController
             }
+            currentController.present(navController, animated: true, completion: nil)
         }
     }
     

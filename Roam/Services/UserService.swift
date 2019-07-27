@@ -18,7 +18,7 @@ let UserService = _UserService()
 final class _UserService {
     
     // Variables
-    var user = User()
+    var user = User() // <- contains stripeId in firebase 
     let auth = Auth .auth()
     let db = Firestore.firestore()
     

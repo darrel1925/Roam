@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		25415B45EE49F441FA87D006 /* Pods_RoamUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08D94F7F78C6C06616E128F2 /* Pods_RoamUITests.framework */; };
 		38571D5E2290B54600C460C7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38571D5D2290B54600C460C7 /* LoginViewController.swift */; };
+		9A0E56A322EBE4F8006C7F16 /* StripeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0E56A222EBE4F8006C7F16 /* StripeApi.swift */; };
 		9A6912A822E958A60058BF2D /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6912A722E958A60058BF2D /* UserService.swift */; };
 		9A6912AA22E979E80058BF2D /* CheckOutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6912A922E979E80058BF2D /* CheckOutController.swift */; };
 		9A6912AD22E980480058BF2D /* ShoppingCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6912AC22E980480058BF2D /* ShoppingCartCell.swift */; };
@@ -78,17 +79,18 @@
 		61D8B8464BC567D8ACC37B95 /* Pods-RoamUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamUITests.debug.xcconfig"; path = "Target Support Files/Pods-RoamUITests/Pods-RoamUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		69F20F3A5F30D55D229589E5 /* Pods-RoamTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamTests.release.xcconfig"; path = "Target Support Files/Pods-RoamTests/Pods-RoamTests.release.xcconfig"; sourceTree = "<group>"; };
 		81BC988E71796CD90919DF30 /* Pods-RoamUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamUITests.release.xcconfig"; path = "Target Support Files/Pods-RoamUITests/Pods-RoamUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9A0E56A222EBE4F8006C7F16 /* StripeApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeApi.swift; sourceTree = "<group>"; };
 		9A6912A722E958A60058BF2D /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		9A6912A922E979E80058BF2D /* CheckOutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutController.swift; sourceTree = "<group>"; };
 		9A6912AC22E980480058BF2D /* ShoppingCartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartCell.swift; sourceTree = "<group>"; };
 		9A6912AF22E9815F0058BF2D /* StripeCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeCart.swift; sourceTree = "<group>"; };
-		9A6912B122E981D80058BF2D /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		9A6912B122E981D80058BF2D /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Product.swift; path = ../Structs/Product.swift; sourceTree = "<group>"; };
 		9A9019BD22E6EC860097AC04 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9A9019C222E7F5530097AC04 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		9A9019C422E7F7370097AC04 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		9A9019C622E949F80097AC04 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9A9019C822E94E000097AC04 /* SignInWithEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithEmailViewController.swift; sourceTree = "<group>"; };
-		9A97CF3622B766310063B29A /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		9A97CF3622B766310063B29A /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Order.swift; path = ../Structs/Order.swift; sourceTree = "<group>"; };
 		9A9D8F8522D1BC4C00C49EB6 /* CartButtonLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartButtonLauncher.swift; sourceTree = "<group>"; };
 		9A9D8F8722D2C95500C49EB6 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		9A9D8F8C22D2DCF000C49EB6 /* YourOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourOrderCell.swift; sourceTree = "<group>"; };
@@ -180,6 +182,16 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		9A0E56A422EBE80C006C7F16 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				9A97CF3622B766310063B29A /* Order.swift */,
+				9A9019C622E949F80097AC04 /* User.swift */,
+				9A6912B122E981D80058BF2D /* Product.swift */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		9A6912A622E958910058BF2D /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				9A6912AF22E9815F0058BF2D /* StripeCart.swift */,
+				9A0E56A222EBE4F8006C7F16 /* StripeApi.swift */,
 			);
 			path = Stripe;
 			sourceTree = "<group>";
@@ -276,9 +289,6 @@
 			children = (
 				ED4CA6A62294B6A00022A095 /* WendysFoodItems.swift */,
 				ED3C45D522948432006D17B0 /* PandaExpressFoodItems.swift */,
-				9A97CF3622B766310063B29A /* Order.swift */,
-				9A9019C622E949F80097AC04 /* User.swift */,
-				9A6912B122E981D80058BF2D /* Product.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -326,6 +336,7 @@
 		EDE119F02290B1AC00853117 /* Roam */ = {
 			isa = PBXGroup;
 			children = (
+				9A0E56A422EBE80C006C7F16 /* New Group */,
 				9A6912AE22E9814C0058BF2D /* Stripe */,
 				9A6912A622E958910058BF2D /* Services */,
 				EDE119FD2290B1AE00853117 /* Info.plist */,
@@ -602,6 +613,7 @@
 				ED3C45DC22948EA4006D17B0 /* TitleCell.swift in Sources */,
 				ED4CA6A72294B6A00022A095 /* WendysFoodItems.swift in Sources */,
 				ED3C45D622948432006D17B0 /* PandaExpressFoodItems.swift in Sources */,
+				9A0E56A322EBE4F8006C7F16 /* StripeApi.swift in Sources */,
 				9A9019C922E94E000097AC04 /* SignInWithEmailViewController.swift in Sources */,
 				9A6912AA22E979E80058BF2D /* CheckOutController.swift in Sources */,
 				9A9019C722E949F80097AC04 /* User.swift in Sources */,
