@@ -865,8 +865,11 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$15.50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="3" translatesAutoresizingMaskIntoConstraints="NO" id="hn4-jt-Twg">
-                                                    <rect key="frame" x="304" y="21" width="50" height="19.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="$15.50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="3" translatesAutoresizingMaskIntoConstraints="NO" id="hn4-jt-Twg">
+                                                    <rect key="frame" x="297" y="21" width="65" height="19.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="65" id="NoQ-dF-Xl2"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -877,8 +880,8 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="PZd-i1-pMm" secondAttribute="trailing" constant="80" id="2Vv-lR-nIv"/>
                                                 <constraint firstItem="PZd-i1-pMm" firstAttribute="top" secondItem="lm9-1V-XIC" secondAttribute="bottom" constant="12" id="44R-oH-TKI"/>
                                                 <constraint firstItem="6D5-W4-naN" firstAttribute="centerY" secondItem="lm9-1V-XIC" secondAttribute="centerY" id="5jF-5f-OLG"/>
+                                                <constraint firstAttribute="trailing" secondItem="hn4-jt-Twg" secondAttribute="trailing" constant="11" id="Ozj-YP-Yk6"/>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="PZd-i1-pMm" secondAttribute="bottom" constant="8" id="Pgs-9Y-W15"/>
-                                                <constraint firstItem="hn4-jt-Twg" firstAttribute="leading" secondItem="lm9-1V-XIC" secondAttribute="trailing" constant="41" id="V7O-ch-RbE"/>
                                                 <constraint firstItem="hn4-jt-Twg" firstAttribute="top" secondItem="SEs-pf-yAq" secondAttribute="topMargin" constant="10" id="VmP-bF-gmh"/>
                                                 <constraint firstItem="PZd-i1-pMm" firstAttribute="leading" secondItem="SEs-pf-yAq" secondAttribute="leadingMargin" constant="28" id="l02-DR-Nb7"/>
                                                 <constraint firstItem="lm9-1V-XIC" firstAttribute="leading" secondItem="6D5-W4-naN" secondAttribute="trailing" constant="8" id="pYe-Gv-QqM"/>
