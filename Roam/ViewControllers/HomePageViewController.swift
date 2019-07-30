@@ -18,7 +18,7 @@ class HomePageViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if let user = Auth.auth().currentUser {
+        if Auth.auth().currentUser != nil {
             // add all of our info to our User class to use globally
             if UserService.userListener == nil {
                 UserService.getCurrentUser()
@@ -34,8 +34,7 @@ class HomePageViewController: UIViewController {
     
     @IBAction func logoutClicked(_ sender: Any) {
         
-        if let user = Auth.auth().currentUser {
-            
+        if Auth.auth().currentUser != nil {
             do {
                 try Auth.auth().signOut()
                 // removes event listener from fb user reference

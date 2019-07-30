@@ -42,7 +42,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func OnLogin(_ sender: Any) {
-       self.performSegue(withIdentifier: "toLoginPage", sender: nil )
+        self.performSegue(withIdentifier: "toLoginPage", sender: nil )
     }
     
     @IBAction func signUpTapped(_ sender: UIButton) {

@@ -49,7 +49,7 @@ class SignInWithEmailViewController: UIViewController {
         }
     }
     
-    func createFireStoreUser(user: User) {
+    func createFireStoreUser(user   : User) {
         // Add a new document in collection "Users"
         let db = Firestore.firestore()
         
@@ -68,7 +68,6 @@ class SignInWithEmailViewController: UIViewController {
     }
     
     @IBAction func backButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+            dismiss(animated: true, completion: nil)
     }
-    
 }
