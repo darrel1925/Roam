@@ -14,7 +14,6 @@ class HomePageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -48,5 +47,13 @@ class HomePageViewController: UIViewController {
         else {
             presentLoginController()
         }
+    }
+    
+    @IBAction func cartClicked(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let CheckOutVC = storyboard.instantiateViewController(withIdentifier: "CheckOutController")
+        self.navigationController?.present(CheckOutVC, animated: true, completion: {
+            print("CheckOutVC Presented")
+        })
     }
 }

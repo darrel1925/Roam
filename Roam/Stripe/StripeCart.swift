@@ -17,7 +17,11 @@ class _StripeCart {
     private let flatFeeCents = 30
     
     // change to 5% of subtotal?
-    private var ourFee: Int = 50
+    private var ourFee: Int = 60
+    
+    var isEmpty: Bool {
+        return cartItems.count == 0
+    }
     
     var deliveryFee: Int {
         if cartItems.count == 0 { return 0 }
@@ -26,7 +30,7 @@ class _StripeCart {
     var subtotal: Int {
         var amount = 0  
         for item in cartItems {
-            let pricePennies = Int(item.price * 100)
+            let pricePennies = Int(item.price * Double(item.amountOrdered) * 100)
             amount += pricePennies
         }
         return amount
@@ -36,6 +40,7 @@ class _StripeCart {
         if subtotal == 0 { return 0 }
         let sub = Double(subtotal)
         let feesAndSub = Int(sub * stripeCreditCardCut) + flatFeeCents + ourFee
+        print("processing fees", feesAndSub)
         return feesAndSub
     }
     
@@ -43,13 +48,16 @@ class _StripeCart {
         return subtotal + processingFees + deliveryFee
     }
     
+    var count: Int {
+        var totalCount = 0
+        for item in cartItems {
+            totalCount += item.amountOrdered
+        }
+        return totalCount
+    }
+    
     func addItemToCart(item: Product) {
         cartItems.append(item)
-        print("\n")
-        for item in cartItems {
-            print(item.name, ", " ,item.description)
-        }
-        print("\n")
     }
     
     // TODO: double check that this check works
@@ -63,7 +71,7 @@ class _StripeCart {
         cartItems.removeAll()
     }
     
-     func penniesToFormattedCurrency(numberInPennies: Int) -> String {
+    func penniesToFormattedCurrency(numberInPennies: Int) -> String {
         
         let dollars = Double(numberInPennies) / 100
         let formatter = NumberFormatter()
@@ -76,3 +84,4 @@ class _StripeCart {
         return "$0.00"
     }
 }
+

@@ -16,7 +16,9 @@ class _StripeApi: NSObject, STPCustomerEphemeralKeyProvider {
     
     func createCustomerKey(withAPIVersion apiVersion: String, completion: @escaping STPJSONResponseCompletionBlock) {
         
-        // data that our cloud functino needs
+        print(UserService.user.stripeId)
+        
+        // data that our cloud function needs
         let data: [String: Any] = [
             "stripe_version": apiVersion,
             "customer_id": UserService.user.stripeId

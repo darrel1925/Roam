@@ -19,17 +19,16 @@ class LoginController: UIViewController {
         super.viewDidLoad()
     }
     
-    
     @IBAction func loginClicked(_ sender: Any) {
         activityIndicator.startAnimating()
-        guard let email = emailField.text , !email.isEmpty,
-              let password = passwordField.text , !password.isEmpty else { return }
+        let email = emailField.text!
+        let password = passwordField.text!
         
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] user, error in
             
             if let error = error {
+                self?.displayError(error: error)
                 debugPrint(error.localizedDescription)
-                self?.handleError(error: error)
                 self?.activityIndicator.stopAnimating()
                 return
             }
@@ -44,8 +43,14 @@ class LoginController: UIViewController {
     @IBAction func backButtonClicked(_ sender: Any) {
         dismiss(animated: true, completion: nil)
         // navigationController?.popViewController(animated: true)
-
     }
+    
     @IBAction func forgotPasswordClicked(_ sender: Any) {
+        let forgotPassVC = ForgotPasswordVC()
+        
+        forgotPassVC.modalTransitionStyle = .crossDissolve
+        forgotPassVC.modalPresentationStyle = .overCurrentContext
+        present(forgotPassVC, animated: true, completion: nil)
     }
+    
 }

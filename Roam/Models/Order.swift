@@ -19,7 +19,6 @@ struct Order: Codable {
             // couldn't retrieved the order
             return Order()
         }
-        
         // Use PropertyListDecoder to convert Data into Player
         guard let order = try? PropertyListDecoder().decode(Order.self, from: orderData) else {
             // couldn't retrieved the order

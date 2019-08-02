@@ -30,7 +30,6 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
     var foodDescription: String!
     
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,18 +37,8 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
         
         tableView.delegate = self
         tableView.dataSource = self
-        //tableView.separatorColor = .white
         
-        totalPriceLabel.layer.masksToBounds = true
-        totalPriceLabel.layer.cornerRadius = 20
-        
-        numOrdersLabel.text = "1"
-        numOrdersLabel.layer.masksToBounds = true
-        numOrdersLabel.layer.cornerRadius = 20
-        
-        fadeButton.layer.masksToBounds = true
-        fadeButton.layer.cornerRadius = 20
-        
+        setUpButtons()
     }
     
     
@@ -260,13 +249,10 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
     }
     
     func addToOrder() {
-        var meal = [String:String]()
-        
         let totalAsDouble = Double(totalPrice)
         let product = Product(name: itemName!, price: totalAsDouble , amountOrdered: Int(numOrders), description: foodDescription!)
         
         StripeCart.addItemToCart(item: product)
-
         
         dismiss(animated: true, completion: nil)
     }
@@ -287,13 +273,24 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
         totalPriceLabel.text = "ADD $" + String(format: "%.2f", totalPrice * numOrders)
     }
     
+    func setUpButtons() {
+        //tableView.separatorColor = .white
+        
+        totalPriceLabel.layer.masksToBounds = true
+        totalPriceLabel.layer.cornerRadius = 20
+        totalPriceLabel.text = "ADD $" + String(format: "%.2f", totalPrice)
+        
+        numOrdersLabel.text = "1"
+        numOrdersLabel.layer.masksToBounds = true
+        numOrdersLabel.layer.cornerRadius = 20
+        
+        fadeButton.layer.masksToBounds = true
+        fadeButton.layer.cornerRadius = 20
+    }
+    
     /********************************************************/
     /******************* ACTION FUNCTIONS *******************/
     /********************************************************/
-    
-    @IBAction func showMenu(_ sender: Any) {
-        
-    }
     
     @IBAction func onBackButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -319,6 +316,7 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
             fadeTotalAmtButton()
         }
     }
+    
     @IBAction func addToCart(_ sender: Any) {
         getOrderDetails()
         addToOrder()

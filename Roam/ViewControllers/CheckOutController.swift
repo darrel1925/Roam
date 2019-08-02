@@ -24,10 +24,22 @@ class CheckOutController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        checkIfCartEmpty()
         setUpTableView()
         setUpPaymentInfo()
         setUpStripeConfig()
+    }
+    
+    func checkIfCartEmpty() {
+        print("empty")
+        if StripeCart.isEmpty {
+            let message = "You'll need to add items to your cart first!"
+            self.displayError(title: "Empty Cart", message: message, completion: {_ in
+                self.dismiss(animated: true, completion: nil)
+            })
+            return
+        }
     }
     
     func setUpTableView() {
@@ -41,17 +53,12 @@ class CheckOutController: UIViewController {
         deliveryFeeLabel.text = StripeCart.penniesToFormattedCurrency(numberInPennies:  StripeCart.deliveryFee)
         totalLabel.text = StripeCart.penniesToFormattedCurrency(numberInPennies:  StripeCart.total)
     }
-
     
     func setUpStripeConfig() {
-        
-        
         let config = STPPaymentConfiguration.shared()
-        
         config.requiredBillingAddressFields = .none
         
-        // this class will retrieve and update the customer object using the ephemeral key that it gets from the cloud function that is call from the StripeApi
-        
+        // this class will retrieve and update the customer object using the ephemeral key that it gets from the cloud function that is called from the StripeApi
         let customerContext = STPCustomerContext(keyProvider: StripeApi)
         
         paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: .default())
@@ -65,10 +72,10 @@ class CheckOutController: UIViewController {
     }
     
     @IBAction func placeOrderClicked(_ sender: Any) {
+        checkIfCartEmpty()
         activityIndicator.startAnimating()
         paymentContext.requestPayment()
-        
-        }
+    }
     
     @IBAction func backButtonClicked(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -77,11 +84,12 @@ class CheckOutController: UIViewController {
 
 extension CheckOutController: STPPaymentContextDelegate {
     func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
+        checkIfCartEmpty()
+        
         activityIndicator.stopAnimating()
         // updating selected payment method text
         if let paymentMethod = paymentContext.selectedPaymentOption{
             paymentMethodButton.setTitle(paymentMethod.label, for: .normal)
-        
             print("got payment method bc it changed")
         }
         else {
@@ -111,11 +119,6 @@ extension CheckOutController: STPPaymentContextDelegate {
 
         let idempotency = UUID().uuidString.replacingOccurrences(of: "-", with: "")
         
-        print("\n")
-        print(UserService.user.stripeId)
-        print(StripeCart.total)
-        print(idempotency)
-        
         let data: [String: Any] = [
             "total": StripeCart.total,
             "customer_id": UserService.user.stripeId,
@@ -136,7 +139,6 @@ extension CheckOutController: STPPaymentContextDelegate {
             self.setUpPaymentInfo()
             completion(nil)
         }
-        
     }
     
     func paymentContext(_ paymentContext: STPPaymentContext, didFinishWith status: STPPaymentStatus, error: Error?) {
@@ -161,16 +163,13 @@ extension CheckOutController: STPPaymentContextDelegate {
         }
             
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
         let okay = UIAlertAction(title: "Okay", style: .default, handler: {(action) in
             self.dismiss(animated: true, completion: nil)
         })
         
         alertController.addAction(okay)
         self.present(alertController, animated: true)
-        
     }
-    
 }
 
 
@@ -184,7 +183,7 @@ extension CheckOutController: UITableViewDelegate, UITableViewDataSource {
         let item = StripeCart.cartItems[row]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingCartCell") as? ShoppingCartCell {
-            cell.numItemsLabel.text = "1"
+            cell.numItemsLabel.text = String(item.amountOrdered)
             cell.titleLabel.text = item.name
             cell.itemDescriptionLabel.text = item.description
             cell.costLabel.text = "$" + String(format: "%.2f", item.price)
@@ -201,9 +200,8 @@ extension CheckOutController: UITableViewDelegate, UITableViewDataSource {
             
             paymentContext.paymentAmount = StripeCart.total
             
-            self.setUpTableView()
+            self.setUpPaymentInfo()
             self.tableView.reloadData()
         }
     }
-    
 }

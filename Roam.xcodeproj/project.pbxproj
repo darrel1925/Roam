@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		188687D5ECDDAEDC582C7CC6 /* Pods_Roam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BC34E4E9326F3DA0AE82CFA /* Pods_Roam.framework */; };
 		38571D5E2290B54600C460C7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38571D5D2290B54600C460C7 /* LoginViewController.swift */; };
+		9A0701BF22F125D0003048A2 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0701BD22F125D0003048A2 /* ForgotPasswordVC.swift */; };
+		9A0701C022F125D1003048A2 /* ForgotPasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A0701BE22F125D0003048A2 /* ForgotPasswordVC.xib */; };
+		9A0701C222F27F33003048A2 /* Roamer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A0701C122F27F33003048A2 /* Roamer.storyboard */; };
 		9A42BAAA22ECA619006F7137 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A42BAA922ECA619006F7137 /* Order.swift */; };
 		9A42BAAC22ECA67D006F7137 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A42BAAB22ECA67D006F7137 /* Product.swift */; };
 		9A42BAAE22ECA6B1006F7137 /* StripeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A42BAAD22ECA6B1006F7137 /* StripeApi.swift */; };
@@ -26,10 +29,6 @@
 		9A9019BE22E6EC860097AC04 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A9019BD22E6EC860097AC04 /* GoogleService-Info.plist */; };
 		9A9019C922E94E000097AC04 /* SignInWithEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9019C822E94E000097AC04 /* SignInWithEmailViewController.swift */; };
 		9A9D8F8622D1BC4C00C49EB6 /* CartButtonLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D8F8522D1BC4C00C49EB6 /* CartButtonLauncher.swift */; };
-		9A9D8F8F22D2DD1200C49EB6 /* OrderDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D8F8E22D2DD1200C49EB6 /* OrderDetailsCell.swift */; };
-		9A9D8F9122D2DD2800C49EB6 /* SubtotalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D8F9022D2DD2800C49EB6 /* SubtotalCell.swift */; };
-		9A9D8F9322D2DD4E00C49EB6 /* ChargesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D8F9222D2DD4E00C49EB6 /* ChargesCell.swift */; };
-		9A9D8F9522D2DD6600C49EB6 /* TotalPriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D8F9422D2DD6600C49EB6 /* TotalPriceCell.swift */; };
 		A0111D7D025DB139CEAD4D44 /* Pods_RoamUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC433C623A28F4E01AB53CD /* Pods_RoamUITests.framework */; };
 		D0E5513BB9B17BD9F4FC64C4 /* Pods_RoamTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A698C0FF0D38023731C324A /* Pods_RoamTests.framework */; };
 		ED3C45DA22948A0A006D17B0 /* ItemDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3C45D922948A0A006D17B0 /* ItemDescriptionCell.swift */; };
@@ -75,6 +74,9 @@
 		6960B51247FBB5014C72830B /* Pods-Roam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Roam.release.xcconfig"; path = "Target Support Files/Pods-Roam/Pods-Roam.release.xcconfig"; sourceTree = "<group>"; };
 		6A698C0FF0D38023731C324A /* Pods_RoamTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoamTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BC34E4E9326F3DA0AE82CFA /* Pods_Roam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Roam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A0701BD22F125D0003048A2 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
+		9A0701BE22F125D0003048A2 /* ForgotPasswordVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordVC.xib; sourceTree = "<group>"; };
+		9A0701C122F27F33003048A2 /* Roamer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Roamer.storyboard; sourceTree = "<group>"; };
 		9A42BAA922ECA619006F7137 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		9A42BAAB22ECA67D006F7137 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		9A42BAAD22ECA6B1006F7137 /* StripeApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeApi.swift; sourceTree = "<group>"; };
@@ -92,10 +94,6 @@
 		9A9019BD22E6EC860097AC04 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9A9019C822E94E000097AC04 /* SignInWithEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithEmailViewController.swift; sourceTree = "<group>"; };
 		9A9D8F8522D1BC4C00C49EB6 /* CartButtonLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartButtonLauncher.swift; sourceTree = "<group>"; };
-		9A9D8F8E22D2DD1200C49EB6 /* OrderDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsCell.swift; sourceTree = "<group>"; };
-		9A9D8F9022D2DD2800C49EB6 /* SubtotalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtotalCell.swift; sourceTree = "<group>"; };
-		9A9D8F9222D2DD4E00C49EB6 /* ChargesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargesCell.swift; sourceTree = "<group>"; };
-		9A9D8F9422D2DD6600C49EB6 /* TotalPriceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalPriceCell.swift; sourceTree = "<group>"; };
 		ED3C45D922948A0A006D17B0 /* ItemDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDescriptionCell.swift; sourceTree = "<group>"; };
 		ED4CA6A62294B6A00022A095 /* WendysFoodItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WendysFoodItems.swift; sourceTree = "<group>"; };
 		ED4CA6AA2294F6180022A095 /* WendysMealSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WendysMealSelectionViewController.swift; sourceTree = "<group>"; };
@@ -195,26 +193,17 @@
 			children = (
 				9A6912AF22E9815F0058BF2D /* StripeCart.swift */,
 				9A42BAAD22ECA6B1006F7137 /* StripeApi.swift */,
+				9A0701BD22F125D0003048A2 /* ForgotPasswordVC.swift */,
+				9A0701BE22F125D0003048A2 /* ForgotPasswordVC.xib */,
 			);
 			path = Stripe;
 			sourceTree = "<group>";
 		};
-		9A9019BF22E7F4940097AC04 /* Style */ = {
+		9A9019BF22E7F4940097AC04 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Style;
-			sourceTree = "<group>";
-		};
-		9A9D8F8922D2D8A500C49EB6 /* OrderScreen */ = {
-			isa = PBXGroup;
-			children = (
-				9A9D8F8E22D2DD1200C49EB6 /* OrderDetailsCell.swift */,
-				9A9D8F9022D2DD2800C49EB6 /* SubtotalCell.swift */,
-				9A9D8F9222D2DD4E00C49EB6 /* ChargesCell.swift */,
-				9A9D8F9422D2DD6600C49EB6 /* TotalPriceCell.swift */,
-			);
-			path = OrderScreen;
+			path = Styles;
 			sourceTree = "<group>";
 		};
 		E1BEBD96B9FF2901C641FDCB /* Pods */ = {
@@ -243,7 +232,7 @@
 		ED3C45D0229481C1006D17B0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				9A9019BF22E7F4940097AC04 /* Style */,
+				9A9019BF22E7F4940097AC04 /* Styles */,
 				EDE119F82290B1AE00853117 /* Assets.xcassets */,
 				EDE119F12290B1AC00853117 /* AppDelegate.swift */,
 				ED4CA6B0229521190022A095 /* SettingsLauncher.swift */,
@@ -260,7 +249,6 @@
 				ED3C45D922948A0A006D17B0 /* ItemDescriptionCell.swift */,
 				ED4CA6A82294F36F0022A095 /* PandaExpress */,
 				ED4CA6A92294F3980022A095 /* Wendys */,
-				9A9D8F8922D2D8A500C49EB6 /* OrderScreen */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -270,6 +258,7 @@
 			children = (
 				EDE119FA2290B1AE00853117 /* LaunchScreen.storyboard */,
 				EDE119F52290B1AC00853117 /* Main.storyboard */,
+				9A0701C122F27F33003048A2 /* Roamer.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -469,7 +458,9 @@
 			files = (
 				9A9019BE22E6EC860097AC04 /* GoogleService-Info.plist in Resources */,
 				EDE119FC2290B1AE00853117 /* LaunchScreen.storyboard in Resources */,
+				9A0701C022F125D1003048A2 /* ForgotPasswordVC.xib in Resources */,
 				EDE119F92290B1AE00853117 /* Assets.xcassets in Resources */,
+				9A0701C222F27F33003048A2 /* Roamer.storyboard in Resources */,
 				EDE119F72290B1AC00853117 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -587,15 +578,12 @@
 				ED4CA6B5229542100022A095 /* SideOptionCell.swift in Sources */,
 				9A42BAAC22ECA67D006F7137 /* Product.swift in Sources */,
 				9A42BAAA22ECA619006F7137 /* Order.swift in Sources */,
-				9A9D8F8F22D2DD1200C49EB6 /* OrderDetailsCell.swift in Sources */,
 				9A42BAB622ECB23D006F7137 /* EntreeTitleCell.swift in Sources */,
 				EDF153322290F64100FD8BB2 /* PandaMealSelectionController.swift in Sources */,
-				9A9D8F9522D2DD6600C49EB6 /* TotalPriceCell.swift in Sources */,
 				38571D5E2290B54600C460C7 /* LoginViewController.swift in Sources */,
 				9A42BAB422ECB16C006F7137 /* PandaExpressFoodItems.swift in Sources */,
 				EDF153302290F58800FD8BB2 /* HomePageViewController.swift in Sources */,
 				9A6912B022E9815F0058BF2D /* StripeCart.swift in Sources */,
-				9A9D8F9122D2DD2800C49EB6 /* SubtotalCell.swift in Sources */,
 				ED4CA6AB2294F6180022A095 /* WendysMealSelectionViewController.swift in Sources */,
 				9A6912AD22E980480058BF2D /* ShoppingCartCell.swift in Sources */,
 				9A6912A822E958A60058BF2D /* UserService.swift in Sources */,
@@ -606,9 +594,9 @@
 				9A42BAC222ECD993006F7137 /* CheckOutController.swift in Sources */,
 				9A42BABC22ECB859006F7137 /* User.swift in Sources */,
 				9A9019C922E94E000097AC04 /* SignInWithEmailViewController.swift in Sources */,
+				9A0701BF22F125D0003048A2 /* ForgotPasswordVC.swift in Sources */,
 				9A42BABA22ECB7AC006F7137 /* TitleCell.swift in Sources */,
 				ED4CA6B1229521190022A095 /* SettingsLauncher.swift in Sources */,
-				9A9D8F9322D2DD4E00C49EB6 /* ChargesCell.swift in Sources */,
 				EDE119F22290B1AC00853117 /* AppDelegate.swift in Sources */,
 				ED4CA6B3229541E50022A095 /* SideSelectionTitleCell.swift in Sources */,
 				ED3C45DA22948A0A006D17B0 /* ItemDescriptionCell.swift in Sources */,
