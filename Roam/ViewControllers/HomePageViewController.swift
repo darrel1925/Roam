@@ -14,11 +14,10 @@ class HomePageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if let user = Auth.auth().currentUser {
+        if Auth.auth().currentUser != nil {
             // add all of our info to our User class to use globally
             if UserService.userListener == nil {
                 UserService.getCurrentUser()
@@ -34,8 +33,7 @@ class HomePageViewController: UIViewController {
     
     @IBAction func logoutClicked(_ sender: Any) {
         
-        if let user = Auth.auth().currentUser {
-            
+        if Auth.auth().currentUser != nil {
             do {
                 try Auth.auth().signOut()
                 // removes event listener from fb user reference
@@ -49,5 +47,13 @@ class HomePageViewController: UIViewController {
         else {
             presentLoginController()
         }
+    }
+    
+    @IBAction func cartClicked(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let CheckOutVC = storyboard.instantiateViewController(withIdentifier: "CheckOutController")
+        self.navigationController?.present(CheckOutVC, animated: true, completion: {
+            print("CheckOutVC Presented")
+        })
     }
 }

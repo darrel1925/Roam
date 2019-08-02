@@ -145,13 +145,15 @@ class PandaMealSelectionController: UIViewController, UITableViewDelegate, UITab
     
     
     func showCartButton() {
+        if StripeCart.count == 0 { return }
+
         let order = Order.getOrder()
         
         if order.itemNames.count > 0 {
             
             // create and format button
             button.frame = CGRect(x: 150.0, y: self.view.frame.height, width: self.view.frame.width * 0.8, height: 50.0)
-            button.setTitle("View \(StripeCart.cartItems.count) Items in Cart", for: .normal)
+            button.setTitle("View \(StripeCart.count) Items in Cart", for: .normal)
             button.setTitleColor(.white, for: .normal)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 18.0, weight: .medium)
             button.backgroundColor = .black
@@ -162,7 +164,7 @@ class PandaMealSelectionController: UIViewController, UITableViewDelegate, UITab
             button.addTarget(self, action: #selector(handleDismis(_:)), for: .touchUpInside)
             
             UIView.animate(withDuration: 0.5, animations: {
-                self.button.center.y = self.view.frame.height * 0.95
+                self.button.center.y = self.view.frame.height * 0.925
             })
         }
     }

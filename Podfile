@@ -10,7 +10,7 @@ target 'Roam' do
   pod 'Alamofire'
   pod 'AlamofireImage'
 
-  pod 'Stripe'
+  pod 'Stripe', '15.0.1'
 
   pod 'Firebase/Core'          # the main firebase SDKs
   pod 'Firebase/Auth'          # handles authentication fo loging in users
