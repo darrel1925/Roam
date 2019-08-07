@@ -183,6 +183,5 @@ class PandaMealSelectionController: UIViewController, UITableViewDelegate, UITab
         self.navigationController?.present(CheckOutVC, animated: true, completion: {
             print("CheckOutVC Presented")
         })
-
     }
 }

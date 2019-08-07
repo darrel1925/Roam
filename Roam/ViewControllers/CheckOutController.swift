@@ -67,6 +67,18 @@ class CheckOutController: UIViewController {
         paymentContext.hostViewController = self
     }
     
+    
+    func presentSuccessAlert(title: String, message: String) {
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okay = UIAlertAction(title: "Okay", style: .default, handler: {(action) in
+            self.performSegue(withIdentifier: "toMapController", sender: nil)
+        })
+        
+        alertController.addAction(okay)
+        self.present(alertController, animated: true)
+    }
+    
     @IBAction func paymentMethodClicked(_ sender: Any) {
         paymentContext.presentPaymentOptionsViewController()
     }
@@ -138,6 +150,7 @@ extension CheckOutController: STPPaymentContextDelegate {
             self.tableView.reloadData()
             self.setUpPaymentInfo()
             completion(nil)
+            
         }
     }
     
@@ -156,6 +169,7 @@ extension CheckOutController: STPPaymentContextDelegate {
             title = "Success!"
             message = "Thank you for your purchase"
             print("was successful")
+            self.presentSuccessAlert(title: title, message: message)
             break
         case .userCancellation:
             print("user cancel")

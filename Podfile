@@ -16,7 +16,9 @@ target 'Roam' do
   pod 'Firebase/Auth'          # handles authentication fo loging in users
   pod 'Firebase/Firestore'     # where database documents are stored
   pod 'Firebase/Storage'       # where we can store images, pdfs, or whatever to use later
-  pod 'Firebase/Functions'      # Enables us to use/call firebase functions
+  pod 'Firebase/Functions'     # Enables us to use/call firebase functions
+  pod 'Firebase/Messaging'     # Enables us to send push notifications through firebase
+  
   pod 'IQKeyboardManagerSwift' # make handling keyboard behavior nicer
   pod 'Kingfisher', '~> 4.0'   # handling images and caching images
   pod 'CodableFirebase'        # help with firestore

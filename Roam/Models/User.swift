@@ -19,6 +19,7 @@ struct User {
         self.email = email
         self.username = username
         self.stripeId = stripeId
+
     }
     
     init(data: [String: Any]) {
