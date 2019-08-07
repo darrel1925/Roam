@@ -68,8 +68,5 @@ final class _UserService {
         self.longitude = (locationManager.location?.coordinate.longitude)!
     }
     
-    func setUpDocument() {
-        
-    }
     
 }
