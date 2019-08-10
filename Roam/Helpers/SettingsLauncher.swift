@@ -101,13 +101,15 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
     
     @objc func buttonAction(sender: UIButton!) {
         print("Button tapped")
-        
-        // if user selected an item
+        print(chosenFoodPrice)
+        // if user selects an item
         if chosenFoodPrice != nil {
             let cell = mainTableView.cellForRow(at: self.indexPathClicked) as! SideOptionCell
             
             cell.selectedItemLabel.text = chosenFoodName + " + $" + chosenFoodPrice
             
+            //  update total price in PandaSideVC
+            self.PandaVC.getOrderDetails()
             handleDismiss()
         }
     }

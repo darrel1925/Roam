@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		188687D5ECDDAEDC582C7CC6 /* Pods_Roam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BC34E4E9326F3DA0AE82CFA /* Pods_Roam.framework */; };
+		1C857ECD9D695A180EADAF87 /* Pods_RoamUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46426FE5DD249F136E71199D /* Pods_RoamUITests.framework */; };
 		38571D5E2290B54600C460C7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38571D5D2290B54600C460C7 /* LoginViewController.swift */; };
-		9A0701BF22F125D0003048A2 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0701BD22F125D0003048A2 /* ForgotPasswordVC.swift */; };
-		9A0701C022F125D1003048A2 /* ForgotPasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A0701BE22F125D0003048A2 /* ForgotPasswordVC.xib */; };
+		7A7863AC49CCCDFCD1042C32 /* Pods_RoamTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E111423E33F668F6615448 /* Pods_RoamTests.framework */; };
 		9A0701C222F27F33003048A2 /* Roamer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A0701C122F27F33003048A2 /* Roamer.storyboard */; };
 		9A42BAAA22ECA619006F7137 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A42BAA922ECA619006F7137 /* Order.swift */; };
 		9A42BAAC22ECA67D006F7137 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A42BAAB22ECA67D006F7137 /* Product.swift */; };
@@ -29,8 +28,19 @@
 		9A9019BE22E6EC860097AC04 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A9019BD22E6EC860097AC04 /* GoogleService-Info.plist */; };
 		9A9019C922E94E000097AC04 /* SignInWithEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9019C822E94E000097AC04 /* SignInWithEmailViewController.swift */; };
 		9A9D8F8622D1BC4C00C49EB6 /* CartButtonLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D8F8522D1BC4C00C49EB6 /* CartButtonLauncher.swift */; };
-		A0111D7D025DB139CEAD4D44 /* Pods_RoamUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC433C623A28F4E01AB53CD /* Pods_RoamUITests.framework */; };
-		D0E5513BB9B17BD9F4FC64C4 /* Pods_RoamTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A698C0FF0D38023731C324A /* Pods_RoamTests.framework */; };
+		9AA7415022F9F5E100A2ED30 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA7414F22F9F5E100A2ED30 /* CoreLocation.framework */; };
+		9ADDC47922FD3B020053A1F0 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADDC47822FD3B020053A1F0 /* MapController.swift */; };
+		9ADDC47D22FD4EAB0053A1F0 /* AddLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADDC47B22FD4EAB0053A1F0 /* AddLocationController.swift */; };
+		9ADDC47E22FD4EAB0053A1F0 /* AddLocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ADDC47C22FD4EAB0053A1F0 /* AddLocationController.xib */; };
+		9ADDC48122FF1BCE0053A1F0 /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADDC47F22FF1BCE0053A1F0 /* ForgotPasswordController.swift */; };
+		9ADDC48222FF1BCE0053A1F0 /* ForgotPasswordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ADDC48022FF1BCE0053A1F0 /* ForgotPasswordController.xib */; };
+		9ADECB4E22F76D7C003B38C1 /* PhoneNumberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADECB4D22F76D7C003B38C1 /* PhoneNumberController.swift */; };
+		9ADECB5022F76D8B003B38C1 /* UsernameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADECB4F22F76D8B003B38C1 /* UsernameController.swift */; };
+		9AEA8E0222F3ECB300255DA0 /* EarningsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA8E0122F3ECB300255DA0 /* EarningsController.swift */; };
+		9AEA8E0C22F3F14D00255DA0 /* EarningsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA8E0B22F3F14D00255DA0 /* EarningsCell.swift */; };
+		9AEA8E0F22F3F2FA00255DA0 /* EarningsTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA8E0E22F3F2FA00255DA0 /* EarningsTitleCell.swift */; };
+		9AEA8E1122F3F31600255DA0 /* EarningsDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA8E1022F3F31600255DA0 /* EarningsDetailCell.swift */; };
+		9EEFECE8F5AACBEA89C5F75B /* Pods_Roam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447051ADC30B4D51026CF5F8 /* Pods_Roam.framework */; };
 		ED3C45DA22948A0A006D17B0 /* ItemDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3C45D922948A0A006D17B0 /* ItemDescriptionCell.swift */; };
 		ED4CA6A72294B6A00022A095 /* WendysFoodItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CA6A62294B6A00022A095 /* WendysFoodItems.swift */; };
 		ED4CA6AB2294F6180022A095 /* WendysMealSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CA6AA2294F6180022A095 /* WendysMealSelectionViewController.swift */; };
@@ -66,16 +76,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2606D64418338A03DC1A9DF7 /* Pods-RoamTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamTests.release.xcconfig"; path = "Target Support Files/Pods-RoamTests/Pods-RoamTests.release.xcconfig"; sourceTree = "<group>"; };
+		09E111423E33F668F6615448 /* Pods_RoamTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoamTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1522D277607F63CD5B2CD72E /* Pods-RoamUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamUITests.debug.xcconfig"; path = "Target Support Files/Pods-RoamUITests/Pods-RoamUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		1BC2D38DCEB9B75682CC5A21 /* Pods-RoamTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamTests.release.xcconfig"; path = "Target Support Files/Pods-RoamTests/Pods-RoamTests.release.xcconfig"; sourceTree = "<group>"; };
 		38571D5D2290B54600C460C7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
-		39264488A89294AB48B63A5E /* Pods-RoamTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamTests.debug.xcconfig"; path = "Target Support Files/Pods-RoamTests/Pods-RoamTests.debug.xcconfig"; sourceTree = "<group>"; };
-		3FBD645D0C0CF65A93907AA5 /* Pods-RoamUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamUITests.release.xcconfig"; path = "Target Support Files/Pods-RoamUITests/Pods-RoamUITests.release.xcconfig"; sourceTree = "<group>"; };
-		58A2FA2A51EB51D0CC9A182A /* Pods-Roam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Roam.debug.xcconfig"; path = "Target Support Files/Pods-Roam/Pods-Roam.debug.xcconfig"; sourceTree = "<group>"; };
-		6960B51247FBB5014C72830B /* Pods-Roam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Roam.release.xcconfig"; path = "Target Support Files/Pods-Roam/Pods-Roam.release.xcconfig"; sourceTree = "<group>"; };
-		6A698C0FF0D38023731C324A /* Pods_RoamTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoamTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7BC34E4E9326F3DA0AE82CFA /* Pods_Roam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Roam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A0701BD22F125D0003048A2 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
-		9A0701BE22F125D0003048A2 /* ForgotPasswordVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordVC.xib; sourceTree = "<group>"; };
+		447051ADC30B4D51026CF5F8 /* Pods_Roam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Roam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		46426FE5DD249F136E71199D /* Pods_RoamUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoamUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		62C82FFA790FB10D7995D567 /* Pods-RoamUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamUITests.release.xcconfig"; path = "Target Support Files/Pods-RoamUITests/Pods-RoamUITests.release.xcconfig"; sourceTree = "<group>"; };
+		82963C48207E02237574EC5E /* Pods-RoamTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamTests.debug.xcconfig"; path = "Target Support Files/Pods-RoamTests/Pods-RoamTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9A0701C122F27F33003048A2 /* Roamer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Roamer.storyboard; sourceTree = "<group>"; };
 		9A42BAA922ECA619006F7137 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		9A42BAAB22ECA67D006F7137 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -94,6 +102,21 @@
 		9A9019BD22E6EC860097AC04 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9A9019C822E94E000097AC04 /* SignInWithEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithEmailViewController.swift; sourceTree = "<group>"; };
 		9A9D8F8522D1BC4C00C49EB6 /* CartButtonLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartButtonLauncher.swift; sourceTree = "<group>"; };
+		9AA7414F22F9F5E100A2ED30 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		9ADDC47822FD3B020053A1F0 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
+		9ADDC47B22FD4EAB0053A1F0 /* AddLocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationController.swift; sourceTree = "<group>"; };
+		9ADDC47C22FD4EAB0053A1F0 /* AddLocationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddLocationController.xib; sourceTree = "<group>"; };
+		9ADDC47F22FF1BCE0053A1F0 /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
+		9ADDC48022FF1BCE0053A1F0 /* ForgotPasswordController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordController.xib; sourceTree = "<group>"; };
+		9ADDC48322FF49F50053A1F0 /* Roam.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Roam.entitlements; sourceTree = "<group>"; };
+		9ADECB4D22F76D7C003B38C1 /* PhoneNumberController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberController.swift; sourceTree = "<group>"; };
+		9ADECB4F22F76D8B003B38C1 /* UsernameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameController.swift; sourceTree = "<group>"; };
+		9AEA8E0122F3ECB300255DA0 /* EarningsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsController.swift; sourceTree = "<group>"; };
+		9AEA8E0B22F3F14D00255DA0 /* EarningsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsCell.swift; sourceTree = "<group>"; };
+		9AEA8E0E22F3F2FA00255DA0 /* EarningsTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsTitleCell.swift; sourceTree = "<group>"; };
+		9AEA8E1022F3F31600255DA0 /* EarningsDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsDetailCell.swift; sourceTree = "<group>"; };
+		ACDA422F96A73195E24E9A0E /* Pods-Roam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Roam.release.xcconfig"; path = "Target Support Files/Pods-Roam/Pods-Roam.release.xcconfig"; sourceTree = "<group>"; };
+		BB1D7BDCB397D8000FDFD2D3 /* Pods-Roam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Roam.debug.xcconfig"; path = "Target Support Files/Pods-Roam/Pods-Roam.debug.xcconfig"; sourceTree = "<group>"; };
 		ED3C45D922948A0A006D17B0 /* ItemDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDescriptionCell.swift; sourceTree = "<group>"; };
 		ED4CA6A62294B6A00022A095 /* WendysFoodItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WendysFoodItems.swift; sourceTree = "<group>"; };
 		ED4CA6AA2294F6180022A095 /* WendysMealSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WendysMealSelectionViewController.swift; sourceTree = "<group>"; };
@@ -115,8 +138,6 @@
 		EDE11A132290B1AE00853117 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EDF1532F2290F58800FD8BB2 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		EDF153312290F64100FD8BB2 /* PandaMealSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaMealSelectionController.swift; sourceTree = "<group>"; };
-		EE418122B36EF7AB4AEABEC2 /* Pods-RoamUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamUITests.debug.xcconfig"; path = "Target Support Files/Pods-RoamUITests/Pods-RoamUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		EFC433C623A28F4E01AB53CD /* Pods_RoamUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoamUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +145,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				188687D5ECDDAEDC582C7CC6 /* Pods_Roam.framework in Frameworks */,
+				9AA7415022F9F5E100A2ED30 /* CoreLocation.framework in Frameworks */,
+				9EEFECE8F5AACBEA89C5F75B /* Pods_Roam.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,7 +154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0E5513BB9B17BD9F4FC64C4 /* Pods_RoamTests.framework in Frameworks */,
+				7A7863AC49CCCDFCD1042C32 /* Pods_RoamTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,7 +162,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0111D7D025DB139CEAD4D44 /* Pods_RoamUITests.framework in Frameworks */,
+				1C857ECD9D695A180EADAF87 /* Pods_RoamUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +180,7 @@
 				ED4CA6AE22950C090022A095 /* PandaSideSelectionController.swift */,
 				9A42BABF22ECBC21006F7137 /* LoginController.swift */,
 				9A42BAC122ECD993006F7137 /* CheckOutController.swift */,
+				9ADDC47822FD3B020053A1F0 /* MapController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -193,8 +216,6 @@
 			children = (
 				9A6912AF22E9815F0058BF2D /* StripeCart.swift */,
 				9A42BAAD22ECA6B1006F7137 /* StripeApi.swift */,
-				9A0701BD22F125D0003048A2 /* ForgotPasswordVC.swift */,
-				9A0701BE22F125D0003048A2 /* ForgotPasswordVC.xib */,
 			);
 			path = Stripe;
 			sourceTree = "<group>";
@@ -206,15 +227,72 @@
 			path = Styles;
 			sourceTree = "<group>";
 		};
+		9ADDC47A22FD4E760053A1F0 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				9ADDC47B22FD4EAB0053A1F0 /* AddLocationController.swift */,
+				9ADDC47C22FD4EAB0053A1F0 /* AddLocationController.xib */,
+				9ADDC47F22FF1BCE0053A1F0 /* ForgotPasswordController.swift */,
+				9ADDC48022FF1BCE0053A1F0 /* ForgotPasswordController.xib */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		9ADECB4A22F7637C003B38C1 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				9ADECB4D22F76D7C003B38C1 /* PhoneNumberController.swift */,
+				9ADECB4F22F76D8B003B38C1 /* UsernameController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		9AEA8E0022F3EC5B00255DA0 /* RoamerControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9ADECB4A22F7637C003B38C1 /* Settings */,
+				9AEA8E0122F3ECB300255DA0 /* EarningsController.swift */,
+			);
+			path = RoamerControllers;
+			sourceTree = "<group>";
+		};
+		9AEA8E0322F3EFEA00255DA0 /* Roamer */ = {
+			isa = PBXGroup;
+			children = (
+				9A0701C122F27F33003048A2 /* Roamer.storyboard */,
+				9AEA8E0D22F3F19D00255DA0 /* Storyboards */,
+				9AEA8E0422F3F09800255DA0 /* Cells */,
+				9AEA8E0022F3EC5B00255DA0 /* RoamerControllers */,
+			);
+			path = Roamer;
+			sourceTree = "<group>";
+		};
+		9AEA8E0422F3F09800255DA0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				9AEA8E0B22F3F14D00255DA0 /* EarningsCell.swift */,
+				9AEA8E0E22F3F2FA00255DA0 /* EarningsTitleCell.swift */,
+				9AEA8E1022F3F31600255DA0 /* EarningsDetailCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		9AEA8E0D22F3F19D00255DA0 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 		E1BEBD96B9FF2901C641FDCB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				58A2FA2A51EB51D0CC9A182A /* Pods-Roam.debug.xcconfig */,
-				6960B51247FBB5014C72830B /* Pods-Roam.release.xcconfig */,
-				39264488A89294AB48B63A5E /* Pods-RoamTests.debug.xcconfig */,
-				2606D64418338A03DC1A9DF7 /* Pods-RoamTests.release.xcconfig */,
-				EE418122B36EF7AB4AEABEC2 /* Pods-RoamUITests.debug.xcconfig */,
-				3FBD645D0C0CF65A93907AA5 /* Pods-RoamUITests.release.xcconfig */,
+				BB1D7BDCB397D8000FDFD2D3 /* Pods-Roam.debug.xcconfig */,
+				ACDA422F96A73195E24E9A0E /* Pods-Roam.release.xcconfig */,
+				82963C48207E02237574EC5E /* Pods-RoamTests.debug.xcconfig */,
+				1BC2D38DCEB9B75682CC5A21 /* Pods-RoamTests.release.xcconfig */,
+				1522D277607F63CD5B2CD72E /* Pods-RoamUITests.debug.xcconfig */,
+				62C82FFA790FB10D7995D567 /* Pods-RoamUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -222,9 +300,10 @@
 		E2984DB1E924A06DB3556FFD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7BC34E4E9326F3DA0AE82CFA /* Pods_Roam.framework */,
-				6A698C0FF0D38023731C324A /* Pods_RoamTests.framework */,
-				EFC433C623A28F4E01AB53CD /* Pods_RoamUITests.framework */,
+				9AA7414F22F9F5E100A2ED30 /* CoreLocation.framework */,
+				447051ADC30B4D51026CF5F8 /* Pods_Roam.framework */,
+				09E111423E33F668F6615448 /* Pods_RoamTests.framework */,
+				46426FE5DD249F136E71199D /* Pods_RoamUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -258,7 +337,6 @@
 			children = (
 				EDE119FA2290B1AE00853117 /* LaunchScreen.storyboard */,
 				EDE119F52290B1AC00853117 /* Main.storyboard */,
-				9A0701C122F27F33003048A2 /* Roamer.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -294,6 +372,7 @@
 		EDE119E52290B1AC00853117 = {
 			isa = PBXGroup;
 			children = (
+				9AEA8E0322F3EFEA00255DA0 /* Roamer */,
 				EDE119F02290B1AC00853117 /* Roam */,
 				EDE11A052290B1AE00853117 /* RoamTests */,
 				EDE11A102290B1AE00853117 /* RoamUITests */,
@@ -316,6 +395,8 @@
 		EDE119F02290B1AC00853117 /* Roam */ = {
 			isa = PBXGroup;
 			children = (
+				9ADDC48322FF49F50053A1F0 /* Roam.entitlements */,
+				9ADDC47A22FD4E760053A1F0 /* New Group */,
 				9A0E56A422EBE80C006C7F16 /* Models */,
 				9A6912AE22E9814C0058BF2D /* Stripe */,
 				9A6912A622E958910058BF2D /* Services */,
@@ -355,11 +436,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EDE11A162290B1AE00853117 /* Build configuration list for PBXNativeTarget "Roam" */;
 			buildPhases = (
-				7A825CAD5A493F1902653759 /* [CP] Check Pods Manifest.lock */,
+				0380DEE91597DBA8DEDF4888 /* [CP] Check Pods Manifest.lock */,
 				EDE119EA2290B1AC00853117 /* Sources */,
 				EDE119EB2290B1AC00853117 /* Frameworks */,
 				EDE119EC2290B1AC00853117 /* Resources */,
-				EB28A5FA310BC77A86D911DF /* [CP] Embed Pods Frameworks */,
+				3B39FABF35A71CBF351EB9FE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -374,7 +455,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EDE11A192290B1AE00853117 /* Build configuration list for PBXNativeTarget "RoamTests" */;
 			buildPhases = (
-				672318D506C56C6470F2AF74 /* [CP] Check Pods Manifest.lock */,
+				B1699BBE771FC3EEEA9E3ACF /* [CP] Check Pods Manifest.lock */,
 				EDE119FE2290B1AE00853117 /* Sources */,
 				EDE119FF2290B1AE00853117 /* Frameworks */,
 				EDE11A002290B1AE00853117 /* Resources */,
@@ -393,7 +474,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EDE11A1C2290B1AE00853117 /* Build configuration list for PBXNativeTarget "RoamUITests" */;
 			buildPhases = (
-				3902598BAB3969BFEA9C5696 /* [CP] Check Pods Manifest.lock */,
+				0925A58D7716BB35A8A58414 /* [CP] Check Pods Manifest.lock */,
 				EDE11A092290B1AE00853117 /* Sources */,
 				EDE11A0A2290B1AE00853117 /* Frameworks */,
 				EDE11A0B2290B1AE00853117 /* Resources */,
@@ -420,6 +501,14 @@
 				TargetAttributes = {
 					EDE119ED2290B1AC00853117 = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					EDE11A012290B1AE00853117 = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -458,7 +547,8 @@
 			files = (
 				9A9019BE22E6EC860097AC04 /* GoogleService-Info.plist in Resources */,
 				EDE119FC2290B1AE00853117 /* LaunchScreen.storyboard in Resources */,
-				9A0701C022F125D1003048A2 /* ForgotPasswordVC.xib in Resources */,
+				9ADDC48222FF1BCE0053A1F0 /* ForgotPasswordController.xib in Resources */,
+				9ADDC47E22FD4EAB0053A1F0 /* AddLocationController.xib in Resources */,
 				EDE119F92290B1AE00853117 /* Assets.xcassets in Resources */,
 				9A0701C222F27F33003048A2 /* Roamer.storyboard in Resources */,
 				EDE119F72290B1AC00853117 /* Main.storyboard in Resources */,
@@ -482,51 +572,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3902598BAB3969BFEA9C5696 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RoamUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		672318D506C56C6470F2AF74 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RoamTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7A825CAD5A493F1902653759 /* [CP] Check Pods Manifest.lock */ = {
+		0380DEE91597DBA8DEDF4888 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -548,7 +594,29 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EB28A5FA310BC77A86D911DF /* [CP] Embed Pods Frameworks */ = {
+		0925A58D7716BB35A8A58414 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RoamUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3B39FABF35A71CBF351EB9FE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -563,6 +631,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Roam/Pods-Roam-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B1699BBE771FC3EEEA9E3ACF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RoamTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -580,10 +670,14 @@
 				9A42BAAA22ECA619006F7137 /* Order.swift in Sources */,
 				9A42BAB622ECB23D006F7137 /* EntreeTitleCell.swift in Sources */,
 				EDF153322290F64100FD8BB2 /* PandaMealSelectionController.swift in Sources */,
+				9AEA8E0222F3ECB300255DA0 /* EarningsController.swift in Sources */,
 				38571D5E2290B54600C460C7 /* LoginViewController.swift in Sources */,
 				9A42BAB422ECB16C006F7137 /* PandaExpressFoodItems.swift in Sources */,
+				9AEA8E0F22F3F2FA00255DA0 /* EarningsTitleCell.swift in Sources */,
 				EDF153302290F58800FD8BB2 /* HomePageViewController.swift in Sources */,
+				9ADDC48122FF1BCE0053A1F0 /* ForgotPasswordController.swift in Sources */,
 				9A6912B022E9815F0058BF2D /* StripeCart.swift in Sources */,
+				9ADDC47922FD3B020053A1F0 /* MapController.swift in Sources */,
 				ED4CA6AB2294F6180022A095 /* WendysMealSelectionViewController.swift in Sources */,
 				9A6912AD22E980480058BF2D /* ShoppingCartCell.swift in Sources */,
 				9A6912A822E958A60058BF2D /* UserService.swift in Sources */,
@@ -592,14 +686,18 @@
 				ED4CA6A72294B6A00022A095 /* WendysFoodItems.swift in Sources */,
 				9A42BAAE22ECA6B1006F7137 /* StripeApi.swift in Sources */,
 				9A42BAC222ECD993006F7137 /* CheckOutController.swift in Sources */,
+				9ADECB4E22F76D7C003B38C1 /* PhoneNumberController.swift in Sources */,
 				9A42BABC22ECB859006F7137 /* User.swift in Sources */,
 				9A9019C922E94E000097AC04 /* SignInWithEmailViewController.swift in Sources */,
-				9A0701BF22F125D0003048A2 /* ForgotPasswordVC.swift in Sources */,
 				9A42BABA22ECB7AC006F7137 /* TitleCell.swift in Sources */,
+				9AEA8E0C22F3F14D00255DA0 /* EarningsCell.swift in Sources */,
 				ED4CA6B1229521190022A095 /* SettingsLauncher.swift in Sources */,
+				9ADDC47D22FD4EAB0053A1F0 /* AddLocationController.swift in Sources */,
 				EDE119F22290B1AC00853117 /* AppDelegate.swift in Sources */,
+				9AEA8E1122F3F31600255DA0 /* EarningsDetailCell.swift in Sources */,
 				ED4CA6B3229541E50022A095 /* SideSelectionTitleCell.swift in Sources */,
 				ED3C45DA22948A0A006D17B0 /* ItemDescriptionCell.swift in Sources */,
+				9ADECB5022F76D8B003B38C1 /* UsernameController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -772,9 +870,10 @@
 		};
 		EDE11A172290B1AE00853117 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 58A2FA2A51EB51D0CC9A182A /* Pods-Roam.debug.xcconfig */;
+			baseConfigurationReference = BB1D7BDCB397D8000FDFD2D3 /* Pods-Roam.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Roam/Roam.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2Y7PPXA97Y;
 				INFOPLIST_FILE = Roam/Info.plist;
@@ -791,9 +890,10 @@
 		};
 		EDE11A182290B1AE00853117 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6960B51247FBB5014C72830B /* Pods-Roam.release.xcconfig */;
+			baseConfigurationReference = ACDA422F96A73195E24E9A0E /* Pods-Roam.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Roam/Roam.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2Y7PPXA97Y;
 				INFOPLIST_FILE = Roam/Info.plist;
@@ -810,7 +910,7 @@
 		};
 		EDE11A1A2290B1AE00853117 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 39264488A89294AB48B63A5E /* Pods-RoamTests.debug.xcconfig */;
+			baseConfigurationReference = 82963C48207E02237574EC5E /* Pods-RoamTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -832,7 +932,7 @@
 		};
 		EDE11A1B2290B1AE00853117 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2606D64418338A03DC1A9DF7 /* Pods-RoamTests.release.xcconfig */;
+			baseConfigurationReference = 1BC2D38DCEB9B75682CC5A21 /* Pods-RoamTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -854,7 +954,7 @@
 		};
 		EDE11A1D2290B1AE00853117 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EE418122B36EF7AB4AEABEC2 /* Pods-RoamUITests.debug.xcconfig */;
+			baseConfigurationReference = 1522D277607F63CD5B2CD72E /* Pods-RoamUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -875,7 +975,7 @@
 		};
 		EDE11A1E2290B1AE00853117 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3FBD645D0C0CF65A93907AA5 /* Pods-RoamUITests.release.xcconfig */;
+			baseConfigurationReference = 62C82FFA790FB10D7995D567 /* Pods-RoamUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

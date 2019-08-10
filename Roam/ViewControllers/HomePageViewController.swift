@@ -56,4 +56,10 @@ class HomePageViewController: UIViewController {
             print("CheckOutVC Presented")
         })
     }
+    
+    @IBAction func mapClicked(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mapController = storyboard.instantiateViewController(withIdentifier: "MapController")
+        self.navigationController?.present(mapController, animated: true, completion: nil)
+    }
 }

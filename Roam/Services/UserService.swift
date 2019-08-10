@@ -11,6 +11,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import CoreLocation
 
 // so we can refer to this singlton with just 'UserService' in our code
 let UserService = _UserService()
@@ -21,6 +22,9 @@ final class _UserService {
     var user = User() // <- contains stripeId in firebase 
     let auth = Auth .auth()
     let db = Firestore.firestore()
+    
+    var latitude: CLLocationDegrees = 0
+    var longitude: CLLocationDegrees = 0
     
     // our listener
     var userListener: ListenerRegistration? = nil
@@ -39,7 +43,7 @@ final class _UserService {
                 return
             }
             
-            // if we can get user infor from db
+            // if we can get user infor from db
             guard let data = snap?.data() else { return }
             // add it to out user so we can access it globally
             self.user = User.init(data: data)
@@ -52,4 +56,16 @@ final class _UserService {
         user = User()
     }
     
+    func getLocation(mapController: Any) ->  CLLocationManager{
+        let locationManager = CLLocationManager() // Manages Location
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        // only request to use when the app is running
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        self.latitude = (locationManager.location?.coordinate.latitude)!
+        self.longitude = (locationManager.location?.coordinate.longitude)!
+        
+        return locationManager
+    }
 }

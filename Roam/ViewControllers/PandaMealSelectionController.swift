@@ -146,27 +146,26 @@ class PandaMealSelectionController: UIViewController, UITableViewDelegate, UITab
     
     func showCartButton() {
         if StripeCart.count == 0 { return }
+        print("showing button")
 
-        let order = Order.getOrder()
+       // let order = Order.getOrder()
+        //if order.itemNames.count > 0 {
+            
+        // create and format button
+        button.frame = CGRect(x: 150.0, y: self.view.frame.height, width: self.view.frame.width * 0.8, height: 50.0)
+        button.setTitle("View \(StripeCart.count) Items in Cart", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18.0, weight: .medium)
+        button.backgroundColor = .black
+        button.center.x = self.view.center.x
+        button.layer.cornerRadius = 20
         
-        if order.itemNames.count > 0 {
-            
-            // create and format button
-            button.frame = CGRect(x: 150.0, y: self.view.frame.height, width: self.view.frame.width * 0.8, height: 50.0)
-            button.setTitle("View \(StripeCart.count) Items in Cart", for: .normal)
-            button.setTitleColor(.white, for: .normal)
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 18.0, weight: .medium)
-            button.backgroundColor = .black
-            button.center.x = self.view.center.x
-            button.layer.cornerRadius = 20
-            
-            self.view.addSubview(button)
-            button.addTarget(self, action: #selector(handleDismis(_:)), for: .touchUpInside)
-            
-            UIView.animate(withDuration: 0.5, animations: {
-                self.button.center.y = self.view.frame.height * 0.925
-            })
-        }
+        self.view.addSubview(button)
+        button.addTarget(self, action: #selector(handleDismis(_:)), for: .touchUpInside)
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.button.center.y = self.view.frame.height * 0.925
+        })
     }
     
     @objc func handleDismis(_: UIButton) {
@@ -183,6 +182,5 @@ class PandaMealSelectionController: UIViewController, UITableViewDelegate, UITab
         self.navigationController?.present(CheckOutVC, animated: true, completion: {
             print("CheckOutVC Presented")
         })
-
     }
 }
