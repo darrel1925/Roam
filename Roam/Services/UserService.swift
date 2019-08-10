@@ -56,17 +56,16 @@ final class _UserService {
         user = User()
     }
     
-    func getLocation() {
+    func getLocation(mapController: Any) ->  CLLocationManager{
         let locationManager = CLLocationManager() // Manages Location
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         // only request to use when the app is running
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
-        
         self.latitude = (locationManager.location?.coordinate.latitude)!
         self.longitude = (locationManager.location?.coordinate.longitude)!
+        
+        return locationManager
     }
-    
-    
 }

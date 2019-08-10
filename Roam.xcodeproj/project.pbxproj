@@ -108,9 +108,9 @@
 		9ADDC47C22FD4EAB0053A1F0 /* AddLocationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddLocationController.xib; sourceTree = "<group>"; };
 		9ADDC47F22FF1BCE0053A1F0 /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
 		9ADDC48022FF1BCE0053A1F0 /* ForgotPasswordController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordController.xib; sourceTree = "<group>"; };
+		9ADDC48322FF49F50053A1F0 /* Roam.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Roam.entitlements; sourceTree = "<group>"; };
 		9ADECB4D22F76D7C003B38C1 /* PhoneNumberController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberController.swift; sourceTree = "<group>"; };
 		9ADECB4F22F76D8B003B38C1 /* UsernameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameController.swift; sourceTree = "<group>"; };
-		9ADECB5122F7DADD003B38C1 /* Roam.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Roam.entitlements; sourceTree = "<group>"; };
 		9AEA8E0122F3ECB300255DA0 /* EarningsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsController.swift; sourceTree = "<group>"; };
 		9AEA8E0B22F3F14D00255DA0 /* EarningsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsCell.swift; sourceTree = "<group>"; };
 		9AEA8E0E22F3F2FA00255DA0 /* EarningsTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsTitleCell.swift; sourceTree = "<group>"; };
@@ -395,8 +395,8 @@
 		EDE119F02290B1AC00853117 /* Roam */ = {
 			isa = PBXGroup;
 			children = (
+				9ADDC48322FF49F50053A1F0 /* Roam.entitlements */,
 				9ADDC47A22FD4E760053A1F0 /* New Group */,
-				9ADECB5122F7DADD003B38C1 /* Roam.entitlements */,
 				9A0E56A422EBE80C006C7F16 /* Models */,
 				9A6912AE22E9814C0058BF2D /* Stripe */,
 				9A6912A622E958910058BF2D /* Services */,
