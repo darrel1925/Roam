@@ -67,6 +67,13 @@ class CheckOutController: UIViewController {
         paymentContext.hostViewController = self
     }
     
+    func presentLocationDetails() {
+        let locationController = AddLocationController()
+        
+        locationController.modalTransitionStyle = .coverVertical
+        locationController.modalPresentationStyle = .overCurrentContext
+        present(locationController, animated: true, completion: nil)
+    }
     
     func presentSuccessAlert(title: String, message: String) {
         
@@ -84,9 +91,10 @@ class CheckOutController: UIViewController {
     }
     
     @IBAction func placeOrderClicked(_ sender: Any) {
-        checkIfCartEmpty()
-        activityIndicator.startAnimating()
-        paymentContext.requestPayment()
+        presentLocationDetails()
+//        checkIfCartEmpty()
+//        activityIndicator.startAnimating()
+//        paymentContext.requestPayment()
     }
     
     @IBAction func backButtonClicked(_ sender: Any) {

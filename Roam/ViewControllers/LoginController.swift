@@ -46,7 +46,7 @@ class LoginController: UIViewController {
     }
     
     @IBAction func forgotPasswordClicked(_ sender: Any) {
-        let forgotPassVC = ForgotPasswordVC()
+        let forgotPassVC = ForgotPasswordController()
         
         forgotPassVC.modalTransitionStyle = .crossDissolve
         forgotPassVC.modalPresentationStyle = .overCurrentContext
