@@ -27,7 +27,7 @@ class HomePageViewController: UIViewController {
             
             self.present(navigationController, animated: true, completion: nil)
         })
-        let actionCancel = UIAlertAction(title: "\(NotificationService.notificationsRecieved.count)", style: .destructive, handler: { action in
+        let actionCancel = UIAlertAction(title: "\(NotificationService.notificationsRecieved.count )", style: .destructive, handler: { action in
             print("action cancel handler")
         })
         alert.addAction(actionYes)
