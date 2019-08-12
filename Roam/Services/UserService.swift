@@ -39,11 +39,15 @@ final class _UserService {
                 return
             }
             
-            // if we can get user infor from db
+            // if we can get user info from db
             guard let data = snap?.data() else { return }
             // add it to out user so we can access it globally
             self.user = User.init(data: data)
         })        
+    }
+    
+    func anything() {
+        
     }
     
     func logoutUser() {
@@ -52,4 +56,9 @@ final class _UserService {
         user = User()
     }
     
+    func sendLocationToFirebase() {
+        let db = Firestore.firestore()
+        // Update one field, creating the document if it does not exist.
+        db.collection("users").document(self.user.id).setData([ "capital": true ], merge: true)
+    }
 }
