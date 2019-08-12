@@ -17,7 +17,6 @@ struct User {
     var username: String
     var stripeId: String
     
-    var locationManager = CLLocationManager()
     var currentLocationString: String?
     
     var formattedEmail: String {

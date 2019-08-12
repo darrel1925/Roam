@@ -14,7 +14,7 @@ let NotificationService = _NotificationService()
 class _NotificationService {
     
     var notificationsRecieved: [MyNotification] = []
-    
+    var hasNotifsInQueue: Bool { return notificationsRecieved.count > 0}
     
     func addNotificaton(notif: MyNotification) {
         notificationsRecieved.append(notif)
@@ -28,7 +28,7 @@ class _NotificationService {
         self.notificationsRecieved.removeLast()
     }
     
-    func presentAlertIfAny(controllerNamed controller: UIViewController) {
+    func presentAlertIfAny(controllerNamed controller: HomePageViewController) {
         print("notif count is:", notificationsRecieved.count)
         if notificationsRecieved.count > 0 {
             if let notif = notificationsRecieved.last {
@@ -37,7 +37,7 @@ class _NotificationService {
         }
     }
     
-    func handle(notification notif: MyNotification, controllerNamed controller: UIViewController) {
+    func handle(notification notif: MyNotification, controllerNamed controller: HomePageViewController) {
         print("notif id is:", notif.id)
         if notif.id == "RequestToRoam" {
             let actionYes = UIAlertAction(title: "Yes", style: .default, handler: { action in
@@ -53,12 +53,23 @@ class _NotificationService {
         }
     }
     
-    func presentMapController(controller: UIViewController) {
+    func getNotificationAlert() -> UIAlertController {
+        if notificationsRecieved.count > 0 {
+            if let alert = notificationsRecieved.last?.alert {
+                removeLastNotification()
+                return alert
+            }
+        }
+        return UIAlertController()
+    }
+    
+    func presentMapController(controller: HomePageViewController) {
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let mapController : MapController = storyboard.instantiateViewController(withIdentifier: "WelcomeID") as! MapController
         let navigationController = UINavigationController(rootViewController: mapController)
         
         controller.present(navigationController, animated: true, completion: nil)
+        
     }
 }
 

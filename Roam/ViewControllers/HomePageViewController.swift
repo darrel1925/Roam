@@ -17,6 +17,26 @@ class HomePageViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        let alert = NotificationService.getNotificationAlert()
+        
+        let actionYes = UIAlertAction(title: "Yes", style: .default, handler: { action in
+            let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let mapController : MapController = storyboard.instantiateViewController(withIdentifier: "MapController") as! MapController
+            let navigationController = UINavigationController(rootViewController: mapController)
+            
+            self.present(navigationController, animated: true, completion: nil)
+        })
+        let actionCancel = UIAlertAction(title: "\(NotificationService.notificationsRecieved.count)", style: .destructive, handler: { action in
+            print("action cancel handler")
+        })
+        alert.addAction(actionYes)
+        alert.addAction(actionCancel)
+        
+        self.present(alert, animated: true, completion: nil)
+        
+        print(NotificationService.notificationsRecieved.count)
+
         if Auth.auth().currentUser != nil {
             // add all of our info to our User class to use globally
             if UserService.userListener == nil {
@@ -24,7 +44,24 @@ class HomePageViewController: UIViewController {
             }
         }
         
-        NotificationService.presentAlertIfAny(controllerNamed: self)
+        if NotificationService.hasNotifsInQueue {
+            let alert = NotificationService.getNotificationAlert()
+            
+            let actionYes = UIAlertAction(title: "Yes", style: .default, handler: { action in
+                let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let mapController : MapController = storyboard.instantiateViewController(withIdentifier: "MapController") as! MapController
+                let navigationController = UINavigationController(rootViewController: mapController)
+                
+                self.present(navigationController, animated: true, completion: nil)
+            })
+            let actionCancel = UIAlertAction(title: "Cancel", style: .destructive, handler: { action in
+                print("action cancel handler")
+            })
+            alert.addAction(actionYes)
+            alert.addAction(actionCancel)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func presentLoginController() {

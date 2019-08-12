@@ -61,17 +61,10 @@ final class _UserService {
         user = User()
     }
     
-    func getLocation(mapController: Any) ->  CLLocationManager{
-        let locationManager = CLLocationManager() // Manages Location
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        // only request to use when the app is running
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+    func updateLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees ){
         
-        self.latitude = (locationManager.location?.coordinate.latitude)!
-        self.longitude = (locationManager.location?.coordinate.longitude)!
-        
-        return locationManager
+        self.latitude = latitude
+        self.longitude = longitude
     }
     
     func sendLocationToFirebase() {
@@ -79,7 +72,10 @@ final class _UserService {
         let db = Firestore.firestore()
         
         // Update one field, creating the document if it does not exist.
-        //db.collection("user").document(user.email).setData([ "locationName": "hello werld" ], merge: true)
+        db.collection("ActiveRoaming").document("testRoamer").setData([
+            "roamerLatitude": latitude,
+            "roamerLongitude": longitude
+            ], merge: true)
         
         let docData: [String: Any] = [
             "latitude": self.longitude,
