@@ -7,12 +7,22 @@
 //
 
 import Foundation
+import CoreLocation
+import FirebaseFirestore
+
 
 struct User {
     var id: String
     var email:String
     var username: String
     var stripeId: String
+    
+    var locationManager = CLLocationManager()
+    var currentLocationString: String?
+    
+    var formattedEmail: String {
+        return self.email.replacingOccurrences(of: "@", with: "")
+    }
     
     init(id: String = "", email: String = "", username: String = "", stripeId: String = "") {
         self.id = id
@@ -39,4 +49,6 @@ struct User {
         
         return data
     }
+
+    
 }

@@ -11,6 +11,8 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseMessaging
+import FirebaseFunctions
 import CoreLocation
 
 // so we can refer to this singlton with just 'UserService' in our code
@@ -26,6 +28,9 @@ final class _UserService {
     var latitude: CLLocationDegrees = 0
     var longitude: CLLocationDegrees = 0
     
+    var topicToJoin: String!
+    
+    let dispatchGroup = DispatchGroup()
     // our listener
     var userListener: ListenerRegistration? = nil
     
@@ -34,7 +39,7 @@ final class _UserService {
         // if user is logged in
         guard let authUser = Auth.auth().currentUser else { return }
         
-        let userRef = db.collection("users").document(authUser.uid)
+        let userRef = db.collection("Users").document(authUser.email ?? "no email found")
         // if user changes something in document, it will always be up to date in our app
         userListener = userRef.addSnapshotListener({ (snap, error) in
             if let error = error {
@@ -67,5 +72,100 @@ final class _UserService {
         self.longitude = (locationManager.location?.coordinate.longitude)!
         
         return locationManager
+    }
+    
+    func sendLocationToFirebase() {
+        
+        let db = Firestore.firestore()
+        
+        // Update one field, creating the document if it does not exist.
+        //db.collection("user").document(user.email).setData([ "locationName": "hello werld" ], merge: true)
+        
+        let docData: [String: Any] = [
+            "latitude": self.longitude,
+            "longitude": self.latitude
+        ]
+        
+        
+        db.collection("Users").document(user.email).setData(docData, merge: true) { err in
+            if let err = err {
+                UIViewController().displayError(error: err)
+            } else {
+                
+                UIViewController().displayError(title: "great", message: "cool")
+                print("Document successfully written!")
+            }
+        }
+        
+        Messaging.messaging().unsubscribe(fromTopic: "weather") { error in
+            if let error = error {
+                print(error)
+            }
+            print("Unsubscribed to weather topic")
+        }
+    }
+    
+    func getRoamerEmail() {
+        self.dispatchGroup.enter()
+        db.collection("ActiveRoaming").whereField("email", isEqualTo: "a@gmail.com")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err.localizedDescription)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        
+                        print("\(document.documentID) => \(document.data())")
+                        let email = document.data()["email"] as? String
+                        self.topicToJoin = email
+                        print(email ?? "huh", "huhh")
+                        self.dispatchGroup.leave()
+                    }
+                }
+        }
+        print("email is", self.topicToJoin)
+    }
+    
+    func sendMessage(toTopic topic: String) {
+        
+    }
+    
+    func subScribeToTopic(email: String) {
+        let email = email.replacingOccurrences(of: "@", with: "")
+        
+        Messaging.messaging().subscribe(toTopic: email) { error in
+            
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            print("Subscribed to \(self.user.email) topic")
+        }
+    }
+    
+    func sendNotificationToRoamer(withEmail email: String) {
+        
+        print("topic email again is: \(email) username: \(user.username)")
+        let message: [String : Any] = [
+            "notification": [
+                "title": "New Roam Request!!",
+                "body": "CLICK THIS NOTIFICATION to begin!"
+            ],
+            "data": [
+                "userEmail": user.email,
+                "userUserName": user.username,
+                "locationName": user.currentLocationString,
+                "notificationId": "RequestToRoam"
+            ],
+            "topic": email
+        ]
+        
+        Functions.functions().httpsCallable("sendNotification").call(message) { (result, error) in
+            if let error = error {
+                debugPrint(error.localizedDescription)
+                // protocol comes with completion that take in (jsonResponse, error)
+                return
+            }
+            
+            print(result)
+        }
     }
 }

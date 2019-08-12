@@ -13,9 +13,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddLocationController" customModule="Roam" customModuleProvider="target">
             <connections>
                 <outlet property="additionalInstructionsView" destination="VL9-pT-Skb" id="4fE-wh-xHA"/>
+                <outlet property="buildingNameField" destination="FwN-Pe-NC9" id="j4H-S1-6zL"/>
                 <outlet property="innerView" destination="qJT-wN-sJK" id="i6x-xT-J07"/>
                 <outlet property="outterView" destination="6Qv-BC-5YF" id="Rft-JI-bka"/>
                 <outlet property="placeOrderButton" destination="Yaf-Vf-CzJ" id="ZAk-C1-LTc"/>
+                <outlet property="roomNumberField" destination="Vyg-LY-kSO" id="f6U-pS-Pfc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -49,7 +51,7 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Rowland Hall" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FwN-Pe-NC9">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Rowland Hall" borderStyle="bezel" placeholder="Rowland Hall" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FwN-Pe-NC9">
                                     <rect key="frame" x="0.0" y="89" width="382" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="2jg-Qa-aMO"/>
@@ -67,7 +69,7 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="217" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vyg-LY-kSO">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="217" borderStyle="bezel" placeholder="217" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vyg-LY-kSO">
                                     <rect key="frame" x="0.0" y="163.5" width="382" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="TWd-ZK-w05"/>

@@ -9,6 +9,8 @@
 import Foundation
 import Stripe
 import FirebaseFunctions
+import FirebaseFirestore
+import FirebaseAuth
 
 let StripeApi = _StripeApi()
 
@@ -16,7 +18,7 @@ class _StripeApi: NSObject, STPCustomerEphemeralKeyProvider {
     
     func createCustomerKey(withAPIVersion apiVersion: String, completion: @escaping STPJSONResponseCompletionBlock) {
         
-        print(UserService.user.stripeId)
+        print(UserService.user.stripeId, UserService.user.email)    
         
         // data that our cloud function needs
         let data: [String: Any] = [

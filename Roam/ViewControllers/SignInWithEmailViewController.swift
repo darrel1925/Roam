@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 
 
 class SignInWithEmailViewController: UIViewController {
@@ -51,10 +52,10 @@ class SignInWithEmailViewController: UIViewController {
         }
     }
     
-    func createFireStoreUser(user   : User) {
+    func createFireStoreUser(user: User) {
         // Add a new document in collection "Users"
         let db = Firestore.firestore()
-        let newUserRef = db.collection("users").document(user.id)
+        let newUserRef = db.collection("Users").document(user.email)
         let data = User.modelToData(user: user)
             
         newUserRef.setData(data) { error in

@@ -17,11 +17,12 @@ class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDeleg
     var locationManager: CLLocationManager!
     var region: MKCoordinateRegion!
     var annotation: MKPointAnnotation = MKPointAnnotation()
+    var count = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationManager = UserService.getLocation(mapController: self)
+        locationManager = UserService.user.locationManager
 
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -34,7 +35,7 @@ class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDeleg
     func setUpLocation() {
         print("almost")
         
-        print(locationManager.location?.coordinate.longitude, locationManager.location?.coordinate.latitude)
+        print(locationManager.location?.coordinate.longitude ?? 0, locationManager.location?.coordinate.latitude ?? 0)
         
         guard let longitude = locationManager.location?.coordinate.longitude,
               let latitude = locationManager.location?.coordinate.latitude
@@ -65,14 +66,20 @@ class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDeleg
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print(manager.location?.coordinate)
+        count += 1
+        print(manager.location?.coordinate ?? 1, count)
         
-        let latitude = (manager.location?.coordinate.latitude)!
-        let longitude = (manager.location?.coordinate.longitude)!
+        UserService.latitude = (manager.location?.coordinate.latitude)!
+        UserService.longitude = (manager.location?.coordinate.longitude)!
         
-        let coordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let coordinates = CLLocationCoordinate2D(latitude: UserService.latitude, longitude: UserService.longitude)
         
         annotation.coordinate = coordinates
+        
+        if count >= 15 {
+            UserService.sendLocationToFirebase()
+            count = 0
+        }
     }
     
     

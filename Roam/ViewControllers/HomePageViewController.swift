@@ -23,6 +23,8 @@ class HomePageViewController: UIViewController {
                 UserService.getCurrentUser()
             }
         }
+        
+        NotificationService.presentAlertIfAny(controllerNamed: self)
     }
     
     func presentLoginController() {
