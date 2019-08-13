@@ -863,12 +863,12 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ShoppingCartCell" rowHeight="113" id="cfj-13-qto" customClass="ShoppingCartCell" customModule="Roam" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="113"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cfj-13-qto" id="SEs-pf-yAq">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cfj-13-qto" id="SEs-pf-yAq">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="112.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Panda Express - Full Plate" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lm9-1V-XIC">
-                                                    <rect key="frame" x="48" y="21" width="215" height="19.5"/>
+                                                    <rect key="frame" x="48" y="21" width="215" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="215" id="Nv9-qv-7Zt"/>
                                                     </constraints>
@@ -887,7 +887,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Half Fried Rice, Half Chow Mein, Full Super Greens" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZd-i1-pMm">
-                                                    <rect key="frame" x="48" y="52.5" width="225" height="33.5"/>
+                                                    <rect key="frame" x="48" y="53" width="225" height="33.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="225" id="gGU-7q-vu7"/>
                                                     </constraints>
@@ -895,8 +895,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="$15.50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="3" translatesAutoresizingMaskIntoConstraints="NO" id="hn4-jt-Twg">
-                                                    <rect key="frame" x="297" y="21" width="65" height="19.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$15.50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="3" translatesAutoresizingMaskIntoConstraints="NO" id="hn4-jt-Twg">
+                                                    <rect key="frame" x="297" y="21" width="65" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="65" id="NoQ-dF-Xl2"/>
                                                     </constraints>
@@ -910,11 +910,13 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="PZd-i1-pMm" secondAttribute="trailing" constant="80" id="2Vv-lR-nIv"/>
                                                 <constraint firstItem="PZd-i1-pMm" firstAttribute="top" secondItem="lm9-1V-XIC" secondAttribute="bottom" constant="12" id="44R-oH-TKI"/>
                                                 <constraint firstItem="6D5-W4-naN" firstAttribute="centerY" secondItem="lm9-1V-XIC" secondAttribute="centerY" id="5jF-5f-OLG"/>
+                                                <constraint firstItem="hn4-jt-Twg" firstAttribute="leading" secondItem="lm9-1V-XIC" secondAttribute="trailing" constant="34" id="KM9-sJ-gan"/>
                                                 <constraint firstAttribute="trailing" secondItem="hn4-jt-Twg" secondAttribute="trailing" constant="11" id="Ozj-YP-Yk6"/>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="PZd-i1-pMm" secondAttribute="bottom" constant="8" id="Pgs-9Y-W15"/>
                                                 <constraint firstItem="hn4-jt-Twg" firstAttribute="top" secondItem="SEs-pf-yAq" secondAttribute="topMargin" constant="10" id="VmP-bF-gmh"/>
                                                 <constraint firstItem="PZd-i1-pMm" firstAttribute="leading" secondItem="SEs-pf-yAq" secondAttribute="leadingMargin" constant="28" id="l02-DR-Nb7"/>
                                                 <constraint firstItem="lm9-1V-XIC" firstAttribute="leading" secondItem="6D5-W4-naN" secondAttribute="trailing" constant="8" id="pYe-Gv-QqM"/>
+                                                <constraint firstItem="hn4-jt-Twg" firstAttribute="baseline" secondItem="lm9-1V-XIC" secondAttribute="baseline" id="peS-q8-W85"/>
                                                 <constraint firstItem="lm9-1V-XIC" firstAttribute="top" secondItem="SEs-pf-yAq" secondAttribute="top" constant="21" id="sIy-4i-Kax"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -968,7 +970,7 @@
                         <outlet property="subtotalLabel" destination="5V7-Aj-xkW" id="ORq-IF-dAW"/>
                         <outlet property="tableView" destination="lYb-pl-pYG" id="4Gz-ZF-2ej"/>
                         <outlet property="totalLabel" destination="pqN-Ho-vw6" id="rC8-Gu-r9N"/>
-                        <segue destination="GDF-jT-LHV" kind="show" identifier="toMapController" id="FLj-tP-MWQ"/>
+                        <segue destination="s5d-eW-F4G" kind="show" identifier="toMapController" id="FLj-tP-MWQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ji-vO-vAz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -987,7 +989,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vlo-Dc-LBs">
-                                <rect key="frame" x="20" y="44" width="54" height="40"/>
+                                <rect key="frame" x="20" y="88" width="54" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="54" id="0Kb-p6-Mkn"/>
                                     <constraint firstAttribute="height" constant="40" id="JNn-m0-jXO"/>
@@ -1012,13 +1014,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tqQ-ug-6a2"/>
                     </view>
+                    <navigationItem key="navigationItem" id="MQi-Vq-Wol"/>
                     <connections>
                         <outlet property="map" destination="j0D-LH-7FE" id="Uz6-Lr-A0e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sah-Mz-gcw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="11586.956521739132" y="521.65178571428567"/>
+            <point key="canvasLocation" x="13121.739130434784" y="521.65178571428567"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LE9-7T-fZj">
@@ -2146,6 +2149,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uWn-O8-vZm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4597" y="2036"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="22X-RW-ab6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="s5d-eW-F4G" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Q9z-LF-eqL">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="GDF-jT-LHV" kind="relationship" relationship="rootViewController" id="j73-04-Nx1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LxU-XL-4br" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="12211.594202898552" y="521.65178571428567"/>
         </scene>
     </scenes>
     <resources>

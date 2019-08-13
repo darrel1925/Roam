@@ -44,4 +44,24 @@ extension String {
     var containsWhitespace : Bool {
         return(self.rangeOfCharacter(from: .whitespacesAndNewlines) != nil)
     }
+    
+    func toDate() -> Date {
+        let dateFormatter = DateFormatter()
+        
+        return dateFormatter.date(from: self) ?? Date()
+    }
 }
+
+
+extension Date {
+    
+    func toString() -> String {
+        let dateFormatter = DateFormatter()
+        // Add your formatter configuration here
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return dateFormatter.string(from: self)
+    }
+
+}
+
+

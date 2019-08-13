@@ -17,11 +17,27 @@ class HomePageViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        print(NotificationService.notificationsRecieved.count)
+
         if Auth.auth().currentUser != nil {
             // add all of our info to our User class to use globally
             if UserService.userListener == nil {
                 UserService.getCurrentUser()
             }
+        }
+        
+        if NotificationService.hasNotificationsInQueue {
+            let alert = NotificationService.getLastNotificationAlert()
+            
+            let actionYes = UIAlertAction(title: "Yes", style: .default, handler: { action in
+                let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let mapController : MapController = storyboard.instantiateViewController(withIdentifier: "MapController") as! MapController
+                let navigationController = UINavigationController(rootViewController: mapController)
+                self.present(navigationController, animated: true, completion: nil)
+            })
+            alert.addAction(actionYes)
+            
+            self.present(alert, animated: true, completion: nil)
         }
     }
     

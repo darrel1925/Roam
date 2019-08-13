@@ -14,27 +14,25 @@ class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDeleg
     
     @IBOutlet weak var map: MKMapView!
     
-    var locationManager: CLLocationManager!
+    var locationManager = CLLocationManager()
     var region: MKCoordinateRegion!
     var annotation: MKPointAnnotation = MKPointAnnotation()
+    var count = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationManager = UserService.getLocation(mapController: self)
-
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        // only request to use whe the app is running
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
         setUpLocation()
     }
     
     func setUpLocation() {
-        print("almost")
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        // only request to use when the app is running
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
         
-        print(locationManager.location?.coordinate.longitude, locationManager.location?.coordinate.latitude)
+        print(locationManager.location?.coordinate.longitude ?? 0, locationManager.location?.coordinate.latitude ?? 0)
         
         guard let longitude = locationManager.location?.coordinate.longitude,
               let latitude = locationManager.location?.coordinate.latitude
@@ -65,14 +63,21 @@ class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDeleg
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print(manager.location?.coordinate)
+        count += 1
+        print(manager.location?.coordinate ?? 1, count)
         
         let latitude = (manager.location?.coordinate.latitude)!
         let longitude = (manager.location?.coordinate.longitude)!
-        
+        UserService.updateLocation(latitude: latitude, longitude: longitude)
+
         let coordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         
         annotation.coordinate = coordinates
+        
+        if count >= 15 {
+            UserService.sendLocationToFirebase()
+            count = 0
+        }
     }
     
     

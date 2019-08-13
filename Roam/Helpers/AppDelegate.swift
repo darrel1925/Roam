@@ -18,9 +18,10 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let gcmMessageIDKey = "gcm.message_id" // <-- ????
+    let gcmMessageIDKey = "gcm.message_id"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
         FirebaseApp.configure()
         setUpStripe()
         //registerAppForNotifications()
@@ -28,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
-            UNUserNotificationCenter.current().delegate = (self as! UNUserNotificationCenterDelegate)
+            UNUserNotificationCenter.current().delegate = self
             
             let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
             UNUserNotificationCenter.current().requestAuthorization(
@@ -40,15 +41,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerUserNotificationSettings(settings)
         }
         Messaging.messaging().delegate = self
-        
         application.registerForRemoteNotifications()
-
+        
         return true
     }
-    
-    
-    
-    
+
     func checkIfUserLoggedIn() {
         Auth.auth().addStateDidChangeListener { auth, user in
             if let _ = user {
@@ -102,15 +99,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If you are receiving a notification message while your app is in the background,
         // this callback will not be fired till the user taps on the notification launching the application.
         // TODO: Handle data of notification
-        
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
+        if ( application.applicationState == .active){
+            print("1")
+        }
+        else if ( application.applicationState == .background){
+            print("2")
+        }
+        // app was already in the foreground
+        else if ( application.applicationState == .inactive){
+            print("3")
+        }
+        else {
+            print("4")
+        }
+        // app was just brought from background to foreground
         
         // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
         }
         
+        let notification  = MyNotification( userInfo: userInfo)
+        NotificationService.addNotificaton(notif: notification)
+        
+        print("11")
         // Print full message.
         print(userInfo)
     }
@@ -120,69 +132,88 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If you are receiving a notification message while your app is in the background,
         // this callback will not be fired till the user taps on the notification launching the application.
         // TODO: Handle data of notification
+        let notification  = MyNotification(userInfo: userInfo)
         
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
+        NotificationService.addNotificaton(notif: notification)
+        
         
         // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
+
             print("Message ID: \(messageID)")
         }
-        
+        print("12")
         // Print full message.
-        print(userInfo)
+        print("fullMessafe", userInfo)
         
         completionHandler(UIBackgroundFetchResult.newData)
     }
+    
+
 
 }
+
 
 
 @available(iOS 10, *)
 extension AppDelegate : UNUserNotificationCenterDelegate {
     
     
-    // Receive displayed notifications for iOS 10 devices.
+    // when you recieve notification while in app
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let userInfo = notification.request.content.userInfo
         
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
         
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
+        let message = "Looks like \(userInfo["userUserName"] as? String ?? "Name not found.") would like food delivered to \(userInfo["locationName"] as? String ?? "Location's Name Not Found.") \n Would you like to accept this delivery? "
+        let alert = UIAlertController(title: "New Roam Request!", message: message, preferredStyle: .alert)
+        
+        let notification  = MyNotification(userInfo: userInfo)
+        
+        NotificationService.addNotificaton(notif: notification)
+        
+        presentHomePage()
+
+
         
         // Print full message.
         print(userInfo)
-        
+        print("14")
         // Change this to your preferred presentation option
         completionHandler([.badge, .sound, .alert])
     }
     
+    // when i click on notification in app or in background
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
         // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
-        
-        // Print full message.
         print(userInfo)
         
+        let message = "Looks like \(userInfo["userUserName"] as? String ?? "Name not found.") would like food delivered to \(userInfo["locationName"] as? String ?? "Location's Name Not Found.") \n Would you like to accept this delivery? "
+        let alert = UIAlertController(title: "New Roam Request!", message: message, preferredStyle: .alert)
+        
+        let notification  = MyNotification(userInfo: userInfo)
+        
+        NotificationService.addNotificaton(notif: notification)
+        
+        presentHomePage()
+
+        print("15")
+        // Print full message.
+        print(userInfo)
+
         completionHandler()
     }
+
 }
 
+// in order ro register your app to recieve notifications
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
-        
         let dataDict:[String: String] = ["token": fcmToken]
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
         // TODO: If necessary send token to application server.
@@ -191,5 +222,23 @@ extension AppDelegate: MessagingDelegate {
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
         print("got a message: \(remoteMessage.appData)")
+        print("17 ")
     }
+
 }
+
+/*
+ [ "userUserName": money,
+ "locationName": Building: Rowland Hall Room #: 217,
+ "google.c.a.e": 1,
+ "aps": {
+     alert = {
+     body = "CLICK THIS NOTIFICATION to begin!";
+     title = "New Roam Request!!";
+    };
+ },
+ "userEmail": ddd@gmail.com,
+ "gcm.message_id": 1565590916650545,
+ "notificationId": RequestToRoam
+ ]
+ */

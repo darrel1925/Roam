@@ -7,13 +7,19 @@
 //
 
 import UIKit
+import FirebaseFunctions
+import FirebaseMessaging
 
 class AddLocationController: UIViewController {
 
     @IBOutlet weak var innerView: UIView!
     @IBOutlet weak var outterView: UIView!
+    
     @IBOutlet weak var placeOrderButton: UIButton!
+    
     @IBOutlet weak var additionalInstructionsView: UITextView!
+    @IBOutlet weak var buildingNameField: UITextField!
+    @IBOutlet weak var roomNumberField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +34,17 @@ class AddLocationController: UIViewController {
         self.outterView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDismiss)))
         self.outterView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDismiss)))
         //self.outterView.addGestureRecognizer(UISwipeGestureRecognizer(target: self, action: #selector(handleDismiss)))
-
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
+    }
+    
+    func updateUserLocationName() {
+        let building = buildingNameField.text as? String ?? "No Building Entered"
+        let roomNumber = roomNumberField.text as? String ?? "No Building Entered"
+        let additionalInfo = additionalInstructionsView.text
+        print("current user location = \("Building: \(building ) Room #: \(roomNumber)")" )
+        UserService.user.currentLocationString = "Building: \(String(describing: building)) Room # \(roomNumber)"
     }
 
     
@@ -56,5 +68,15 @@ class AddLocationController: UIViewController {
     }
     
     @IBAction func placeOrderClicked(_ sender: Any) {
+        updateUserLocationName()
+        UserService.getRoamerEmail()
+        print("topic Name 1: \(String(describing: UserService.fullTopicEmail))")
+
+        UserService.dispatchGroup.notify(queue: .main, execute: {
+            print("topic Name 2: \(String(describing: UserService.fullTopicEmail))")
+            print("Topic Full email is: \(String(describing: UserService.fullTopicEmail))")
+            UserService.sendNotificationToRoamer(withEmail: UserService.fullTopicEmail)
+            
+        })
     }
 }

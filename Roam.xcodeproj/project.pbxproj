@@ -25,6 +25,8 @@
 		9A6912A822E958A60058BF2D /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6912A722E958A60058BF2D /* UserService.swift */; };
 		9A6912AD22E980480058BF2D /* ShoppingCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6912AC22E980480058BF2D /* ShoppingCartCell.swift */; };
 		9A6912B022E9815F0058BF2D /* StripeCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6912AF22E9815F0058BF2D /* StripeCart.swift */; };
+		9A7EF07523008D4F008135F8 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7EF07423008D4F008135F8 /* NotificationService.swift */; };
+		9A7EF0772300EAA8008135F8 /* Notificaiton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7EF0762300EAA8008135F8 /* Notificaiton.swift */; };
 		9A9019BE22E6EC860097AC04 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A9019BD22E6EC860097AC04 /* GoogleService-Info.plist */; };
 		9A9019C922E94E000097AC04 /* SignInWithEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9019C822E94E000097AC04 /* SignInWithEmailViewController.swift */; };
 		9A9D8F8622D1BC4C00C49EB6 /* CartButtonLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D8F8522D1BC4C00C49EB6 /* CartButtonLauncher.swift */; };
@@ -99,6 +101,8 @@
 		9A6912A722E958A60058BF2D /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		9A6912AC22E980480058BF2D /* ShoppingCartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartCell.swift; sourceTree = "<group>"; };
 		9A6912AF22E9815F0058BF2D /* StripeCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeCart.swift; sourceTree = "<group>"; };
+		9A7EF07423008D4F008135F8 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		9A7EF0762300EAA8008135F8 /* Notificaiton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notificaiton.swift; sourceTree = "<group>"; };
 		9A9019BD22E6EC860097AC04 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9A9019C822E94E000097AC04 /* SignInWithEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithEmailViewController.swift; sourceTree = "<group>"; };
 		9A9D8F8522D1BC4C00C49EB6 /* CartButtonLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartButtonLauncher.swift; sourceTree = "<group>"; };
@@ -191,6 +195,7 @@
 				9A42BAAB22ECA67D006F7137 /* Product.swift */,
 				9A42BAA922ECA619006F7137 /* Order.swift */,
 				9A42BABB22ECB859006F7137 /* User.swift */,
+				9A7EF0762300EAA8008135F8 /* Notificaiton.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -199,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				9A6912A722E958A60058BF2D /* UserService.swift */,
+				9A7EF07423008D4F008135F8 /* NotificationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -664,11 +670,13 @@
 			files = (
 				ED4CA6AF22950C090022A095 /* PandaSideSelectionController.swift in Sources */,
 				9A42BAB822ECB259006F7137 /* ChooseEntreeCell.swift in Sources */,
+				9A7EF0772300EAA8008135F8 /* Notificaiton.swift in Sources */,
 				9A9D8F8622D1BC4C00C49EB6 /* CartButtonLauncher.swift in Sources */,
 				ED4CA6B5229542100022A095 /* SideOptionCell.swift in Sources */,
 				9A42BAAC22ECA67D006F7137 /* Product.swift in Sources */,
 				9A42BAAA22ECA619006F7137 /* Order.swift in Sources */,
 				9A42BAB622ECB23D006F7137 /* EntreeTitleCell.swift in Sources */,
+				9A7EF07523008D4F008135F8 /* NotificationService.swift in Sources */,
 				EDF153322290F64100FD8BB2 /* PandaMealSelectionController.swift in Sources */,
 				9AEA8E0222F3ECB300255DA0 /* EarningsController.swift in Sources */,
 				38571D5E2290B54600C460C7 /* LoginViewController.swift in Sources */,
