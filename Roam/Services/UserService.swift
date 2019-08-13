@@ -157,7 +157,7 @@ final class _UserService {
                 if let error = error {
                     print("Error writing notification to document: \(error.localizedDescription)")
                 } else {
-                    print("Document successfully written!")
+                    print("Document successfully written!!")
                 }
             })
             
