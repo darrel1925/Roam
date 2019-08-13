@@ -14,7 +14,7 @@ let NotificationService = _NotificationService()
 class _NotificationService {
     
     var notificationsRecieved: [MyNotification] = []
-    var hasNotifsInQueue: Bool { return notificationsRecieved.count > 0}
+    var hasNotificationsInQueue: Bool { return notificationsRecieved.count > 0}
     
     func addNotificaton(notif: MyNotification) {
         notificationsRecieved.append(notif)
@@ -39,23 +39,12 @@ class _NotificationService {
     
     func handle(notification notif: MyNotification, controllerNamed controller: HomePageViewController) {
         print("notif id is:", notif.id)
-        if notif.id == "RequestToRoam" {
-            let actionYes = UIAlertAction(title: "Yes", style: .default, handler: { action in
-                self.presentMapController(controller: controller)
-            })
-            let actionCancel = UIAlertAction(title: "Cancel", style: .destructive, handler: { action in
-                print("action cancel handler")
-            })
-            
-            self.removeLastNotification()
-            notif.alert.addAction(actionYes)
-            notif.alert.addAction(actionCancel)
-        }
+
     }
     
-    func getNotificationAlert() -> UIAlertController {
+    func getLastNotificationAlert() -> UIAlertController {
         if notificationsRecieved.count > 0 {
-            if let alert = notificationsRecieved.last?.alert {
+            if let alert = notificationsRecieved.last?.createAlert() {
                 removeLastNotification()
                 return alert
             }

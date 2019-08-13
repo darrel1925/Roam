@@ -119,6 +119,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Message ID: \(messageID)")
         }
         
+        let notification  = MyNotification( userInfo: userInfo)
+        NotificationService.addNotificaton(notif: notification)
+        
         print("11")
         // Print full message.
         print(userInfo)
@@ -129,6 +132,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If you are receiving a notification message while your app is in the background,
         // this callback will not be fired till the user taps on the notification launching the application.
         // TODO: Handle data of notification
+        let notification  = MyNotification(userInfo: userInfo)
+        
+        NotificationService.addNotificaton(notif: notification)
         
         
         // Print message ID.
@@ -142,6 +148,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         completionHandler(UIBackgroundFetchResult.newData)
     }
+    
+
 
 }
 
@@ -157,12 +165,11 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let userInfo = notification.request.content.userInfo
         
-        let messageId = userInfo[gcmMessageIDKey] as? String ?? "No message Id"
         
         let message = "Looks like \(userInfo["userUserName"] as? String ?? "Name not found.") would like food delivered to \(userInfo["locationName"] as? String ?? "Location's Name Not Found.") \n Would you like to accept this delivery? "
         let alert = UIAlertController(title: "New Roam Request!", message: message, preferredStyle: .alert)
         
-        let notification  = MyNotification(messageId: "messageID", userInfo: userInfo, alert: alert)
+        let notification  = MyNotification(userInfo: userInfo)
         
         NotificationService.addNotificaton(notif: notification)
         
@@ -183,12 +190,12 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
         // Print message ID.
-        let messageId = userInfo[gcmMessageIDKey] as? String ?? "No message Id"
+        print(userInfo)
         
         let message = "Looks like \(userInfo["userUserName"] as? String ?? "Name not found.") would like food delivered to \(userInfo["locationName"] as? String ?? "Location's Name Not Found.") \n Would you like to accept this delivery? "
         let alert = UIAlertController(title: "New Roam Request!", message: message, preferredStyle: .alert)
         
-        let notification  = MyNotification(messageId: messageId, userInfo: userInfo, alert: alert)
+        let notification  = MyNotification(userInfo: userInfo)
         
         NotificationService.addNotificaton(notif: notification)
         
@@ -200,6 +207,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 
         completionHandler()
     }
+
 }
 
 // in order ro register your app to recieve notifications
@@ -216,4 +224,21 @@ extension AppDelegate: MessagingDelegate {
         print("got a message: \(remoteMessage.appData)")
         print("17 ")
     }
+
 }
+
+/*
+ [ "userUserName": money,
+ "locationName": Building: Rowland Hall Room #: 217,
+ "google.c.a.e": 1,
+ "aps": {
+     alert = {
+     body = "CLICK THIS NOTIFICATION to begin!";
+     title = "New Roam Request!!";
+    };
+ },
+ "userEmail": ddd@gmail.com,
+ "gcm.message_id": 1565590916650545,
+ "notificationId": RequestToRoam
+ ]
+ */

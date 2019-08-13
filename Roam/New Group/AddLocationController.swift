@@ -44,7 +44,7 @@ class AddLocationController: UIViewController {
         let roomNumber = roomNumberField.text as? String ?? "No Building Entered"
         let additionalInfo = additionalInstructionsView.text
         print("current user location = \("Building: \(building ) Room #: \(roomNumber)")" )
-        UserService.user.currentLocationString = "Building: \(String(describing: building)) Room #: \(roomNumber)"
+        UserService.user.currentLocationString = "Building: \(String(describing: building)) Room # \(roomNumber)"
     }
 
     
@@ -70,24 +70,13 @@ class AddLocationController: UIViewController {
     @IBAction func placeOrderClicked(_ sender: Any) {
         updateUserLocationName()
         UserService.getRoamerEmail()
-        print("topic Name 1: \(UserService.topicToJoin)")
+        print("topic Name 1: \(String(describing: UserService.fullTopicEmail))")
 
         UserService.dispatchGroup.notify(queue: .main, execute: {
-            print("topic Name 2: \(UserService.topicToJoin)")
-            print("formatted topic name is: \(UserService.topicToJoin.replacingOccurrences(of: "@", with: ""))")
-            UserService.sendNotificationToRoamer(withEmail: UserService.topicToJoin.replacingOccurrences(of: "@", with: ""))
+            print("topic Name 2: \(String(describing: UserService.fullTopicEmail))")
+            print("Topic Full email is: \(String(describing: UserService.fullTopicEmail))")
+            UserService.sendNotificationToRoamer(withEmail: UserService.fullTopicEmail)
+            
         })
-    
-
-//        UserService.sendLocationToFirebase()
-//
-
-        
-        //UserService.subScribeToTopic(email: topicName)
-
-
-        //        UserService.sendMessage(toTopic:  "")
-        
-        
     }
 }
