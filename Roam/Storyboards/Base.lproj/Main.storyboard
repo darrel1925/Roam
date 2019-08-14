@@ -304,8 +304,12 @@
                                     <action selector="mapClicked:" destination="NG4-Yk-8vl" id="Gj4-Gl-tLS"/>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem title="Item" id="jRN-UB-2cR"/>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="notificationsButton" destination="jRN-UB-2cR" id="ZnS-gX-WLh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EWE-PA-fmN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1584,8 +1588,8 @@
                                                     <rect key="frame" x="20" y="15" width="40" height="38"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="darrelmuonekwu@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qC2-Cd-AWk">
-                                                    <rect key="frame" x="80" y="42" width="220" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="darrelm@uci.edu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qC2-Cd-AWk">
+                                                    <rect key="frame" x="80" y="42" width="129" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <nil key="textColor"/>

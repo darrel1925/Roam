@@ -109,22 +109,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         else if ( application.applicationState == .inactive){
             print("3")
         }
+        // app was just brought from background to foreground
         else {
             print("4")
         }
-        // app was just brought from background to foreground
-        
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
-        
-        let notification  = MyNotification( userInfo: userInfo)
-        NotificationService.addNotificaton(notif: notification)
-        
-        print("11")
-        // Print full message.
-        print(userInfo)
+
+        print("Notification Recieved! 5")
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
@@ -132,27 +122,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If you are receiving a notification message while your app is in the background,
         // this callback will not be fired till the user taps on the notification launching the application.
         // TODO: Handle data of notification
-        let notification  = MyNotification(userInfo: userInfo)
-        
-        NotificationService.addNotificaton(notif: notification)
-        
-        
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
 
-            print("Message ID: \(messageID)")
-        }
-        print("12")
-        // Print full message.
-        print("fullMessafe", userInfo)
+        print("Notification Recieved In Background! 6")
+    
         
         completionHandler(UIBackgroundFetchResult.newData)
     }
-    
-
-
 }
-
 
 
 @available(iOS 10, *)
@@ -163,23 +139,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        let userInfo = notification.request.content.userInfo
-        
-        
-        let message = "Looks like \(userInfo["userUserName"] as? String ?? "Name not found.") would like food delivered to \(userInfo["locationName"] as? String ?? "Location's Name Not Found.") \n Would you like to accept this delivery? "
-        let alert = UIAlertController(title: "New Roam Request!", message: message, preferredStyle: .alert)
-        
-        let notification  = MyNotification(userInfo: userInfo)
-        
-        NotificationService.addNotificaton(notif: notification)
-        
-        presentHomePage()
+        print("Notification Recieved In App! 7")
 
-
-        
-        // Print full message.
-        print(userInfo)
-        print("14")
         // Change this to your preferred presentation option
         completionHandler([.badge, .sound, .alert])
     }
@@ -188,22 +149,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-        let userInfo = response.notification.request.content.userInfo
-        // Print message ID.
-        print(userInfo)
-        
-        let message = "Looks like \(userInfo["userUserName"] as? String ?? "Name not found.") would like food delivered to \(userInfo["locationName"] as? String ?? "Location's Name Not Found.") \n Would you like to accept this delivery? "
-        let alert = UIAlertController(title: "New Roam Request!", message: message, preferredStyle: .alert)
-        
-        let notification  = MyNotification(userInfo: userInfo)
-        
-        NotificationService.addNotificaton(notif: notification)
-        
-        presentHomePage()
-
-        print("15")
-        // Print full message.
-        print(userInfo)
+        print("Notification Recieved In Background! 8")
 
         completionHandler()
     }

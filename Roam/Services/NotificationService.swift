@@ -7,44 +7,49 @@
 //
 
 import Foundation
+import FirebaseFirestore
 import UIKit
 
 let NotificationService = _NotificationService()
 
 class _NotificationService {
     
-    var notificationsRecieved: [MyNotification] = []
-    var hasNotificationsInQueue: Bool { return notificationsRecieved.count > 0}
+    var notifications: [MyNotification] = []
+    var hasNotifications: Bool { return notifications.count > 0}
+    var count: Int { return notifications.count}
     
-    func addNotificaton(notif: MyNotification) {
-        notificationsRecieved.append(notif)
+    
+    func addNotificaton(withData notif: MyNotification) {
+        notifications.append(notif)
     }
     
     func clearNotifications() {
-        self.notificationsRecieved.removeAll()
+        self.notifications.removeAll()
     }
     
     func removeLastNotification() {
-        self.notificationsRecieved.removeLast()
+        self.notifications.removeLast()
     }
     
+    // TODO: Remove certain notificaiton function
+    
     func presentAlertIfAny(controllerNamed controller: HomePageViewController) {
-        print("notif count is:", notificationsRecieved.count)
-        if notificationsRecieved.count > 0 {
-            if let notif = notificationsRecieved.last {
+        print("notif count is:", notifications.count)
+        if notifications.count > 0 {
+            if let notif = notifications.last {
                 self.handle(notification: notif, controllerNamed: controller)
             }
         }
     }
     
     func handle(notification notif: MyNotification, controllerNamed controller: HomePageViewController) {
-        print("notif id is:", notif.id)
+        print("notif id is:", notif.notificationId)
 
     }
     
     func getLastNotificationAlert() -> UIAlertController {
-        if notificationsRecieved.count > 0 {
-            if let alert = notificationsRecieved.last?.createAlert() {
+        if notifications.count > 0 {
+            if let alert = notifications.last?.createAlert() {
                 removeLastNotification()
                 return alert
             }
@@ -58,7 +63,37 @@ class _NotificationService {
         let navigationController = UINavigationController(rootViewController: mapController)
         
         controller.present(navigationController, animated: true, completion: nil)
+    }
+    
+    func updateNotificationsFromServer() {
+        let email = UserService.user.email
+        print("email", email)
+        let db = Firestore.firestore()
+        let query = db.collection("Users").whereField("email", isEqualTo: email)
         
+        query.getDocuments(source: .server, completion: { (snapShotArray, err) in
+            if let err = err {
+                print("could not get notifications \(err.localizedDescription)")
+            }
+            
+            let snapShot = snapShotArray?.documents[0]
+            print("snapshot,", snapShot)
+            if let snapShotArray = snapShot?.data()["notifications"] as? [[String: Any]] {
+            
+            for notif in snapShotArray {
+                
+                let notificaiton = MyNotification(userInfo: notif)
+                NotificationService.addNotificaton(withData: notificaiton)
+            }
+
+            for notif in NotificationService.notifications {
+                print(notif.date)
+                UserService.dispatchGroup.customLeave()
+                }
+            } else {
+                print("No Notifications! :p")
+            }
+        })
     }
 }
 
