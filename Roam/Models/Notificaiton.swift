@@ -11,35 +11,39 @@ import UIKit
 
 struct MyNotification {
     
-    var userInfo: [AnyHashable : Any]
+    var userInfo: [String : Any]
     
-    var id: String { return self.userInfo["notificationId"] as? String ?? "no id"}
-    var userEmail: String { return self.userInfo["userEmail"] as? String ?? "no email"}
+    var notificationId: String { return self.userInfo["notificationId"] as? String ?? "no id"}
+    var senderEmail: String { return self.userInfo["userEmail"] as? String ?? "no email"}
+    var senderUsername: String { return self.userInfo["userEmail"] as? String ?? "no email"}
     var locationName: String { return self.userInfo["locationName"] as? String ?? "no location"}
-    var date: Date { return self.userInfo["date"] as? Date ?? Date()}
+    var date: Date!
 
-    init(userInfo: [AnyHashable : Any]) {
+    init(userInfo: [String : Any]) {
         self.userInfo = userInfo
-        self.userInfo["date"] = Date()
+        
+        let dateStr = userInfo["date"] as! String
+        self.date = dateStr.toDate()
     }
     
-    init(customerEmail: String, customerUserName: String, locationName: String, notificationId: String) {
-        let userInfo: [AnyHashable: Any] = [
-            "userEmail": customerEmail,
+    init(senderEmail: String, senderUsername: String, locationName: String, notificationId: String) {
+        let userInfo: [String: Any] = [
+            "senderEmail": senderEmail,
+            "senderUsername": senderUsername,
             "locationName": locationName,
             "notificationId": notificationId,
             "date": Date()
         ]
-        
         self.userInfo = userInfo
     }
     
     // i probably font need this function
-    func modelToData(notification: MyNotification) -> [AnyHashable: Any] {
+    func modelToData(notification: MyNotification) -> [String: Any] {
         let data : [String: Any] = [
-            "userEmail": notification.userEmail,
+            "senderEmail": notification.senderEmail,
+            "senderUsername": senderUsername,
             "locationName": notification.locationName,
-            "notificationId": notification.id,
+            "notificationId": notification.notificationId,
             "date": notification.date
         ]
 
@@ -48,7 +52,7 @@ struct MyNotification {
     
     
     func createAlert() -> UIAlertController {
-        switch self.id {
+        switch self.notificationId {
         case "RequestToRoam":
             let message = "Looks like \(userInfo["userUserName"] as? String ?? "Name not found.") would like food delivered to \(userInfo["locationName"] as? String ?? "Location's Name Not Found.") \n Would you like to accept this delivery? "
 

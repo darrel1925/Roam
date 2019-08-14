@@ -38,6 +38,7 @@
 		9ADDC48222FF1BCE0053A1F0 /* ForgotPasswordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ADDC48022FF1BCE0053A1F0 /* ForgotPasswordController.xib */; };
 		9ADECB4E22F76D7C003B38C1 /* PhoneNumberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADECB4D22F76D7C003B38C1 /* PhoneNumberController.swift */; };
 		9ADECB5022F76D8B003B38C1 /* UsernameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADECB4F22F76D8B003B38C1 /* UsernameController.swift */; };
+		9AE5497B2303CC8100719737 /* UIBarButtonAndBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE5497A2303CC8100719737 /* UIBarButtonAndBadge.swift */; };
 		9AEA8E0222F3ECB300255DA0 /* EarningsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA8E0122F3ECB300255DA0 /* EarningsController.swift */; };
 		9AEA8E0C22F3F14D00255DA0 /* EarningsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA8E0B22F3F14D00255DA0 /* EarningsCell.swift */; };
 		9AEA8E0F22F3F2FA00255DA0 /* EarningsTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA8E0E22F3F2FA00255DA0 /* EarningsTitleCell.swift */; };
@@ -115,6 +116,7 @@
 		9ADDC48322FF49F50053A1F0 /* Roam.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Roam.entitlements; sourceTree = "<group>"; };
 		9ADECB4D22F76D7C003B38C1 /* PhoneNumberController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberController.swift; sourceTree = "<group>"; };
 		9ADECB4F22F76D8B003B38C1 /* UsernameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameController.swift; sourceTree = "<group>"; };
+		9AE5497A2303CC8100719737 /* UIBarButtonAndBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonAndBadge.swift; sourceTree = "<group>"; };
 		9AEA8E0122F3ECB300255DA0 /* EarningsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsController.swift; sourceTree = "<group>"; };
 		9AEA8E0B22F3F14D00255DA0 /* EarningsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsCell.swift; sourceTree = "<group>"; };
 		9AEA8E0E22F3F2FA00255DA0 /* EarningsTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsTitleCell.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				ED4CA6B0229521190022A095 /* SettingsLauncher.swift */,
 				9A9D8F8522D1BC4C00C49EB6 /* CartButtonLauncher.swift */,
 				9A42BAC422ED19AF006F7137 /* Extensions.swift */,
+				9AE5497A2303CC8100719737 /* UIBarButtonAndBadge.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -693,6 +696,7 @@
 				9A42BAC522ED19AF006F7137 /* Extensions.swift in Sources */,
 				ED4CA6A72294B6A00022A095 /* WendysFoodItems.swift in Sources */,
 				9A42BAAE22ECA6B1006F7137 /* StripeApi.swift in Sources */,
+				9AE5497B2303CC8100719737 /* UIBarButtonAndBadge.swift in Sources */,
 				9A42BAC222ECD993006F7137 /* CheckOutController.swift in Sources */,
 				9ADECB4E22F76D7C003B38C1 /* PhoneNumberController.swift in Sources */,
 				9A42BABC22ECB859006F7137 /* User.swift in Sources */,

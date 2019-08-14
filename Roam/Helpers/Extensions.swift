@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 extension UIViewController {
     
@@ -63,5 +64,20 @@ extension Date {
     }
 
 }
+
+extension DispatchGroup {
+    var count: Int {
+        let count = self.debugDescription.components(separatedBy: ",").filter({$0.contains("count")}).first?.components(separatedBy: CharacterSet.decimalDigits.inverted).compactMap{Int($0)}.first
+        return count!
+    }
+    
+    func customLeave(){
+        if count > 0 {
+            self.leave()
+        }
+    }
+}
+
+
 
 

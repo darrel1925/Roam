@@ -16,7 +16,7 @@ struct User {
     var email:String
     var username: String
     var stripeId: String
-    
+
     var currentLocationString: String?
     
     var formattedEmail: String {

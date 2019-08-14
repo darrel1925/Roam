@@ -11,33 +11,43 @@ import Firebase
 
 class HomePageViewController: UIViewController {
 
+    @IBOutlet weak var notificationsButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print(NotificationService.notificationsRecieved.count)
-
+        print(NotificationService.count)
+        UserService.dispatchGroup.enter()
+        print("dispatch", UserService.dispatchGroup.count)
         if Auth.auth().currentUser != nil {
             // add all of our info to our User class to use globally
             if UserService.userListener == nil {
-                UserService.getCurrentUser()
+                UserService.getCurrentUserForNotifications()
+                
+            }
+            else {
+                UserService.dispatchGroup.customLeave()
             }
         }
+        else {
+            UserService.dispatchGroup.customLeave()
+        }
         
-        if NotificationService.hasNotificationsInQueue {
-            let alert = NotificationService.getLastNotificationAlert()
+        UserService.dispatchGroup.notify(queue: .main) {
+            UserService.dispatchGroup.enter()
+            // get notifications from server and add to NotificationService
+            NotificationService.clearNotifications()
+            NotificationService.updateNotificationsFromServer()
             
-            let actionYes = UIAlertAction(title: "Yes", style: .default, handler: { action in
-                let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let mapController : MapController = storyboard.instantiateViewController(withIdentifier: "MapController") as! MapController
-                let navigationController = UINavigationController(rootViewController: mapController)
-                self.present(navigationController, animated: true, completion: nil)
-            })
-            alert.addAction(actionYes)
-            
-            self.present(alert, animated: true, completion: nil)
+            // get notification count from Notification Service
+            UserService.dispatchGroup.notify(queue: .main) {
+                self.setNotificationBadge()
+                print("email2", UserService.user)
+                print(NotificationService.count)
+            }
+
         }
     }
     
@@ -45,6 +55,14 @@ class HomePageViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateInitialViewController()
         present(controller!, animated: true, completion: nil)
+    }
+    
+    func setNotificationBadge() {
+        if NotificationService.count == 0 {
+            notificationsButton.removeBadge()
+            return
+        }
+        self.notificationsButton?.addBadge(text: String(NotificationService.count))
     }
     
     @IBAction func logoutClicked(_ sender: Any) {

@@ -49,10 +49,37 @@ final class _UserService {
             }
             
             // if we can get user infor from db
-            guard let data = snap?.data() else { return }
+            guard let data = snap?.data() else {  return }
             // add it to out user so we can access it globally
             self.user = User.init(data: data)
-        })        
+            
+        })
+        
+    }
+    
+    func getCurrentUserForNotifications() {
+        // if user is logged in
+        guard let authUser = Auth.auth().currentUser else {  UserService.dispatchGroup.customLeave(); return }
+        
+        let userRef = db.collection("Users").document(authUser.email ?? "no email found")
+        // if user changes something in document, it will always be up to date in our app
+        userListener = userRef.addSnapshotListener({ (snap, error) in
+            if let error = error {
+                debugPrint(error.localizedDescription)
+                UserService.dispatchGroup.customLeave()
+                print("could not add snapShotListener :/")
+                return
+            }
+            
+            // if we can get user infor from db
+            guard let data = snap?.data() else {UserService.dispatchGroup.customLeave();  return }
+            // add it to out user so we can access it globally
+            self.user = User.init(data: data)
+            UserService.dispatchGroup.customLeave()
+            
+            
+        })
+        
     }
     
     func logoutUser() {
@@ -76,13 +103,12 @@ final class _UserService {
             "roamerLatitude": latitude,
             "roamerLongitude": longitude
             ], merge: true)
-        
     }
     
     func getRoamerEmail() {
+        // TODO: Create selection algorithm to choose a series of roamers to ping
         self.dispatchGroup.enter()
-        db.collection("ActiveRoamers").whereField("roamerEmail", isEqualTo: "a@gmail.com")
-            .getDocuments() { (querySnapshot, err) in
+        db.collection("ActiveRoamers").whereField("roamerEmail", isEqualTo: "a@gmail.com").getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err.localizedDescription)")
                 } else {
@@ -97,10 +123,6 @@ final class _UserService {
                 }
         }
         print("email is", self.fullTopicEmail)
-    }
-    
-    func sendMessage(toTopic topic: String) {
-        
     }
     
     func subScribeToTopic(email: String) {
@@ -122,18 +144,23 @@ final class _UserService {
             return
         }
         
-        let formattedEmail = email.replacingOccurrences(of: "@", with: "")
-
-        print("topic email again is: \(formattedEmail) username: \(user.username)")
-        
         let data: [String : Any] = [
-            "userEmail": user.email,
-            "userUserName": user.username,
+            "senderEmail": user.email,
+            "senderUserName": user.username,
             "locationName": user.currentLocationString!,
             "notificationId": "RequestToRoam",
+            "isActive": "true",
             "date": Date().toString()
             ]
         
+        
+        sendToRoamersPhone(withEmail: email, withData: data)
+        updateRomaersFirbase(withEmail: email, withData: data)
+    }
+    
+    func sendToRoamersPhone(withEmail email: String, withData data: [String: Any]) {
+        let formattedEmail = email.replacingOccurrences(of: "@", with: "")
+
         let message: [String : Any] = [
             "notification": [
                 "title": "New Roam Request!!",
@@ -147,21 +174,51 @@ final class _UserService {
         Functions.functions().httpsCallable("sendNotification").call(message) { (result, error) in
             if let error = error {
                 debugPrint(error.localizedDescription)
-                // protocol comes with completion that take in (jsonResponse, error)
                 return
             }
-            
-            
-            // adds notification to roamers firebase profile
-            self.db.collection("ActiveRoamers").document(email).collection("Notifications").addDocument(data: data, completion: { (error) in
-                if let error = error {
-                    print("Error writing notification to document: \(error.localizedDescription)")
-                } else {
-                    print("Document successfully written!!")
-                }
-            })
-            
-            print(result)
         }
+    }
+    
+    
+    func updateRomaersFirbase(withEmail email: String, withData data: [String: Any]) {
+        let query = self.db.collection("Users").whereField("email", isEqualTo: email)
+        
+        query.getDocuments(source: .server, completion: { (snapShot, error) in
+            if let error = error {
+                print("could not update notifications \(error.localizedDescription)")
+            }
+            
+            // a notification array has been made
+            if let notifArr = snapShot?.documents[0].data()["notifications"] {
+                // update it
+                var notifArr = notifArr as! [Any]
+                notifArr.append(data)
+                // send it back
+                self.db.collection("Users").document(email).setData([
+                    "notifications": notifArr], merge: true) { err in
+                        if let err = err {
+                            print("Error writing document: \(err)")
+                        } else {
+                            print("Document successfully written!!!!")
+                        }
+                }
+            }
+            // a notification array has NOT been made
+            else {
+                print("not been made")
+                // make a new one
+                // send it back
+                self.db.collection("Users").document(email).setData([
+                    "notifications": [data]], merge: true) { err in
+                        if let err = err {
+                            print("Error writing document: \(err)")
+                        } else {
+                            print("Document successfully written!!!!")
+                        }
+                        
+                }
+                
+            }
+        })
     }
 }
