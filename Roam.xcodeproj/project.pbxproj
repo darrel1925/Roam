@@ -30,6 +30,8 @@
 		9A9019BE22E6EC860097AC04 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A9019BD22E6EC860097AC04 /* GoogleService-Info.plist */; };
 		9A9019C922E94E000097AC04 /* SignInWithEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9019C822E94E000097AC04 /* SignInWithEmailViewController.swift */; };
 		9A9D8F8622D1BC4C00C49EB6 /* CartButtonLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D8F8522D1BC4C00C49EB6 /* CartButtonLauncher.swift */; };
+		9AA4C4E72303F1BB00194B42 /* RequestToRoamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA4C4E62303F1BB00194B42 /* RequestToRoamCell.swift */; };
+		9AA4C4E92303F24800194B42 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA4C4E82303F24800194B42 /* NotificationsController.swift */; };
 		9AA7415022F9F5E100A2ED30 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA7414F22F9F5E100A2ED30 /* CoreLocation.framework */; };
 		9ADDC47922FD3B020053A1F0 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADDC47822FD3B020053A1F0 /* MapController.swift */; };
 		9ADDC47D22FD4EAB0053A1F0 /* AddLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADDC47B22FD4EAB0053A1F0 /* AddLocationController.swift */; };
@@ -107,6 +109,8 @@
 		9A9019BD22E6EC860097AC04 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9A9019C822E94E000097AC04 /* SignInWithEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithEmailViewController.swift; sourceTree = "<group>"; };
 		9A9D8F8522D1BC4C00C49EB6 /* CartButtonLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartButtonLauncher.swift; sourceTree = "<group>"; };
+		9AA4C4E62303F1BB00194B42 /* RequestToRoamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestToRoamCell.swift; sourceTree = "<group>"; };
+		9AA4C4E82303F24800194B42 /* NotificationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
 		9AA7414F22F9F5E100A2ED30 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9ADDC47822FD3B020053A1F0 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		9ADDC47B22FD4EAB0053A1F0 /* AddLocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationController.swift; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 				9A42BABF22ECBC21006F7137 /* LoginController.swift */,
 				9A42BAC122ECD993006F7137 /* CheckOutController.swift */,
 				9ADDC47822FD3B020053A1F0 /* MapController.swift */,
+				9AA4C4E82303F24800194B42 /* NotificationsController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -235,7 +240,15 @@
 			path = Styles;
 			sourceTree = "<group>";
 		};
-		9ADDC47A22FD4E760053A1F0 /* New Group */ = {
+		9AA4C4E32303F11D00194B42 /* NotificationCells */ = {
+			isa = PBXGroup;
+			children = (
+				9AA4C4E62303F1BB00194B42 /* RequestToRoamCell.swift */,
+			);
+			path = NotificationCells;
+			sourceTree = "<group>";
+		};
+		9ADDC47A22FD4E760053A1F0 /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
 				9ADDC47B22FD4EAB0053A1F0 /* AddLocationController.swift */,
@@ -243,7 +256,7 @@
 				9ADDC47F22FF1BCE0053A1F0 /* ForgotPasswordController.swift */,
 				9ADDC48022FF1BCE0053A1F0 /* ForgotPasswordController.xib */,
 			);
-			path = "New Group";
+			path = Xibs;
 			sourceTree = "<group>";
 		};
 		9ADECB4A22F7637C003B38C1 /* Settings */ = {
@@ -333,6 +346,7 @@
 		ED3C45D1229481C4006D17B0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				9AA4C4E32303F11D00194B42 /* NotificationCells */,
 				9A6912AB22E9800F0058BF2D /* ShoppingCart */,
 				ED3C45D922948A0A006D17B0 /* ItemDescriptionCell.swift */,
 				ED4CA6A82294F36F0022A095 /* PandaExpress */,
@@ -405,7 +419,7 @@
 			isa = PBXGroup;
 			children = (
 				9ADDC48322FF49F50053A1F0 /* Roam.entitlements */,
-				9ADDC47A22FD4E760053A1F0 /* New Group */,
+				9ADDC47A22FD4E760053A1F0 /* Xibs */,
 				9A0E56A422EBE80C006C7F16 /* Models */,
 				9A6912AE22E9814C0058BF2D /* Stripe */,
 				9A6912A622E958910058BF2D /* Services */,
@@ -687,11 +701,13 @@
 				9AEA8E0F22F3F2FA00255DA0 /* EarningsTitleCell.swift in Sources */,
 				EDF153302290F58800FD8BB2 /* HomePageViewController.swift in Sources */,
 				9ADDC48122FF1BCE0053A1F0 /* ForgotPasswordController.swift in Sources */,
+				9AA4C4E92303F24800194B42 /* NotificationsController.swift in Sources */,
 				9A6912B022E9815F0058BF2D /* StripeCart.swift in Sources */,
 				9ADDC47922FD3B020053A1F0 /* MapController.swift in Sources */,
 				ED4CA6AB2294F6180022A095 /* WendysMealSelectionViewController.swift in Sources */,
 				9A6912AD22E980480058BF2D /* ShoppingCartCell.swift in Sources */,
 				9A6912A822E958A60058BF2D /* UserService.swift in Sources */,
+				9AA4C4E72303F1BB00194B42 /* RequestToRoamCell.swift in Sources */,
 				9A42BAC022ECBC21006F7137 /* LoginController.swift in Sources */,
 				9A42BAC522ED19AF006F7137 /* Extensions.swift in Sources */,
 				ED4CA6A72294B6A00022A095 /* WendysFoodItems.swift in Sources */,
