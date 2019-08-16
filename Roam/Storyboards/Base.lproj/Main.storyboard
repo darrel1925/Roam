@@ -1077,7 +1077,11 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="Notifications" id="32J-Jo-mHV">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="DVU-1L-TCa"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="DVU-1L-TCa">
+                                            <connections>
+                                                <action selector="backButtonClicked:" destination="Pwa-p3-f4i" id="QWp-u8-1zR"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -1107,8 +1111,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tues •11:26am" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PX5-9p-Y2d">
-                                                    <rect key="frame" x="292" y="14" width="76" height="14"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Tues • 11:26am" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PX5-9p-Y2d">
+                                                    <rect key="frame" x="289.5" y="14" width="78.5" height="14"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1136,6 +1140,7 @@
                                                 <constraint firstItem="PX5-9p-Y2d" firstAttribute="trailing" secondItem="Wo9-SI-8at" secondAttribute="trailingMargin" id="4cd-h0-Vsp"/>
                                                 <constraint firstItem="2Xj-NY-a7g" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Wo9-SI-8at" secondAttribute="bottomMargin" id="4me-wG-CVL"/>
                                                 <constraint firstItem="Xad-Pi-Jpw" firstAttribute="top" secondItem="Wo9-SI-8at" secondAttribute="top" constant="35" id="Bf4-0z-NOB"/>
+                                                <constraint firstItem="PX5-9p-Y2d" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="F44-Yb-W5C" secondAttribute="trailing" constant="8" id="DdI-hZ-p6x"/>
                                                 <constraint firstItem="PX5-9p-Y2d" firstAttribute="top" secondItem="Wo9-SI-8at" secondAttribute="topMargin" constant="3" id="MpY-Fg-Kv1"/>
                                                 <constraint firstItem="F44-Yb-W5C" firstAttribute="top" secondItem="Wo9-SI-8at" secondAttribute="topMargin" id="N4d-ZG-HDE"/>
                                                 <constraint firstItem="2Xj-NY-a7g" firstAttribute="centerX" secondItem="HcO-2Q-5Cp" secondAttribute="centerX" constant="-14" id="QOA-Bz-XDt"/>

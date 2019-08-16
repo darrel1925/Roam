@@ -47,9 +47,12 @@ extension String {
     }
     
     func toDate() -> Date {
+        
         let dateFormatter = DateFormatter()
         
-        return dateFormatter.date(from: self) ?? Date()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return dateFormatter.date(from: self)!
+        
     }
 }
 
@@ -58,11 +61,33 @@ extension Date {
     
     func toString() -> String {
         let dateFormatter = DateFormatter()
-        // Add your formatter configuration here
+        
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return dateFormatter.string(from: self)
     }
+    
+    func toStringInWords() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .full
+        
+        let dateStr = dateFormatter.string(from: self)
+        
+        return formatMyDate(dateStr: dateStr)
+    }
+    
+    private func formatMyDate(dateStr: String) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "h:mm a" // "4:44 pm
+        formatter.amSymbol = "am"
+        formatter.pmSymbol = "pm"
+        
+        let dateStr2 = formatter.string(from: self) // "4:44 PM on June 23, 2016\n"
+        
+        let dateArr = dateStr.components(separatedBy: ", ") // Wednesday, January 10, 2018
 
+        return "\(dateArr[0]) • \(dateStr2)" // Wednesday • 4:44 pm
+    }
 }
 
 extension DispatchGroup {

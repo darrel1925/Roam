@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct MyNotification {
+struct MyNotification: Equatable {
     
     var userInfo: [String : Any]
     
@@ -23,6 +23,7 @@ struct MyNotification {
         self.userInfo = userInfo
         
         let dateStr = userInfo["date"] as! String
+        print("date is", userInfo["date"], "then" , dateStr.toDate())
         self.date = dateStr.toDate()
     }
     
@@ -69,5 +70,31 @@ struct MyNotification {
             print("Id not found, could not create alert.")
             return UIAlertController()
         }
+    }
+    
+    func formatId() -> String {
+        switch self.notificationId {
+        case "RequestToRoam":
+            return "Request To Roam"
+        default:
+            return "New Notification"
+        }
+    }
+    
+    func formatMessage() -> String {
+        switch self.notificationId {
+        case "RequestToRoam":
+            return "\(UserService.user.firstName) would like you to deliver Panda express to \(locationName) within 25 minutes."
+        default:
+            return "New Message"
+        }
+    }
+    
+    static func == (lhs: MyNotification, rhs: MyNotification) -> Bool {
+        return (lhs.notificationId == rhs.notificationId) &&
+            (lhs.senderEmail == rhs.senderEmail) &&
+            (lhs.senderUsername == rhs.senderUsername) &&
+            (lhs.locationName == rhs.locationName) &&
+            (lhs.date == rhs.date)
     }
 }

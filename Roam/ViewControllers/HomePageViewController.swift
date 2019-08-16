@@ -47,7 +47,6 @@ class HomePageViewController: UIViewController {
                 print("email2", UserService.user)
                 print(NotificationService.count)
             }
-
         }
     }
     

@@ -32,6 +32,10 @@
 		9A9D8F8622D1BC4C00C49EB6 /* CartButtonLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D8F8522D1BC4C00C49EB6 /* CartButtonLauncher.swift */; };
 		9AA4C4E72303F1BB00194B42 /* RequestToRoamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA4C4E62303F1BB00194B42 /* RequestToRoamCell.swift */; };
 		9AA4C4E92303F24800194B42 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA4C4E82303F24800194B42 /* NotificationsController.swift */; };
+		9AA4C4F02306543100194B42 /* DeliverRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA4C4EE2306543100194B42 /* DeliverRequestController.swift */; };
+		9AA4C4F12306543100194B42 /* DeliverRequestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AA4C4EF2306543100194B42 /* DeliverRequestController.xib */; };
+		9AA4C4F823065AB500194B42 /* BlackBackgroundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA4C4F623065AB500194B42 /* BlackBackgroundController.swift */; };
+		9AA4C4F923065AB500194B42 /* BlackBackgroundController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AA4C4F723065AB500194B42 /* BlackBackgroundController.xib */; };
 		9AA7415022F9F5E100A2ED30 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA7414F22F9F5E100A2ED30 /* CoreLocation.framework */; };
 		9ADDC47922FD3B020053A1F0 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADDC47822FD3B020053A1F0 /* MapController.swift */; };
 		9ADDC47D22FD4EAB0053A1F0 /* AddLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADDC47B22FD4EAB0053A1F0 /* AddLocationController.swift */; };
@@ -111,6 +115,10 @@
 		9A9D8F8522D1BC4C00C49EB6 /* CartButtonLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartButtonLauncher.swift; sourceTree = "<group>"; };
 		9AA4C4E62303F1BB00194B42 /* RequestToRoamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestToRoamCell.swift; sourceTree = "<group>"; };
 		9AA4C4E82303F24800194B42 /* NotificationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
+		9AA4C4EE2306543100194B42 /* DeliverRequestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverRequestController.swift; sourceTree = "<group>"; };
+		9AA4C4EF2306543100194B42 /* DeliverRequestController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliverRequestController.xib; sourceTree = "<group>"; };
+		9AA4C4F623065AB500194B42 /* BlackBackgroundController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BlackBackgroundController.swift; path = ../ViewControllers/BlackBackgroundController.swift; sourceTree = "<group>"; };
+		9AA4C4F723065AB500194B42 /* BlackBackgroundController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BlackBackgroundController.xib; path = ../ViewControllers/BlackBackgroundController.xib; sourceTree = "<group>"; };
 		9AA7414F22F9F5E100A2ED30 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9ADDC47822FD3B020053A1F0 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		9ADDC47B22FD4EAB0053A1F0 /* AddLocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationController.swift; sourceTree = "<group>"; };
@@ -255,6 +263,10 @@
 				9ADDC47C22FD4EAB0053A1F0 /* AddLocationController.xib */,
 				9ADDC47F22FF1BCE0053A1F0 /* ForgotPasswordController.swift */,
 				9ADDC48022FF1BCE0053A1F0 /* ForgotPasswordController.xib */,
+				9AA4C4EE2306543100194B42 /* DeliverRequestController.swift */,
+				9AA4C4EF2306543100194B42 /* DeliverRequestController.xib */,
+				9AA4C4F623065AB500194B42 /* BlackBackgroundController.swift */,
+				9AA4C4F723065AB500194B42 /* BlackBackgroundController.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -569,10 +581,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A9019BE22E6EC860097AC04 /* GoogleService-Info.plist in Resources */,
+				9AA4C4F923065AB500194B42 /* BlackBackgroundController.xib in Resources */,
 				EDE119FC2290B1AE00853117 /* LaunchScreen.storyboard in Resources */,
 				9ADDC48222FF1BCE0053A1F0 /* ForgotPasswordController.xib in Resources */,
 				9ADDC47E22FD4EAB0053A1F0 /* AddLocationController.xib in Resources */,
 				EDE119F92290B1AE00853117 /* Assets.xcassets in Resources */,
+				9AA4C4F12306543100194B42 /* DeliverRequestController.xib in Resources */,
 				9A0701C222F27F33003048A2 /* Roamer.storyboard in Resources */,
 				EDE119F72290B1AC00853117 /* Main.storyboard in Resources */,
 			);
@@ -699,6 +713,7 @@
 				38571D5E2290B54600C460C7 /* LoginViewController.swift in Sources */,
 				9A42BAB422ECB16C006F7137 /* PandaExpressFoodItems.swift in Sources */,
 				9AEA8E0F22F3F2FA00255DA0 /* EarningsTitleCell.swift in Sources */,
+				9AA4C4F823065AB500194B42 /* BlackBackgroundController.swift in Sources */,
 				EDF153302290F58800FD8BB2 /* HomePageViewController.swift in Sources */,
 				9ADDC48122FF1BCE0053A1F0 /* ForgotPasswordController.swift in Sources */,
 				9AA4C4E92303F24800194B42 /* NotificationsController.swift in Sources */,
@@ -710,6 +725,7 @@
 				9AA4C4E72303F1BB00194B42 /* RequestToRoamCell.swift in Sources */,
 				9A42BAC022ECBC21006F7137 /* LoginController.swift in Sources */,
 				9A42BAC522ED19AF006F7137 /* Extensions.swift in Sources */,
+				9AA4C4F02306543100194B42 /* DeliverRequestController.swift in Sources */,
 				ED4CA6A72294B6A00022A095 /* WendysFoodItems.swift in Sources */,
 				9A42BAAE22ECA6B1006F7137 /* StripeApi.swift in Sources */,
 				9AE5497B2303CC8100719737 /* UIBarButtonAndBadge.swift in Sources */,

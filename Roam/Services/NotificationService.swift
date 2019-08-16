@@ -27,6 +27,12 @@ class _NotificationService {
         self.notifications.removeAll()
     }
     
+    func removeNotificaiton(notif: MyNotification) {
+        if let index = notifications.firstIndex(where: { $0 == notif }) {
+                notifications.remove(at: index)
+            }
+        }
+    
     func removeLastNotification() {
         self.notifications.removeLast()
     }
@@ -77,7 +83,6 @@ class _NotificationService {
             }
             
             let snapShot = snapShotArray?.documents[0]
-            print("snapshot,", snapShot)
             if let snapShotArray = snapShot?.data()["notifications"] as? [[String: Any]] {
             
             for notif in snapShotArray {
@@ -87,7 +92,7 @@ class _NotificationService {
             }
 
             for notif in NotificationService.notifications {
-                print(notif.date)
+                print(notif.date!)
                 UserService.dispatchGroup.customLeave()
                 }
             } else {

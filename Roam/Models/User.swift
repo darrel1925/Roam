@@ -16,6 +16,8 @@ struct User {
     var email:String
     var username: String
     var stripeId: String
+    var firstName: String
+    var lastName: String
 
     var currentLocationString: String?
     
@@ -28,6 +30,9 @@ struct User {
         self.email = email
         self.username = username
         self.stripeId = stripeId
+        
+        self.firstName = "firstName"
+        self.lastName = "lastName"
 
     }
     
@@ -36,6 +41,9 @@ struct User {
         self.email = data["email"] as? String ?? ""
         self.username = data["username"] as? String ?? ""
         self.stripeId = data["stripeId"] as? String ?? ""
+        
+        self.firstName = "firstName"
+        self.lastName = "lastName"
     }
     
     static func modelToData(user: User) -> [String: Any] {
