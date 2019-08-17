@@ -37,8 +37,6 @@ class _NotificationService {
         self.notifications.removeLast()
     }
     
-    // TODO: Remove certain notificaiton function
-    
     func presentAlertIfAny(controllerNamed controller: HomePageViewController) {
         print("notif count is:", notifications.count)
         if notifications.count > 0 {
@@ -71,7 +69,32 @@ class _NotificationService {
         controller.present(navigationController, animated: true, completion: nil)
     }
     
-    func updateNotificationsFromServer() {
+    private func formatNotifsToArr() -> [[String: Any]] {
+        var dataArray: [[String: Any]] = []
+        
+        for notificaiton in self.notifications {
+            dataArray.append(notificaiton.modelToData())
+        }
+        
+        return dataArray
+    }
+    
+    func sendNotifcationsToServer() {
+        let email = UserService.user.email
+        let notificationArray = formatNotifsToArr()
+        let db = Firestore.firestore()
+        
+        db.collection("Users").document(email).setData(["notifications": notificationArray], merge: true) { (error) in
+            if let error = error {
+                print("THERE WAS AN ERROR UPDATING NOTIFICATIONS: \(error.localizedDescription) ")
+            }
+        }
+    }
+    
+    func getNotificationsFromServer() {
+        UserService.dispatchGroup.enter()
+        clearNotifications()
+
         let email = UserService.user.email
         print("email", email)
         let db = Firestore.firestore()
@@ -80,23 +103,28 @@ class _NotificationService {
         query.getDocuments(source: .server, completion: { (snapShotArray, err) in
             if let err = err {
                 print("could not get notifications \(err.localizedDescription)")
+                UserService.dispatchGroup.customLeave()
+                return
             }
             
             let snapShot = snapShotArray?.documents[0]
-            if let snapShotArray = snapShot?.data()["notifications"] as? [[String: Any]] {
-            
-            for notif in snapShotArray {
-                
-                let notificaiton = MyNotification(userInfo: notif)
-                NotificationService.addNotificaton(withData: notificaiton)
-            }
 
-            for notif in NotificationService.notifications {
-                print(notif.date!)
-                UserService.dispatchGroup.customLeave()
+            if let snapShotArray = snapShot?.data()["notifications"] as? [[String: Any]] {
+                if snapShotArray.count == 0 { UserService.dispatchGroup.customLeave(); return }
+                for notif in snapShotArray {
+                    
+                    let notificaiton = MyNotification(userInfo: notif)
+                    NotificationService.addNotificaton(withData: notificaiton)
                 }
-            } else {
-                print("No Notifications! :p")
+                UserService.dispatchGroup.customLeave()
+
+                for notif in NotificationService.notifications {
+                    print(notif.date!)
+                }
+            }
+            else {
+                UserService.dispatchGroup.customLeave()
+
             }
         })
     }

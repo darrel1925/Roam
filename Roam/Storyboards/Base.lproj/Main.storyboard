@@ -940,8 +940,9 @@
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pha-nQ-ylz">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
-                                    <navigationItem title="Title" id="uJc-HM-aOf">
+                                    <navigationItem title="Checkout" id="uJc-HM-aOf">
                                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="G75-9e-CGh">
                                             <connections>
                                                 <action selector="backButtonClicked:" destination="MVT-ay-OhE" id="baE-ig-j0B"/>
@@ -1075,8 +1076,10 @@
                             </stackView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J7D-jz-a6c">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
-                                    <navigationItem title="Notifications" id="32J-Jo-mHV">
+                                    <navigationItem id="32J-Jo-mHV">
                                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="DVU-1L-TCa">
                                             <connections>
                                                 <action selector="backButtonClicked:" destination="Pwa-p3-f4i" id="QWp-u8-1zR"/>

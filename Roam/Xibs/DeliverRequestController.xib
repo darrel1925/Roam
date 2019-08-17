@@ -28,8 +28,8 @@
                     <rect key="frame" x="0.0" y="673" width="414" height="223"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Would you like to accept and begin this delivery?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWd-jF-7dY">
-                            <rect key="frame" x="20" y="58" width="374" height="49.5"/>
-                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
+                            <rect key="frame" x="20" y="54" width="374" height="44.5"/>
+                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -77,7 +77,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="QYz-ds-8ZY" firstAttribute="centerX" secondItem="aO4-RF-KcM" secondAttribute="centerX" id="2dJ-tw-Qcu"/>
-                        <constraint firstItem="uWd-jF-7dY" firstAttribute="top" secondItem="QYz-ds-8ZY" secondAttribute="bottom" constant="12" id="4BR-LX-QgA"/>
+                        <constraint firstItem="uWd-jF-7dY" firstAttribute="top" secondItem="QYz-ds-8ZY" secondAttribute="bottom" constant="8" id="4BR-LX-QgA"/>
                         <constraint firstItem="QYz-ds-8ZY" firstAttribute="top" secondItem="aO4-RF-KcM" secondAttribute="top" constant="16" id="7S1-6J-y1R"/>
                         <constraint firstAttribute="height" constant="223" id="97F-4K-SdH"/>
                         <constraint firstAttribute="trailing" secondItem="uWd-jF-7dY" secondAttribute="trailing" constant="20" id="Awy-Ge-dem"/>

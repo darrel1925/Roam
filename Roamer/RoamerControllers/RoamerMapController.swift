@@ -1,8 +1,8 @@
 //
-//  MapController.swift
+//  RoamerMapController.swift
 //  Roam
 //
-//  Created by Darrel Muonekwu on 8/9/19.
+//  Created by Darrel Muonekwu on 8/16/19.
 //  Copyright © 2019 Darrel Muonekwu. All rights reserved.
 //
 
@@ -10,14 +10,16 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapController: UIViewController, MKMapViewDelegate {
-    
+class RoamerMapController: UIViewController {
+
     @IBOutlet weak var map: MKMapView!
     
     var locationManager = LocationService.locationManager
     var region: MKCoordinateRegion!
     var annotation: MKPointAnnotation = MKPointAnnotation()
     var count = 0
+    
+    var senderEmail: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,11 +39,11 @@ class MapController: UIViewController, MKMapViewDelegate {
         print(locationManager.location?.coordinate.longitude ?? 0, locationManager.location?.coordinate.latitude ?? 0)
         
         guard let longitude = locationManager.location?.coordinate.longitude,
-              let latitude = locationManager.location?.coordinate.latitude
-              else {
+            let latitude = locationManager.location?.coordinate.latitude
+            else {
                 self.displayError(title: "Network Error", message: "Unable to determine Location")
                 return
-            }
+        }
         
         print("got location :)")
         let coordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -60,11 +62,11 @@ class MapController: UIViewController, MKMapViewDelegate {
         map.showsBuildings = true
         map.showsUserLocation = true
         map.showsCompass = true
-//        annotation = MKPointAnnotation()
-//
-//        annotation.coordinate = coordinates
-//
-//        map.addAnnotation(annotation)
+        //        annotation = MKPointAnnotation()
+        //
+        //        annotation.coordinate = coordinates
+        //
+        //        map.addAnnotation(annotation)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -74,13 +76,13 @@ class MapController: UIViewController, MKMapViewDelegate {
         let latitude = (manager.location?.coordinate.latitude)!
         let longitude = (manager.location?.coordinate.longitude)!
         LocationService.updateLocationWith(latitude: latitude, longitude: longitude)
-
-//        let coordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-//
-//        annotation.coordinate = coordinates
+        
+        //        let coordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        //
+        //        annotation.coordinate = coordinates
         
         if count >= 5 {
-            LocationService.sendLocationToFirebaseAsCustomer()
+            LocationService.sendLocationToFirebaseAsRoamer()
             count = 0
         }
     }
@@ -92,7 +94,7 @@ class MapController: UIViewController, MKMapViewDelegate {
     }
 }
 
-extension MapController: CLLocationManagerDelegate {
+extension RoamerMapController: CLLocationManagerDelegate {
     
     func setUpLocationManager() {
         locationManager.delegate = self

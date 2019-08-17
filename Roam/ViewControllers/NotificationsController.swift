@@ -14,11 +14,14 @@ class NotificationsController: UIViewController {
     @IBOutlet weak var notificationsLabel: UILabel!
     @IBOutlet weak var notificationsCountLabel: UILabel!
     
+    var refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
+        addRefreshControl()
         
         setTitle()
     }
@@ -33,6 +36,25 @@ class NotificationsController: UIViewController {
         notificationsCountLabel.text = String(NotificationService.count)
     }
     
+    func addRefreshControl() {
+        refreshControl.tintColor = .red
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+    }
+    
+    @objc func handleRefresh() {
+        // get notifications from server and add to NotificationService
+        NotificationService.getNotificationsFromServer()
+        
+        // get notification count from Notification Service
+        UserService.dispatchGroup.notify(queue: .main) {
+            self.notificationsCountLabel.text = "\(NotificationService.count)"
+            self.refreshControl.endRefreshing()
+            self.tableView.reloadData()
+            NotificationService.sendNotifcationsToServer()
+        }
+        
+    }
     
     @IBAction func backButtonClicked(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -61,17 +83,22 @@ extension NotificationsController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         
-        let DeliverRequestVC = DeliverRequestController()
+        let deliverRequestVC = DeliverRequestController()
+        deliverRequestVC.notification = NotificationService.notifications[row]
+        deliverRequestVC.notificationController = self
         
-        DeliverRequestVC.modalTransitionStyle = .crossDissolve
-        DeliverRequestVC.modalPresentationStyle = .overCurrentContext
-        present(DeliverRequestVC, animated: true, completion: nil)
+        
+        deliverRequestVC.modalTransitionStyle = .crossDissolve
+        deliverRequestVC.modalPresentationStyle = .overCurrentContext
+        present(deliverRequestVC, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let notification = NotificationService.notifications[indexPath.row]
             NotificationService.removeNotificaiton(notif: notification)
+            NotificationService.sendNotifcationsToServer()
+            notificationsCountLabel.text = "\(Int(notificationsCountLabel.text!)! - 1)"
             
             self.tableView.reloadData()
         }

@@ -25,9 +25,6 @@ final class _UserService {
     let auth = Auth .auth()
     let db = Firestore.firestore()
     
-    var latitude: CLLocationDegrees = 0
-    var longitude: CLLocationDegrees = 0
-    
     var fullTopicEmail: String!
     
     let dispatchGroup = DispatchGroup()
@@ -59,6 +56,7 @@ final class _UserService {
     
     func getCurrentUserForNotifications() {
         // if user is logged in
+        UserService.dispatchGroup.enter()
         guard let authUser = Auth.auth().currentUser else {  UserService.dispatchGroup.customLeave(); return }
         
         let userRef = db.collection("Users").document(authUser.email ?? "no email found")
@@ -77,9 +75,7 @@ final class _UserService {
             self.user = User.init(data: data)
             UserService.dispatchGroup.customLeave()
             
-            
         })
-        
     }
     
     func logoutUser() {
@@ -88,38 +84,24 @@ final class _UserService {
         user = User()
     }
     
-    func updateLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees ){
-        
-        self.latitude = latitude
-        self.longitude = longitude
-    }
-    
-    func sendLocationToFirebase() {
-        
-        let db = Firestore.firestore()
-        
-        // Update one field, creating the document if it does not exist.
-        db.collection("ActiveRoamers").document("a@gmail.com").setData([
-            "roamerLatitude": latitude,
-            "roamerLongitude": longitude
-            ], merge: true)
-    }
-    
     func getRoamerEmail() {
         // TODO: Create selection algorithm to choose a series of roamers to ping
         self.dispatchGroup.enter()
         db.collection("ActiveRoamers").whereField("roamerEmail", isEqualTo: "a@gmail.com").getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err.localizedDescription)")
-                } else {
+                    self.dispatchGroup.customLeave()
+
+                }
+                else {
                     for document in querySnapshot!.documents {
                         
                         print("\(document.documentID) => \(document.data())")
                         let email = document.data()["roamerEmail"] as? String
                         self.fullTopicEmail = email
                         print(email ?? "huh", "huhh")
-                        self.dispatchGroup.leave()
                     }
+                    self.dispatchGroup.customLeave()
                 }
         }
         print("email is", self.fullTopicEmail)
@@ -146,8 +128,10 @@ final class _UserService {
         
         let data: [String : Any] = [
             "senderEmail": user.email,
-            "senderUserName": user.username,
+            "senderUsername": user.username,
             "locationName": user.currentLocationString!,
+            "longitude": "\(LocationService.longitude)",
+            "latitude": "\(LocationService.latitude)",
             "notificationId": "RequestToRoam",
             "isActive": "true",
             "date": Date().toString()
@@ -215,10 +199,92 @@ final class _UserService {
                         } else {
                             print("Document successfully written!!!!")
                         }
-                        
+                }
+                
+            }
+        })
+    }
+    
+    
+    /******************************************************************/
+    
+    func sendNotificationToCustomer(withEmail email: String) {
+        let data: [String : Any] = [
+            "senderEmail": user.email,
+            "senderUsername": user.username,
+            "locationName": user.currentLocationString!,
+            "longitude": "\(LocationService.longitude)",
+            "latitude": "\(LocationService.latitude)",
+            "notificationId": "AcceptingRequestToRoam",
+            "isActive": "true",
+            "date": Date().toString()
+        ]
+        
+        self.sendToCustomersPhone(withEmail: email, withData: data)
+        self.updateCustomersFirbase(withEmail: email, withData: data)
+    }
+    
+    func sendToCustomersPhone(withEmail email: String, withData data: [String: Any]) {
+        let formattedEmail = email.replacingOccurrences(of: "@", with: "")
+        
+        let message: [String : Any] = [
+            "notification": [
+                "title": "New Roam Request!!",
+                "body": "CLICK THIS NOTIFICATION to begin!"
+            ],
+            "data": data,
+            "topic": formattedEmail
+        ]
+        
+        // sends notification to roamer's phone
+        Functions.functions().httpsCallable("sendNotification").call(message) { (result, error) in
+            if let error = error {
+                debugPrint(error.localizedDescription)
+                return
+            }
+        }
+    }
+    
+    
+    func updateCustomersFirbase(withEmail email: String, withData data: [String: Any]) {
+        let query = self.db.collection("Users").whereField("email", isEqualTo: email)
+        
+        query.getDocuments(source: .server, completion: { (snapShot, error) in
+            if let error = error {
+                print("could not update notifications \(error.localizedDescription)")
+            }
+            
+            // a notification array has been made
+            if let notifArr = snapShot?.documents[0].data()["notifications"] {
+                // update it
+                var notifArr = notifArr as! [Any]
+                notifArr.append(data)
+                // send it back
+                self.db.collection("Users").document(email).setData([
+                    "notifications": notifArr], merge: true) { err in
+                        if let err = err {
+                            print("Error writing document: \(err)")
+                        } else {
+                            print("Document successfully written!!!!")
+                        }
+                }
+            }
+                // a notification array has NOT been made
+            else {
+                print("not been made")
+                // make a new one
+                // send it back
+                self.db.collection("Users").document(email).setData([
+                    "notifications": [data]], merge: true) { err in
+                        if let err = err {
+                            print("Error writing document: \(err)")
+                        } else {
+                            print("Document successfully written!!!!")
+                        }
                 }
                 
             }
         })
     }
 }
+

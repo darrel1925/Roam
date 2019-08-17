@@ -10,7 +10,6 @@
 		1C857ECD9D695A180EADAF87 /* Pods_RoamUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46426FE5DD249F136E71199D /* Pods_RoamUITests.framework */; };
 		38571D5E2290B54600C460C7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38571D5D2290B54600C460C7 /* LoginViewController.swift */; };
 		7A7863AC49CCCDFCD1042C32 /* Pods_RoamTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E111423E33F668F6615448 /* Pods_RoamTests.framework */; };
-		9A0701C222F27F33003048A2 /* Roamer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A0701C122F27F33003048A2 /* Roamer.storyboard */; };
 		9A42BAAA22ECA619006F7137 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A42BAA922ECA619006F7137 /* Order.swift */; };
 		9A42BAAC22ECA67D006F7137 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A42BAAB22ECA67D006F7137 /* Product.swift */; };
 		9A42BAAE22ECA6B1006F7137 /* StripeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A42BAAD22ECA6B1006F7137 /* StripeApi.swift */; };
@@ -36,6 +35,8 @@
 		9AA4C4F12306543100194B42 /* DeliverRequestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AA4C4EF2306543100194B42 /* DeliverRequestController.xib */; };
 		9AA4C4F823065AB500194B42 /* BlackBackgroundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA4C4F623065AB500194B42 /* BlackBackgroundController.swift */; };
 		9AA4C4F923065AB500194B42 /* BlackBackgroundController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AA4C4F723065AB500194B42 /* BlackBackgroundController.xib */; };
+		9AA4C4FB2307B3C400194B42 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA4C4FA2307B3C400194B42 /* LocationService.swift */; };
+		9AA4C4FD2307D29000194B42 /* RoamerMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA4C4FC2307D29000194B42 /* RoamerMapController.swift */; };
 		9AA7415022F9F5E100A2ED30 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA7414F22F9F5E100A2ED30 /* CoreLocation.framework */; };
 		9ADDC47922FD3B020053A1F0 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADDC47822FD3B020053A1F0 /* MapController.swift */; };
 		9ADDC47D22FD4EAB0053A1F0 /* AddLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADDC47B22FD4EAB0053A1F0 /* AddLocationController.swift */; };
@@ -93,7 +94,6 @@
 		46426FE5DD249F136E71199D /* Pods_RoamUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoamUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62C82FFA790FB10D7995D567 /* Pods-RoamUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamUITests.release.xcconfig"; path = "Target Support Files/Pods-RoamUITests/Pods-RoamUITests.release.xcconfig"; sourceTree = "<group>"; };
 		82963C48207E02237574EC5E /* Pods-RoamTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamTests.debug.xcconfig"; path = "Target Support Files/Pods-RoamTests/Pods-RoamTests.debug.xcconfig"; sourceTree = "<group>"; };
-		9A0701C122F27F33003048A2 /* Roamer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Roamer.storyboard; sourceTree = "<group>"; };
 		9A42BAA922ECA619006F7137 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		9A42BAAB22ECA67D006F7137 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		9A42BAAD22ECA6B1006F7137 /* StripeApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeApi.swift; sourceTree = "<group>"; };
@@ -119,6 +119,8 @@
 		9AA4C4EF2306543100194B42 /* DeliverRequestController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliverRequestController.xib; sourceTree = "<group>"; };
 		9AA4C4F623065AB500194B42 /* BlackBackgroundController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BlackBackgroundController.swift; path = ../ViewControllers/BlackBackgroundController.swift; sourceTree = "<group>"; };
 		9AA4C4F723065AB500194B42 /* BlackBackgroundController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BlackBackgroundController.xib; path = ../ViewControllers/BlackBackgroundController.xib; sourceTree = "<group>"; };
+		9AA4C4FA2307B3C400194B42 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		9AA4C4FC2307D29000194B42 /* RoamerMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoamerMapController.swift; sourceTree = "<group>"; };
 		9AA7414F22F9F5E100A2ED30 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9ADDC47822FD3B020053A1F0 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		9ADDC47B22FD4EAB0053A1F0 /* AddLocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationController.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			children = (
 				9A6912A722E958A60058BF2D /* UserService.swift */,
 				9A7EF07423008D4F008135F8 /* NotificationService.swift */,
+				9AA4C4FA2307B3C400194B42 /* LocationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 			children = (
 				9ADECB4A22F7637C003B38C1 /* Settings */,
 				9AEA8E0122F3ECB300255DA0 /* EarningsController.swift */,
+				9AA4C4FC2307D29000194B42 /* RoamerMapController.swift */,
 			);
 			path = RoamerControllers;
 			sourceTree = "<group>";
@@ -292,7 +296,6 @@
 		9AEA8E0322F3EFEA00255DA0 /* Roamer */ = {
 			isa = PBXGroup;
 			children = (
-				9A0701C122F27F33003048A2 /* Roamer.storyboard */,
 				9AEA8E0D22F3F19D00255DA0 /* Storyboards */,
 				9AEA8E0422F3F09800255DA0 /* Cells */,
 				9AEA8E0022F3EC5B00255DA0 /* RoamerControllers */,
@@ -587,7 +590,6 @@
 				9ADDC47E22FD4EAB0053A1F0 /* AddLocationController.xib in Resources */,
 				EDE119F92290B1AE00853117 /* Assets.xcassets in Resources */,
 				9AA4C4F12306543100194B42 /* DeliverRequestController.xib in Resources */,
-				9A0701C222F27F33003048A2 /* Roamer.storyboard in Resources */,
 				EDE119F72290B1AC00853117 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -705,6 +707,7 @@
 				9A9D8F8622D1BC4C00C49EB6 /* CartButtonLauncher.swift in Sources */,
 				ED4CA6B5229542100022A095 /* SideOptionCell.swift in Sources */,
 				9A42BAAC22ECA67D006F7137 /* Product.swift in Sources */,
+				9AA4C4FB2307B3C400194B42 /* LocationService.swift in Sources */,
 				9A42BAAA22ECA619006F7137 /* Order.swift in Sources */,
 				9A42BAB622ECB23D006F7137 /* EntreeTitleCell.swift in Sources */,
 				9A7EF07523008D4F008135F8 /* NotificationService.swift in Sources */,
@@ -714,6 +717,7 @@
 				9A42BAB422ECB16C006F7137 /* PandaExpressFoodItems.swift in Sources */,
 				9AEA8E0F22F3F2FA00255DA0 /* EarningsTitleCell.swift in Sources */,
 				9AA4C4F823065AB500194B42 /* BlackBackgroundController.swift in Sources */,
+				9AA4C4FD2307D29000194B42 /* RoamerMapController.swift in Sources */,
 				EDF153302290F58800FD8BB2 /* HomePageViewController.swift in Sources */,
 				9ADDC48122FF1BCE0053A1F0 /* ForgotPasswordController.swift in Sources */,
 				9AA4C4E92303F24800194B42 /* NotificationsController.swift in Sources */,

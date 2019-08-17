@@ -168,23 +168,7 @@ extension AppDelegate: MessagingDelegate {
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
         print("got a message: \(remoteMessage.appData)")
-        print("17 ")
+       print("Notification Recieved  9")
     }
 
 }
-
-/*
- [ "userUserName": money,
- "locationName": Building: Rowland Hall Room #: 217,
- "google.c.a.e": 1,
- "aps": {
-     alert = {
-     body = "CLICK THIS NOTIFICATION to begin!";
-     title = "New Roam Request!!";
-    };
- },
- "userEmail": ddd@gmail.com,
- "gcm.message_id": 1565590916650545,
- "notificationId": RequestToRoam
- ]
- */

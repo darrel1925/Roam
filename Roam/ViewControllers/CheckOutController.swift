@@ -9,6 +9,7 @@
 import UIKit
 import Stripe
 import FirebaseFunctions
+import CoreLocation
 
 class CheckOutController: UIViewController {
 
@@ -20,11 +21,12 @@ class CheckOutController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    let locationManager = LocationService.locationManager
     var paymentContext: STPPaymentContext!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         checkIfCartEmpty()
         setUpTableView()
         setUpPaymentInfo()
@@ -91,7 +93,7 @@ class CheckOutController: UIViewController {
     }
     
     @IBAction func placeOrderClicked(_ sender: Any) {
-        presentLocationDetails()
+        checkLocationServices()
 //        checkIfCartEmpty()
 //        activityIndicator.startAnimating()
 //        paymentContext.requestPayment()
@@ -227,3 +229,69 @@ extension CheckOutController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 }
+
+extension CheckOutController: CLLocationManagerDelegate {
+    
+    func getMyLocation() {
+        locationManager.startUpdatingLocation()
+        guard let longitude = locationManager.location?.coordinate.longitude,
+              let latitude = locationManager.location?.coordinate.latitude
+              else {
+                self.displayError(title: "Network Error", message: "Unable to determine Location")
+                locationManager.stopUpdatingLocation()
+                return
+              }
+        locationManager.stopUpdatingLocation()
+        LocationService.updateLocation()
+        print(longitude,latitude)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        checkLocationAuthorization()
+    }
+    
+    func setUpLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+    }
+    
+    func checkLocationAuthorization() {
+        switch CLLocationManager.authorizationStatus() {
+        case .authorizedWhenInUse:
+            getMyLocation()
+            presentLocationDetails()
+            break
+        case .denied:
+            // show alert telling them how to turn on permissions
+            break
+        case .notDetermined:
+            // when we request the permission for first time
+            locationManager.requestAlwaysAuthorization()
+            break
+        case .restricted:
+            // parental control restriction
+                // let them know how to disable it
+            break
+        case .authorizedAlways:
+            // do map stuff
+            getMyLocation()
+            presentLocationDetails()
+            break
+        @unknown default:
+            break
+        }
+    }
+    
+    func checkLocationServices() {
+        // if location is enabled device wide
+        if CLLocationManager.locationServicesEnabled() {
+            setUpLocationManager()
+            checkLocationAuthorization()
+        } else {
+            // show alert telling user they have to turn this on.
+        }
+    }
+    
+}
+

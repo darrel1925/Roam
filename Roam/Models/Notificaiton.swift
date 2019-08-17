@@ -14,38 +14,36 @@ struct MyNotification: Equatable {
     var userInfo: [String : Any]
     
     var notificationId: String { return self.userInfo["notificationId"] as? String ?? "no id"}
-    var senderEmail: String { return self.userInfo["userEmail"] as? String ?? "no email"}
-    var senderUsername: String { return self.userInfo["userEmail"] as? String ?? "no email"}
+    var senderEmail: String { return self.userInfo["senderEmail"] as? String ?? "no email"}
+    var senderUsername: String { return self.userInfo["senderUsername"] as? String ?? "no username"}
     var locationName: String { return self.userInfo["locationName"] as? String ?? "no location"}
+    var longitude: Double { return self.userInfo["longitude"] as? Double ?? 0 }
+    var latitude: Double { return self.userInfo["latitude"] as? Double ?? 0 }
+    var isActive: String = "true"
     var date: Date!
 
     init(userInfo: [String : Any]) {
         self.userInfo = userInfo
-        
+        convertDateToString()
+    }
+    
+    private mutating func convertDateToString() {
         let dateStr = userInfo["date"] as! String
         print("date is", userInfo["date"], "then" , dateStr.toDate())
         self.date = dateStr.toDate()
     }
     
-    init(senderEmail: String, senderUsername: String, locationName: String, notificationId: String) {
-        let userInfo: [String: Any] = [
-            "senderEmail": senderEmail,
-            "senderUsername": senderUsername,
-            "locationName": locationName,
-            "notificationId": notificationId,
-            "date": Date()
-        ]
-        self.userInfo = userInfo
-    }
-    
     // i probably font need this function
-    func modelToData(notification: MyNotification) -> [String: Any] {
+    func modelToData() -> [String: Any] {
         let data : [String: Any] = [
-            "senderEmail": notification.senderEmail,
-            "senderUsername": senderUsername,
-            "locationName": notification.locationName,
-            "notificationId": notification.notificationId,
-            "date": notification.date
+            "notificationId": self.notificationId,
+            "senderEmail": self.senderEmail,
+            "senderUsername": self.senderUsername,
+            "locationName": self.locationName,
+            "latitude": self.latitude,
+            "longitude": self.longitude,
+            "isActive": "true",
+            "date": self.date.toString()
         ]
 
         return data
@@ -94,7 +92,6 @@ struct MyNotification: Equatable {
         return (lhs.notificationId == rhs.notificationId) &&
             (lhs.senderEmail == rhs.senderEmail) &&
             (lhs.senderUsername == rhs.senderUsername) &&
-            (lhs.locationName == rhs.locationName) &&
             (lhs.date == rhs.date)
     }
 }

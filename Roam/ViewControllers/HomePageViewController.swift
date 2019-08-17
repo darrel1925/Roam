@@ -17,35 +17,31 @@ class HomePageViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
     override func viewDidAppear(_ animated: Bool) {
         print(NotificationService.count)
-        UserService.dispatchGroup.enter()
-        print("dispatch", UserService.dispatchGroup.count)
+        print("dispatch begin", UserService.dispatchGroup.count)
         if Auth.auth().currentUser != nil {
             // add all of our info to our User class to use globally
             if UserService.userListener == nil {
                 UserService.getCurrentUserForNotifications()
                 
             }
-            else {
-                UserService.dispatchGroup.customLeave()
-            }
         }
-        else {
-            UserService.dispatchGroup.customLeave()
-        }
-        
         UserService.dispatchGroup.notify(queue: .main) {
-            UserService.dispatchGroup.enter()
+            print("dispatch mid", UserService.dispatchGroup.count)
             // get notifications from server and add to NotificationService
-            NotificationService.clearNotifications()
-            NotificationService.updateNotificationsFromServer()
+            NotificationService.getNotificationsFromServer()
             
             // get notification count from Notification Service
             UserService.dispatchGroup.notify(queue: .main) {
                 self.setNotificationBadge()
                 print("email2", UserService.user)
                 print(NotificationService.count)
+                print("diapatch end", UserService.dispatchGroup.count)
+
             }
         }
     }

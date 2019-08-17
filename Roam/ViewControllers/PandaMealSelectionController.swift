@@ -16,7 +16,8 @@ class PandaMealSelectionController: UIViewController, UITableViewDelegate, UITab
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("diapatch", UserService.dispatchGroup.count)
+
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorColor = .white
