@@ -62,6 +62,7 @@
                                 </state>
                                 <connections>
                                     <action selector="onSignUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RR5-wV-aui"/>
+                                    <segue destination="SZq-Bv-HM4" kind="presentation" id="J57-Yc-HMi"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iw4-oP-76M">
@@ -1642,7 +1643,7 @@
                     <connections>
                         <segue destination="M8c-DM-75g" kind="relationship" relationship="viewControllers" id="8yS-Z1-zww"/>
                         <segue destination="szu-Lo-mbS" kind="relationship" relationship="viewControllers" id="LnN-2e-hDt"/>
-                        <segue destination="zdE-Qr-4tc" kind="relationship" relationship="viewControllers" id="8Ii-zl-Fwa"/>
+                        <segue destination="FPO-oS-NrN" kind="relationship" relationship="viewControllers" id="8Ii-zl-Fwa"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7pg-kL-P3l" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1905,10 +1906,10 @@
             </objects>
             <point key="canvasLocation" x="5484" y="2036"/>
         </scene>
-        <!--Item-->
+        <!--Roamer Map Controller-->
         <scene sceneID="tor-f9-bVj">
             <objects>
-                <viewController id="zdE-Qr-4tc" customClass="RoamerMapController" customModule="Roam" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RoamerMapController" id="zdE-Qr-4tc" customClass="RoamerMapController" customModule="Roam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="95D-As-aRF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1916,6 +1917,20 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="1Uq-Ci-c2D">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEN-jb-cOG">
+                                <rect key="frame" x="20" y="88" width="54" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="54" id="5Bx-96-ahD"/>
+                                    <constraint firstAttribute="height" constant="40" id="qCM-y1-kQa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                <state key="normal" title="X">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButtonClicked:" destination="zdE-Qr-4tc" eventType="touchUpInside" id="nfn-kt-xsq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -1923,17 +1938,19 @@
                             <constraint firstItem="1Uq-Ci-c2D" firstAttribute="trailing" secondItem="OUK-VD-PAC" secondAttribute="trailing" id="QE7-wC-Vyr"/>
                             <constraint firstItem="1Uq-Ci-c2D" firstAttribute="leading" secondItem="OUK-VD-PAC" secondAttribute="leading" id="VTh-pw-Ptw"/>
                             <constraint firstItem="1Uq-Ci-c2D" firstAttribute="top" secondItem="95D-As-aRF" secondAttribute="top" id="gnP-87-iOh"/>
+                            <constraint firstItem="bEN-jb-cOG" firstAttribute="leading" secondItem="OUK-VD-PAC" secondAttribute="leading" constant="20" id="hah-av-72u"/>
+                            <constraint firstItem="bEN-jb-cOG" firstAttribute="top" secondItem="OUK-VD-PAC" secondAttribute="top" id="vwS-gz-irK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OUK-VD-PAC"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Fe6-PQ-qQL"/>
+                    <navigationItem key="navigationItem" id="yPT-On-z1r"/>
                     <connections>
                         <outlet property="map" destination="1Uq-Ci-c2D" id="DFd-EN-kTW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Qr-IJ-xfy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3767" y="2861"/>
+            <point key="canvasLocation" x="4676.811594202899" y="2860.7142857142858"/>
         </scene>
         <!--Email Controller-->
         <scene sceneID="8y6-Pb-lMy">
@@ -2030,7 +2047,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9as-m4-h0y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5835" y="2859"/>
+            <point key="canvasLocation" x="6744.9275362318849" y="2858.7053571428569"/>
         </scene>
         <!--Phone Number Controller-->
         <scene sceneID="LUe-h4-fHl">
@@ -2111,7 +2128,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ycl-bh-l6n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6564" y="2859"/>
+            <point key="canvasLocation" x="7473.9130434782619" y="2858.7053571428569"/>
         </scene>
         <!--Username Controller-->
         <scene sceneID="Q8i-QF-gsQ">
@@ -2194,7 +2211,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a1j-Pc-DSr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7290" y="2859"/>
+            <point key="canvasLocation" x="8200" y="2858.7053571428569"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="UWm-wd-PDb">
@@ -2276,7 +2293,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xz6-pI-idK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7983" y="2861"/>
+            <point key="canvasLocation" x="8892.753623188406" y="2860.7142857142858"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Fhb-q7-Dfd">
@@ -2315,6 +2332,25 @@
             </objects>
             <point key="canvasLocation" x="12211.594202898552" y="521.65178571428567"/>
         </scene>
+        <!--Item-->
+        <scene sceneID="LXv-Op-4WZ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FPO-oS-NrN" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Fe6-PQ-qQL"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uWr-bk-E8t">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zdE-Qr-4tc" kind="relationship" relationship="rootViewController" id="t5c-8K-L4Q"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Nj-e6-Inv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3766.666666666667" y="2860.7142857142858"/>
+        </scene>
     </scenes>
     <resources>
         <image name="IQButtonBarArrowLeft.png" width="12" height="21"/>
@@ -2327,6 +2363,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="ji1-kP-pcK"/>
         <segue reference="yds-6l-FW8"/>
+        <segue reference="eNU-A6-1PG"/>
         <segue reference="NpC-zA-onx"/>
     </inferredMetricsTieBreakers>
 </document>

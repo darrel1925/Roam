@@ -16,11 +16,13 @@ struct MyNotification: Equatable {
     var notificationId: String { return self.userInfo["notificationId"] as? String ?? "no id"}
     var senderEmail: String { return self.userInfo["senderEmail"] as? String ?? "no email"}
     var senderUsername: String { return self.userInfo["senderUsername"] as? String ?? "no username"}
+    var senderFCMToken: String { return self.userInfo["senderFCMToken"] as? String ?? "no FCMToken"}
     var locationName: String { return self.userInfo["locationName"] as? String ?? "no location"}
-    var longitude: Double { return self.userInfo["longitude"] as? Double ?? 0 }
-    var latitude: Double { return self.userInfo["latitude"] as? Double ?? 0 }
     var isActive: String = "true"
     var date: Date!
+    var longitude: String { return self.userInfo["longitude"] as? String ?? "0" }
+    var latitude: String { return self.userInfo["latitude"] as? String ?? "0" }
+
 
     init(userInfo: [String : Any]) {
         self.userInfo = userInfo
@@ -33,12 +35,13 @@ struct MyNotification: Equatable {
         self.date = dateStr.toDate()
     }
     
-    // i probably font need this function
     func modelToData() -> [String: Any] {
+        print("lat", self.latitude, "lon", self.longitude)
         let data : [String: Any] = [
             "notificationId": self.notificationId,
             "senderEmail": self.senderEmail,
             "senderUsername": self.senderUsername,
+            "senderFCMToken": self.senderFCMToken,
             "locationName": self.locationName,
             "latitude": self.latitude,
             "longitude": self.longitude,

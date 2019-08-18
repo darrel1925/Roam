@@ -68,10 +68,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             while let presentedController = currentController.presentedViewController {
                 currentController = presentedController
             }
+            print("to HomePage")
             currentController.present(navController, animated: true, completion: nil)
         }
     }
-    
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -164,6 +164,7 @@ extension AppDelegate: MessagingDelegate {
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.
+        UserService.fcmToken = fcmToken
     }
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {

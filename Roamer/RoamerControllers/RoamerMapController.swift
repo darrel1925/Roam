@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import FirebaseFirestore
 
 class RoamerMapController: UIViewController {
 
@@ -18,6 +19,9 @@ class RoamerMapController: UIViewController {
     var region: MKCoordinateRegion!
     var annotation: MKPointAnnotation = MKPointAnnotation()
     var count = 0
+    
+    var customerLatitude: CLLocationDegrees!
+    var customerLongitude: CLLocationDegrees!
     
     var senderEmail: String!
     
@@ -62,11 +66,7 @@ class RoamerMapController: UIViewController {
         map.showsBuildings = true
         map.showsUserLocation = true
         map.showsCompass = true
-        //        annotation = MKPointAnnotation()
-        //
-        //        annotation.coordinate = coordinates
-        //
-        //        map.addAnnotation(annotation)
+
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -83,14 +83,42 @@ class RoamerMapController: UIViewController {
         
         if count >= 5 {
             LocationService.sendLocationToFirebaseAsRoamer()
+            getCustomersLocationFromFireBase()
             count = 0
         }
     }
     
+    func getCustomersLocationFromFireBase() {
+        let db = Firestore.firestore()
+        let docRef = db.collection("ActiveRoamers").document(UserService.user.email)
+        
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                self.customerLatitude = document["customerLatitude"] as? CLLocationDegrees ?? 5
+                self.customerLongitude = document["customerLongitude"] as? CLLocationDegrees ?? 5
+                
+                self.updatePositionOnMap()
+                
+                print(self.customerLatitude, self.customerLongitude)
+            } else {
+                self.displayError(title: "Error", message: "Could not get customer location from server")
+            }
+        }
+    }
+    
+    
+    func updatePositionOnMap() {
+        let coordinates = CLLocationCoordinate2D(latitude: self.customerLatitude, longitude: self.customerLongitude)
+        if (map.annotations.count > 0) { map.removeAnnotation(annotation) }
+        
+        annotation.coordinate = coordinates
+        annotation.title = "Customer's Location"
+        
+        map.addAnnotation(annotation)
+    }
+    
     @IBAction func backButtonClicked(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        // TODO: DONT FORGET TO STOP LOCATION UPDATING AT SOME POINT
-        //locationManager.stopUpdatingLocation()
     }
 }
 

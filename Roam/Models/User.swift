@@ -18,7 +18,7 @@ struct User {
     var stripeId: String
     var firstName: String
     var lastName: String
-
+    
     var currentLocationString: String?
     
     var formattedEmail: String {
@@ -33,7 +33,7 @@ struct User {
         
         self.firstName = "firstName"
         self.lastName = "lastName"
-
+        
     }
     
     init(data: [String: Any]) {
@@ -44,6 +44,8 @@ struct User {
         
         self.firstName = "firstName"
         self.lastName = "lastName"
+        
+        print("user is made")
     }
     
     static func modelToData(user: User) -> [String: Any] {
@@ -52,10 +54,9 @@ struct User {
             "email" : user.email,
             "username" : user.username,
             "stripeId" : user.stripeId
+            
         ]
         
         return data
     }
-
-    
 }

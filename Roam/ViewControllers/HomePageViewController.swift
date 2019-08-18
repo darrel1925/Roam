@@ -20,6 +20,7 @@ class HomePageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         print(NotificationService.count)
         print("dispatch begin", UserService.dispatchGroup.count)

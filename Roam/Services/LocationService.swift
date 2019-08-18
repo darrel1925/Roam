@@ -56,5 +56,6 @@ class _LocationService: NSObject, CLLocationManagerDelegate {
             "customerLatitude": latitude,
             "customerLongitude": longitude
             ], merge: true)
+        print("updatedWith: \(latitude), \( longitude)")
     }
 }

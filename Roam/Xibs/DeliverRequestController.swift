@@ -17,7 +17,6 @@ class DeliverRequestController: UIViewController {
     
     var notification: MyNotification!
     var notificationController: NotificationsController!
-    var senderEmail: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,18 +36,6 @@ class DeliverRequestController: UIViewController {
         // TODO: add animation to pop up from bottom of screen
     }
     
-    func createNotification() -> [String: Any] {
-        return [
-            "senderEmail": UserService.user.email,
-            "senderUsername": UserService.user.username,
-            "locationName": UserService.user.currentLocationString!,
-            "longitude": "\(LocationService.longitude)",
-            "latitude": "\(LocationService.latitude)",
-            "notificationId": "AcceptingRequestToRoam",
-            "isActive": "true",
-            "date": Date().toString()
-        ]
-    }
     
     @objc func handleDismiss() {
         dismiss(animated: true, completion: nil)
@@ -58,16 +45,17 @@ class DeliverRequestController: UIViewController {
         print("Accept Clicked")
         // TODO: Check if notification is still active
         
-        // send notification back to customer
-        let data = createNotification()
-        UserService.sendToCustomersPhone(withEmail: UserService.user.email, withData: data)
+        // get customer's info
+        let customersEmail = notification.senderEmail
+        let customersFCMToken = notification.senderFCMToken
         
-        // get senders email
-        senderEmail = notification.senderEmail
+        // send notification back to customer
+        UserService.sendNotificationToCustomer(withToken: customersFCMToken, withEmail: customersEmail)
         
         // navigate to map
-        let roamerMapVC = RoamerMapController()
-        present(roamerMapVC, animated: true, completion: nil)
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let roamerMapVC = storyBoard.instantiateViewController(withIdentifier: "RoamerMapController") as! RoamerMapController
+        self.present(roamerMapVC, animated: true, completion: nil)
     }
     
     @IBAction func declineClicked(_ sender: Any) {

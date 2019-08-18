@@ -51,6 +51,7 @@ class NotificationsController: UIViewController {
             self.notificationsCountLabel.text = "\(NotificationService.count)"
             self.refreshControl.endRefreshing()
             self.tableView.reloadData()
+            print(NotificationService.count)
             NotificationService.sendNotifcationsToServer()
         }
         
@@ -80,9 +81,7 @@ extension NotificationsController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let row = indexPath.row
-        
+    func requestToRoam(row: Int, notification: MyNotification) {
         let deliverRequestVC = DeliverRequestController()
         deliverRequestVC.notification = NotificationService.notifications[row]
         deliverRequestVC.notificationController = self
@@ -91,6 +90,27 @@ extension NotificationsController: UITableViewDelegate, UITableViewDataSource {
         deliverRequestVC.modalTransitionStyle = .crossDissolve
         deliverRequestVC.modalPresentationStyle = .overCurrentContext
         present(deliverRequestVC, animated: true, completion: nil)
+    }
+    
+    func acceptingRequestToRoam(row: Int, notification: MyNotification) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let mapVC = storyBoard.instantiateViewController(withIdentifier: "MapController") as! MapController
+        self.present(mapVC, animated: true, completion: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = indexPath.row
+        let notification = NotificationService.notifications[row]
+        
+        switch notification.notificationId {
+        case "RequestToRoam":
+            requestToRoam(row: row, notification: notification)
+        case "AcceptingRequestToRoam":
+            acceptingRequestToRoam(row: row, notification: notification)
+        default:
+            self.displayError(title: "Error", message: "Notification Id Not Recognized id = \(notification.notificationId)")
+        }
+
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

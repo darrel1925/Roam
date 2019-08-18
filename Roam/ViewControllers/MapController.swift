@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import FirebaseFirestore
 
 class MapController: UIViewController, MKMapViewDelegate {
     
@@ -18,6 +19,9 @@ class MapController: UIViewController, MKMapViewDelegate {
     var region: MKCoordinateRegion!
     var annotation: MKPointAnnotation = MKPointAnnotation()
     var count = 0
+    
+    var roamerLatitude: CLLocationDegrees!
+    var roamerLongitude: CLLocationDegrees!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +58,7 @@ class MapController: UIViewController, MKMapViewDelegate {
         let span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: lonDelta)
         
         self.region = MKCoordinateRegion(center: coordinates, span: span)
-        
+        print("co are",longitude, latitude)
         map.setRegion(self.region, animated: true)
         
         map.showsBuildings = true
@@ -81,8 +85,38 @@ class MapController: UIViewController, MKMapViewDelegate {
         
         if count >= 5 {
             LocationService.sendLocationToFirebaseAsCustomer()
+            getRoamerLocationFromFireBase()
             count = 0
         }
+    }
+    
+    func getRoamerLocationFromFireBase() {
+        let db = Firestore.firestore()
+        let docRef = db.collection("ActiveRoamers").document("a@gmail.com")
+        
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                print("Document data: \(dataDescription)")
+                self.roamerLatitude = document["customerLatitude"] as? CLLocationDegrees ?? 5
+                self.roamerLongitude = document["customerLongitude"] as? CLLocationDegrees ?? 5
+                self.updatePositionOnMap()
+                
+                print(self.roamerLatitude, self.roamerLongitude)
+            } else {
+                self.displayError(title: "Error", message: "Could not get customer location from server")
+            }
+        }
+    }
+    
+    func updatePositionOnMap() {
+        let coordinates = CLLocationCoordinate2D(latitude: self.roamerLatitude, longitude: self.roamerLongitude)
+        if (map.annotations.count > 0) { map.removeAnnotation(annotation) }
+        
+        annotation.coordinate = coordinates
+        annotation.title = "Romaers Location"
+        
+        map.addAnnotation(annotation)
     }
     
     @IBAction func backButtonClicked(_ sender: Any) {

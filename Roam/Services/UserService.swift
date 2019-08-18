@@ -31,6 +31,8 @@ final class _UserService {
     // our listener
     var userListener: ListenerRegistration? = nil
     
+    var fcmToken: String!
+    
     // adds all of our info to our User class to use globally
     func getCurrentUser() {
         // if user is logged in
@@ -129,6 +131,7 @@ final class _UserService {
         let data: [String : Any] = [
             "senderEmail": user.email,
             "senderUsername": user.username,
+            "senderFCMToken": fcmToken ?? "No Token",
             "locationName": user.currentLocationString!,
             "longitude": "\(LocationService.longitude)",
             "latitude": "\(LocationService.latitude)",
@@ -151,7 +154,7 @@ final class _UserService {
                 "body": "CLICK THIS NOTIFICATION to begin!"
             ],
             "data": data,
-            "topic": formattedEmail
+            "topic": "agmail.com" //?? "No Token"
         ]
         
         // sends notification to roamer's phone
@@ -208,11 +211,11 @@ final class _UserService {
     
     /******************************************************************/
     
-    func sendNotificationToCustomer(withEmail email: String) {
+    func sendNotificationToCustomer(withToken token: String, withEmail email: String) {
         let data: [String : Any] = [
             "senderEmail": user.email,
             "senderUsername": user.username,
-            "locationName": user.currentLocationString!,
+            "senderFCMToken": fcmToken ?? "No Token",
             "longitude": "\(LocationService.longitude)",
             "latitude": "\(LocationService.latitude)",
             "notificationId": "AcceptingRequestToRoam",
@@ -220,12 +223,11 @@ final class _UserService {
             "date": Date().toString()
         ]
         
-        self.sendToCustomersPhone(withEmail: email, withData: data)
+        self.sendToCustomersPhone(withToken: token, withData: data)
         self.updateCustomersFirbase(withEmail: email, withData: data)
     }
     
-    func sendToCustomersPhone(withEmail email: String, withData data: [String: Any]) {
-        let formattedEmail = email.replacingOccurrences(of: "@", with: "")
+    func sendToCustomersPhone(withToken token: String, withData data: [String: Any]) {
         
         let message: [String : Any] = [
             "notification": [
@@ -233,7 +235,7 @@ final class _UserService {
                 "body": "CLICK THIS NOTIFICATION to begin!"
             ],
             "data": data,
-            "topic": formattedEmail
+            "token": token
         ]
         
         // sends notification to roamer's phone

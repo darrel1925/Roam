@@ -114,7 +114,10 @@ class _NotificationService {
                 for notif in snapShotArray {
                     
                     let notificaiton = MyNotification(userInfo: notif)
+                    print("NOTIFICATION", notificaiton)
                     NotificationService.addNotificaton(withData: notificaiton)
+                    print("NOTIFICATION2", NotificationService.notifications)
+
                 }
                 UserService.dispatchGroup.customLeave()
 

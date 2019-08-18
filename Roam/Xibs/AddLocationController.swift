@@ -78,8 +78,8 @@ class AddLocationController: UIViewController {
             print("Topic Full email is: \(String(describing: UserService.fullTopicEmail))")
             UserService.sendNotificationToRoamer(withEmail: UserService.fullTopicEmail)
             
-            let mapVc = MapController()
-            self.present(mapVc, animated: true, completion: nil)
+//            let mapVc = MapController()
+//            self.present(mapVc, animated: true, completion: nil)
             
         })
     }
