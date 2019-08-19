@@ -81,7 +81,7 @@ class CheckOutController: UIViewController {
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okay = UIAlertAction(title: "Okay", style: .default, handler: {(action) in
-            self.performSegue(withIdentifier: "toMapController", sender: nil)
+            self.performSegue(withIdentifier: Segues.toMapController, sender: nil)
         })
         
         alertController.addAction(okay)
@@ -142,9 +142,9 @@ extension CheckOutController: STPPaymentContextDelegate {
         let idempotency = UUID().uuidString.replacingOccurrences(of: "-", with: "")
         
         let data: [String: Any] = [
-            "total": StripeCart.total,
-            "customer_id": UserService.user.stripeId,
-            "idempotency": idempotency,
+            DataParams.total: StripeCart.total,
+            DataParams.customer_id: UserService.user.stripeId,
+            DataParams.idempotency: idempotency,
         ]
         
         // call cloud function to make request to make payment
@@ -194,8 +194,21 @@ extension CheckOutController: STPPaymentContextDelegate {
         alertController.addAction(okay)
         self.present(alertController, animated: true)
     }
+    
+    func notificationsAreEnabled() -> Bool {
+        let notificationType = UIApplication.shared.currentUserNotificationSettings!.types
+        // NOTIFICATIONS DISABLED
+        if notificationType == [] {
+            self.displayError(title: "Please Enable Notifications", message: "Please enable push notifications so we can let you know when your order is here.", completion: { _ in
+                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+            })
+            return false
+            // NOTIFICATIONS ENABLED
+        } else {
+            return true
+        }
+    }
 }
-
 
 extension CheckOutController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -206,7 +219,7 @@ extension CheckOutController: UITableViewDelegate, UITableViewDataSource {
         let row = indexPath.row
         let item = StripeCart.cartItems[row]
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingCartCell") as? ShoppingCartCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: Cells.ShoppingCartCell) as? ShoppingCartCell {
             cell.numItemsLabel.text = String(item.amountOrdered)
             cell.titleLabel.text = item.name
             cell.itemDescriptionLabel.text = item.description
@@ -231,6 +244,12 @@ extension CheckOutController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension CheckOutController: CLLocationManagerDelegate {
+    func navigateToLocationSettings() {
+        let message = "Please enable location for the app so we can let your Roamer know where to deliver your meal."
+        self.displayError(title: "Please Enable Location Services", message: message, completion: { _ in
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+        })
+    }
     
     func getMyLocation() {
         locationManager.startUpdatingLocation()
@@ -253,7 +272,6 @@ extension CheckOutController: CLLocationManagerDelegate {
     func setUpLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        
     }
     
     func checkLocationAuthorization() {
@@ -263,15 +281,16 @@ extension CheckOutController: CLLocationManagerDelegate {
             presentLocationDetails()
             break
         case .denied:
-            // show alert telling them how to turn on permissions
+            // show alert telling them how to turn on notifiations
+            navigateToLocationSettings()
             break
         case .notDetermined:
             // when we request the permission for first time
-            locationManager.requestAlwaysAuthorization()
+            locationManager.requestWhenInUseAuthorization()
             break
         case .restricted:
             // parental control restriction
-                // let them know how to disable it
+            navigateToLocationSettings()
             break
         case .authorizedAlways:
             // do map stuff
@@ -286,12 +305,13 @@ extension CheckOutController: CLLocationManagerDelegate {
     func checkLocationServices() {
         // if location is enabled device wide
         if CLLocationManager.locationServicesEnabled() {
+            if ( !notificationsAreEnabled() ) { return }
             setUpLocationManager()
             checkLocationAuthorization()
         } else {
             // show alert telling user they have to turn this on.
+            navigateToLocationSettings()
         }
     }
-    
 }
 

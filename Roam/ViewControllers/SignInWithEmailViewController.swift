@@ -48,14 +48,15 @@ class SignInWithEmailViewController: UIViewController {
             self.createFireStoreUser(user: roamUser)
             print("registered succesfully")
             self.activityIndicator.stopAnimating()
-            self.performSegue(withIdentifier: "toHomePage", sender:  nil)
+            self.performSegue(withIdentifier: Segues.toHomePage , sender:  nil)
         }
     }
     
     func createFireStoreUser(user: User) {
+
         // Add a new document in collection "Users"
         let db = Firestore.firestore()
-        let newUserRef = db.collection("Users").document(user.email)
+        let newUserRef = db.collection(Collections.Users).document(user.email)
         let data = User.modelToData(user: user)
             
         newUserRef.setData(data) { error in

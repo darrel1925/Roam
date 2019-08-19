@@ -92,14 +92,14 @@ class MapController: UIViewController, MKMapViewDelegate {
     
     func getRoamerLocationFromFireBase() {
         let db = Firestore.firestore()
-        let docRef = db.collection("ActiveRoamers").document("a@gmail.com")
+        let docRef = db.collection(Collections.ActiveRoamers).document("a@gmail.com")
         
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
                 print("Document data: \(dataDescription)")
-                self.roamerLatitude = document["customerLatitude"] as? CLLocationDegrees ?? 5
-                self.roamerLongitude = document["customerLongitude"] as? CLLocationDegrees ?? 5
+                self.roamerLatitude = document[DataParams.customerLatitude] as? CLLocationDegrees ?? 5
+                self.roamerLongitude = document[DataParams.customerLongitude] as? CLLocationDegrees ?? 5
                 self.updatePositionOnMap()
                 
                 print(self.roamerLatitude, self.roamerLongitude)

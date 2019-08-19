@@ -41,9 +41,9 @@ class _LocationService: NSObject, CLLocationManagerDelegate {
         let db = Firestore.firestore()
         
         // Update one field, creating the document if it does not exist.
-        db.collection("ActiveRoamers").document("a@gmail.com").setData([
-            "roamerLatitude": latitude,
-            "roamerLongitude": longitude
+        db.collection(Collections.ActiveRoamers).document("a@gmail.com").setData([
+            DataParams.roamerLatitude: latitude,
+            DataParams.roamerLongitude: longitude
             ], merge: true)
     }
     
@@ -52,9 +52,9 @@ class _LocationService: NSObject, CLLocationManagerDelegate {
         let db = Firestore.firestore()
         
         // Update one field, creating the document if it does not exist.
-        db.collection("ActiveRoamers").document("a@gmail.com").setData([
-            "customerLatitude": latitude,
-            "customerLongitude": longitude
+        db.collection(Collections.ActiveRoamers).document("a@gmail.com").setData([
+            DataParams.customerLatitude: latitude,
+            DataParams.customerLongitude: longitude
             ], merge: true)
         print("updatedWith: \(latitude), \( longitude)")
     }

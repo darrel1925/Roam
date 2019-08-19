@@ -15,6 +15,7 @@ class NotificationsController: UIViewController {
     @IBOutlet weak var notificationsCountLabel: UILabel!
     
     var refreshControl = UIRefreshControl()
+    var localNotifications: [MyNotification]! // to avoid new notifications while tbview is loading
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,45 @@ class NotificationsController: UIViewController {
         tableView.addSubview(refreshControl)
     }
     
+    func removeNotification(with notification: MyNotification) {
+        NotificationService.removeNotificaiton(notif: notification)
+        NotificationService.sendNotifcationsToServer()
+        notificationsCountLabel.text = "\(Int(notificationsCountLabel.text!)! - 1)"
+        self.tableView.reloadData()
+    }
+    
+    func requestToRoam(row: Int, notification: MyNotification) {
+        let date = notification.date!
+        let message = "Looks like this request to roam has expired. Rember to accept them in under 5 minutes."
+        
+        if (!date.recivedUnderFiveMinutesAgo) {
+            // remove notification
+            let alert = UIAlertController(title: "Notification Expired", message: message, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Okay", style: .default, handler: {_ in
+                self.removeNotification(with: notification)
+                return
+            })
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
+        }
+        
+        let deliverRequestVC = DeliverRequestController()
+        deliverRequestVC.notification = localNotifications[row]
+        deliverRequestVC.notificationController = self
+        
+        
+        deliverRequestVC.modalTransitionStyle = .crossDissolve
+        deliverRequestVC.modalPresentationStyle = .overCurrentContext
+        present(deliverRequestVC, animated: true, completion: nil)
+    }
+    
+    func acceptingRequestToRoam(row: Int, notification: MyNotification) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let mapVC = storyBoard.instantiateViewController(withIdentifier: StoryBoardIds.MapController) as! MapController
+        self.present(mapVC, animated: true, completion: nil)
+    }
+    
+    
     @objc func handleRefresh() {
         // get notifications from server and add to NotificationService
         NotificationService.getNotificationsFromServer()
@@ -57,6 +97,16 @@ class NotificationsController: UIViewController {
         
     }
     
+    @IBAction func clearNotificationsClicked(_ sender: Any) {
+        let message = "Are you sure you would like to remove all notifications?"
+        self.displayError(title: "Clear Notifications", message: message) { _ in
+            NotificationService.clearNotifications()
+            NotificationService.sendNotifcationsToServer()
+            self.setTitle()
+            self.tableView.reloadData()
+        }
+    }
+    
     @IBAction func backButtonClicked(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -66,13 +116,14 @@ class NotificationsController: UIViewController {
 
 extension NotificationsController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return NotificationService.count
+        localNotifications = NotificationService.notifications
+        return localNotifications.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
-        let notification = NotificationService.notifications[row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RequestToRoamCell") as! RequestToRoamCell
+        let notification = localNotifications[row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: Cells.RequestToRoamCell) as! RequestToRoamCell
         
         cell.notificationId.text = notification.formatId()
         cell.notificationDate.text = notification.date.toStringInWords()
@@ -81,48 +132,26 @@ extension NotificationsController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func requestToRoam(row: Int, notification: MyNotification) {
-        let deliverRequestVC = DeliverRequestController()
-        deliverRequestVC.notification = NotificationService.notifications[row]
-        deliverRequestVC.notificationController = self
-        
-        
-        deliverRequestVC.modalTransitionStyle = .crossDissolve
-        deliverRequestVC.modalPresentationStyle = .overCurrentContext
-        present(deliverRequestVC, animated: true, completion: nil)
-    }
-    
-    func acceptingRequestToRoam(row: Int, notification: MyNotification) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let mapVC = storyBoard.instantiateViewController(withIdentifier: "MapController") as! MapController
-        self.present(mapVC, animated: true, completion: nil)
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
-        let notification = NotificationService.notifications[row]
+        let notification = localNotifications[row]
         
         switch notification.notificationId {
-        case "RequestToRoam":
+        case NotificationIds.RequestToRoam:
             requestToRoam(row: row, notification: notification)
-        case "AcceptingRequestToRoam":
+        case NotificationIds.AcceptingRequestToRoam:
             acceptingRequestToRoam(row: row, notification: notification)
         default:
             self.displayError(title: "Error", message: "Notification Id Not Recognized id = \(notification.notificationId)")
         }
-
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let notification = NotificationService.notifications[indexPath.row]
-            NotificationService.removeNotificaiton(notif: notification)
-            NotificationService.sendNotifcationsToServer()
-            notificationsCountLabel.text = "\(Int(notificationsCountLabel.text!)! - 1)"
-            
-            self.tableView.reloadData()
+            let notification = localNotifications[indexPath.row]
+            removeNotification(with: notification)
         }
     }
-
+    
 }
 

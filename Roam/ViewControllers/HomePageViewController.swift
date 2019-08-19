@@ -48,48 +48,66 @@ class HomePageViewController: UIViewController {
     }
     
     func presentLoginController() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: StoryBoards.Main, bundle: nil)
         let controller = storyboard.instantiateInitialViewController()
         present(controller!, animated: true, completion: nil)
     }
     
     func setNotificationBadge() {
+        print("not", NotificationService.notifications)
         if NotificationService.count == 0 {
             notificationsButton.removeBadge()
             return
         }
+        print("notif badge is set t0 \(NotificationService.count)")
         self.notificationsButton?.addBadge(text: String(NotificationService.count))
     }
     
-    @IBAction func logoutClicked(_ sender: Any) {
-        
+    func logOutUser() {
         if Auth.auth().currentUser != nil {
             do {
                 try Auth.auth().signOut()
                 // removes event listener from fb user reference
                 UserService.logoutUser()
-                presentLoginController()
+                self.presentLoginController()
             } catch {
-                // TOTO: show error message
-                print("could not log out")
+                let message = "There was an issue logging out. Please try again."
+                self.displayError(title: "Whoops.", message: message)
             }
         }
         else {
-            presentLoginController()
+            self.presentLoginController()
         }
     }
     
+    @IBAction func logoutClicked(_ sender: Any) {
+        let alert = UIAlertController(title: "Log Out", message: "Are you sure you would like to log out?", preferredStyle: UIAlertController.Style.alert)
+        
+        // LOGOUT
+        alert.addAction(UIAlertAction(title: "Log Out", style: UIAlertAction.Style.default, handler: { (UIAlertAction) in
+            self.logOutUser()
+        }))
+        
+        // STAY LOGGED IN
+        alert.addAction(UIAlertAction(title: "Go Back", style: UIAlertAction.Style.default, handler: { (UIAlertAction) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        // present alert
+        self.present(alert, animated: true , completion: nil)
+    }
+    
     @IBAction func cartClicked(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let CheckOutVC = storyboard.instantiateViewController(withIdentifier: "CheckOutController")
+        let storyboard = UIStoryboard(name: StoryBoards.Main, bundle: nil)
+        let CheckOutVC = storyboard.instantiateViewController(withIdentifier: StoryBoardIds.CheckOutController)
         self.navigationController?.present(CheckOutVC, animated: true, completion: {
             print("CheckOutVC Presented")
         })
     }
     
     @IBAction func mapClicked(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let mapController = storyboard.instantiateViewController(withIdentifier: "MapController")
+        let storyboard = UIStoryboard(name: StoryBoards.Main, bundle: nil)
+        let mapController = storyboard.instantiateViewController(withIdentifier: StoryBoardIds.MapController)
         self.navigationController?.present(mapController, animated: true, completion: nil)
     }
 }

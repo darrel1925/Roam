@@ -38,7 +38,7 @@ final class _UserService {
         // if user is logged in
         guard let authUser = Auth.auth().currentUser else { return }
         
-        let userRef = db.collection("Users").document(authUser.email ?? "no email found")
+        let userRef = db.collection(Collections.Users).document(authUser.email ?? "no email found")
         // if user changes something in document, it will always be up to date in our app
         userListener = userRef.addSnapshotListener({ (snap, error) in
             if let error = error {
@@ -61,7 +61,7 @@ final class _UserService {
         UserService.dispatchGroup.enter()
         guard let authUser = Auth.auth().currentUser else {  UserService.dispatchGroup.customLeave(); return }
         
-        let userRef = db.collection("Users").document(authUser.email ?? "no email found")
+        let userRef = db.collection(Collections.Users).document(authUser.email ?? "no email found")
         // if user changes something in document, it will always be up to date in our app
         userListener = userRef.addSnapshotListener({ (snap, error) in
             if let error = error {
@@ -71,7 +71,7 @@ final class _UserService {
                 return
             }
             
-            // if we can get user infor from db
+            // if we can get user info from db
             guard let data = snap?.data() else {UserService.dispatchGroup.customLeave();  return }
             // add it to out user so we can access it globally
             self.user = User.init(data: data)
@@ -87,9 +87,25 @@ final class _UserService {
     }
     
     func getRoamerEmail() {
+        let roamersRef = db.collection(Collections.Users)
+        let query = roamersRef.whereField("isActive", isEqualTo: "true")
+        var roamerFCMTokens: [String] = []
+        
+        query.getDocuments(source: .server) { (snapShot, error) in
+            if let error = error {
+                print("COULD NOT GET ROAMERS FROM SERVER: \(error.localizedDescription)")
+            }
+            
+            for document in snapShot!.documents {
+                print("document == \(document.data())")
+                roamerFCMTokens.append(document.data()["FCMToken"] as? String ?? "No Token")
+            }
+            print("roamerToken = \(roamerFCMTokens)")
+        }
+        
         // TODO: Create selection algorithm to choose a series of roamers to ping
         self.dispatchGroup.enter()
-        db.collection("ActiveRoamers").whereField("roamerEmail", isEqualTo: "a@gmail.com").getDocuments() { (querySnapshot, err) in
+        db.collection(Collections.ActiveRoamers).whereField("roamerEmail", isEqualTo: "a@gmail.com").getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err.localizedDescription)")
                     self.dispatchGroup.customLeave()
@@ -99,7 +115,7 @@ final class _UserService {
                     for document in querySnapshot!.documents {
                         
                         print("\(document.documentID) => \(document.data())")
-                        let email = document.data()["roamerEmail"] as? String
+                        let email = document.data()[DataParams.roamerEmail] as? String
                         self.fullTopicEmail = email
                         print(email ?? "huh", "huhh")
                     }
@@ -129,15 +145,15 @@ final class _UserService {
         }
         
         let data: [String : Any] = [
-            "senderEmail": user.email,
-            "senderUsername": user.username,
-            "senderFCMToken": fcmToken ?? "No Token",
-            "locationName": user.currentLocationString!,
-            "longitude": "\(LocationService.longitude)",
-            "latitude": "\(LocationService.latitude)",
-            "notificationId": "RequestToRoam",
-            "isActive": "true",
-            "date": Date().toString()
+            DataParams.senderEmail: user.email,
+            DataParams.senderUsername: user.username,
+            DataParams.senderFCMToken: fcmToken ?? "No Token",
+            DataParams.locationName: user.currentLocationString!,
+            DataParams.longitude: "\(LocationService.longitude)",
+            DataParams.latitude: "\(LocationService.latitude)",
+            DataParams.notificationId: "RequestToRoam",
+            DataParams.isActive: "true",
+            DataParams.date: Date().toString()
             ]
         
         
@@ -168,7 +184,7 @@ final class _UserService {
     
     
     func updateRomaersFirbase(withEmail email: String, withData data: [String: Any]) {
-        let query = self.db.collection("Users").whereField("email", isEqualTo: email)
+        let query = self.db.collection(Collections.Users).whereField("email", isEqualTo: email)
         
         query.getDocuments(source: .server, completion: { (snapShot, error) in
             if let error = error {
@@ -181,7 +197,7 @@ final class _UserService {
                 var notifArr = notifArr as! [Any]
                 notifArr.append(data)
                 // send it back
-                self.db.collection("Users").document(email).setData([
+                self.db.collection(Collections.Users).document(email).setData([
                     "notifications": notifArr], merge: true) { err in
                         if let err = err {
                             print("Error writing document: \(err)")
@@ -195,7 +211,7 @@ final class _UserService {
                 print("not been made")
                 // make a new one
                 // send it back
-                self.db.collection("Users").document(email).setData([
+                self.db.collection(Collections.Users).document(email).setData([
                     "notifications": [data]], merge: true) { err in
                         if let err = err {
                             print("Error writing document: \(err)")
@@ -213,14 +229,14 @@ final class _UserService {
     
     func sendNotificationToCustomer(withToken token: String, withEmail email: String) {
         let data: [String : Any] = [
-            "senderEmail": user.email,
-            "senderUsername": user.username,
-            "senderFCMToken": fcmToken ?? "No Token",
-            "longitude": "\(LocationService.longitude)",
-            "latitude": "\(LocationService.latitude)",
-            "notificationId": "AcceptingRequestToRoam",
-            "isActive": "true",
-            "date": Date().toString()
+            DataParams.senderEmail: user.email,
+            DataParams.senderUsername: user.username,
+            DataParams.senderFCMToken: fcmToken ?? "No Token",
+            DataParams.longitude: "\(LocationService.longitude)",
+            DataParams.latitude: "\(LocationService.latitude)",
+            DataParams.notificationId: NotificationIds.AcceptingRequestToRoam,
+            DataParams.isActive: "true",
+            DataParams.date: Date().toString()
         ]
         
         self.sendToCustomersPhone(withToken: token, withData: data)
@@ -249,7 +265,7 @@ final class _UserService {
     
     
     func updateCustomersFirbase(withEmail email: String, withData data: [String: Any]) {
-        let query = self.db.collection("Users").whereField("email", isEqualTo: email)
+        let query = self.db.collection(Collections.Users).whereField("email", isEqualTo: email)
         
         query.getDocuments(source: .server, completion: { (snapShot, error) in
             if let error = error {
@@ -262,7 +278,7 @@ final class _UserService {
                 var notifArr = notifArr as! [Any]
                 notifArr.append(data)
                 // send it back
-                self.db.collection("Users").document(email).setData([
+                self.db.collection(Collections.Users).document(email).setData([
                     "notifications": notifArr], merge: true) { err in
                         if let err = err {
                             print("Error writing document: \(err)")
@@ -276,7 +292,7 @@ final class _UserService {
                 print("not been made")
                 // make a new one
                 // send it back
-                self.db.collection("Users").document(email).setData([
+                self.db.collection(Collections.Users).document(email).setData([
                     "notifications": [data]], merge: true) { err in
                         if let err = err {
                             print("Error writing document: \(err)")

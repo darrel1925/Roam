@@ -33,42 +33,6 @@ class _NotificationService {
             }
         }
     
-    func removeLastNotification() {
-        self.notifications.removeLast()
-    }
-    
-    func presentAlertIfAny(controllerNamed controller: HomePageViewController) {
-        print("notif count is:", notifications.count)
-        if notifications.count > 0 {
-            if let notif = notifications.last {
-                self.handle(notification: notif, controllerNamed: controller)
-            }
-        }
-    }
-    
-    func handle(notification notif: MyNotification, controllerNamed controller: HomePageViewController) {
-        print("notif id is:", notif.notificationId)
-
-    }
-    
-    func getLastNotificationAlert() -> UIAlertController {
-        if notifications.count > 0 {
-            if let alert = notifications.last?.createAlert() {
-                removeLastNotification()
-                return alert
-            }
-        }
-        return UIAlertController()
-    }
-    
-    func presentMapController(controller: HomePageViewController) {
-        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let mapController : MapController = storyboard.instantiateViewController(withIdentifier: "WelcomeID") as! MapController
-        let navigationController = UINavigationController(rootViewController: mapController)
-        
-        controller.present(navigationController, animated: true, completion: nil)
-    }
-    
     private func formatNotifsToArr() -> [[String: Any]] {
         var dataArray: [[String: Any]] = []
         
@@ -84,7 +48,7 @@ class _NotificationService {
         let notificationArray = formatNotifsToArr()
         let db = Firestore.firestore()
         
-        db.collection("Users").document(email).setData(["notifications": notificationArray], merge: true) { (error) in
+        db.collection(Collections.Users).document(email).setData(["notifications": notificationArray], merge: true) { (error) in
             if let error = error {
                 print("THERE WAS AN ERROR UPDATING NOTIFICATIONS: \(error.localizedDescription) ")
             }
@@ -98,7 +62,7 @@ class _NotificationService {
         let email = UserService.user.email
         print("email", email)
         let db = Firestore.firestore()
-        let query = db.collection("Users").whereField("email", isEqualTo: email)
+        let query = db.collection(Collections.Users).whereField("email", isEqualTo: email)
         
         query.getDocuments(source: .server, completion: { (snapShotArray, err) in
             if let err = err {

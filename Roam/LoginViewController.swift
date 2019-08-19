@@ -19,10 +19,7 @@ class LoginViewController: UIViewController {
     @IBOutlet var signUpCollection: [UIButton]!
     
     override func viewDidLoad() {
-        signUpEmailButton.layer.cornerRadius = 15
-        signUpFacebookButton.layer.cornerRadius = 15
-        getStartedOut.layer.cornerRadius = 15
-        loginOut.layer.cornerRadius = 15
+
         
         super.viewDidLoad()
         
@@ -38,11 +35,11 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signUpEmailAction(_ sender: Any) {
-        self.performSegue(withIdentifier: "toSignUpPage", sender: nil )
+        self.performSegue(withIdentifier: Segues.toSignUpPage, sender: nil )
     }
     
     @IBAction func OnLogin(_ sender: Any) {
-        self.performSegue(withIdentifier: "toLoginPage", sender: nil )
+        self.performSegue(withIdentifier: Segues.toLoginPage, sender: nil )
     }
     
     @IBAction func signUpTapped(_ sender: UIButton) {

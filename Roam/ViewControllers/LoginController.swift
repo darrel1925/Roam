@@ -35,7 +35,7 @@ class LoginController: UIViewController {
             
             print("Login was successful")
             self?.activityIndicator.stopAnimating()
-            self?.performSegue(withIdentifier: "toHomePage", sender:  nil)
+            self?.performSegue(withIdentifier: Segues.toHomePage, sender:  nil)
         }
     }
     

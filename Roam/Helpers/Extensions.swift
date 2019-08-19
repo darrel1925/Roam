@@ -30,8 +30,10 @@ extension UIViewController {
     func displayError(title: String, message: String, completion: ((UIAlertAction) -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Okay", style: .default, handler: completion)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         
         alert.addAction(okAction)
+        alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
 }
@@ -47,12 +49,10 @@ extension String {
     }
     
     func toDate() -> Date {
-        
         let dateFormatter = DateFormatter()
         
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return dateFormatter.date(from: self)!
-        
     }
 }
 
@@ -88,8 +88,40 @@ extension Date {
 
         return "\(dateArr[0]) • \(dateStr2)" // Wednesday • 4:44 pm
     }
-}
+    
+    var recivedUnderFiveMinutesAgo: Bool  {
+        let inputDate = self.toString()
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        if let aDate = dateFormatter.date(from: inputDate) {
+            
+            let timeInterval = aDate.timeIntervalSinceNow
+            
+            let dateComponentsFormatter = DateComponentsFormatter()
+            
+            if var dateString = dateComponentsFormatter.string(from: abs(timeInterval)) {
+                print ("Elapsed time= \(dateString)") // 4:04
+                if (!dateString.contains(":")) { // 32   <-- seconds 
+                    return true
+                }
+                else {
+                    if (dateString.count > 4) { return false } // 12:22, 13:32, 1:23:23
 
+                }
+                dateString = dateString.replacingOccurrences(of: ":", with: ".") //  4.04
+                let minutesPassed = Double(dateString) ?? 5
+                
+                if (minutesPassed <= 5.0) {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+}
 extension DispatchGroup {
     var count: Int {
         let count = self.debugDescription.components(separatedBy: ",").filter({$0.contains("count")}).first?.components(separatedBy: CharacterSet.decimalDigits.inverted).compactMap{Int($0)}.first
@@ -104,5 +136,37 @@ extension DispatchGroup {
 }
 
 
-
+//let str = "abcdef"
+//str[1 ..< 3] // returns "bc"
+//str[5] // returns "f"
+//str[80] // returns ""
+//str.substring(fromIndex: 3) // returns "def"
+//str.substring(toIndex: str.length - 2) // returns "abcd"
+extension String {
+    
+    var length: Int {
+        return count
+    }
+    
+    subscript (i: Int) -> String {
+        return self[i ..< i + 1]
+    }
+    
+    func substring(fromIndex: Int) -> String {
+        return self[min(fromIndex, length) ..< length]
+    }
+    
+    func substring(toIndex: Int) -> String {
+        return self[0 ..< max(0, toIndex)]
+    }
+    
+    subscript (r: Range<Int>) -> String {
+        let range = Range(uncheckedBounds: (lower: max(0, min(length, r.lowerBound)),
+                                            upper: min(length, max(0, r.upperBound))))
+        let start = index(startIndex, offsetBy: range.lowerBound)
+        let end = index(start, offsetBy: range.upperBound - range.lowerBound)
+        return String(self[start ..< end])
+    }
+    
+}
 

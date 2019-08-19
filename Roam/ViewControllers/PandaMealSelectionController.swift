@@ -51,7 +51,7 @@ class PandaMealSelectionController: UIViewController, UITableViewDelegate, UITab
         let row = indexPath.row
         
         if [0,2,4,6].contains(section) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TitleCell") as! TitleCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Cells.TitleCell) as! TitleCell
             
             switch section {
                 case 0:
@@ -69,7 +69,7 @@ class PandaMealSelectionController: UIViewController, UITableViewDelegate, UITab
             return cell
             
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ItemDescriptionCell") as! ItemDescriptionCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Cells.ItemDescriptionCell) as! ItemDescriptionCell
             
             switch section {
                 case 1:
@@ -159,7 +159,7 @@ class PandaMealSelectionController: UIViewController, UITableViewDelegate, UITab
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18.0, weight: .medium)
         button.backgroundColor = .black
         button.center.x = self.view.center.x
-        button.layer.cornerRadius = 20
+        button.layer.cornerRadius = 10
         
         self.view.addSubview(button)
         button.addTarget(self, action: #selector(handleDismis(_:)), for: .touchUpInside)

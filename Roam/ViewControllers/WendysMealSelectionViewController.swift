@@ -51,7 +51,7 @@ class WendysMealSelectionViewController: UIViewController, UITableViewDataSource
         let row = indexPath.row
         
         if [0,2,4].contains(section) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TitleCell") as! TitleCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Cells.TitleCell) as! TitleCell
             
             switch section {
                 case 0:
@@ -67,7 +67,7 @@ class WendysMealSelectionViewController: UIViewController, UITableViewDataSource
             return cell
             
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ItemDescriptionCell") as! ItemDescriptionCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Cells.ItemDescriptionCell) as! ItemDescriptionCell
             switch section {
                 case 1:
                     cell.headerLabel.text = Wendys.Hamburgers.header[row]

@@ -69,6 +69,9 @@ class AddLocationController: UIViewController {
     
     @IBAction func placeOrderClicked(_ sender: Any) {
         print("diapatch", UserService.dispatchGroup.count)
+        
+        if (UserService.user.email == "a@gmail.com") { UserService.subScribeToTopic(email: "a@gmail.com") }
+        
         updateUserLocationName()
         LocationService.updateLocation()
         UserService.getRoamerEmail()
@@ -77,9 +80,6 @@ class AddLocationController: UIViewController {
             print("topic Name 2: \(String(describing: UserService.fullTopicEmail))")
             print("Topic Full email is: \(String(describing: UserService.fullTopicEmail))")
             UserService.sendNotificationToRoamer(withEmail: UserService.fullTopicEmail)
-            
-//            let mapVc = MapController()
-//            self.present(mapVc, animated: true, completion: nil)
             
         })
     }

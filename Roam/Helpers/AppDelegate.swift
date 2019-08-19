@@ -24,8 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         setUpStripe()
-        //registerAppForNotifications()
-        checkIfUserLoggedIn()
+        //checkIfUserLoggedIn()
         
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
@@ -60,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func presentHomePage() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let HomePageVC = storyboard.instantiateViewController(withIdentifier :"HomePage") as! HomePageViewController
+        let HomePageVC = storyboard.instantiateViewController(withIdentifier: StoryBoardIds.HomePageController) as! HomePageViewController
         let navController = UINavigationController.init(rootViewController: HomePageVC)
         
         if let window = self.window, let rootViewController = window.rootViewController {
@@ -70,6 +69,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             print("to HomePage")
             currentController.present(navController, animated: true, completion: nil)
+        }
+    }
+    
+    func presentNotificationPage() {
+        UserService.dispatchGroup.notify(queue: .main) {
+            
+            let storyboard = UIStoryboard(name: StoryBoards.Main, bundle: nil)
+            let NotificationsVC = storyboard.instantiateViewController(withIdentifier: StoryBoardIds.NotificationsController) as! NotificationsController
+            let navController = UINavigationController.init(rootViewController: NotificationsVC)
+            
+            if let window = self.window, let rootViewController = window.rootViewController {
+                var currentController = rootViewController
+                while let presentedController = currentController.presentedViewController {
+                    currentController = presentedController
+                }
+                print("to Notifications Controller")
+                currentController.present(navController, animated: true, completion: nil)
+            }
+            
         }
     }
     
@@ -124,7 +142,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // TODO: Handle data of notification
 
         print("Notification Recieved In Background! 6")
-    
+        presentNotificationPage()
         
         completionHandler(UIBackgroundFetchResult.newData)
     }
@@ -139,8 +157,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        print("Notification Recieved In App! 7")
-
+        print("Notification Recieved While User In App! 7")
+        NotificationService.getNotificationsFromServer()
+        
         // Change this to your preferred presentation option
         completionHandler([.badge, .sound, .alert])
     }
@@ -149,8 +168,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-        print("Notification Recieved In Background! 8")
-
+        print("Notification Recieved and User Cliked It! 8")
+        NotificationService.getNotificationsFromServer()
+        presentNotificationPage()
         completionHandler()
     }
 

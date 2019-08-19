@@ -53,18 +53,14 @@ class DeliverRequestController: UIViewController {
         UserService.sendNotificationToCustomer(withToken: customersFCMToken, withEmail: customersEmail)
         
         // navigate to map
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let roamerMapVC = storyBoard.instantiateViewController(withIdentifier: "RoamerMapController") as! RoamerMapController
+        let storyBoard: UIStoryboard = UIStoryboard(name: StoryBoards.Main, bundle: nil)
+        let roamerMapVC = storyBoard.instantiateViewController(withIdentifier: StoryBoardIds.RoamerMapController) as! RoamerMapController
         self.present(roamerMapVC, animated: true, completion: nil)
     }
     
     @IBAction func declineClicked(_ sender: Any) {
         print("Decline Clicked")
-        NotificationService.removeNotificaiton(notif: notification)
-        NotificationService.sendNotifcationsToServer()
-        
-        notificationController.notificationsCountLabel.text = "\(NotificationService.count)"
-        notificationController.tableView.reloadData()
+        notificationController.removeNotification(with: notification)
         dismiss(animated: true, completion: nil)
     }
     

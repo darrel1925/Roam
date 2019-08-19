@@ -136,13 +136,13 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
         let row = indexPath.row
         
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "EntreeTitleCell") as! EntreeTitleCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Cells.EntreeTitleCell) as! EntreeTitleCell
             cell.titleLabel.text = titleSelection()[self.indexPathClicked.row]
             
             return cell
         }
         else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ChooseEntreeCell") as! ChooseEntreeCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Cells.ChooseEntreeCell) as! ChooseEntreeCell
             cell.checkView.image = UIImage(named: "empty")
             if entreesOrSides() == "Side" {
                 if foodSize == "Half" {
@@ -173,7 +173,7 @@ class SettingsLauncher: NSObject, UITableViewDelegate, UITableViewDataSource {
         if indexPath.section > 0 {
             tableView.reloadData()
             let cell = tableView.cellForRow(at: indexPath) as! ChooseEntreeCell
-            cell.checkView.image = UIImage(named: "check")
+            cell.checkView.image = UIImage(named: Images.check)
         
             
         // formats price to a '0.00' , by getting the last 4 chars

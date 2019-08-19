@@ -45,6 +45,7 @@ struct User {
         self.firstName = "firstName"
         self.lastName = "lastName"
         
+        setFCMToken()
         print("user is made")
     }
     
@@ -58,5 +59,20 @@ struct User {
         ]
         
         return data
+    }
+    
+    private func setFCMToken() {
+        let db = Firestore.firestore()
+        
+        db.collection(Collections.Users).document(self.email).setData([
+            DataParams.FCMToken: UserService.fcmToken,
+            ], merge: true
+        ) { err in
+            if let err = err {
+                print("COULD NOT UPDATE FCM TOKEN: \(err.localizedDescription)")
+            } else {
+                print("fcm Token was updated!")
+            }
+        }
     }
 }

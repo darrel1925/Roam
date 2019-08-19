@@ -277,15 +277,12 @@ class PandaSideSelectionController: UIViewController, UITableViewDelegate, UITab
         //tableView.separatorColor = .white
         
         totalPriceLabel.layer.masksToBounds = true
-        totalPriceLabel.layer.cornerRadius = 20
         totalPriceLabel.text = "ADD $" + String(format: "%.2f", totalPrice)
         
         numOrdersLabel.text = "1"
         numOrdersLabel.layer.masksToBounds = true
-        numOrdersLabel.layer.cornerRadius = 20
         
         fadeButton.layer.masksToBounds = true
-        fadeButton.layer.cornerRadius = 20
     }
     
     /********************************************************/
