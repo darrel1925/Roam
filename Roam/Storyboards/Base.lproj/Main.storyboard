@@ -183,6 +183,9 @@
                                         <state key="normal" title="Sign Up as Roamer">
                                             <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="signUpAsRoamer:" destination="GFW-hF-pNN" eventType="touchUpInside" id="y5C-Tk-SKy"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vvc-2y-GFW">
                                         <rect key="frame" x="0.0" y="344" width="374" height="32"/>
