@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         setUpStripe()
-        //checkIfUserLoggedIn()
+        checkIfUserLoggedIn()
         
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)

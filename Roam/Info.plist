@@ -35,6 +35,12 @@
 	<string>I want it foreverrrrrr</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Bc I want ittt</string>
+	<key>NSCameraUsageDescription</key>
+	<string>To upload a profile picture to your account
+&lt;string&gt;camera description.&lt;/string&gt;</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>To upload a profile picture to your account.
+To upload, update, or edit profile pictures</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

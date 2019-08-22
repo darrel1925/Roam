@@ -67,6 +67,8 @@ class CheckOutController: UIViewController {
         paymentContext.paymentAmount = StripeCart.total
         paymentContext.delegate = self
         paymentContext.hostViewController = self
+        
+        
     }
     
     func presentLocationDetails() {
@@ -138,7 +140,7 @@ extension CheckOutController: STPPaymentContextDelegate {
     }
     
     func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPErrorBlock) {
-
+        
         let idempotency = UUID().uuidString.replacingOccurrences(of: "-", with: "")
         
         let data: [String: Any] = [

@@ -9,15 +9,17 @@
 import Foundation
 import CoreLocation
 import FirebaseFirestore
+import FirebaseStorage
 
-
-struct User {
+class User {
     var id: String
     var email:String
     var username: String
     var stripeId: String
     var firstName: String
     var lastName: String
+    
+    var profilePictureImage: UIImage!
     
     var currentLocationString: String?
     
@@ -34,6 +36,7 @@ struct User {
         self.firstName = "firstName"
         self.lastName = "lastName"
         
+        
     }
     
     init(data: [String: Any]) {
@@ -44,6 +47,8 @@ struct User {
         
         self.firstName = "firstName"
         self.lastName = "lastName"
+        
+        let storageRef = Storage.storage().reference().child(UserService.user.email)
         
         setFCMToken()
         print("user is made")
@@ -75,4 +80,5 @@ struct User {
             }
         }
     }
+    
 }

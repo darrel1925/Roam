@@ -19,6 +19,7 @@ class EarningsController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.dataSource = self
     }
     
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }

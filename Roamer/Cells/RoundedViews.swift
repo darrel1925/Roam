@@ -12,7 +12,7 @@ import UIKit
 class RoundedButton: UIButton {
     override func awakeFromNib() {
         super.awakeFromNib()
-        layer.cornerRadius = 10
+        layer.cornerRadius = 20
     }
 }
 
@@ -51,4 +51,15 @@ class RoundedProfilePicture: UIImageView {
         layer.cornerRadius = 85
 
     }
+}
+
+class BaseTabBarController: UITabBarController {
+    
+    @IBInspectable var defaultIndex: Int = 1
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        selectedIndex = defaultIndex
+    }
+    
 }
