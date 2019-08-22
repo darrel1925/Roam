@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1C857ECD9D695A180EADAF87 /* Pods_RoamUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46426FE5DD249F136E71199D /* Pods_RoamUITests.framework */; };
+		382B9F7C230E4856000869E3 /* Roamer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 382B9F7B230E4856000869E3 /* Roamer.storyboard */; };
 		38571D5E2290B54600C460C7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38571D5D2290B54600C460C7 /* LoginViewController.swift */; };
 		7A7863AC49CCCDFCD1042C32 /* Pods_RoamTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E111423E33F668F6615448 /* Pods_RoamTests.framework */; };
-		9A0701C222F27F33003048A2 /* Roamer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A0701C122F27F33003048A2 /* Roamer.storyboard */; };
 		9A42BAAA22ECA619006F7137 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A42BAA922ECA619006F7137 /* Order.swift */; };
 		9A42BAAC22ECA67D006F7137 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A42BAAB22ECA67D006F7137 /* Product.swift */; };
 		9A42BAAE22ECA6B1006F7137 /* StripeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A42BAAD22ECA6B1006F7137 /* StripeApi.swift */; };
@@ -82,12 +82,12 @@
 		09E111423E33F668F6615448 /* Pods_RoamTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoamTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1522D277607F63CD5B2CD72E /* Pods-RoamUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamUITests.debug.xcconfig"; path = "Target Support Files/Pods-RoamUITests/Pods-RoamUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1BC2D38DCEB9B75682CC5A21 /* Pods-RoamTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamTests.release.xcconfig"; path = "Target Support Files/Pods-RoamTests/Pods-RoamTests.release.xcconfig"; sourceTree = "<group>"; };
+		382B9F7B230E4856000869E3 /* Roamer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Roamer.storyboard; sourceTree = "<group>"; };
 		38571D5D2290B54600C460C7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
 		447051ADC30B4D51026CF5F8 /* Pods_Roam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Roam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46426FE5DD249F136E71199D /* Pods_RoamUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoamUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62C82FFA790FB10D7995D567 /* Pods-RoamUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamUITests.release.xcconfig"; path = "Target Support Files/Pods-RoamUITests/Pods-RoamUITests.release.xcconfig"; sourceTree = "<group>"; };
 		82963C48207E02237574EC5E /* Pods-RoamTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamTests.debug.xcconfig"; path = "Target Support Files/Pods-RoamTests/Pods-RoamTests.debug.xcconfig"; sourceTree = "<group>"; };
-		9A0701C122F27F33003048A2 /* Roamer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Roamer.storyboard; sourceTree = "<group>"; };
 		9A42BAA922ECA619006F7137 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		9A42BAAB22ECA67D006F7137 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		9A42BAAD22ECA6B1006F7137 /* StripeApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeApi.swift; sourceTree = "<group>"; };
@@ -267,7 +267,6 @@
 		9AEA8E0322F3EFEA00255DA0 /* Roamer */ = {
 			isa = PBXGroup;
 			children = (
-				9A0701C122F27F33003048A2 /* Roamer.storyboard */,
 				9AEA8E0D22F3F19D00255DA0 /* Storyboards */,
 				9AEA8E0422F3F09800255DA0 /* Cells */,
 				9AEA8E0022F3EC5B00255DA0 /* RoamerControllers */,
@@ -288,6 +287,7 @@
 		9AEA8E0D22F3F19D00255DA0 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				382B9F7B230E4856000869E3 /* Roamer.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -558,8 +558,8 @@
 				EDE119FC2290B1AE00853117 /* LaunchScreen.storyboard in Resources */,
 				9ADDC48222FF1BCE0053A1F0 /* ForgotPasswordController.xib in Resources */,
 				9ADDC47E22FD4EAB0053A1F0 /* AddLocationController.xib in Resources */,
+				382B9F7C230E4856000869E3 /* Roamer.storyboard in Resources */,
 				EDE119F92290B1AE00853117 /* Assets.xcassets in Resources */,
-				9A0701C222F27F33003048A2 /* Roamer.storyboard in Resources */,
 				EDE119F72290B1AC00853117 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
