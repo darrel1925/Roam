@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		1C857ECD9D695A180EADAF87 /* Pods_RoamUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46426FE5DD249F136E71199D /* Pods_RoamUITests.framework */; };
 		382B9F7C230E4856000869E3 /* Roamer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 382B9F7B230E4856000869E3 /* Roamer.storyboard */; };
+		382B9F82230E5604000869E3 /* View2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382B9F7D230E5601000869E3 /* View2.swift */; };
+		382B9F83230E5604000869E3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382B9F7E230E5603000869E3 /* MainViewController.swift */; };
+		382B9F84230E5604000869E3 /* mainRaomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382B9F7F230E5603000869E3 /* mainRaomerViewController.swift */; };
+		382B9F85230E5604000869E3 /* View1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382B9F80230E5604000869E3 /* View1.swift */; };
+		382B9F86230E5604000869E3 /* View3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382B9F81230E5604000869E3 /* View3.swift */; };
 		38571D5E2290B54600C460C7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38571D5D2290B54600C460C7 /* LoginViewController.swift */; };
 		7A7863AC49CCCDFCD1042C32 /* Pods_RoamTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E111423E33F668F6615448 /* Pods_RoamTests.framework */; };
 		9A42BAAA22ECA619006F7137 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A42BAA922ECA619006F7137 /* Order.swift */; };
@@ -83,6 +88,11 @@
 		1522D277607F63CD5B2CD72E /* Pods-RoamUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamUITests.debug.xcconfig"; path = "Target Support Files/Pods-RoamUITests/Pods-RoamUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1BC2D38DCEB9B75682CC5A21 /* Pods-RoamTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamTests.release.xcconfig"; path = "Target Support Files/Pods-RoamTests/Pods-RoamTests.release.xcconfig"; sourceTree = "<group>"; };
 		382B9F7B230E4856000869E3 /* Roamer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Roamer.storyboard; sourceTree = "<group>"; };
+		382B9F7D230E5601000869E3 /* View2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View2.swift; sourceTree = "<group>"; };
+		382B9F7E230E5603000869E3 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		382B9F7F230E5603000869E3 /* mainRaomerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mainRaomerViewController.swift; sourceTree = "<group>"; };
+		382B9F80230E5604000869E3 /* View1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View1.swift; sourceTree = "<group>"; };
+		382B9F81230E5604000869E3 /* View3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View3.swift; sourceTree = "<group>"; };
 		38571D5D2290B54600C460C7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
 		447051ADC30B4D51026CF5F8 /* Pods_Roam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Roam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46426FE5DD249F136E71199D /* Pods_RoamUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoamUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -258,6 +268,11 @@
 		9AEA8E0022F3EC5B00255DA0 /* RoamerControllers */ = {
 			isa = PBXGroup;
 			children = (
+				382B9F7F230E5603000869E3 /* mainRaomerViewController.swift */,
+				382B9F7E230E5603000869E3 /* MainViewController.swift */,
+				382B9F80230E5604000869E3 /* View1.swift */,
+				382B9F7D230E5601000869E3 /* View2.swift */,
+				382B9F81230E5604000869E3 /* View3.swift */,
 				9ADECB4A22F7637C003B38C1 /* Settings */,
 				9AEA8E0122F3ECB300255DA0 /* EarningsController.swift */,
 			);
@@ -673,6 +688,7 @@
 			files = (
 				ED4CA6AF22950C090022A095 /* PandaSideSelectionController.swift in Sources */,
 				9A42BAB822ECB259006F7137 /* ChooseEntreeCell.swift in Sources */,
+				382B9F85230E5604000869E3 /* View1.swift in Sources */,
 				9A7EF0772300EAA8008135F8 /* Notificaiton.swift in Sources */,
 				9A9D8F8622D1BC4C00C49EB6 /* CartButtonLauncher.swift in Sources */,
 				ED4CA6B5229542100022A095 /* SideOptionCell.swift in Sources */,
@@ -694,6 +710,7 @@
 				9A6912A822E958A60058BF2D /* UserService.swift in Sources */,
 				9A42BAC022ECBC21006F7137 /* LoginController.swift in Sources */,
 				9A42BAC522ED19AF006F7137 /* Extensions.swift in Sources */,
+				382B9F86230E5604000869E3 /* View3.swift in Sources */,
 				ED4CA6A72294B6A00022A095 /* WendysFoodItems.swift in Sources */,
 				9A42BAAE22ECA6B1006F7137 /* StripeApi.swift in Sources */,
 				9AE5497B2303CC8100719737 /* UIBarButtonAndBadge.swift in Sources */,
@@ -702,10 +719,13 @@
 				9A42BABC22ECB859006F7137 /* User.swift in Sources */,
 				9A9019C922E94E000097AC04 /* SignInWithEmailViewController.swift in Sources */,
 				9A42BABA22ECB7AC006F7137 /* TitleCell.swift in Sources */,
+				382B9F84230E5604000869E3 /* mainRaomerViewController.swift in Sources */,
 				9AEA8E0C22F3F14D00255DA0 /* EarningsCell.swift in Sources */,
 				ED4CA6B1229521190022A095 /* SettingsLauncher.swift in Sources */,
 				9ADDC47D22FD4EAB0053A1F0 /* AddLocationController.swift in Sources */,
+				382B9F83230E5604000869E3 /* MainViewController.swift in Sources */,
 				EDE119F22290B1AC00853117 /* AppDelegate.swift in Sources */,
+				382B9F82230E5604000869E3 /* View2.swift in Sources */,
 				9AEA8E1122F3F31600255DA0 /* EarningsDetailCell.swift in Sources */,
 				ED4CA6B3229541E50022A095 /* SideSelectionTitleCell.swift in Sources */,
 				ED3C45DA22948A0A006D17B0 /* ItemDescriptionCell.swift in Sources */,
