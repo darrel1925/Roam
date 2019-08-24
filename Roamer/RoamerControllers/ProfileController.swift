@@ -45,13 +45,13 @@ extension ProfileController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0:
+        case 0: // Basic Info
             return 1
-        case 1:
+        case 1: // display name, user name, email, phone
             return 4
-        case 2:
+        case 2: // Account Info
             return 1
-        case 3:
+        case 3: // payment info
             return 1
         default:
             return 1
