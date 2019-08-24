@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -182,6 +183,9 @@
                                         <state key="normal" title="Sign Up as Roamer">
                                             <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="signUpForRoamer:" destination="GFW-hF-pNN" eventType="touchUpInside" id="Zq7-jk-bWX"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vvc-2y-GFW">
                                         <rect key="frame" x="0.0" y="344" width="374" height="32"/>
@@ -1444,6 +1448,9 @@
                                         <state key="normal" title="Log In as Roamer">
                                             <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="logInForRoamer:" destination="UA6-cZ-esC" eventType="touchUpInside" id="40z-Cf-1gU"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s90-7w-yDo">
                                         <rect key="frame" x="0.0" y="284" width="374" height="32"/>
@@ -2594,7 +2601,7 @@
         <image name="stp_card_visa.png" width="32" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fwE-rQ-Wow"/>
+        <segue reference="abi-Gl-oFG"/>
         <segue reference="yds-6l-FW8"/>
         <segue reference="NpC-zA-onx"/>
     </inferredMetricsTieBreakers>

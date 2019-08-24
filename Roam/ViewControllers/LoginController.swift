@@ -38,6 +38,8 @@ class LoginController: UIViewController {
             self?.performSegue(withIdentifier: Segues.toHomePage, sender:  nil)
         }
     }
+    @IBAction func logInForRoamer(_ sender: Any) {
+    }
     
 
     @IBAction func backButtonClicked(_ sender: Any) {

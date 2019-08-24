@@ -52,6 +52,9 @@ class SignInWithEmailViewController: UIViewController {
         }
     }
     
+    @IBAction func signUpForRoamer(_ sender: Any) {
+    }
+    
     func createFireStoreUser(user: User) {
 
         // Add a new document in collection "Users"
