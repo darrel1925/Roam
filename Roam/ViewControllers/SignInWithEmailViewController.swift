@@ -24,6 +24,25 @@ class SignInWithEmailViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    func addRoamerToActiveRoamers(email: String) {
+        let db = Firestore.firestore()
+        db.collection(Collections.ActiveRoamers).document(email).setData([
+            DataParams.customerLatitude: 0,
+            DataParams.customerLongitude: 0,
+            DataParams.isActive: "true",
+            DataParams.roamerEmail: email,
+            DataParams.roamerLatitude: 0,
+            DataParams.roamerLongitude: 0,
+        ]) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+                self.displayError(error: err)
+            } else {
+                print("Document successfully written!")
+            }
+        }
+    }
 
     @IBAction func signUpClicked(_ sender: Any) {
         // TODO: error check inputs
@@ -57,6 +76,7 @@ class SignInWithEmailViewController: UIViewController {
         }
     }
     
+    
     @IBAction func signUpForRoamer(_ sender: Any) {
 
         if !credentialsAreValid() { return }
@@ -81,8 +101,10 @@ class SignInWithEmailViewController: UIViewController {
             guard let fireUser = result?.user else { return }
             let roamUser = User.init(id: fireUser.uid, email: email, username: username, stripeId: "", firstName: firstName, lastName: lastName)
             
-            self.createFireStoreUser(user: roamUser)
             print("registered succesfully")
+            
+            self.createFireStoreUser(user: roamUser)
+            self.addRoamerToActiveRoamers(email: email)
             self.activityIndicator.stopAnimating()
             
             let storyBoard = UIStoryboard(name: StoryBoards.Main, bundle: nil)

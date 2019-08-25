@@ -305,5 +305,20 @@ final class _UserService {
             }
         })
     }
+    
+    func switchIsActive(to isActive: String){
+        let docRef = db.collection(Collections.ActiveRoamers).document(UserService.user.email)
+        
+        // Set the "capital" field of the city 'DC'
+        docRef.updateData([
+            "isActive": isActive
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err.localizedDescription)")
+            } else {
+                print("IsActive Updated to \(isActive)")
+            }
+        }
+    }
 }
 

@@ -15,7 +15,7 @@ class EarningsController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.tabBarController?.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -37,7 +37,7 @@ class EarningsController: UIViewController, UITableViewDelegate, UITableViewData
             
             // get notification count from Notification Service
             UserService.dispatchGroup.notify(queue: .main) {
-                print("email2", UserService.user)
+                UserService.switchIsActive(to: "true")
                 print(NotificationService.count)
                 print("diapatch end", UserService.dispatchGroup.count)
                 
@@ -81,5 +81,15 @@ class EarningsController: UIViewController, UITableViewDelegate, UITableViewData
         return UITableViewCell()
     }
     
+}
+
+
+extension EarningsController: UITabBarControllerDelegate {
     
+
+    
+    // UITabBarControllerDelegate
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        print("Selected view controller: \(tabBarController.selectedIndex)")
+    }
 }

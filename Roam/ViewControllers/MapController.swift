@@ -64,11 +64,7 @@ class MapController: UIViewController, MKMapViewDelegate {
         map.showsBuildings = true
         map.showsUserLocation = true
         map.showsCompass = true
-//        annotation = MKPointAnnotation()
-//
-//        annotation.coordinate = coordinates
-//
-//        map.addAnnotation(annotation)
+
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

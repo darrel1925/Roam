@@ -30,6 +30,7 @@ class RoamerMapController: UIViewController {
         super.viewDidLoad()
         checkLocationServices()
         setUpLocation()
+
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -129,6 +130,7 @@ class RoamerMapController: UIViewController {
         if Auth.auth().currentUser != nil {
             do {
                 try Auth.auth().signOut()
+                UserService.switchIsActive(to: "false")
                 // removes event listener from fb user reference
                 UserService.logoutUser()
                 self.presentLoginController()
@@ -140,7 +142,6 @@ class RoamerMapController: UIViewController {
         else {
             self.presentLoginController()
         }
-        
     }
 }
 

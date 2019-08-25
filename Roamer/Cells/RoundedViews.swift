@@ -55,7 +55,7 @@ class RoundedProfilePicture: UIImageView {
 
 class BaseTabBarController: UITabBarController {
     
-    @IBInspectable var defaultIndex: Int = 1
+    @IBInspectable var defaultIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()

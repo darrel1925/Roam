@@ -1073,7 +1073,7 @@
             </objects>
             <point key="canvasLocation" x="3336" y="-208"/>
         </scene>
-        <!--Notifications Controller-->
+        <!--Notifications-->
         <scene sceneID="YOb-ex-Zsa">
             <objects>
                 <viewController storyboardIdentifier="NotificationsController" id="Pwa-p3-f4i" customClass="NotificationsController" customModule="Roam" customModuleProvider="target" sceneMemberID="viewController">
@@ -1206,6 +1206,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DIn-FL-CD7"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Notifications" image="notification" id="1Ex-ZT-8f4"/>
                     <connections>
                         <outlet property="notificationsCountLabel" destination="QX0-JK-EPZ" id="wlQ-te-MtM"/>
                         <outlet property="notificationsLabel" destination="QTB-Yu-etU" id="e8J-DF-NSD"/>
@@ -1689,8 +1690,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="FPO-oS-NrN" kind="relationship" relationship="viewControllers" id="8Ii-zl-Fwa"/>
                         <segue destination="TdH-RM-epF" kind="relationship" relationship="viewControllers" id="8yS-Z1-zww"/>
+                        <segue destination="Pwa-p3-f4i" kind="relationship" relationship="viewControllers" id="4Iz-2A-Xwi"/>
+                        <segue destination="FPO-oS-NrN" kind="relationship" relationship="viewControllers" id="8Ii-zl-Fwa"/>
                         <segue destination="oIG-pq-dLl" kind="relationship" relationship="viewControllers" id="Ngb-qd-Cwg"/>
                     </connections>
                 </tabBarController>
@@ -2571,7 +2573,7 @@
         <scene sceneID="0DG-oh-mVn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TdH-RM-epF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Summary" image="notepad" selectedImage="notepad" id="9YR-Db-lUy"/>
+                    <tabBarItem key="tabBarItem" title="Summary" image="notepad" id="9YR-Db-lUy"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jrs-3W-ukQ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -2597,12 +2599,14 @@
         <image name="manWalking" width="512" height="512"/>
         <image name="map" width="24" height="24"/>
         <image name="notepad" width="24" height="24"/>
+        <image name="notification" width="24" height="24"/>
         <image name="pencil" width="512" height="512"/>
         <image name="stp_card_visa.png" width="32" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="fwE-rQ-Wow"/>
         <segue reference="yds-6l-FW8"/>
+        <segue reference="4Iz-2A-Xwi"/>
         <segue reference="NpC-zA-onx"/>
     </inferredMetricsTieBreakers>
 </document>
