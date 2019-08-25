@@ -50,6 +50,7 @@ struct StoryBoardIds {
     static let NotificationsController = "NotificationsController"
     static let HomePageController = "HomePageController"
     static let ProfileController = "ProfileController"
+    static let EarningsController = "EarningsController"
 }
 
 struct Segues {

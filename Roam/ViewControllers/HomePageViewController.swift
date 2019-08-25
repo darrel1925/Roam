@@ -111,8 +111,8 @@ class HomePageViewController: UIViewController {
         self.navigationController?.present(mapController, animated: true, completion: nil)
     }
     @IBAction func navToRoamerView(_ sender: Any) {
-        var storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        var tabbar: UITabBarController? = (storyBoard.instantiateViewController(withIdentifier: "tabBar") as! UITabBarController)
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let tabbar: UITabBarController? = (storyBoard.instantiateViewController(withIdentifier: "tabBar") as! UITabBarController)
         
         self.present(tabbar!, animated: true, completion: nil)
     }

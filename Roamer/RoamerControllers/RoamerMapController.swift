@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import FirebaseFirestore
+import FirebaseAuth
 
 class RoamerMapController: UIViewController {
 
@@ -117,8 +118,29 @@ class RoamerMapController: UIViewController {
         map.addAnnotation(annotation)
     }
     
+    func presentLoginController() {
+        let storyboard = UIStoryboard(name: StoryBoards.Main, bundle: nil)
+        let controller = storyboard.instantiateInitialViewController()
+        present(controller!, animated: true, completion: nil)
+    }
+    
     @IBAction func backButtonClicked(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        
+        if Auth.auth().currentUser != nil {
+            do {
+                try Auth.auth().signOut()
+                // removes event listener from fb user reference
+                UserService.logoutUser()
+                self.presentLoginController()
+            } catch {
+                let message = "There was an issue logging out. Please try again."
+                self.displayError(title: "Whoops.", message: message)
+            }
+        }
+        else {
+            self.presentLoginController()
+        }
+        
     }
 }
 

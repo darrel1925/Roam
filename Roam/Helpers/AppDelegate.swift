@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         setUpStripe()
-        checkIfUserLoggedIn()
+            checkIfUserLoggedIn()
         
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
@@ -46,9 +46,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func checkIfUserLoggedIn() {
+        var isCustomer = "true"
         Auth.auth().addStateDidChangeListener { auth, user in
-            if let _ = user {
-                self.presentHomePage()
+            if let user = user {
+                UserService.dispatchGroup.enter()
+                let db = Firestore.firestore()
+                let docRef = db.collection(Collections.Users).document(user.email ?? "no email found")
+                
+                docRef.getDocument(source: .server) { (document, error) in
+                    UserService.dispatchGroup.customLeave()
+                    if let document = document {
+                        
+                        print("Cached document data: \(document.data()?["isCustomer"] ?? "no param isCustomer")")
+                        isCustomer = document.data()?["isCustomer"] as? String ?? "true"
+                    } else {
+                        print("Document does not exist in cache")
+                    }
+                }
+                
+                UserService.dispatchGroup.notify(queue: .main, execute: {
+                    self.presentHomePage(isCustomer: isCustomer)
+                })
             }
         }
     }
@@ -57,18 +75,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         STPPaymentConfiguration.shared().publishableKey = "pk_test_QsXnOULAU1t7NqNDJ4ZCWegx00EVMwPd5T"
     }
     
-    func presentHomePage() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let HomePageVC = storyboard.instantiateViewController(withIdentifier: StoryBoardIds.HomePageController) as! HomePageViewController
-        let navController = UINavigationController.init(rootViewController: HomePageVC)
+    func presentHomePage(isCustomer: String) {
         
-        if let window = self.window, let rootViewController = window.rootViewController {
-            var currentController = rootViewController
-            while let presentedController = currentController.presentedViewController {
-                currentController = presentedController
+        if isCustomer == "true" {
+            // show customer home page
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let HomePageVC = storyboard.instantiateViewController(withIdentifier: StoryBoardIds.HomePageController) as! HomePageViewController
+            let navController = UINavigationController.init(rootViewController: HomePageVC)
+            
+            if let window = self.window, let rootViewController = window.rootViewController {
+                var currentController = rootViewController
+                while let presentedController = currentController.presentedViewController {
+                    currentController = presentedController
+                }
+                print("to HomePage")
+                currentController.present(navController, animated: true, completion: nil)
+                
+                }
+        }
+        else {
+            // show roamer home page
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let tabbar: UITabBarController? = (storyBoard.instantiateViewController(withIdentifier: "tabBar") as! UITabBarController)
+
+            if let window = self.window, let rootViewController = window.rootViewController {
+                var currentController = rootViewController
+                while let presentedController = currentController.presentedViewController {
+                    currentController = presentedController
+                }
+                print("to HomePage")
+                currentController.present(tabbar!, animated: true, completion: nil)
             }
-            print("to HomePage")
-            currentController.present(navController, animated: true, completion: nil)
         }
     }
     

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class EarningsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -19,6 +20,30 @@ class EarningsController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.dataSource = self
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        print(NotificationService.count)
+        print("dispatch begin", UserService.dispatchGroup.count)
+        if Auth.auth().currentUser != nil {
+            // add all of our info to our User class to use globally
+            if UserService.userListener == nil {
+                UserService.getCurrentUserForNotifications()
+                
+            }
+        }
+        UserService.dispatchGroup.notify(queue: .main) {
+            print("dispatch mid", UserService.dispatchGroup.count)
+            // get notifications from server and add to NotificationService
+            NotificationService.getNotificationsFromServer()
+            
+            // get notification count from Notification Service
+            UserService.dispatchGroup.notify(queue: .main) {
+                print("email2", UserService.user)
+                print(NotificationService.count)
+                print("diapatch end", UserService.dispatchGroup.count)
+                
+            }
+        }
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3

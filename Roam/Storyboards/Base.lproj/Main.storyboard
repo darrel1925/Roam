@@ -1549,7 +1549,7 @@
         <!--Earnings Controller-->
         <scene sceneID="sBe-7N-kfD">
             <objects>
-                <viewController id="M8c-DM-75g" customClass="EarningsController" customModule="Roam" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EarningsController" id="M8c-DM-75g" customClass="EarningsController" customModule="Roam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="laq-Is-X1Q">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2601,7 +2601,7 @@
         <image name="stp_card_visa.png" width="32" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="abi-Gl-oFG"/>
+        <segue reference="fwE-rQ-Wow"/>
         <segue reference="yds-6l-FW8"/>
         <segue reference="NpC-zA-onx"/>
     </inferredMetricsTieBreakers>

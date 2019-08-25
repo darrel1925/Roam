@@ -26,6 +26,8 @@ class ProfileController: UIViewController {
         tryToGetProfilePic()
     }
     
+   
+    
     func getPaymentMethod() {
 //        let customerContext = STPCustomerContext(keyProvider: StripeApi)
 //        let config = STPPaymentConfiguration.shared()
@@ -129,7 +131,7 @@ extension ProfileController: UIImagePickerControllerDelegate, UINavigationContro
     
     func uploadImageToFirebase(withImage image: UIImage) {
         let uploadData = image.pngData()!
-        let storageRef = Storage.storage().reference().child("a@gmail.com")
+        let storageRef = Storage.storage().reference().child(UserService.user.email)
         
         storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
             if let error = error {

@@ -21,7 +21,7 @@ let UserService = _UserService()
 final class _UserService {
     
     // Variables
-    var user = User() // <- contains stripeId in firebase 
+    var user: User! // <- contains stripeId in firebase
     let auth = Auth .auth()
     let db = Firestore.firestore()
     
@@ -30,6 +30,7 @@ final class _UserService {
     let dispatchGroup = DispatchGroup()
     // our listener
     var userListener: ListenerRegistration? = nil
+    var loggedInAsCustomer: Bool!
     
     var fcmToken: String!
     
@@ -83,7 +84,7 @@ final class _UserService {
     func logoutUser() {
         userListener?.remove()
         userListener = nil
-        user = User()
+        user = nil
     }
     
     func getRoamerEmail() {

@@ -27,14 +27,14 @@ class User {
         return self.email.replacingOccurrences(of: "@", with: "")
     }
     
-    init(id: String = "", email: String = "", username: String = "", stripeId: String = "") {
+    init(id: String = "", email: String = "", username: String = "", stripeId: String = "", firstName: String, lastName: String) {
         self.id = id
         self.email = email
         self.username = username
         self.stripeId = stripeId
         
-        self.firstName = "firstName"
-        self.lastName = "lastName"
+        self.firstName = firstName
+        self.lastName = lastName
         
         
     }
@@ -48,8 +48,6 @@ class User {
         self.firstName = "firstName"
         self.lastName = "lastName"
         
-        let storageRef = Storage.storage().reference().child(UserService.user.email)
-        
         setFCMToken()
         print("user is made")
     }
@@ -59,8 +57,10 @@ class User {
             "id" : user.id,
             "email" : user.email,
             "username" : user.username,
-            "stripeId" : user.stripeId
-            
+            "stripeId" : user.stripeId,
+            "firstName": user.firstName,
+            "lastName": user.lastName,
+            "isCustomer": "true"
         ]
         
         return data
