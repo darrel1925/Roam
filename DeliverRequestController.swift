@@ -16,7 +16,7 @@ class DeliverRequestController: UIViewController {
     @IBOutlet weak var conatinerView: UIView!
     
     var notification: MyNotification!
-    var notificationController: NotificationsController!
+    var roamerNotificationVC: RoamerNotificationController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +60,7 @@ class DeliverRequestController: UIViewController {
     
     @IBAction func declineClicked(_ sender: Any) {
         print("Decline Clicked")
-        notificationController.removeNotification(with: notification)
+        roamerNotificationVC.removeNotification(with: notification)
         dismiss(animated: true, completion: nil)
     }
     

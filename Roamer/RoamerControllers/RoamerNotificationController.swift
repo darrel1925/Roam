@@ -1,14 +1,14 @@
 //
-//  NotificationsController.swift
+//  RoamerNotificationController.swift
 //  Roam
 //
-//  Created by Darrel Muonekwu on 8/14/19.
+//  Created by Darrel Muonekwu on 8/25/19.
 //  Copyright © 2019 Darrel Muonekwu. All rights reserved.
 //
 
 import UIKit
 
-class NotificationsController: UIViewController {
+class RoamerNotificationController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var notificationsLabel: UILabel!
@@ -51,7 +51,28 @@ class NotificationsController: UIViewController {
     }
     
     func requestToRoam(row: Int, notification: MyNotification) {
-        // Should not recieve a request to roam on the cutomer's notificaiton page
+        let date = notification.date!
+        let message = "Looks like this request to roam has expired. Rember to accept them in under 5 minutes."
+        
+        if (!date.recivedUnderFiveMinutesAgo) {
+            // remove notification
+            let alert = UIAlertController(title: "Notification Expired", message: message, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Okay", style: .default, handler: {_ in
+                self.removeNotification(with: notification)
+                return
+            })
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
+        }
+        
+        let deliverRequestVC = DeliverRequestController()
+        deliverRequestVC.notification = localNotifications[row]
+        deliverRequestVC.roamerNotificationVC = self 
+        
+        
+        deliverRequestVC.modalTransitionStyle = .crossDissolve
+        deliverRequestVC.modalPresentationStyle = .overCurrentContext
+        present(deliverRequestVC, animated: true, completion: nil)
     }
     
     func acceptingRequestToRoam(row: Int, notification: MyNotification) {
@@ -93,7 +114,7 @@ class NotificationsController: UIViewController {
 }
 
 
-extension NotificationsController: UITableViewDelegate, UITableViewDataSource {
+extension RoamerNotificationController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         localNotifications = NotificationService.notifications
         return localNotifications.count

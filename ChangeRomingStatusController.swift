@@ -66,7 +66,7 @@ class ChangeRomingStatusController: UIViewController {
         self.roamingButton.backgroundColor = #colorLiteral(red: 0.6023629904, green: 0.3253927827, blue: 0.3244685531, alpha: 1)
         self.roamingButton.setTitle("Pause Roaming", for: .normal)
         self.titleLabel.text = "Disable Roaming"
-        self.descriptionLabel.text = "You will no longer receive requst to roam if you 'Disable Roaming'"
+        self.descriptionLabel.text = "You will no longer receive requsts to roam if you 'Disable Roaming'"
         roamingEnabled = "true"
     }
     

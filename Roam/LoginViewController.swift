@@ -29,12 +29,14 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onSignUp(_ sender: Any) {
-        signUpCollection.forEach { (button) in
-            UIView.animate(withDuration: 0.3, animations: {
-                button.isHidden = !button.isHidden
-                self.view.layoutIfNeeded()
-            })
-        }        
+        self.performSegue(withIdentifier: Segues.toSignUpPage, sender: nil )
+
+//        signUpCollection.forEach { (button) in
+//            UIView.animate(withDuration: 0.3, animations: {
+//                button.isHidden = !button.isHidden
+//                self.view.layoutIfNeeded()
+//            })
+//        }        
     }
     
     @IBAction func signUpEmailAction(_ sender: Any) {
