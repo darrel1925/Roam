@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class LoginViewController: UIViewController {
     
     
@@ -17,6 +18,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginOut: UIButton!
     
     @IBOutlet var signUpCollection: [UIButton]!
+    
+    
     
     override func viewDidLoad() {
 

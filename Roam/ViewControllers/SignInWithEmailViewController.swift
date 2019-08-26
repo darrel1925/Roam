@@ -10,9 +10,41 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 
+//Chinenye - made this to change the padding of a text field to only one border under it
+extension UITextField{
+    func setPadding(){
+        let paddingView = UIView(frame: CGRect(x: 0
+            , y: 0
+            , width: 10, height: self.frame.height))
+        
+        self.leftView = paddingView
+        self.leftViewMode = .always
+        
+    }
+    
+    func setBottomBorder(){
+        self.layer.shadowColor = UIColor.darkGray.cgColor
+        self.layer.shadowOffset = CGSize(width: 0.0,height: 1.0)
+        self.layer.shadowOpacity = 1.0
+        self.layer.shadowRadius = 0.0
+        
+    }
+}
 
 class SignInWithEmailViewController: UIViewController {
 
+    func setTextLine(){
+        usernameField.setBottomBorder()
+        usernameField.setPadding()
+        emailField.setBottomBorder()
+        emailField.setPadding()
+
+        passwordField.setBottomBorder()
+        passwordField.setPadding()
+      confirmPasswordField.setBottomBorder()
+        confirmPasswordField.setPadding()
+        
+    }
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -21,6 +53,7 @@ class SignInWithEmailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTextLine()
 
         // Do any additional setup after loading the view.
     }

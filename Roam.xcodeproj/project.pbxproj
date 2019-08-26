@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1C857ECD9D695A180EADAF87 /* Pods_RoamUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46426FE5DD249F136E71199D /* Pods_RoamUITests.framework */; };
 		38571D5E2290B54600C460C7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38571D5D2290B54600C460C7 /* LoginViewController.swift */; };
+		38C55C442313788C00EF7918 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C55C432313788C00EF7918 /* TextField.swift */; };
 		7A7863AC49CCCDFCD1042C32 /* Pods_RoamTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E111423E33F668F6615448 /* Pods_RoamTests.framework */; };
 		9A2CAC14230A45FA008F376D /* RoundedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CAC13230A45FA008F376D /* RoundedViews.swift */; };
 		9A2CAC16230A5BC6008F376D /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CAC15230A5BC6008F376D /* ProfileController.swift */; };
@@ -100,6 +101,7 @@
 		1522D277607F63CD5B2CD72E /* Pods-RoamUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamUITests.debug.xcconfig"; path = "Target Support Files/Pods-RoamUITests/Pods-RoamUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1BC2D38DCEB9B75682CC5A21 /* Pods-RoamTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamTests.release.xcconfig"; path = "Target Support Files/Pods-RoamTests/Pods-RoamTests.release.xcconfig"; sourceTree = "<group>"; };
 		38571D5D2290B54600C460C7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
+		38C55C432313788C00EF7918 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		447051ADC30B4D51026CF5F8 /* Pods_Roam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Roam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46426FE5DD249F136E71199D /* Pods_RoamUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoamUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62C82FFA790FB10D7995D567 /* Pods-RoamUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamUITests.release.xcconfig"; path = "Target Support Files/Pods-RoamUITests/Pods-RoamUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 				EDE119F82290B1AE00853117 /* Assets.xcassets */,
 				EDE119F12290B1AC00853117 /* AppDelegate.swift */,
 				ED4CA6B0229521190022A095 /* SettingsLauncher.swift */,
+				38C55C432313788C00EF7918 /* TextField.swift */,
 				9A9D8F8522D1BC4C00C49EB6 /* CartButtonLauncher.swift */,
 				9A42BAC422ED19AF006F7137 /* Extensions.swift */,
 				9AF264492308F01800421193 /* Constants.swift */,
@@ -764,6 +767,7 @@
 				9A3EB1972310BDF10086532D /* View3.swift in Sources */,
 				9ACA1A5923134FCC00292334 /* ChangeRomingStatusController.swift in Sources */,
 				EDF153302290F58800FD8BB2 /* HomePageViewController.swift in Sources */,
+				38C55C442313788C00EF7918 /* TextField.swift in Sources */,
 				9ADDC48122FF1BCE0053A1F0 /* ForgotPasswordController.swift in Sources */,
 				9AA4C4E92303F24800194B42 /* NotificationsController.swift in Sources */,
 				9A6912B022E9815F0058BF2D /* StripeCart.swift in Sources */,

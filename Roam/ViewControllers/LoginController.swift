@@ -10,13 +10,25 @@ import UIKit
 import Firebase
 
 class LoginController: UIViewController {
+    
+    func setTextLine(){
+    emailField.setBottomBorder()
+    emailField.setPadding()
+    passwordField.setBottomBorder()
+    passwordField.setPadding()
+    
+    
+    }
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
+
         super.viewDidLoad()
+        setTextLine()
+
     }
     
     @IBAction func loginClicked(_ sender: Any) {
