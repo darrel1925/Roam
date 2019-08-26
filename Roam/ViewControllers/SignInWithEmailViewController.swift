@@ -34,6 +34,7 @@ class SignInWithEmailViewController: UIViewController {
             DataParams.roamerEmail: email,
             DataParams.roamerLatitude: 0,
             DataParams.roamerLongitude: 0,
+            DataParams.roamingEnabled: "true"
         ]) { err in
             if let err = err {
                 print("Error writing document: \(err)")
@@ -44,77 +45,6 @@ class SignInWithEmailViewController: UIViewController {
         }
     }
 
-    @IBAction func signUpClicked(_ sender: Any) {
-        // TODO: error check inputs
-        if !credentialsAreValid() { return }
-        
-        UserService.loggedInAsCustomer = true
-        
-        let username = usernameField.text!
-        let email = emailField.text!
-        let password = passwordField.text!
-        let firstName = "James"  // TODO: get first name, last name,
-        let lastName = "Carter"
-        activityIndicator.startAnimating()
-        
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
-            if let error = error {
-                self.displayError(error: error)
-                
-                self.activityIndicator.stopAnimating()
-                return
-            }
-            
-            guard let fireUser = result?.user else { return }
-            let roamUser = User.init(id: fireUser.uid, email: fireUser.email ?? "error", username: username, stripeId: "", firstName: firstName, lastName: lastName)
-            
-            self.createFireStoreUser(user: roamUser)
-            print("registered succesfully")
-            self.activityIndicator.stopAnimating()
-            
-            self.performSegue(withIdentifier: Segues.toHomePage , sender:  nil)
-        }
-    }
-    
-    
-    @IBAction func signUpForRoamer(_ sender: Any) {
-
-        if !credentialsAreValid() { return }
-        
-        UserService.loggedInAsCustomer = false
-        
-        let username = usernameField.text!
-        let email = emailField.text!
-        let password = passwordField.text!
-        let firstName = "James"  // TODO: get first name, last name,
-        let lastName = "Carter"
-        activityIndicator.startAnimating()
-        
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
-            if let error = error {
-                self.displayError(error: error)
-                
-                self.activityIndicator.stopAnimating()
-                return
-            }
-            
-            guard let fireUser = result?.user else { return }
-            let roamUser = User.init(id: fireUser.uid, email: email, username: username, stripeId: "", firstName: firstName, lastName: lastName)
-            
-            print("registered succesfully")
-            
-            self.createFireStoreUser(user: roamUser)
-            self.addRoamerToActiveRoamers(email: email)
-            self.activityIndicator.stopAnimating()
-            
-            let storyBoard = UIStoryboard(name: StoryBoards.Main, bundle: nil)
-            let tabbar: UITabBarController? = (storyBoard.instantiateViewController(withIdentifier: "tabBar") as! UITabBarController)
-            self.present(tabbar!, animated: true, completion: nil)
-            
-            
-        }
-    }
-    
     func createFireStoreUser(user: User) {
 
         // Add a new document in collection "Users"
@@ -137,10 +67,6 @@ class SignInWithEmailViewController: UIViewController {
                 print("Document successfully written!")
             }
         }
-    }
-    
-    @IBAction func backButton(_ sender: Any) {
-            dismiss(animated: true, completion: nil)
     }
     
     func credentialsAreValid() -> Bool {
@@ -172,5 +98,84 @@ class SignInWithEmailViewController: UIViewController {
             return false
         }
         return true
+    }
+    
+    
+    @IBAction func signUpClicked(_ sender: Any) {
+        // TODO: error check inputs
+        if !credentialsAreValid() { return }
+        
+        UserService.loggedInAsCustomer = true
+        
+        let username = usernameField.text!
+        let email = emailField.text!
+        let password = passwordField.text!
+        let firstName = "James"  // TODO: get first name, last name,
+        let lastName = "Carter"
+        activityIndicator.startAnimating()
+        
+        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+            if let error = error {
+                self.displayError(error: error)
+                
+                self.activityIndicator.stopAnimating()
+                return
+            }
+            
+            guard let fireUser = result?.user else { return }
+            let customer = User.init(id: fireUser.uid,
+                                     email: fireUser.email ?? "error",
+                                     username: username, stripeId: "",
+                                     firstName: firstName,
+                                     lastName: lastName)
+            
+            self.createFireStoreUser(user: customer)
+            print("registered succesfully")
+            self.activityIndicator.stopAnimating()
+        }
+    }
+    
+    @IBAction func signUpForRoamer(_ sender: Any) {
+        
+        if !credentialsAreValid() { return }
+        
+        UserService.loggedInAsCustomer = false
+        
+        let username = usernameField.text!
+        let email = emailField.text!
+        let password = passwordField.text!
+        let firstName = "James"  // TODO: get first name, last name,
+        let lastName = "Carter"
+        activityIndicator.startAnimating()
+        
+        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+            if let error = error {
+                self.displayError(error: error)
+                
+                self.activityIndicator.stopAnimating()
+                return
+            }
+            
+            guard let fireUser = result?.user else { return }
+            let roamer = User.init(id: fireUser.uid,
+                                     email: email,
+                                     username: username,
+                                     stripeId: "",
+                                     firstName: firstName,
+                                     lastName: lastName)
+            print("registered succesfully")
+            
+            self.createFireStoreUser(user: roamer)
+            self.addRoamerToActiveRoamers(email: email)
+            self.activityIndicator.stopAnimating()
+            
+            let storyBoard = UIStoryboard(name: StoryBoards.Main, bundle: nil)
+            let tabbar: UITabBarController? = (storyBoard.instantiateViewController(withIdentifier: "tabBar") as! UITabBarController)
+            self.present(tabbar!, animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func backButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
 }

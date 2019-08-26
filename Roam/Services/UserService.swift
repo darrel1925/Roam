@@ -28,11 +28,17 @@ final class _UserService {
     var fullTopicEmail: String!
     
     let dispatchGroup = DispatchGroup()
-    // our listener
-    var userListener: ListenerRegistration? = nil
-    var loggedInAsCustomer: Bool!
     
-    var fcmToken: String!
+    var userListener: ListenerRegistration? = nil // our listener
+    var loggedInAsCustomer: Bool!
+    var isCustomer: String!
+    
+    var fcmToken: String = Messaging.messaging().fcmToken!
+    var roamersInfoDict: [String: String]! // to send notifications
+    
+    /********************************************************************/
+    /************** Log in/out Functions for User **********************/
+    /******************************************************************/
     
     // adds all of our info to our User class to use globally
     func getCurrentUser() {
@@ -87,10 +93,68 @@ final class _UserService {
         user = nil
     }
     
-    func getRoamerEmail() {
-        let roamersRef = db.collection(Collections.Users)
-        let query = roamersRef.whereField("isActive", isEqualTo: "true")
-        var roamerFCMTokens: [String] = []
+    
+    /********************************************************************/
+    /************** Log in State Tracking Fucntions ********************/
+    /******************************************************************/
+    
+    func switchIsRoaming(to isActive: String){
+        let docRef = db.collection(Collections.ActiveRoamers).document(UserService.user.email)
+        
+        // Set the "capital" field of the city 'DC'
+        docRef.updateData([
+            "isRoaming": isActive
+        ]) { err in
+            if let err = err {
+                print("Error updating isRoaming: \(err.localizedDescription)")
+            } else {
+                print("IsActive Updated to \(isActive)")
+            }
+        }
+    }
+    
+    func switchIsCustomer(to isActive: String){
+        let docRef = db.collection(Collections.Users).document(UserService.user.email)
+        
+        // Set the "capital" field of the city 'DC'
+        docRef.updateData([
+            "isCustomer": isActive
+        ]) { err in
+            if let err = err {
+                print("Error updating isCustomer: \(err.localizedDescription)")
+            } else {
+                print("IsCustomer Updated to \(isActive)")
+            }
+            UserService.dispatchGroup.customLeave()
+        }
+    }
+    
+    func getIsCustomer(withEmail email: String) {
+        let docRef = db.collection(Collections.Users).document(email)
+        self.isCustomer = "true"
+        
+        docRef.getDocument(source: .server) { (document, error) in
+            UserService.dispatchGroup.customLeave()
+            
+            if let document = document {
+                print("Cached document data: \(document.data()?["isCustomer"] ?? "no param isCustomer")")
+                self.isCustomer = document.data()?["isCustomer"] as? String ?? "true"
+                return
+            }
+            
+            print("Document does not exist in cache")
+        }
+    }
+    
+    /********************************************************************/
+    /************* Send Notifiactions Helper Functions *****************/
+    /******************************************************************/
+    
+    func getRoamerTokens() {
+        dispatchGroup.enter()
+        let roamersRef = db.collection(Collections.ActiveRoamers)
+        let query = roamersRef.whereField(DataParams.isRoaming, isEqualTo: "true")
+        self.roamersInfoDict = [:]
         
         query.getDocuments(source: .server) { (snapShot, error) in
             if let error = error {
@@ -98,32 +162,17 @@ final class _UserService {
             }
             
             for document in snapShot!.documents {
-                print("document == \(document.data())")
-                roamerFCMTokens.append(document.data()["FCMToken"] as? String ?? "No Token")
+                if let email = document.data()[DataParams.roamerEmail] as? String,
+                    let token = document.data()[DataParams.FCMToken] as? String {
+                    self.roamersInfoDict[email] = token
+                }
+                
             }
-            print("roamerToken = \(roamerFCMTokens)")
+            self.dispatchGroup.customLeave()
+            print("roamers Dict is:", self.roamersInfoDict!)
         }
         
         // TODO: Create selection algorithm to choose a series of roamers to ping
-        self.dispatchGroup.enter()
-        db.collection(Collections.ActiveRoamers).whereField("roamerEmail", isEqualTo: "a@gmail.com").getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err.localizedDescription)")
-                    self.dispatchGroup.customLeave()
-
-                }
-                else {
-                    for document in querySnapshot!.documents {
-                        
-                        print("\(document.documentID) => \(document.data())")
-                        let email = document.data()[DataParams.roamerEmail] as? String
-                        self.fullTopicEmail = email
-                        print(email ?? "huh", "huhh")
-                    }
-                    self.dispatchGroup.customLeave()
-                }
-        }
-        print("email is", self.fullTopicEmail)
     }
     
     func subScribeToTopic(email: String) {
@@ -138,7 +187,11 @@ final class _UserService {
         }
     }
     
-    func sendNotificationToRoamer(withEmail email: String) {
+    
+    /********************************************************************/
+    /************** Send Notifications To Roamer ***********************/
+    /******************************************************************/
+    func sendNotificationToRoamers() {
         
         if user.currentLocationString == nil {
             print("USERS LOCATION COULD NOT BE FOUND")
@@ -148,32 +201,32 @@ final class _UserService {
         let data: [String : Any] = [
             DataParams.senderEmail: user.email,
             DataParams.senderUsername: user.username,
-            DataParams.senderFCMToken: fcmToken ?? "No Token",
+            DataParams.senderFCMToken: fcmToken ,
             DataParams.locationName: user.currentLocationString!,
             DataParams.longitude: "\(LocationService.longitude)",
             DataParams.latitude: "\(LocationService.latitude)",
             DataParams.notificationId: "RequestToRoam",
-            DataParams.isActive: "true",
+            DataParams.isActive: "true", // <-- do i need this still
             DataParams.date: Date().toString()
-            ]
+        ]
         
-        
-        sendToRoamersPhone(withEmail: email, withData: data)
-        updateRomaersFirbase(withEmail: email, withData: data)
+        for (email, token) in self.roamersInfoDict{
+            sendToRoamersPhone(withToken: token, withData: data)
+            updateRomaersFirbase(withEmail: email, withData: data)
+        }
     }
     
-    func sendToRoamersPhone(withEmail email: String, withData data: [String: Any]) {
-        let formattedEmail = email.replacingOccurrences(of: "@", with: "")
-
+    func sendToRoamersPhone(withToken token: String, withData data: [String: Any]) {
+        print("send to roamer \(token)")
         let message: [String : Any] = [
             "notification": [
                 "title": "New Roam Request!!",
                 "body": "CLICK THIS NOTIFICATION to begin!"
             ],
             "data": data,
-            "topic": "agmail.com" //?? "No Token"
+            "token": token //?? "No Token"
         ]
-        
+        //let t = Messaging.messaging().fcmToken
         // sends notification to roamer's phone
         Functions.functions().httpsCallable("sendNotification").call(message) { (result, error) in
             if let error = error {
@@ -207,11 +260,10 @@ final class _UserService {
                         }
                 }
             }
-            // a notification array has NOT been made
+                // a notification array has NOT been made
             else {
                 print("not been made")
-                // make a new one
-                // send it back
+                // make a new one and send it back
                 self.db.collection(Collections.Users).document(email).setData([
                     "notifications": [data]], merge: true) { err in
                         if let err = err {
@@ -225,14 +277,15 @@ final class _UserService {
         })
     }
     
-    
+    /********************************************************************/
+    /************** Send Notifications To Customer *********************/
     /******************************************************************/
     
     func sendNotificationToCustomer(withToken token: String, withEmail email: String) {
         let data: [String : Any] = [
             DataParams.senderEmail: user.email,
             DataParams.senderUsername: user.username,
-            DataParams.senderFCMToken: fcmToken ?? "No Token",
+            DataParams.senderFCMToken: fcmToken,
             DataParams.longitude: "\(LocationService.longitude)",
             DataParams.latitude: "\(LocationService.latitude)",
             DataParams.notificationId: NotificationIds.AcceptingRequestToRoam,
@@ -306,19 +359,5 @@ final class _UserService {
         })
     }
     
-    func switchIsActive(to isActive: String){
-        let docRef = db.collection(Collections.ActiveRoamers).document(UserService.user.email)
-        
-        // Set the "capital" field of the city 'DC'
-        docRef.updateData([
-            "isActive": isActive
-        ]) { err in
-            if let err = err {
-                print("Error updating document: \(err.localizedDescription)")
-            } else {
-                print("IsActive Updated to \(isActive)")
-            }
-        }
-    }
 }
 

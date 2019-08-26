@@ -54,7 +54,7 @@ extension ProfileController: UITableViewDelegate, UITableViewDataSource {
         case 2: // Account Info
             return 1
         case 3: // payment info
-            return 1
+            return 3
         default:
             return 1
         }
@@ -104,6 +104,17 @@ extension ProfileController: UITableViewDelegate, UITableViewDataSource {
                 cell.infoTitle.text = "Payment Info"
                 cell.infoDescription.text = "Visa"
                 return cell
+            case 1:
+                cell.infoTitle.text = "Roaming Status"
+                cell.infoDescription.text = "Active"
+                cell.accessoryType = .disclosureIndicator
+                return cell
+            case 2:
+                cell.infoTitle.text = "Log Out"
+                cell.infoDescription.text = ""
+                cell.infoTitle.textColor = #colorLiteral(red: 0.7788676168, green: 0.1122596166, blue: 0.07396716866, alpha: 1)
+                cell.accessoryType = .disclosureIndicator
+                return cell
             default:
                 return cell
             }
@@ -111,8 +122,34 @@ extension ProfileController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let section = indexPath.section
+        let row = indexPath.row
+        print(row, section)
+        switch section {
+        case 3:
+            switch row {
+            case 1:
+                let changeRoamingStatusVC = ChangeRomingStatusController()
+                
+                changeRoamingStatusVC.modalTransitionStyle = .crossDissolve
+                changeRoamingStatusVC.modalPresentationStyle = .overCurrentContext
+                tabBarController?.present(changeRoamingStatusVC, animated: true, completion: nil)
+            default:
+                print()
+            }
+
+        default:
+            print()
+        }
+    }
 }
 
+
+/***********************************************/
+/********** Handle Profile Picture ************/
+/*********************************************/
 
 extension ProfileController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

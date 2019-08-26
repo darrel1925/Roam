@@ -40,9 +40,9 @@ class AddLocationController: UIViewController {
     }
     
     func updateUserLocationName() {
-        let building = buildingNameField.text as? String ?? "No Building Entered"
-        let roomNumber = roomNumberField.text as? String ?? "No Building Entered"
-        let additionalInfo = additionalInstructionsView.text
+        let building = buildingNameField.text ?? "No Building Entered"
+        let roomNumber = roomNumberField.text ?? "No Room Entered"
+        let additionalInfo = additionalInstructionsView.text ?? "No Description Entered"
         print("current user location = \("Building: \(building ) Room #: \(roomNumber)")" )
         UserService.user.currentLocationString = "Building: \(String(describing: building)) Room # \(roomNumber)"
     }
@@ -74,12 +74,9 @@ class AddLocationController: UIViewController {
         
         updateUserLocationName()
         LocationService.updateLocation()
-        UserService.getRoamerEmail()
-        print("topic Name 1: \(String(describing: UserService.fullTopicEmail))")
+        UserService.getRoamerTokens()
         UserService.dispatchGroup.notify(queue: .main, execute: {
-            print("topic Name 2: \(String(describing: UserService.fullTopicEmail))")
-            print("Topic Full email is: \(String(describing: UserService.fullTopicEmail))")
-            UserService.sendNotificationToRoamer(withEmail: UserService.fullTopicEmail)
+            UserService.sendNotificationToRoamers()
             
         })
     }

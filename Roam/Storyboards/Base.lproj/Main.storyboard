@@ -2028,16 +2028,6 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="80X-Lh-52Q">
-                                                    <rect key="frame" x="159" y="6" width="148" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="RQ7-oW-2Wm"/>
-                                                        <constraint firstAttribute="width" constant="148" id="f1p-fV-cIe"/>
-                                                    </constraints>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="NOc-X9-Rck" secondAttribute="bottom" constant="2" id="7zG-mQ-KC1"/>
@@ -2045,10 +2035,7 @@
                                                 <constraint firstItem="4Fz-8R-oXm" firstAttribute="top" secondItem="4KA-H2-nx2" secondAttribute="top" constant="8" id="CcI-sl-Be0"/>
                                                 <constraint firstItem="NOc-X9-Rck" firstAttribute="top" secondItem="4KA-H2-nx2" secondAttribute="topMargin" id="Jxd-sa-Jcd"/>
                                                 <constraint firstAttribute="trailing" secondItem="4Fz-8R-oXm" secondAttribute="trailing" constant="20" id="LSv-ri-nZk"/>
-                                                <constraint firstItem="80X-Lh-52Q" firstAttribute="top" secondItem="4KA-H2-nx2" secondAttribute="top" constant="6" id="NAd-J4-ANa"/>
                                                 <constraint firstItem="NOc-X9-Rck" firstAttribute="leading" secondItem="4KA-H2-nx2" secondAttribute="leadingMargin" constant="4" id="YAs-wI-J5y"/>
-                                                <constraint firstAttribute="bottom" secondItem="80X-Lh-52Q" secondAttribute="bottom" constant="7.5" id="ehf-G9-jQA"/>
-                                                <constraint firstItem="4Fz-8R-oXm" firstAttribute="leading" secondItem="80X-Lh-52Q" secondAttribute="trailing" constant="8" id="rky-KT-EES"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -2604,7 +2591,7 @@
         <image name="stp_card_visa.png" width="32" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fwE-rQ-Wow"/>
+        <segue reference="abi-Gl-oFG"/>
         <segue reference="yds-6l-FW8"/>
         <segue reference="4Iz-2A-Xwi"/>
         <segue reference="NpC-zA-onx"/>

@@ -40,6 +40,7 @@ class HomePageViewController: UIViewController {
             UserService.dispatchGroup.notify(queue: .main) {
                 self.setNotificationBadge()
                 print("email2", UserService.user)
+                UserService.switchIsCustomer(to: "true")
                 print(NotificationService.count)
                 print("diapatch end", UserService.dispatchGroup.count)
 

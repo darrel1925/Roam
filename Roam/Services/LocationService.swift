@@ -19,7 +19,6 @@ class _LocationService: NSObject, CLLocationManagerDelegate {
     var longitude: CLLocationDegrees = 0
     
     func updateLocation() {
-        let locationManager = LocationService.locationManager
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         

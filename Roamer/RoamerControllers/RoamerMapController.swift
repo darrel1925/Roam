@@ -79,13 +79,9 @@ class RoamerMapController: UIViewController {
         let longitude = (manager.location?.coordinate.longitude)!
         LocationService.updateLocationWith(latitude: latitude, longitude: longitude)
         
-        //        let coordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        //
-        //        annotation.coordinate = coordinates
-        
         if count >= 5 {
-            LocationService.sendLocationToFirebaseAsRoamer()
-            getCustomersLocationFromFireBase()
+//            LocationService.sendLocationToFirebaseAsRoamer()
+//            getCustomersLocationFromFireBase()
             count = 0
         }
     }
@@ -125,25 +121,43 @@ class RoamerMapController: UIViewController {
         present(controller!, animated: true, completion: nil)
     }
     
+    /***************************************/
+    /********** Log Out Roamer ************/
+    /*************************************/
+    
     @IBAction func backButtonClicked(_ sender: Any) {
+        UserService.dispatchGroup.enter()
+        UserService.switchIsRoaming(to: "false")
+        UserService.switchIsCustomer(to: "true")
         
-        if Auth.auth().currentUser != nil {
-            do {
-                try Auth.auth().signOut()
-                UserService.switchIsActive(to: "false")
-                // removes event listener from fb user reference
-                UserService.logoutUser()
-                self.presentLoginController()
-            } catch {
-                let message = "There was an issue logging out. Please try again."
-                self.displayError(title: "Whoops.", message: message)
+        UserService.dispatchGroup.notify(queue: .main, execute: {
+            
+            
+            if Auth.auth().currentUser != nil {
+                do {
+                    try Auth.auth().signOut()
+                    // removes event listener from fb user reference
+                    UserService.logoutUser()
+                    self.presentLoginController()
+                } catch {
+                    UserService.switchIsRoaming(to: "true")
+                    UserService.switchIsCustomer(to: "false")
+                    let message = "There was an issue logging out. Please try again."
+                    self.displayError(title: "Whoops.", message: message)
+                }
             }
-        }
-        else {
-            self.presentLoginController()
-        }
+            else {
+                print("there was no one logged in")
+                self.presentLoginController()
+            }
+        })
+        
     }
 }
+
+/***************************************************/
+/********** Check Location Permissions ************/
+/*************************************************/
 
 extension RoamerMapController: CLLocationManagerDelegate {
     

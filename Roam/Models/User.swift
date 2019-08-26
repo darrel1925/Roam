@@ -49,6 +49,7 @@ class User {
         self.lastName = "lastName"
         
         setFCMToken()
+        setRoamerFCMToken()
         print("user is made")
     }
     
@@ -76,7 +77,22 @@ class User {
             if let err = err {
                 print("COULD NOT UPDATE FCM TOKEN: \(err.localizedDescription)")
             } else {
-                print("fcm Token was updated!")
+                print("Customer fcm Token was updated!")
+            }
+        }
+    }
+    
+    private func setRoamerFCMToken() {
+        let db = Firestore.firestore()
+        
+        db.collection(Collections.ActiveRoamers).document(self.email).setData([
+            DataParams.FCMToken: UserService.fcmToken,
+            ], merge: true
+        ) { err in
+            if let err = err {
+                print("COULD NOT UPDATE FCM TOKEN: \(err.localizedDescription)")
+            } else {
+                print("Roamer fcm Token was updated!")
             }
         }
     }

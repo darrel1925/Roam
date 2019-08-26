@@ -42,11 +42,11 @@
 		9AA4C4E92303F24800194B42 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA4C4E82303F24800194B42 /* NotificationsController.swift */; };
 		9AA4C4F02306543100194B42 /* DeliverRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA4C4EE2306543100194B42 /* DeliverRequestController.swift */; };
 		9AA4C4F12306543100194B42 /* DeliverRequestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AA4C4EF2306543100194B42 /* DeliverRequestController.xib */; };
-		9AA4C4F823065AB500194B42 /* BlackBackgroundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA4C4F623065AB500194B42 /* BlackBackgroundController.swift */; };
-		9AA4C4F923065AB500194B42 /* BlackBackgroundController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AA4C4F723065AB500194B42 /* BlackBackgroundController.xib */; };
 		9AA4C4FB2307B3C400194B42 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA4C4FA2307B3C400194B42 /* LocationService.swift */; };
 		9AA4C4FD2307D29000194B42 /* RoamerMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA4C4FC2307D29000194B42 /* RoamerMapController.swift */; };
 		9AA7415022F9F5E100A2ED30 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA7414F22F9F5E100A2ED30 /* CoreLocation.framework */; };
+		9ACA1A5923134FCC00292334 /* ChangeRomingStatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACA1A5723134FCC00292334 /* ChangeRomingStatusController.swift */; };
+		9ACA1A5A23134FCC00292334 /* ChangeRomingStatusController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ACA1A5823134FCC00292334 /* ChangeRomingStatusController.xib */; };
 		9ADDC47922FD3B020053A1F0 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADDC47822FD3B020053A1F0 /* MapController.swift */; };
 		9ADDC47D22FD4EAB0053A1F0 /* AddLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADDC47B22FD4EAB0053A1F0 /* AddLocationController.swift */; };
 		9ADDC47E22FD4EAB0053A1F0 /* AddLocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ADDC47C22FD4EAB0053A1F0 /* AddLocationController.xib */; };
@@ -136,11 +136,11 @@
 		9AA4C4E82303F24800194B42 /* NotificationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
 		9AA4C4EE2306543100194B42 /* DeliverRequestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverRequestController.swift; sourceTree = "<group>"; };
 		9AA4C4EF2306543100194B42 /* DeliverRequestController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliverRequestController.xib; sourceTree = "<group>"; };
-		9AA4C4F623065AB500194B42 /* BlackBackgroundController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BlackBackgroundController.swift; path = ../ViewControllers/BlackBackgroundController.swift; sourceTree = "<group>"; };
-		9AA4C4F723065AB500194B42 /* BlackBackgroundController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BlackBackgroundController.xib; path = ../ViewControllers/BlackBackgroundController.xib; sourceTree = "<group>"; };
 		9AA4C4FA2307B3C400194B42 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		9AA4C4FC2307D29000194B42 /* RoamerMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoamerMapController.swift; sourceTree = "<group>"; };
 		9AA7414F22F9F5E100A2ED30 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		9ACA1A5723134FCC00292334 /* ChangeRomingStatusController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRomingStatusController.swift; sourceTree = "<group>"; };
+		9ACA1A5823134FCC00292334 /* ChangeRomingStatusController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangeRomingStatusController.xib; sourceTree = "<group>"; };
 		9ADDC47822FD3B020053A1F0 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		9ADDC47B22FD4EAB0053A1F0 /* AddLocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationController.swift; sourceTree = "<group>"; };
 		9ADDC47C22FD4EAB0053A1F0 /* AddLocationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddLocationController.xib; sourceTree = "<group>"; };
@@ -280,6 +280,18 @@
 			path = NotificationCells;
 			sourceTree = "<group>";
 		};
+		9ACA1A5B23134FE900292334 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				9AA4C4EE2306543100194B42 /* DeliverRequestController.swift */,
+				9AA4C4EF2306543100194B42 /* DeliverRequestController.xib */,
+				9ACA1A5723134FCC00292334 /* ChangeRomingStatusController.swift */,
+				9ACA1A5823134FCC00292334 /* ChangeRomingStatusController.xib */,
+			);
+			name = Xibs;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		9ADDC47A22FD4E760053A1F0 /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,10 +299,6 @@
 				9ADDC47C22FD4EAB0053A1F0 /* AddLocationController.xib */,
 				9ADDC47F22FF1BCE0053A1F0 /* ForgotPasswordController.swift */,
 				9ADDC48022FF1BCE0053A1F0 /* ForgotPasswordController.xib */,
-				9AA4C4EE2306543100194B42 /* DeliverRequestController.swift */,
-				9AA4C4EF2306543100194B42 /* DeliverRequestController.xib */,
-				9AA4C4F623065AB500194B42 /* BlackBackgroundController.swift */,
-				9AA4C4F723065AB500194B42 /* BlackBackgroundController.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -318,6 +326,7 @@
 		9AEA8E0322F3EFEA00255DA0 /* Roamer */ = {
 			isa = PBXGroup;
 			children = (
+				9ACA1A5B23134FE900292334 /* Xibs */,
 				9AEA8E0D22F3F19D00255DA0 /* Storyboards */,
 				9AEA8E0422F3F09800255DA0 /* Cells */,
 				9AEA8E0022F3EC5B00255DA0 /* RoamerControllers */,
@@ -614,7 +623,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A9019BE22E6EC860097AC04 /* GoogleService-Info.plist in Resources */,
-				9AA4C4F923065AB500194B42 /* BlackBackgroundController.xib in Resources */,
+				9ACA1A5A23134FCC00292334 /* ChangeRomingStatusController.xib in Resources */,
 				EDE119FC2290B1AE00853117 /* LaunchScreen.storyboard in Resources */,
 				9ADDC48222FF1BCE0053A1F0 /* ForgotPasswordController.xib in Resources */,
 				9A3EB1952310BDF10086532D /* Roamer.storyboard in Resources */,
@@ -751,9 +760,9 @@
 				9A42BAB422ECB16C006F7137 /* PandaExpressFoodItems.swift in Sources */,
 				9AEA8E0F22F3F2FA00255DA0 /* EarningsTitleCell.swift in Sources */,
 				9A2CAC14230A45FA008F376D /* RoundedViews.swift in Sources */,
-				9AA4C4F823065AB500194B42 /* BlackBackgroundController.swift in Sources */,
 				9AA4C4FD2307D29000194B42 /* RoamerMapController.swift in Sources */,
 				9A3EB1972310BDF10086532D /* View3.swift in Sources */,
+				9ACA1A5923134FCC00292334 /* ChangeRomingStatusController.swift in Sources */,
 				EDF153302290F58800FD8BB2 /* HomePageViewController.swift in Sources */,
 				9ADDC48122FF1BCE0053A1F0 /* ForgotPasswordController.swift in Sources */,
 				9AA4C4E92303F24800194B42 /* NotificationsController.swift in Sources */,

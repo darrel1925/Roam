@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class EarningsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class EarningsController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -37,7 +37,10 @@ class EarningsController: UIViewController, UITableViewDelegate, UITableViewData
             
             // get notification count from Notification Service
             UserService.dispatchGroup.notify(queue: .main) {
-                UserService.switchIsActive(to: "true")
+                UserService.switchIsRoaming(to: "true")
+                UserService.switchIsCustomer(to: "false")
+                
+                self.setNotificationBadge()
                 print(NotificationService.count)
                 print("diapatch end", UserService.dispatchGroup.count)
                 
@@ -45,6 +48,9 @@ class EarningsController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+}
+
+extension EarningsController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
@@ -80,16 +86,31 @@ class EarningsController: UIViewController, UITableViewDelegate, UITableViewData
         }
         return UITableViewCell()
     }
-    
 }
 
 
+/***********************************************/
+/********** Set Notification Badge ************/
+/*********************************************/
 extension EarningsController: UITabBarControllerDelegate {
-    
-
     
     // UITabBarControllerDelegate
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         print("Selected view controller: \(tabBarController.selectedIndex)")
+        if tabBarController.selectedIndex == 1 {
+            if let tabItems = tabBarController.tabBar.items {
+                // In this case we want to modify the badge number of the third tab:
+                let tabItem = tabItems[1]
+                tabItem.badgeValue = nil
+            }
+        }
+    }
+    
+    func setNotificationBadge() {
+        if let tabItems = tabBarController?.tabBar.items {
+            // In this case we want to modify the badge number of the third tab:
+            let tabItem = tabItems[1]
+            tabItem.badgeValue = String(NotificationService.count)
+        }
     }
 }

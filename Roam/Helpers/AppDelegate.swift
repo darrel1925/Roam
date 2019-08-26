@@ -44,40 +44,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-
-    func checkIfUserLoggedIn() {
-        var isCustomer = "true"
-        Auth.auth().addStateDidChangeListener { auth, user in
-            if let user = user {
-                UserService.dispatchGroup.enter()
-                let db = Firestore.firestore()
-                let docRef = db.collection(Collections.Users).document(user.email ?? "no email found")
-                
-                docRef.getDocument(source: .server) { (document, error) in
-                    UserService.dispatchGroup.customLeave()
-                    if let document = document {
-                        
-                        print("Cached document data: \(document.data()?["isCustomer"] ?? "no param isCustomer")")
-                        isCustomer = document.data()?["isCustomer"] as? String ?? "true"
-                    } else {
-                        print("Document does not exist in cache")
-                    }
-                }
-                
-                UserService.dispatchGroup.notify(queue: .main, execute: {
-                    self.presentHomePage(isCustomer: isCustomer)
-                })
-            }
-        }
-    }
     
     func setUpStripe() {
         STPPaymentConfiguration.shared().publishableKey = "pk_test_QsXnOULAU1t7NqNDJ4ZCWegx00EVMwPd5T"
     }
     
-    func presentHomePage(isCustomer: String) {
-        
-        if isCustomer == "true" {
+    func checkIfUserLoggedIn() {
+        Auth.auth().addStateDidChangeListener { auth, user in
+            if let user = user {
+                UserService.dispatchGroup.enter()
+                
+                UserService.getIsCustomer(withEmail: user.email ?? "no email")
+                
+                UserService.dispatchGroup.notify(queue: .main, execute: {
+                    self.presentHomePage()
+                })
+            }
+        }
+    }
+    
+    func presentHomePage() {
+        print("is customer is \(String(describing: UserService.isCustomer)) when presenting homepage")
+        if UserService.isCustomer == "true" {
             // show customer home page
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let HomePageVC = storyboard.instantiateViewController(withIdentifier: StoryBoardIds.HomePageController) as! HomePageViewController
@@ -90,7 +78,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
                 print("to HomePage")
                 currentController.present(navController, animated: true, completion: nil)
-                
                 }
         }
         else {
@@ -103,29 +90,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 while let presentedController = currentController.presentedViewController {
                     currentController = presentedController
                 }
-                print("to HomePage")
+                print("to Romer Home")
                 currentController.present(tabbar!, animated: true, completion: nil)
             }
         }
     }
     
     func presentNotificationPage() {
-        UserService.dispatchGroup.notify(queue: .main) {
-            
-            let storyboard = UIStoryboard(name: StoryBoards.Main, bundle: nil)
-            let NotificationsVC = storyboard.instantiateViewController(withIdentifier: StoryBoardIds.NotificationsController) as! NotificationsController
-            let navController = UINavigationController.init(rootViewController: NotificationsVC)
-            
-            if let window = self.window, let rootViewController = window.rootViewController {
-                var currentController = rootViewController
-                while let presentedController = currentController.presentedViewController {
-                    currentController = presentedController
-                }
-                print("to Notifications Controller")
-                currentController.present(navController, animated: true, completion: nil)
-            }
-            
-        }
+        checkIfUserLoggedIn()
+//        UserService.dispatchGroup.notify(queue: .main) {
+//
+//            let storyboard = UIStoryboard(name: StoryBoards.Main, bundle: nil)
+//            let NotificationsVC = storyboard.instantiateViewController(withIdentifier: StoryBoardIds.NotificationsController) as! NotificationsController
+//            let navController = UINavigationController.init(rootViewController: NotificationsVC)
+//
+//            if let window = self.window, let rootViewController = window.rootViewController {
+//                var currentController = rootViewController
+//                while let presentedController = currentController.presentedViewController {
+//                    currentController = presentedController
+//                }
+//                print("to Notifications Controller")
+//                currentController.present(navController, animated: true, completion: nil)
+//            }
+//
+//        }
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -221,7 +209,7 @@ extension AppDelegate: MessagingDelegate {
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.
-        UserService.fcmToken = fcmToken
+        //UserService.fcmToken = fcmToken
     }
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {

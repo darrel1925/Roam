@@ -37,7 +37,6 @@ class LoginController: UIViewController {
             
             print("Login was successful")
             self?.activityIndicator.stopAnimating()
-            self?.performSegue(withIdentifier: Segues.toHomePage, sender:  nil)
         }
     }
     
@@ -77,11 +76,11 @@ class LoginController: UIViewController {
         let db = Firestore.firestore()
         let newUserRef = db.collection(Collections.Users).document(email)
         var data: [String: Any]!
-        if !UserService.loggedInAsCustomer {
-            data = ["isCustomer": "false"]
+        if UserService.loggedInAsCustomer {
+            data = ["isCustomer": "true"]
         }
         else {
-            data = ["isCustomer": "true"]
+            data = ["isCustomer": "false"]
         }
         
         newUserRef.setData(data, merge: true) { error in
@@ -89,7 +88,7 @@ class LoginController: UIViewController {
                 print("Error writing document: \(error)")
                 
             } else {
-                print("Document successfully written!")
+                print("isCustomer is \(String(UserService.loggedInAsCustomer))!")
             }
             UserService.dispatchGroup.customLeave()
         }

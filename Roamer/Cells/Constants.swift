@@ -32,8 +32,11 @@ struct DataParams {
     static let latitude = "latitude"
     static let notificationId = "notificationId"
     static let isActive = "isActive"
+    static let isRoaming = "isRoaming"
+    static let isCustomer = "isCustomer"
     static let date = "date"
     
+    static let roamingEnabled = "roamingEnabled"
     static let FCMToken = "FCMToken"
 }
 
