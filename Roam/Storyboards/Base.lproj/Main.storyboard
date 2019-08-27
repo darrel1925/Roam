@@ -121,7 +121,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2063.768115942029" y="150.66964285714286"/>
+            <point key="canvasLocation" x="973.91304347826099" y="150"/>
         </scene>
         <!--Sign In With Email View Controller-->
         <scene sceneID="AwT-nw-BaG">
@@ -1863,8 +1863,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z3A-U4-3Kg">
-                                <rect key="frame" x="20" y="94" width="374" height="200"/>
+
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sdl-6z-DzK">
+                                <rect key="frame" x="20" y="138" width="374" height="200"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="DDC-Xa-3sc">
                                         <rect key="frame" x="8" y="8" width="358" height="184"/>
@@ -1935,7 +1936,91 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VSf-kD-m8K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10714" y="2103"/>
+
+            <point key="canvasLocation" x="10783" y="3559"/>
+        </scene>
+        <!--Username Controller-->
+        <scene sceneID="Q8i-QF-gsQ">
+            <objects>
+                <viewController id="Gep-Cq-YaQ" customClass="UsernameController" customModule="Roam" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QGJ-oI-GgN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Pp-S6-Hd5">
+                                <rect key="frame" x="20" y="138" width="374" height="200"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="l60-1y-pxm">
+                                        <rect key="frame" x="8" y="8" width="358" height="184"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAr-eC-yGI">
+                                                <rect key="frame" x="8" y="0.0" width="342" height="88.5"/>
+                                                <string key="text">Your username is only visible to you at the moment. As we expand the features of this app, friends will be able to vew your username as well.</string>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                                <color key="textColor" red="0.60378331220000003" green="0.32732866179999998" blue="0.32688704810000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Roamie926" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pgy-lA-ElF">
+                                                <rect key="frame" x="8" y="105.5" width="342" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            </textField>
+                                            <stackView opaque="NO" tag="1" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="lG6-aZ-qTz">
+                                                <rect key="frame" x="8" y="152" width="342" height="32"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mUB-br-PYm" customClass="RoundedButton" customModule="Roam" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="155" height="32"/>
+                                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                                        <state key="normal" title="Cancel">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Ql9-KG-vsX" customClass="RoundedButton" customModule="Roam" customModuleProvider="target">
+                                                        <rect key="frame" x="187" y="0.5" width="155" height="31"/>
+                                                        <color key="backgroundColor" red="0.30995897080000001" green="0.37959871830000003" blue="0.56474064089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                                        <state key="normal" title="Update Username">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="pgy-lA-ElF" secondAttribute="trailing" constant="8" id="EaM-Ip-KU3"/>
+                                            <constraint firstAttribute="trailing" secondItem="lG6-aZ-qTz" secondAttribute="trailing" constant="8" id="Fjj-Hg-UiB"/>
+                                            <constraint firstAttribute="trailing" secondItem="QAr-eC-yGI" secondAttribute="trailing" constant="8" id="IvG-7A-GOu"/>
+                                            <constraint firstItem="pgy-lA-ElF" firstAttribute="leading" secondItem="l60-1y-pxm" secondAttribute="leading" constant="8" id="KVq-M5-IGc"/>
+                                            <constraint firstItem="QAr-eC-yGI" firstAttribute="leading" secondItem="l60-1y-pxm" secondAttribute="leading" constant="8" id="euc-re-wLk"/>
+                                            <constraint firstItem="lG6-aZ-qTz" firstAttribute="leading" secondItem="l60-1y-pxm" secondAttribute="leading" constant="8" id="un5-tY-hO3"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="l60-1y-pxm" firstAttribute="leading" secondItem="4Pp-S6-Hd5" secondAttribute="leading" constant="8" id="CcS-S3-eij"/>
+                                    <constraint firstAttribute="trailing" secondItem="l60-1y-pxm" secondAttribute="trailing" constant="8" id="JRV-Ys-aqN"/>
+                                    <constraint firstAttribute="height" constant="200" id="JnA-kl-nvk"/>
+                                    <constraint firstAttribute="bottom" secondItem="l60-1y-pxm" secondAttribute="bottom" constant="8" id="UYf-Zc-58w"/>
+                                    <constraint firstItem="l60-1y-pxm" firstAttribute="top" secondItem="4Pp-S6-Hd5" secondAttribute="top" constant="8" id="iL9-az-IXc"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="wj7-TG-Nbd"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4Pp-S6-Hd5" firstAttribute="leading" secondItem="1rI-qb-uBp" secondAttribute="leading" constant="20" id="NhJ-M3-ytb"/>
+                            <constraint firstItem="1rI-qb-uBp" firstAttribute="trailing" secondItem="4Pp-S6-Hd5" secondAttribute="trailing" constant="20" id="Rcu-aq-K6X"/>
+                            <constraint firstItem="4Pp-S6-Hd5" firstAttribute="top" secondItem="1rI-qb-uBp" secondAttribute="top" constant="50" id="fdn-1C-Nlu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1rI-qb-uBp"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a1j-Pc-DSr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="11509" y="3559"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="YQf-dh-ebL">
@@ -1945,8 +2030,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aAf-YM-bEj">
-                                <rect key="frame" x="20" y="94" width="374" height="200"/>
+
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Px1-lE-FCU">
+                                <rect key="frame" x="20" y="138" width="374" height="200"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Bih-4l-LOi">
                                         <rect key="frame" x="8" y="16" width="358" height="168"/>
@@ -2017,7 +2103,66 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0LU-QU-kZm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="11443" y="2103"/>
+
+            <point key="canvasLocation" x="7784" y="3246"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="081-10-pRx">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oIG-pq-dLl" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="gear" selectedImage="gear" id="bxk-nB-9s8"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LLU-PZ-i5h">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="CBk-qK-y8D" kind="relationship" relationship="rootViewController" id="kbx-wZ-rVS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FWr-LS-W9G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7783" y="2515"/>
+        </scene>
+        <!--Summary-->
+        <scene sceneID="0DG-oh-mVn">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TdH-RM-epF" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Summary" image="notepad" id="9YR-Db-lUy"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jrs-3W-ukQ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="M8c-DM-75g" kind="relationship" relationship="rootViewController" id="5Ep-2W-GQr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FXV-aq-8rb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7782.6086956521749" y="1814.7321428571427"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="hs6-l0-Ohk">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="i6E-Om-thU" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Lgq-Ii-uOI">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="NG4-Yk-8vl" kind="relationship" relationship="viewControllers" id="bFs-gj-H0y"/>
+                        <segue destination="dL9-VS-wIn" kind="relationship" relationship="viewControllers" id="R9H-Hp-duZ"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zbm-BD-Eyf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7784.057971014493" y="150.66964285714286"/>
         </scene>
     </scenes>
     <resources>
@@ -2036,7 +2181,10 @@
         <image name="wendysLogo" width="1064" height="710"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="a1p-S4-gZ2"/>
+
+        <segue reference="fET-9Y-rbZ"/>
+        <segue reference="PGF-Nz-ZCO"/>
+        <segue reference="8VM-zI-7Nl"/>
         <segue reference="NpC-zA-onx"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1C857ECD9D695A180EADAF87 /* Pods_RoamUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46426FE5DD249F136E71199D /* Pods_RoamUITests.framework */; };
+		383514C923147DFA0050568C /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383514C823147DFA0050568C /* PageViewController.swift */; };
 		38571D5E2290B54600C460C7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38571D5D2290B54600C460C7 /* LoginViewController.swift */; };
 		38C55C442313788C00EF7918 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C55C432313788C00EF7918 /* TextField.swift */; };
 		7A7863AC49CCCDFCD1042C32 /* Pods_RoamTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E111423E33F668F6615448 /* Pods_RoamTests.framework */; };
@@ -102,6 +103,7 @@
 		09E111423E33F668F6615448 /* Pods_RoamTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoamTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1522D277607F63CD5B2CD72E /* Pods-RoamUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamUITests.debug.xcconfig"; path = "Target Support Files/Pods-RoamUITests/Pods-RoamUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1BC2D38DCEB9B75682CC5A21 /* Pods-RoamTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamTests.release.xcconfig"; path = "Target Support Files/Pods-RoamTests/Pods-RoamTests.release.xcconfig"; sourceTree = "<group>"; };
+		383514C823147DFA0050568C /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		38571D5D2290B54600C460C7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
 		38C55C432313788C00EF7918 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		447051ADC30B4D51026CF5F8 /* Pods_Roam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Roam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -356,8 +358,9 @@
 		9AEA8E0D22F3F19D00255DA0 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				9A3EB1942310BDF10086532D /* MainViewController.swift */,
 				9A3EB1902310BDF00086532D /* Roamer.storyboard */,
+				9A3EB1942310BDF10086532D /* MainViewController.swift */,
+				383514C823147DFA0050568C /* PageViewController.swift */,
 				9A3EB1912310BDF10086532D /* View1.swift */,
 				9A3EB1932310BDF10086532D /* View2.swift */,
 				9A3EB1922310BDF10086532D /* View3.swift */,
@@ -765,6 +768,7 @@
 				EDF153322290F64100FD8BB2 /* PandaMealSelectionController.swift in Sources */,
 				9AEA8E0222F3ECB300255DA0 /* EarningsController.swift in Sources */,
 				38571D5E2290B54600C460C7 /* LoginViewController.swift in Sources */,
+				383514C923147DFA0050568C /* PageViewController.swift in Sources */,
 				9A3EB1982310BDF10086532D /* View2.swift in Sources */,
 				9A42BAB422ECB16C006F7137 /* PandaExpressFoodItems.swift in Sources */,
 				9AEA8E0F22F3F2FA00255DA0 /* EarningsTitleCell.swift in Sources */,
