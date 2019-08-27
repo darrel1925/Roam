@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseStorage
+import FirebaseAuth
 
 class RoamerProfileController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -25,8 +26,71 @@ class RoamerProfileController: UIViewController {
         tryToGetProfilePic()
     }
     
+    
+    
     func getPaymentMethod() {
+        //        let customerContext = STPCustomerContext(keyProvider: StripeApi)
+        //        let config = STPPaymentConfiguration.shared()
+        //
+        //        let paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: .default())
+        //        paymentContext.paymentAmount = StripeCart.total
     }
+    
+    
+    /***************************************/
+    /********** Log Out Roamer ************/
+    /*************************************/
+    
+    func presentLoginController() {
+        let storyboard = UIStoryboard(name: StoryBoards.Main, bundle: nil)
+        let controller = storyboard.instantiateInitialViewController()
+        present(controller!, animated: true, completion: nil)
+    }
+    
+    func logOutUser() {
+        UserService.dispatchGroup.notify(queue: .main, execute: {
+            
+            if Auth.auth().currentUser != nil {
+                do {
+                    try Auth.auth().signOut()
+                    UserService.logoutUser() // removes event listener from fb user reference
+                    self.presentLoginController()
+                } catch {
+                    UserService.switchIsRoaming(to: "true")
+                    UserService.switchIsCustomer(to: "false")
+                    let message = "There was an issue logging out. Please try again."
+                    self.displayError(title: "Whoops.", message: message)
+                }
+            }
+            else {
+                print("there was no one logged in")
+                self.presentLoginController()
+            }
+        })
+    }
+    
+    
+    func beginLogOut() {
+        UserService.dispatchGroup.enter()
+        UserService.switchIsRoaming(to: "false")
+        UserService.switchIsCustomer(to: "true")
+        let message = "Are you sure you would like to log out?"
+        let alert = UIAlertController(title: "Log Out", message: message, preferredStyle: UIAlertController.Style.alert)
+        
+        // LOGOUT
+        alert.addAction(UIAlertAction(title: "Log Out", style: UIAlertAction.Style.default, handler: { (UIAlertAction) in
+            self.logOutUser()
+        }))
+        
+        // STAY LOGGED IN
+        alert.addAction(UIAlertAction(title: "Go Back", style: UIAlertAction.Style.default, handler: { (UIAlertAction) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        // present alert
+        self.present(alert, animated: true , completion: nil)
+    }
+    
     
 }
 
@@ -116,22 +180,25 @@ extension RoamerProfileController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = indexPath.section
         let row = indexPath.row
-        print(row, section)
+        print(section, row)
         switch section {
         case 3:
             switch row {
-            case 1:
+            case 1: // Change Roaming Status
                 let changeRoamingStatusVC = ChangeRomingStatusController()
                 
                 changeRoamingStatusVC.modalTransitionStyle = .crossDissolve
                 changeRoamingStatusVC.modalPresentationStyle = .overCurrentContext
                 tabBarController?.present(changeRoamingStatusVC, animated: true, completion: nil)
+            case 2: // Log Out
+                self.beginLogOut()
+                print("log out clicked")
             default:
-                print()
+                print("row \(row)")
             }
             
         default:
-            print()
+            print("section \(section)")
         }
     }
 }
@@ -213,4 +280,3 @@ extension RoamerProfileController: UIImagePickerControllerDelegate, UINavigation
     }
     
 }
-

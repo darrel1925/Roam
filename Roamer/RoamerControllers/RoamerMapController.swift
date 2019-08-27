@@ -115,42 +115,8 @@ class RoamerMapController: UIViewController {
         map.addAnnotation(annotation)
     }
     
-    func presentLoginController() {
-        let storyboard = UIStoryboard(name: StoryBoards.Main, bundle: nil)
-        let controller = storyboard.instantiateInitialViewController()
-        present(controller!, animated: true, completion: nil)
-    }
-    
-    /***************************************/
-    /********** Log Out Roamer ************/
-    /*************************************/
     
     @IBAction func backButtonClicked(_ sender: Any) {
-        UserService.dispatchGroup.enter()
-        UserService.switchIsRoaming(to: "false")
-        UserService.switchIsCustomer(to: "true")
-        
-        UserService.dispatchGroup.notify(queue: .main, execute: {
-            
-            
-            if Auth.auth().currentUser != nil {
-                do {
-                    try Auth.auth().signOut()
-                    // removes event listener from fb user reference
-                    UserService.logoutUser()
-                    self.presentLoginController()
-                } catch {
-                    UserService.switchIsRoaming(to: "true")
-                    UserService.switchIsCustomer(to: "false")
-                    let message = "There was an issue logging out. Please try again."
-                    self.displayError(title: "Whoops.", message: message)
-                }
-            }
-            else {
-                print("there was no one logged in")
-                self.presentLoginController()
-            }
-        })
         
     }
 }
