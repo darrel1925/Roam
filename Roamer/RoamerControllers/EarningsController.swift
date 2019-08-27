@@ -16,8 +16,8 @@ class EarningsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.delegate = self
-        tableView.delegate = self
-        tableView.dataSource = self
+//        tableView.delegate = self
+//        tableView.dataSource = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -50,43 +50,43 @@ class EarningsController: UIViewController {
     
 }
 
-extension EarningsController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 2 {
-            return 4
-        }
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = indexPath.section
-        
-        switch section {
-        case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "EarningsCell") as! EarningsCell
-            cell.titleLabel.text = "Current Week"
-            cell.moneyEarnedLabel.text = "$26.35"
-            return cell
-        case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "EarningsTitleCell") as! EarningsTitleCell
-            cell.dateLabel.text = "August 2019"
-            return cell
-        case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "EarningsDetailCell") as! EarningsDetailCell
-            cell.datesLabel.text = "April 23 - April 30"
-            cell.moneyEarnedLabel.text = "$128.44"
-            return cell
-        default:
-            let cell = UITableViewCell()
-            cell.textLabel?.text = "error"
-        }
-        return UITableViewCell()
-    }
-}
+//extension EarningsController: UITableViewDelegate, UITableViewDataSource {
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return 3
+//    }
+//
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        if section == 2 {
+//            return 4
+//        }
+//        return 1
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let section = indexPath.section
+//
+//        switch section {
+//        case 0:
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "EarningsCell") as! EarningsCell
+//            cell.titleLabel.text = "Current Week"
+//            cell.moneyEarnedLabel.text = "$26.35"
+//            return cell
+//        case 1:
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "EarningsTitleCell") as! EarningsTitleCell
+//            cell.dateLabel.text = "August 2019"
+//            return cell
+//        case 2:
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "EarningsDetailCell") as! EarningsDetailCell
+//            cell.datesLabel.text = "April 23 - April 30"
+//            cell.moneyEarnedLabel.text = "$128.44"
+//            return cell
+//        default:
+//            let cell = UITableViewCell()
+//            cell.textLabel?.text = "error"
+//        }
+//        return UITableViewCell()
+//    }
+//}
 
 
 /***********************************************/
@@ -98,11 +98,7 @@ extension EarningsController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         print("Selected view controller: \(tabBarController.selectedIndex)")
         if tabBarController.selectedIndex == 1 {
-            if let tabItems = tabBarController.tabBar.items {
-                // In this case we want to modify the badge number of the third tab:
-                let tabItem = tabItems[1]
-                tabItem.badgeValue = nil
-            }
+            setNotificationBadge()
         }
     }
     
@@ -110,7 +106,13 @@ extension EarningsController: UITabBarControllerDelegate {
         if let tabItems = tabBarController?.tabBar.items {
             // In this case we want to modify the badge number of the third tab:
             let tabItem = tabItems[1]
-            tabItem.badgeValue = String(NotificationService.count)
+            
+            if NotificationService.count == 0 {
+                tabItem.badgeValue = nil
+                
+            } else {
+                tabItem.badgeValue = String(NotificationService.count)
+            }
         }
     }
 }

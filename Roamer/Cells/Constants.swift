@@ -10,6 +10,7 @@ import Foundation
 
 struct StoryBoards {
     static let Main = "Main"
+    static let Roamer = "Roamer"
 }
 
 struct DataParams {
@@ -54,6 +55,12 @@ struct StoryBoardIds {
     static let HomePageController = "HomePageController"
     static let ProfileController = "ProfileController"
     static let EarningsController = "EarningsController"
+    static let LoginController = "LoginController"
+    static let SignInWithEmailViewController = "SignInWithEmailViewController"
+    
+    static let roamerTabBar = "roamerTabBar"
+    static let tabBar = "tabBar"
+
 }
 
 struct Segues {
