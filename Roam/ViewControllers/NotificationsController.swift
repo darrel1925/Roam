@@ -51,7 +51,28 @@ class NotificationsController: UIViewController {
     }
     
     func requestToRoam(row: Int, notification: MyNotification) {
-        // Should not recieve a request to roam on the cutomer's notificaiton page
+        let date = notification.date!
+        let message = "Looks like this request to roam has expired. Rember to accept them in under 5 minutes."
+        
+        if (!date.recivedUnderFiveMinutesAgo) {
+            // remove notification
+            let alert = UIAlertController(title: "Notification Expired", message: message, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Okay", style: .default, handler: {_ in
+                self.removeNotification(with: notification)
+                return
+            })
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
+        }
+        
+        let deliverRequestVC = DeliverRequestController()
+        deliverRequestVC.notification = localNotifications[row]
+        deliverRequestVC.notificationController = self
+        
+        
+        deliverRequestVC.modalTransitionStyle = .crossDissolve
+        deliverRequestVC.modalPresentationStyle = .overCurrentContext
+        present(deliverRequestVC, animated: true, completion: nil)
     }
     
     func acceptingRequestToRoam(row: Int, notification: MyNotification) {
