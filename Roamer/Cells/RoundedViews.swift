@@ -54,30 +54,12 @@ class RoundedProfilePicture: UIImageView {
 }
 
 class BaseTabBarController: UITabBarController {
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        var defaultIndex: Int = 0
-        
-        func viewDidLoad() {
-            super.viewDidLoad()
-            selectedIndex = defaultIndex
-        }
+    
+    @IBInspectable var defaultIndex: Int = 0
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        selectedIndex = defaultIndex
     }
-}
-
-class TranslucentNavBar: UINavigationBar {
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.setBackgroundImage(UIImage(), for: .default)
-        self.isTranslucent = true        
-    }
-}
-
-class TranslucentNavController: UINavigationController {
-    override func awakeFromNib() {
-        super.awakeFromNib()
-
-        self.view.backgroundColor = .clear
-        
-    }
+    
 }

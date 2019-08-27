@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("is customer is \(String(describing: UserService.isCustomer)) when presenting homepage")
         if UserService.isCustomer == "true" {
             // show customer home page
-            let storyboard = UIStoryboard(name: StoryBoards.Main, bundle: nil)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let HomePageVC = storyboard.instantiateViewController(withIdentifier: StoryBoardIds.HomePageController) as! HomePageViewController
             let navController = UINavigationController.init(rootViewController: HomePageVC)
             
@@ -81,35 +81,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
         }
         else {
-            
-            
-            
-            let storyboard = UIStoryboard(name: StoryBoards.Roamer, bundle: nil)
-            let HomePageVC = storyboard.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
+            // show roamer home page
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let tabbar: UITabBarController? = (storyBoard.instantiateViewController(withIdentifier: "tabBar") as! UITabBarController)
 
             if let window = self.window, let rootViewController = window.rootViewController {
                 var currentController = rootViewController
                 while let presentedController = currentController.presentedViewController {
                     currentController = presentedController
                 }
-                print("to mainviewc")
-                currentController.present(HomePageVC, animated: true, completion: nil)
+                print("to Romer Home")
+                currentController.present(tabbar!, animated: true, completion: nil)
             }
-            
-            
-            
-//            // show roamer home page
-//            let storyBoard = UIStoryboard(name: StoryBoards.Roamer, bundle: nil)
-//            let tabbar: UITabBarController? = (storyBoard.instantiateViewController(withIdentifier: StoryBoardIds.roamerTabBar) as! UITabBarController)
-//
-//            if let window = self.window, let rootViewController = window.rootViewController {
-//                var currentController = rootViewController
-//                while let presentedController = currentController.presentedViewController {
-//                    currentController = presentedController
-//                }
-//                print("to Romer Home")
-//                currentController.present(tabbar!, animated: true, completion: nil)
-//            }
         }
     }
     
