@@ -25,7 +25,7 @@ class _StripeCart {
     
     var deliveryFee: Int {
         if cartItems.count == 0 { return 0 }
-        return 250
+        return 350
     }
     var subtotal: Int {
         var amount = 0  

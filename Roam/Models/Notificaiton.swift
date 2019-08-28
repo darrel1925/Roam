@@ -15,13 +15,14 @@ struct MyNotification: Equatable {
     
     var notificationId: String { return self.userInfo["notificationId"] as? String ?? "no id"}
     var senderEmail: String { return self.userInfo["senderEmail"] as? String ?? "no email"}
-    var senderUsername: String { return self.userInfo["senderUsername"] as? String ?? "no username"}
+    var senderFirstName: String { return self.userInfo["senderFirstName"] as? String ?? "no firstName"}
+    var senderLastName: String { return self.userInfo["senderLastName"] as? String ?? "no lastName"}
     var senderFCMToken: String { return self.userInfo["senderFCMToken"] as? String ?? "no FCMToken"}
     var locationName: String { return self.userInfo["locationName"] as? String ?? "no location"}
-    var isActive: String = "true"
-    var date: Date!
     var longitude: String { return self.userInfo["longitude"] as? String ?? "0" }
     var latitude: String { return self.userInfo["latitude"] as? String ?? "0" }
+    var isActive: String = "true"
+    var date: Date!
 
 
     init(userInfo: [String : Any]) {
@@ -40,7 +41,8 @@ struct MyNotification: Equatable {
         let data : [String: Any] = [
             "notificationId": self.notificationId,
             "senderEmail": self.senderEmail,
-            "senderUsername": self.senderUsername,
+            "senderFirstName": self.senderFirstName,
+            "senderLastName": self.senderLastName,
             "senderFCMToken": self.senderFCMToken,
             "locationName": self.locationName,
             "latitude": self.latitude,
@@ -53,25 +55,6 @@ struct MyNotification: Equatable {
     }
     
     
-    func createAlert() -> UIAlertController {
-        switch self.notificationId {
-        case "RequestToRoam":
-            let message = "Looks like \(userInfo["userUserName"] as? String ?? "Name not found.") would like food delivered to \(userInfo["locationName"] as? String ?? "Location's Name Not Found.") \n Would you like to accept this delivery? "
-
-            let alert = UIAlertController(title: "New Roam Request!", message: message, preferredStyle: .alert)
-
-            let cancel = UIAlertAction(title: "Cancel", style: .destructive, handler: { action in
-                print("action cancel handler")
-            })
-            
-            alert.addAction(cancel)
-            return alert
-            
-        default:
-            print("Id not found, could not create alert.")
-            return UIAlertController()
-        }
-    }
     
     func formatId() -> String {
         switch self.notificationId {
@@ -85,7 +68,7 @@ struct MyNotification: Equatable {
     func formatMessage() -> String {
         switch self.notificationId {
         case "RequestToRoam":
-            return "\(UserService.user.firstName) would like you to deliver Panda express to \(locationName) within 25 minutes."
+            return "\(UserService.user.firstName) \(UserService.user.lastName)  would like you to deliver Panda express to \(locationName) within 25 minutes."
         default:
             return "New Message"
         }
@@ -94,7 +77,8 @@ struct MyNotification: Equatable {
     static func == (lhs: MyNotification, rhs: MyNotification) -> Bool {
         return (lhs.notificationId == rhs.notificationId) &&
             (lhs.senderEmail == rhs.senderEmail) &&
-            (lhs.senderUsername == rhs.senderUsername) &&
+            (lhs.senderFirstName == rhs.senderFirstName) &&
+            (lhs.senderLastName == rhs.senderLastName) &&
             (lhs.date == rhs.date)
     }
 }

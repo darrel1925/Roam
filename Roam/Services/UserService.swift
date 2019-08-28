@@ -197,10 +197,10 @@ final class _UserService {
             print("USERS LOCATION COULD NOT BE FOUND")
             return
         }
-        
         let data: [String : Any] = [
             DataParams.senderEmail: user.email,
-            DataParams.senderUsername: user.username,
+            DataParams.senderFirstName: user.firstName,
+            DataParams.senderLastName: user.lastName,
             DataParams.senderFCMToken: fcmToken ,
             DataParams.locationName: user.currentLocationString!,
             DataParams.longitude: "\(LocationService.longitude)",
@@ -284,7 +284,8 @@ final class _UserService {
     func sendNotificationToCustomer(withToken token: String, withEmail email: String) {
         let data: [String : Any] = [
             DataParams.senderEmail: user.email,
-            DataParams.senderUsername: user.username,
+            DataParams.senderFirstName: user.firstName,
+            DataParams.senderLastName: user.lastName,
             DataParams.senderFCMToken: fcmToken,
             DataParams.longitude: "\(LocationService.longitude)",
             DataParams.latitude: "\(LocationService.latitude)",

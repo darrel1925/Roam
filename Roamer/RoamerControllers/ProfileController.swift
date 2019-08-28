@@ -38,9 +38,13 @@ class ProfileController: UIViewController {
     }
 
     
+
+
+    
     /***************************************/
     /********** Log Out Roamer ************/
     /*************************************/
+    
     
     func presentLoginController() {
         let storyboard = UIStoryboard(name: StoryBoards.Main, bundle: nil)
@@ -70,7 +74,6 @@ class ProfileController: UIViewController {
         })
     }
     
-    
     func beginLogOut() {
         UserService.dispatchGroup.enter()
         UserService.switchIsRoaming(to: "false")
@@ -91,8 +94,6 @@ class ProfileController: UIViewController {
         // present alert
         self.present(alert, animated: true , completion: nil)
     }
-
-
 }
 
 extension ProfileController: UITableViewDelegate, UITableViewDataSource {
@@ -109,7 +110,7 @@ extension ProfileController: UITableViewDelegate, UITableViewDataSource {
         case 2: // Account Info
             return 1
         case 3: // payment info
-            return 3
+            return 4
         default:
             return 1
         }
@@ -133,8 +134,8 @@ extension ProfileController: UITableViewDelegate, UITableViewDataSource {
                 cell.infoDescription.text = "MyName"
                 return cell
             case 1:
-                cell.infoTitle.text = "User Name"
-                cell.infoDescription.text = "@\(UserService.user.username)"
+                cell.infoTitle.text = "Name"
+                cell.infoDescription.text = "@\(UserService.user.fullName)"
                 return cell
             case 2:
                 cell.infoTitle.text = "Email"
@@ -165,6 +166,11 @@ extension ProfileController: UITableViewDelegate, UITableViewDataSource {
                 cell.accessoryType = .disclosureIndicator
                 return cell
             case 2:
+                cell.infoTitle.text = "Switch to Roamer Profile"
+                cell.infoDescription.text = ""
+                cell.accessoryType = .disclosureIndicator
+                return cell
+            case 3:
                 cell.infoTitle.text = "Log Out"
                 cell.infoDescription.text = ""
                 cell.infoTitle.textColor = #colorLiteral(red: 0.7788676168, green: 0.1122596166, blue: 0.07396716866, alpha: 1)
@@ -191,7 +197,9 @@ extension ProfileController: UITableViewDelegate, UITableViewDataSource {
                 changeRoamingStatusVC.modalTransitionStyle = .crossDissolve
                 changeRoamingStatusVC.modalPresentationStyle = .overCurrentContext
                 tabBarController?.present(changeRoamingStatusVC, animated: true, completion: nil)
-            case 2: // Log Out
+            case 2: // Switch to Roamer Homepage
+                print("switched to roamer")
+            case 3: // Log Out
                 beginLogOut()
                 print("log out clicked")
             default:

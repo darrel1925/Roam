@@ -37,6 +37,35 @@ class RoamerProfileController: UIViewController {
     }
     
     
+    func switchToCustomerProfile() {
+        let message = "You will now be able to order meals and will not recieve any requests to roam until you sign back into your roamer account."
+        let alert = UIAlertController(title: "Switch to Customer Account", message: message, preferredStyle: UIAlertController.Style.alert)
+        
+        // SWITCH
+        alert.addAction(UIAlertAction(title: "Switch Accounts", style: UIAlertAction.Style.default, handler: { (UIAlertAction) in
+            self.presentCustomerHomePage()
+        }))
+        
+        // STAY HERE
+        alert.addAction(UIAlertAction(title: "Stay Here", style: UIAlertAction.Style.default, handler: { (UIAlertAction) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        // present alert
+        self.present(alert, animated: true , completion: nil)
+        }
+    
+    func presentCustomerHomePage() {
+        UserService.switchIsRoaming(to: "false")
+        UserService.switchIsCustomer(to: "true")
+        let storyBoard = UIStoryboard(name: StoryBoards.Main, bundle: nil)
+        let tabBar: UITabBarController? = (storyBoard.instantiateViewController(withIdentifier: StoryBoardIds.customerTabBar) as! UITabBarController)
+
+        self.present(tabBar!, animated: true, completion: nil)
+        
+    }
+    
+    
     /***************************************/
     /********** Log Out Roamer ************/
     /*************************************/
@@ -56,7 +85,7 @@ class RoamerProfileController: UIViewController {
                     UserService.logoutUser() // removes event listener from fb user reference
                     self.presentLoginController()
                 } catch {
-                    UserService.switchIsRoaming(to: "true")
+                    UserService.switchIsRoaming(to: "true") // to enable notif
                     UserService.switchIsCustomer(to: "false")
                     let message = "There was an issue logging out. Please try again."
                     self.displayError(title: "Whoops.", message: message)
@@ -71,14 +100,15 @@ class RoamerProfileController: UIViewController {
     
     
     func beginLogOut() {
-        UserService.dispatchGroup.enter()
-        UserService.switchIsRoaming(to: "false")
-        UserService.switchIsCustomer(to: "true")
         let message = "Are you sure you would like to log out?"
         let alert = UIAlertController(title: "Log Out", message: message, preferredStyle: UIAlertController.Style.alert)
         
         // LOGOUT
         alert.addAction(UIAlertAction(title: "Log Out", style: UIAlertAction.Style.default, handler: { (UIAlertAction) in
+            UserService.dispatchGroup.enter()
+            UserService.switchIsRoaming(to: "false") // to disable notif
+            UserService.switchIsCustomer(to: "true")
+
             self.logOutUser()
         }))
         
@@ -108,7 +138,7 @@ extension RoamerProfileController: UITableViewDelegate, UITableViewDataSource {
         case 2: // Account Info
             return 1
         case 3: // payment info
-            return 3
+            return 4
         default:
             return 1
         }
@@ -132,8 +162,8 @@ extension RoamerProfileController: UITableViewDelegate, UITableViewDataSource {
                 cell.infoDescription.text = "MyName"
                 return cell
             case 1:
-                cell.infoTitle.text = "User Name"
-                cell.infoDescription.text = "@\(UserService.user.username)"
+                cell.infoTitle.text = "Name"
+                cell.infoDescription.text = "\(UserService.user.firstName) \(UserService.user.lastName)"
                 return cell
             case 2:
                 cell.infoTitle.text = "Email"
@@ -164,6 +194,11 @@ extension RoamerProfileController: UITableViewDelegate, UITableViewDataSource {
                 cell.accessoryType = .disclosureIndicator
                 return cell
             case 2:
+                cell.infoTitle.text = "Switch to customer profile"
+                cell.infoDescription.text = ""
+                cell.accessoryType = .disclosureIndicator
+                return cell
+            case 3:
                 cell.infoTitle.text = "Log Out"
                 cell.infoDescription.text = ""
                 cell.infoTitle.textColor = #colorLiteral(red: 0.7788676168, green: 0.1122596166, blue: 0.07396716866, alpha: 1)
@@ -190,7 +225,9 @@ extension RoamerProfileController: UITableViewDelegate, UITableViewDataSource {
                 changeRoamingStatusVC.modalTransitionStyle = .crossDissolve
                 changeRoamingStatusVC.modalPresentationStyle = .overCurrentContext
                 tabBarController?.present(changeRoamingStatusVC, animated: true, completion: nil)
-            case 2: // Log Out
+            case 2: // switch to customer profile
+                switchToCustomerProfile()
+            case 3: // Log Out
                 self.beginLogOut()
                 print("log out clicked")
             default:

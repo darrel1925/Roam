@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         setUpStripe()
-            checkIfUserLoggedIn()
+        checkIfUserLoggedIn()
         
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
@@ -67,9 +67,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("is customer is \(String(describing: UserService.isCustomer)) when presenting homepage")
         if UserService.isCustomer == "true" {
             // show customer home page
-            let storyboard = UIStoryboard(name: StoryBoards.Main, bundle: nil)
-            let HomePageVC = storyboard.instantiateViewController(withIdentifier: StoryBoardIds.HomePageController) as! HomePageViewController
-            let navController = UINavigationController.init(rootViewController: HomePageVC)
+            let storyBoard = UIStoryboard(name: StoryBoards.Main, bundle: nil)
+            let tabBar: UITabBarController? = (storyBoard.instantiateViewController(withIdentifier: StoryBoardIds.customerTabBar) as! UITabBarController)
             
             if let window = self.window, let rootViewController = window.rootViewController {
                 var currentController = rootViewController
@@ -77,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     currentController = presentedController
                 }
                 print("to HomePage")
-                currentController.present(navController, animated: true, completion: nil)
+                currentController.present(tabBar!, animated: true, completion: nil)
                 }
         }
         else {

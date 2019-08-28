@@ -44,8 +44,34 @@ extension String {
         return !isEmpty && range(of: "[^a-zA-Z0-9]", options: .regularExpression) == nil
     }
     
+    var hasLettersOnly: Bool {
+        return !isEmpty && range(of: "[^a-zA-Z]", options: .regularExpression) == nil
+    }
+    
     var containsWhitespace : Bool {
         return(self.rangeOfCharacter(from: .whitespacesAndNewlines) != nil)
+    }
+    
+    var isValidName: Bool {
+        let fullName = self.components(separatedBy: " ")
+        
+        if fullName.count != 2 { return false }
+
+        let firstName = fullName[0]
+        let lastName = fullName[1]
+        
+        if !firstName.hasLettersOnly { return false }
+        
+        if !lastName.hasLettersOnly { return false }
+        
+        print("Full Name: \(fullName)")
+        
+        return true
+    }
+    
+    
+    func separateName() -> [String] {
+        return self.components(separatedBy: " ")
     }
     
     func toDate() -> Date {
@@ -54,6 +80,7 @@ extension String {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return dateFormatter.date(from: self)!
     }
+    
 }
 
 

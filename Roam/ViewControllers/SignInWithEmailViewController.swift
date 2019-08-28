@@ -34,8 +34,8 @@ extension UITextField{
 class SignInWithEmailViewController: UIViewController {
 
     func setTextLine(){
-        usernameField.setBottomBorder()
-        usernameField.setPadding()
+        fullNameField.setBottomBorder()
+        fullNameField.setPadding()
         emailField.setBottomBorder()
         emailField.setPadding()
 
@@ -45,7 +45,7 @@ class SignInWithEmailViewController: UIViewController {
         confirmPasswordField.setPadding()
         
     }
-    @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var fullNameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
@@ -55,7 +55,6 @@ class SignInWithEmailViewController: UIViewController {
         super.viewDidLoad()
         setTextLine()
 
-        // Do any additional setup after loading the view.
     }
     
     func addRoamerToActiveRoamers(email: String) {
@@ -103,15 +102,9 @@ class SignInWithEmailViewController: UIViewController {
     }
     
     func credentialsAreValid() -> Bool {
-        if !(usernameField.text!.isAlphanumeric && usernameField.text!.count >= 4) {
-            let message = "Your username must be at least 4 characters long and contain only alphanumeric characters."
-            self.displayError(title: "Whoops.", message: message, completion: {_ in
-                // make text field red
-            })
-            return false
-        }
-        else if (usernameField.text!.containsWhitespace) {
-            let message = "Your username cannot contain any white spaces."
+        
+        if !(self.fullNameField.text!.isValidName) {
+            let message = "Please enter valid first and last name. (Ex. Michael Young)"
             self.displayError(title: "Whoops.", message: message, completion: {_ in
                 // make text field red
             })
@@ -140,11 +133,11 @@ class SignInWithEmailViewController: UIViewController {
         
         UserService.loggedInAsCustomer = true
         
-        let username = usernameField.text!
+        let fullName = fullNameField.text!.separateName()
         let email = emailField.text!
         let password = passwordField.text!
-        let firstName = "James"  // TODO: get first name, last name,
-        let lastName = "Carter"
+        let firstName = fullName[0]
+        let lastName = fullName[1]
         activityIndicator.startAnimating()
         
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
@@ -158,9 +151,9 @@ class SignInWithEmailViewController: UIViewController {
             guard let fireUser = result?.user else { return }
             let customer = User.init(id: fireUser.uid,
                                      email: fireUser.email ?? "error",
-                                     username: username, stripeId: "",
                                      firstName: firstName,
-                                     lastName: lastName)
+                                     lastName: lastName,
+                                     stripeId: "")
             
             self.createFireStoreUser(user: customer)
             print("registered succesfully")
@@ -174,11 +167,11 @@ class SignInWithEmailViewController: UIViewController {
         
         UserService.loggedInAsCustomer = false
         
-        let username = usernameField.text!
+        let fullName = fullNameField.text!.separateName()
         let email = emailField.text!
         let password = passwordField.text!
-        let firstName = "James"  // TODO: get first name, last name,
-        let lastName = "Carter"
+        let firstName = fullName[0]
+        let lastName = fullName[1]
         activityIndicator.startAnimating()
         
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
@@ -191,20 +184,18 @@ class SignInWithEmailViewController: UIViewController {
             
             guard let fireUser = result?.user else { return }
             let roamer = User.init(id: fireUser.uid,
-                                     email: email,
-                                     username: username,
-                                     stripeId: "",
+                                     email: fireUser.email ?? "error",
                                      firstName: firstName,
-                                     lastName: lastName)
+                                     lastName: lastName,
+                                     stripeId: ""
+            )
             print("registered succesfully")
             
             self.createFireStoreUser(user: roamer)
             self.addRoamerToActiveRoamers(email: email)
             self.activityIndicator.stopAnimating()
             
-            let storyBoard = UIStoryboard(name: StoryBoards.Main, bundle: nil)
-            let tabbar: UITabBarController? = (storyBoard.instantiateViewController(withIdentifier: "tabBar") as! UITabBarController)
-            self.present(tabbar!, animated: true, completion: nil)
+
         }
     }
     

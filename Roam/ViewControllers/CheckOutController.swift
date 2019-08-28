@@ -27,21 +27,16 @@ class CheckOutController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        checkIfCartEmpty()
         setUpTableView()
         setUpPaymentInfo()
         setUpStripeConfig()
     }
     
-    func checkIfCartEmpty() {
-        print("empty")
-        if StripeCart.isEmpty {
+    func presentEmptyAlert() {
             let message = "You'll need to add items to your cart first!"
             self.displayError(title: "Empty Cart", message: message, completion: {_ in
-                self.dismiss(animated: true, completion: nil)
             })
             return
-        }
     }
     
     func setUpTableView() {
@@ -67,8 +62,6 @@ class CheckOutController: UIViewController {
         paymentContext.paymentAmount = StripeCart.total
         paymentContext.delegate = self
         paymentContext.hostViewController = self
-        
-        
     }
     
     func presentLocationDetails() {
@@ -95,8 +88,12 @@ class CheckOutController: UIViewController {
     }
     
     @IBAction func placeOrderClicked(_ sender: Any) {
+//        if StripeCart.isEmpty {
+//            presentEmptyAlert()
+//            return
+        //        }
         checkLocationServices()
-//        checkIfCartEmpty()
+
 //        activityIndicator.startAnimating()
 //        paymentContext.requestPayment()
     }
@@ -108,7 +105,6 @@ class CheckOutController: UIViewController {
 
 extension CheckOutController: STPPaymentContextDelegate {
     func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
-        checkIfCartEmpty()
         
         activityIndicator.stopAnimating()
         // updating selected payment method text

@@ -56,7 +56,6 @@
 		9ADDC48122FF1BCE0053A1F0 /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADDC47F22FF1BCE0053A1F0 /* ForgotPasswordController.swift */; };
 		9ADDC48222FF1BCE0053A1F0 /* ForgotPasswordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ADDC48022FF1BCE0053A1F0 /* ForgotPasswordController.xib */; };
 		9ADECB4E22F76D7C003B38C1 /* PhoneNumberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADECB4D22F76D7C003B38C1 /* PhoneNumberController.swift */; };
-		9ADECB5022F76D8B003B38C1 /* UsernameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADECB4F22F76D8B003B38C1 /* UsernameController.swift */; };
 		9AE5497B2303CC8100719737 /* UIBarButtonAndBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE5497A2303CC8100719737 /* UIBarButtonAndBadge.swift */; };
 		9AEA8E0222F3ECB300255DA0 /* EarningsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA8E0122F3ECB300255DA0 /* EarningsController.swift */; };
 		9AEA8E0C22F3F14D00255DA0 /* EarningsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA8E0B22F3F14D00255DA0 /* EarningsCell.swift */; };
@@ -109,7 +108,7 @@
 		62C82FFA790FB10D7995D567 /* Pods-RoamUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamUITests.release.xcconfig"; path = "Target Support Files/Pods-RoamUITests/Pods-RoamUITests.release.xcconfig"; sourceTree = "<group>"; };
 		82963C48207E02237574EC5E /* Pods-RoamTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamTests.debug.xcconfig"; path = "Target Support Files/Pods-RoamTests/Pods-RoamTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9A2CAC13230A45FA008F376D /* RoundedViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RoundedViews.swift; path = Roamer/Cells/RoundedViews.swift; sourceTree = SOURCE_ROOT; };
-		9A2CAC15230A5BC6008F376D /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		9A2CAC15230A5BC6008F376D /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileController.swift; path = ../../Roamer/RoamerControllers/ProfileController.swift; sourceTree = "<group>"; };
 		9A2CAC17230A60B6008F376D /* ProfileSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionCell.swift; sourceTree = "<group>"; };
 		9A2CAC19230A610A008F376D /* ProfileInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoCell.swift; sourceTree = "<group>"; };
 		9A3DB4592313A130008ADA20 /* RoamerNotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoamerNotificationController.swift; sourceTree = "<group>"; };
@@ -154,7 +153,6 @@
 		9ADDC48022FF1BCE0053A1F0 /* ForgotPasswordController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordController.xib; sourceTree = "<group>"; };
 		9ADDC48322FF49F50053A1F0 /* Roam.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Roam.entitlements; sourceTree = "<group>"; };
 		9ADECB4D22F76D7C003B38C1 /* PhoneNumberController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberController.swift; sourceTree = "<group>"; };
-		9ADECB4F22F76D8B003B38C1 /* UsernameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameController.swift; sourceTree = "<group>"; };
 		9AE5497A2303CC8100719737 /* UIBarButtonAndBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonAndBadge.swift; sourceTree = "<group>"; };
 		9AEA8E0122F3ECB300255DA0 /* EarningsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsController.swift; sourceTree = "<group>"; };
 		9AEA8E0B22F3F14D00255DA0 /* EarningsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsCell.swift; sourceTree = "<group>"; };
@@ -228,6 +226,7 @@
 				9A42BAC122ECD993006F7137 /* CheckOutController.swift */,
 				9ADDC47822FD3B020053A1F0 /* MapController.swift */,
 				9AA4C4E82303F24800194B42 /* NotificationsController.swift */,
+				9A2CAC15230A5BC6008F376D /* ProfileController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -313,7 +312,6 @@
 			isa = PBXGroup;
 			children = (
 				9ADECB4D22F76D7C003B38C1 /* PhoneNumberController.swift */,
-				9ADECB4F22F76D8B003B38C1 /* UsernameController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -324,7 +322,6 @@
 				9ADECB4A22F7637C003B38C1 /* Settings */,
 				9AEA8E0122F3ECB300255DA0 /* EarningsController.swift */,
 				9AA4C4FC2307D29000194B42 /* RoamerMapController.swift */,
-				9A2CAC15230A5BC6008F376D /* ProfileController.swift */,
 				9A3DB4592313A130008ADA20 /* RoamerNotificationController.swift */,
 				9A3DB45B2313A44F008ADA20 /* RoamerProfileController.swift */,
 			);
@@ -806,7 +803,6 @@
 				ED4CA6B3229541E50022A095 /* SideSelectionTitleCell.swift in Sources */,
 				9A3EB1992310BDF10086532D /* MainViewController.swift in Sources */,
 				ED3C45DA22948A0A006D17B0 /* ItemDescriptionCell.swift in Sources */,
-				9ADECB5022F76D8B003B38C1 /* UsernameController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

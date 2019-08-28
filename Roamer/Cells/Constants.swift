@@ -26,7 +26,8 @@ struct DataParams {
     
     static let roamerEmail = "roamerEmail"
     static let senderEmail = "senderEmail"
-    static let senderUsername = "senderUsername"
+    static let senderFirstName = "senderFirstName"
+    static let senderLastName = "senderLastName"
     static let senderFCMToken = "senderFCMToken"
     static let locationName = "locationName"
     static let longitude = "longitude"
@@ -52,12 +53,13 @@ struct StoryBoardIds {
     static let MapController = "MapController"
     static let RoamerMapController = "RoamerMapController"
     static let NotificationsController = "NotificationsController"
-    static let HomePageController = "HomePageController"
+    static let HomePageViewController = "HomePageController"
     static let ProfileController = "ProfileController"
     static let EarningsController = "EarningsController"
     static let LoginController = "LoginController"
     static let SignInWithEmailViewController = "SignInWithEmailViewController"
     
+    static let customerTabBar = "customerTabBar"
     static let roamerTabBar = "roamerTabBar"
     static let tabBar = "tabBar"
 

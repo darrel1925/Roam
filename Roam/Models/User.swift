@@ -14,11 +14,10 @@ import FirebaseStorage
 class User {
     var id: String
     var email:String
-    var username: String
     var stripeId: String
     var firstName: String
     var lastName: String
-    
+    var fullName: String { return "\(firstName) \(lastName)" }
     var profilePictureImage: UIImage!
     
     var currentLocationString: String?
@@ -27,26 +26,21 @@ class User {
         return self.email.replacingOccurrences(of: "@", with: "")
     }
     
-    init(id: String = "", email: String = "", username: String = "", stripeId: String = "", firstName: String, lastName: String) {
+    init(id: String = "", email: String = "", firstName: String = "", lastName: String = "", stripeId: String = "") {
         self.id = id
         self.email = email
-        self.username = username
-        self.stripeId = stripeId
-        
         self.firstName = firstName
         self.lastName = lastName
-        
+        self.stripeId = stripeId
         
     }
     
     init(data: [String: Any]) {
         self.id = data["id"] as? String ?? ""
         self.email = data["email"] as? String ?? ""
-        self.username = data["username"] as? String ?? ""
         self.stripeId = data["stripeId"] as? String ?? ""
-        
-        self.firstName = "firstName"
-        self.lastName = "lastName"
+        self.firstName = data["firstName"] as? String ?? ""
+        self.lastName = data["lastName"] as? String ?? ""
         
         setFCMToken()
         setRoamerFCMToken()
@@ -57,10 +51,9 @@ class User {
         let data : [String: Any] = [
             "id" : user.id,
             "email" : user.email,
-            "username" : user.username,
-            "stripeId" : user.stripeId,
             "firstName": user.firstName,
             "lastName": user.lastName,
+            "stripeId" : user.stripeId,
             "isCustomer": "true"
         ]
         
