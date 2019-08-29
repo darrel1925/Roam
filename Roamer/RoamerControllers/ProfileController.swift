@@ -38,8 +38,33 @@ class ProfileController: UIViewController {
     }
 
     
-
-
+    func switchToRoamerProfile()  {
+    let message = "You will now be able to order meals and will not recieve any requests to roam until you sign back into your roamer account."
+    let alert = UIAlertController(title: "Switch to Customer Account", message: message, preferredStyle: UIAlertController.Style.alert)
+    
+    // SWITCH
+    alert.addAction(UIAlertAction(title: "Switch Accounts", style: UIAlertAction.Style.default, handler: { (UIAlertAction) in
+    self.presentRoamerHomePage()
+    }))
+    
+    // STAY HERE
+    alert.addAction(UIAlertAction(title: "Stay Here", style: UIAlertAction.Style.default, handler: { (UIAlertAction) in
+    alert.dismiss(animated: true, completion: nil)
+    }))
+    
+    // present alert
+    self.present(alert, animated: true , completion: nil)
+    }
+    
+    func presentRoamerHomePage() {
+        UserService.switchIsRoaming(to: "true")
+        UserService.switchIsCustomer(to: "false")
+        let storyBoard = UIStoryboard(name: StoryBoards.Roamer, bundle: nil)
+        let tabBar: UITabBarController? = (storyBoard.instantiateViewController(withIdentifier: StoryBoardIds.customerTabBar) as! UITabBarController)
+        
+        self.present(tabBar!, animated: true, completion: nil)
+        
+    }
     
     /***************************************/
     /********** Log Out Roamer ************/
@@ -199,6 +224,8 @@ extension ProfileController: UITableViewDelegate, UITableViewDataSource {
                 tabBarController?.present(changeRoamingStatusVC, animated: true, completion: nil)
             case 2: // Switch to Roamer Homepage
                 print("switched to roamer")
+                // TODO: check if they have a roamers profile
+                switchToRoamerProfile()
             case 3: // Log Out
                 beginLogOut()
                 print("log out clicked")

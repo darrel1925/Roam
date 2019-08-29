@@ -38,8 +38,8 @@ class RoamerProfileController: UIViewController {
     
     
     func switchToCustomerProfile() {
-        let message = "You will now be able to order meals and will not recieve any requests to roam until you sign back into your roamer account."
-        let alert = UIAlertController(title: "Switch to Customer Account", message: message, preferredStyle: UIAlertController.Style.alert)
+        let message = "By switiching to your Roamer Account, you will now begin to recive request to roam and earn cash on each completed delivery."
+        let alert = UIAlertController(title: "Switch to Roamer Account", message: message, preferredStyle: UIAlertController.Style.alert)
         
         // SWITCH
         alert.addAction(UIAlertAction(title: "Switch Accounts", style: UIAlertAction.Style.default, handler: { (UIAlertAction) in
@@ -59,12 +59,11 @@ class RoamerProfileController: UIViewController {
         UserService.switchIsRoaming(to: "false")
         UserService.switchIsCustomer(to: "true")
         let storyBoard = UIStoryboard(name: StoryBoards.Main, bundle: nil)
-        let tabBar: UITabBarController? = (storyBoard.instantiateViewController(withIdentifier: StoryBoardIds.customerTabBar) as! UITabBarController)
+        let tabBar: UITabBarController? = (storyBoard.instantiateViewController(withIdentifier: StoryBoardIds.roamerTabBar) as! UITabBarController)
 
         self.present(tabBar!, animated: true, completion: nil)
         
     }
-    
     
     /***************************************/
     /********** Log Out Roamer ************/

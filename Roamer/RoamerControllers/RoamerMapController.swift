@@ -80,8 +80,8 @@ class RoamerMapController: UIViewController {
         LocationService.updateLocationWith(latitude: latitude, longitude: longitude)
         
         if count >= 5 {
-//            LocationService.sendLocationToFirebaseAsRoamer()
-//            getCustomersLocationFromFireBase()
+            LocationService.sendLocationToFirebaseAsRoamer()
+            getCustomersLocationFromFireBase()
             count = 0
         }
     }
