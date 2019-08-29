@@ -84,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             
             let storyboard = UIStoryboard(name: StoryBoards.Roamer, bundle: nil)
-            let HomePageVC = storyboard.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
+            let HomePageVC = storyboard.instantiateViewController(withIdentifier: "PageViewController") as! PageViewController
 
             if let window = self.window, let rootViewController = window.rootViewController {
                 var currentController = rootViewController

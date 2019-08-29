@@ -71,6 +71,7 @@
                                         </state>
                                         <connections>
                                             <action selector="OnLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qab-Q2-5CT"/>
+                                            <segue destination="tiB-2H-vMi" kind="show" identifier="toLoginPage" id="J2K-T2-alQ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -92,7 +93,8 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0w-hC-Nyr">
                                         <rect key="frame" x="101.5" y="177" width="211.5" height="73"/>
-                                        <string key="text">Saving you time on campus </string>
+                                        <string key="text">Saving you time 
+on campus </string>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="28"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -135,7 +137,6 @@
                         <outletCollection property="signUpCollection" destination="h5D-Gl-phM" collectionClass="NSMutableArray" id="j4j-IF-glO"/>
                         <outletCollection property="signUpCollection" destination="9nJ-ga-r7I" collectionClass="NSMutableArray" id="viS-Wc-bby"/>
                         <segue destination="SZq-Bv-HM4" kind="presentation" identifier="toSignUpPage" id="QTY-qN-ZXP"/>
-                        <segue destination="lMv-oY-Gfj" kind="presentation" identifier="toLoginPage" id="LIf-df-VDx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -1442,9 +1443,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="7DM-za-wWg">
-                                <rect key="frame" x="20" y="64" width="374" height="370.5"/>
+                                <rect key="frame" x="20" y="64" width="374" height="318.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qel-cz-yvq">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qel-cz-yvq">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="22.5"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -1487,29 +1488,15 @@
                                             <constraint firstAttribute="height" constant="40" id="T3a-NB-7sE"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                        <state key="normal" title="Log In">
+                                        <state key="normal" title="Log In as Customer">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="loginClicked:" destination="UA6-cZ-esC" eventType="touchUpInside" id="IXn-CL-yAO"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B1V-CS-Iok" customClass="RoundedButton" customModule="Roam" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="234.5" width="374" height="40"/>
-                                        <color key="backgroundColor" red="0.82745098039999998" green="0.94117647059999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="fOE-cp-KqN"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                        <state key="normal" title="Log In as Roamer">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="logInForRoamer:" destination="UA6-cZ-esC" eventType="touchUpInside" id="40z-Cf-1gU"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s90-7w-yDo">
-                                        <rect key="frame" x="0.0" y="286.5" width="374" height="32"/>
+                                        <rect key="frame" x="0.0" y="234.5" width="374" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="db1-fX-kes"/>
                                         </constraints>
@@ -1518,7 +1505,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QzF-nW-Uhb" customClass="RoundedButton" customModule="Roam" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="330.5" width="374" height="40"/>
+                                        <rect key="frame" x="0.0" y="278.5" width="374" height="40"/>
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="p7s-LK-PQW"/>
@@ -1534,7 +1521,7 @@
                                 </subviews>
                             </stackView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="epR-mb-fS7">
-                                <rect key="frame" x="188.5" y="446.5" width="37" height="37"/>
+                                <rect key="frame" x="188.5" y="394.5" width="37" height="37"/>
                                 <color key="color" red="0.30995897080000001" green="0.37959871830000003" blue="0.56474064089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                         </subviews>
@@ -1565,23 +1552,28 @@
             </objects>
             <point key="canvasLocation" x="4178" y="522"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="e7Z-X2-DmZ">
+        <!--View Controller-->
+        <scene sceneID="nnC-9e-Caq">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lMv-oY-Gfj" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VQv-tN-Q7i">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="UA6-cZ-esC" kind="relationship" relationship="rootViewController" id="1Ai-pE-nTw"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Xiv-LN-z8s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="lYV-A5-W86" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xms-mp-3SU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="jK4-Re-mQs"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eSP-YN-DCC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3336" y="522"/>
+            <point key="canvasLocation" x="1633" y="1258"/>
+        </scene>
+        <!--Login Page View Controller-->
+        <scene sceneID="MVM-dd-Sq5">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="tiB-2H-vMi" customClass="LoginPageViewController" customModule="Roam" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MD6-YB-STp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3420" y="520"/>
         </scene>
         <!--Profile-->
         <scene sceneID="BKW-fu-O59">
@@ -2052,6 +2044,133 @@
             </objects>
             <point key="canvasLocation" x="8874" y="2462"/>
         </scene>
+        <!--Login Controller-->
+        <scene sceneID="CvA-4W-At9">
+            <objects>
+                <viewController storyboardIdentifier="LoginPageRoamer" id="J3J-Ge-82u" customClass="LoginController" customModule="Roam" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="G6E-HC-wdE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="YDy-kv-jr4">
+                                <rect key="frame" x="20" y="64" width="374" height="318.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Roamer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PLT-Bx-wUr">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="22.5"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wTm-hw-XrD">
+                                        <rect key="frame" x="0.0" y="34.5" width="374" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="gy2-Ud-yvH"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0de-ta-w8p">
+                                        <rect key="frame" x="0.0" y="86.5" width="374" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="RWS-ci-lCk"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XJr-ar-KWh">
+                                        <rect key="frame" x="0.0" y="138.5" width="374" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <state key="normal" title="Forgot password?">
+                                            <color key="titleColor" red="0.60378331220000003" green="0.32732866179999998" blue="0.32688704810000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="forgotPasswordClicked:" destination="J3J-Ge-82u" eventType="touchUpInside" id="3hl-it-qsn"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ueh-dt-xQi" customClass="RoundedButton" customModule="Roam" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="182.5" width="374" height="40"/>
+                                        <color key="backgroundColor" red="0.82745098039999998" green="0.94117647059999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="OM0-gu-2YF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <state key="normal" title="Log In as Roamer">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="loginClicked:" destination="J3J-Ge-82u" eventType="touchUpInside" id="vnp-dY-R1I"/>
+                                            <segue destination="7fO-EY-qpV" kind="show" id="1zZ-4h-DBw"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVN-WV-d7V">
+                                        <rect key="frame" x="0.0" y="234.5" width="374" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="e9U-xD-vbX"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <color key="textColor" red="0.60392156860000001" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h5X-eo-Lf2" customClass="RoundedButton" customModule="Roam" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="278.5" width="374" height="40"/>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="bh9-dJ-z74"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <state key="normal" title="Sign Up">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="GFW-hF-pNN" kind="show" id="snN-Jb-ATM"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="dnl-sb-y6Y">
+                                <rect key="frame" x="188.5" y="394.5" width="37" height="37"/>
+                                <color key="color" red="0.30995897080000001" green="0.37959871830000003" blue="0.56474064089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dnl-sb-y6Y" firstAttribute="top" secondItem="YDy-kv-jr4" secondAttribute="bottom" constant="12" id="4ri-HV-Dpa"/>
+                            <constraint firstItem="r6v-wB-7WA" firstAttribute="trailing" secondItem="YDy-kv-jr4" secondAttribute="trailing" constant="20" id="Dot-eU-tY7"/>
+                            <constraint firstItem="YDy-kv-jr4" firstAttribute="top" secondItem="r6v-wB-7WA" secondAttribute="top" constant="20" id="Qoh-TF-tWc"/>
+                            <constraint firstItem="YDy-kv-jr4" firstAttribute="leading" secondItem="G6E-HC-wdE" secondAttribute="leading" constant="20" id="hsP-cM-6Pw"/>
+                            <constraint firstItem="dnl-sb-y6Y" firstAttribute="centerX" secondItem="G6E-HC-wdE" secondAttribute="centerX" id="zdt-Ny-EfY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="r6v-wB-7WA"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hTk-SE-ZgI">
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="gO6-p2-N9U">
+                            <connections>
+                                <action selector="backButtonClicked:" destination="J3J-Ge-82u" id="rqp-yo-47L"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="activityIndicator" destination="dnl-sb-y6Y" id="57I-Sp-mgm"/>
+                        <outlet property="emailField" destination="wTm-hw-XrD" id="MU3-vw-unX"/>
+                        <outlet property="passwordField" destination="0de-ta-w8p" id="iZK-PA-E7u"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wy7-5t-WBM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5061" y="522"/>
+        </scene>
+        <!--firstPageView-->
+        <scene sceneID="8Xr-fH-5m0">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Roamer" referencedIdentifier="firstPageView" id="7fO-EY-qpV" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T42-pg-Wvm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5061" y="1087"/>
+        </scene>
     </scenes>
     <resources>
         <image name="IQButtonBarArrowLeft.png" width="12" height="21"/>
@@ -2070,7 +2189,6 @@
         <image name="wendysLogo" width="1064" height="710"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="a1p-S4-gZ2"/>
-        <segue reference="NpC-zA-onx"/>
+        <segue reference="snN-Jb-ATM"/>
     </inferredMetricsTieBreakers>
 </document>

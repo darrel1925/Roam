@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1C857ECD9D695A180EADAF87 /* Pods_RoamUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46426FE5DD249F136E71199D /* Pods_RoamUITests.framework */; };
 		38571D5E2290B54600C460C7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38571D5D2290B54600C460C7 /* LoginViewController.swift */; };
+		38AE839B2316F347006A220B /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AE839A2316F347006A220B /* PageViewController.swift */; };
+		38AE839F2317048B006A220B /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AE839E2317048B006A220B /* LoginPageViewController.swift */; };
 		38C55C442313788C00EF7918 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C55C432313788C00EF7918 /* TextField.swift */; };
 		7A7863AC49CCCDFCD1042C32 /* Pods_RoamTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E111423E33F668F6615448 /* Pods_RoamTests.framework */; };
 		9A2CAC14230A45FA008F376D /* RoundedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CAC13230A45FA008F376D /* RoundedViews.swift */; };
@@ -102,6 +104,8 @@
 		1522D277607F63CD5B2CD72E /* Pods-RoamUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamUITests.debug.xcconfig"; path = "Target Support Files/Pods-RoamUITests/Pods-RoamUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1BC2D38DCEB9B75682CC5A21 /* Pods-RoamTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoamTests.release.xcconfig"; path = "Target Support Files/Pods-RoamTests/Pods-RoamTests.release.xcconfig"; sourceTree = "<group>"; };
 		38571D5D2290B54600C460C7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
+		38AE839A2316F347006A220B /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		38AE839E2317048B006A220B /* LoginPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
 		38C55C432313788C00EF7918 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		447051ADC30B4D51026CF5F8 /* Pods_Roam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Roam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46426FE5DD249F136E71199D /* Pods_RoamUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoamUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -223,6 +227,7 @@
 				EDF153312290F64100FD8BB2 /* PandaMealSelectionController.swift */,
 				ED4CA6AE22950C090022A095 /* PandaSideSelectionController.swift */,
 				9A42BABF22ECBC21006F7137 /* LoginController.swift */,
+				38AE839E2317048B006A220B /* LoginPageViewController.swift */,
 				9A42BAC122ECD993006F7137 /* CheckOutController.swift */,
 				9ADDC47822FD3B020053A1F0 /* MapController.swift */,
 				9AA4C4E82303F24800194B42 /* NotificationsController.swift */,
@@ -356,6 +361,7 @@
 				9A3EB1942310BDF10086532D /* MainViewController.swift */,
 				9A3EB1902310BDF00086532D /* Roamer.storyboard */,
 				9A3EB1912310BDF10086532D /* View1.swift */,
+				38AE839A2316F347006A220B /* PageViewController.swift */,
 				9A3EB1932310BDF10086532D /* View2.swift */,
 				9A3EB1922310BDF10086532D /* View3.swift */,
 			);
@@ -780,6 +786,8 @@
 				ED4CA6AB2294F6180022A095 /* WendysMealSelectionViewController.swift in Sources */,
 				9A6912AD22E980480058BF2D /* ShoppingCartCell.swift in Sources */,
 				9A6912A822E958A60058BF2D /* UserService.swift in Sources */,
+				38AE839B2316F347006A220B /* PageViewController.swift in Sources */,
+				38AE839F2317048B006A220B /* LoginPageViewController.swift in Sources */,
 				9AA4C4E72303F1BB00194B42 /* RequestToRoamCell.swift in Sources */,
 				9A42BAC022ECBC21006F7137 /* LoginController.swift in Sources */,
 				9A42BAC522ED19AF006F7137 /* Extensions.swift in Sources */,
