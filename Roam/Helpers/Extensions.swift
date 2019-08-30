@@ -53,7 +53,8 @@ extension String {
     }
     
     var isValidName: Bool {
-        let fullName = self.components(separatedBy: " ")
+        let trimmedString = self.trimmingCharacters(in: .whitespacesAndNewlines)
+        let fullName = trimmedString.components(separatedBy: " ")
         
         if fullName.count != 2 { return false }
 
@@ -71,7 +72,18 @@ extension String {
     
     
     func separateName() -> [String] {
-        return self.components(separatedBy: " ")
+            let name =  self
+            let nameFormatter = PersonNameComponentsFormatter()
+            if let nameComps  = nameFormatter.personNameComponents(from: name),
+                let firstLetter = nameComps.givenName?.first?.uppercased(),
+                let lastLetter = nameComps.familyName?.first?.uppercased(),
+                let firstName = nameComps.givenName?.lowercased(),
+                let lastName = nameComps.familyName?.lowercased() {
+                
+                let sortedName = ["\(firstLetter)\(firstName[1 ..< lastName.count])", "\(lastLetter)\(lastName[1 ..< lastName.count])"]  // J. Singh
+                return sortedName
+            }
+            return self.components(separatedBy: " ")
     }
     
     func toDate() -> Date {

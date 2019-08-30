@@ -62,6 +62,11 @@ struct StoryBoardIds {
     static let customerTabBar = "customerTabBar"
     static let roamerTabBar = "roamerTabBar"
     static let tabBar = "tabBar"
+    
+    static let View1 = "View1"
+    static let View2 = "View2"
+    static let View3 = "View3"
+    static let MainViewController = "MainViewController"
 
 }
 

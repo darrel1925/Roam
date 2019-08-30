@@ -14,7 +14,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        let V1 = self.storyboard?.instantiateViewController(withIdentifier: "V1") as UIViewController?
+        let V1 = self.storyboard?.instantiateViewController(withIdentifier: StoryBoardIds.View1) as UIViewController?
         
         self.addChild(V1!)
         self.scrollView.addSubview(V1!.view)
@@ -23,7 +23,7 @@ class MainViewController: UIViewController {
         
         
         
-        let V2 = self.storyboard?.instantiateViewController(withIdentifier: "V2") as UIViewController?
+        let V2 = self.storyboard?.instantiateViewController(withIdentifier: StoryBoardIds.View2) as UIViewController?
         
         self.addChild(V2!)
         self.scrollView.addSubview(V2!.view)
@@ -36,7 +36,7 @@ class MainViewController: UIViewController {
         
         
         
-        let V3 = self.storyboard?.instantiateViewController(withIdentifier: "V3") as UIViewController?
+        let V3 = self.storyboard?.instantiateViewController(withIdentifier: StoryBoardIds.View3) as UIViewController?
         
         self.addChild(V3!)
         self.scrollView.addSubview(V3!.view)

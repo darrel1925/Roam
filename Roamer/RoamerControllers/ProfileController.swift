@@ -27,43 +27,69 @@ class ProfileController: UIViewController {
         tryToGetProfilePic()
     }
     
-   
+    
     
     func getPaymentMethod() {
-//        let customerContext = STPCustomerContext(keyProvider: StripeApi)
-//        let config = STPPaymentConfiguration.shared()
-//
-//        let paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: .default())
-//        paymentContext.paymentAmount = StripeCart.total
+        //        let customerContext = STPCustomerContext(keyProvider: StripeApi)
+        //        let config = STPPaymentConfiguration.shared()
+        //
+        //        let paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: .default())
+        //        paymentContext.paymentAmount = StripeCart.total
     }
-
+    
+    
+    func presentNotApprovedAlert() {
+        let message = "Your Roamer account is not Activated. To activate your account, click 'Get Started' and follow the instuctions. If you have already submitted your form, please wait 1-2 business days for us to get back to you."
+        let alert = UIAlertController(title: "Account Not Activated", message: message, preferredStyle: UIAlertController.Style.alert)
+        
+        // SWITCH
+        alert.addAction(UIAlertAction(title: "Get Started", style: UIAlertAction.Style.default, handler: { (UIAlertAction) in
+            self.presentRoamerIntroPage()
+        }))
+        
+        // STAY HERE
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { (UIAlertAction) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        // present alert
+        self.present(alert, animated: true , completion: nil)
+    }
+    
     
     func switchToRoamerProfile()  {
-    let message = "You will now be able to order meals and will not recieve any requests to roam until you sign back into your roamer account."
-    let alert = UIAlertController(title: "Switch to Customer Account", message: message, preferredStyle: UIAlertController.Style.alert)
-    
-    // SWITCH
-    alert.addAction(UIAlertAction(title: "Switch Accounts", style: UIAlertAction.Style.default, handler: { (UIAlertAction) in
-    self.presentRoamerHomePage()
-    }))
-    
-    // STAY HERE
-    alert.addAction(UIAlertAction(title: "Stay Here", style: UIAlertAction.Style.default, handler: { (UIAlertAction) in
-    alert.dismiss(animated: true, completion: nil)
-    }))
-    
-    // present alert
-    self.present(alert, animated: true , completion: nil)
+        let message = "You will now be able to order meals and will not recieve any requests to roam until you sign back into your roamer account."
+        let alert = UIAlertController(title: "Switch to Roamer Account", message: message, preferredStyle: UIAlertController.Style.alert)
+        
+        // SWITCH
+        alert.addAction(UIAlertAction(title: "Switch Accounts", style: UIAlertAction.Style.default, handler: { (UIAlertAction) in
+            UserService.switchIsRoaming(to: "true")
+            UserService.switchIsCustomer(to: "false")
+            self.presentRoamerHomePage()
+        }))
+        
+        // STAY HERE
+        alert.addAction(UIAlertAction(title: "Stay Here", style: UIAlertAction.Style.default, handler: { (UIAlertAction) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        // present alert
+        self.present(alert, animated: true , completion: nil)
     }
     
     func presentRoamerHomePage() {
         UserService.switchIsRoaming(to: "true")
         UserService.switchIsCustomer(to: "false")
         let storyBoard = UIStoryboard(name: StoryBoards.Roamer, bundle: nil)
-        let tabBar: UITabBarController? = (storyBoard.instantiateViewController(withIdentifier: StoryBoardIds.customerTabBar) as! UITabBarController)
+        let tabBar: UITabBarController? = (storyBoard.instantiateViewController(withIdentifier: StoryBoardIds.roamerTabBar) as! UITabBarController)
         
         self.present(tabBar!, animated: true, completion: nil)
-        
+    }
+    
+    func presentRoamerIntroPage() {
+        let storyBoard = UIStoryboard(name: StoryBoards.Roamer, bundle: nil)
+        let mainViewController = storyBoard.instantiateViewController(withIdentifier: StoryBoardIds.MainViewController) as! MainViewController
+        self.present(mainViewController, animated: true, completion: nil)
     }
     
     /***************************************/
@@ -160,7 +186,7 @@ extension ProfileController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             case 1:
                 cell.infoTitle.text = "Name"
-                cell.infoDescription.text = "@\(UserService.user.fullName)"
+                cell.infoDescription.text = "\(UserService.user.fullName)"
                 return cell
             case 2:
                 cell.infoTitle.text = "Email"
@@ -186,20 +212,19 @@ extension ProfileController: UITableViewDelegate, UITableViewDataSource {
                 cell.infoDescription.text = "Visa"
                 return cell
             case 1:
-                cell.infoTitle.text = "Roaming Status"
-                cell.infoDescription.text = "Active"
-                cell.accessoryType = .disclosureIndicator
-                return cell
-            case 2:
                 cell.infoTitle.text = "Switch to Roamer Profile"
                 cell.infoDescription.text = ""
                 cell.accessoryType = .disclosureIndicator
                 return cell
-            case 3:
+            case 2:
                 cell.infoTitle.text = "Log Out"
                 cell.infoDescription.text = ""
                 cell.infoTitle.textColor = #colorLiteral(red: 0.7788676168, green: 0.1122596166, blue: 0.07396716866, alpha: 1)
                 cell.accessoryType = .disclosureIndicator
+                return cell
+            case 3:
+                cell.infoTitle.text = ""
+                cell.infoDescription.text = ""
                 return cell
             default:
                 return cell
@@ -216,23 +241,19 @@ extension ProfileController: UITableViewDelegate, UITableViewDataSource {
         switch section {
         case 3:
             switch row {
-            case 1: // Change Roaming Status
-                let changeRoamingStatusVC = ChangeRomingStatusController()
-                
-                changeRoamingStatusVC.modalTransitionStyle = .crossDissolve
-                changeRoamingStatusVC.modalPresentationStyle = .overCurrentContext
-                tabBarController?.present(changeRoamingStatusVC, animated: true, completion: nil)
-            case 2: // Switch to Roamer Homepage
+            case 1: // Switch to Roamer Homepage
                 print("switched to roamer")
                 // TODO: check if they have a roamers profile
+                print(UserService.isApproved)
+                if UserService.isApproved == false { self.presentNotApprovedAlert() }
                 switchToRoamerProfile()
-            case 3: // Log Out
+            case 2: // Log Out
                 beginLogOut()
                 print("log out clicked")
             default:
                 print("row \(row)")
             }
-
+            
         default:
             print("section \(section)")
         }
@@ -254,7 +275,7 @@ extension ProfileController: UIImagePickerControllerDelegate, UINavigationContro
             
             uploadImageToFirebase(withImage: scaledImage)
         }
-
+        
         
         dismiss(animated: true, completion: nil)
     }
@@ -265,7 +286,7 @@ extension ProfileController: UIImagePickerControllerDelegate, UINavigationContro
         
         storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
             if let error = error {
-              self.displayError(error: error)
+                self.displayError(error: error)
             }
             
             print(metadata)

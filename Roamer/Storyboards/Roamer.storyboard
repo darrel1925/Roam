@@ -42,7 +42,7 @@
         <!--View1-->
         <scene sceneID="ZwZ-zk-MIn">
             <objects>
-                <viewController storyboardIdentifier="V1" id="tn4-I3-2YY" customClass="View1" customModule="Roam" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="View1" id="tn4-I3-2YY" customClass="View1" customModule="Roam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="izq-Xe-G4S" customClass="VIew">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -143,7 +143,7 @@
         <!--View2-->
         <scene sceneID="5Gi-uR-UP6">
             <objects>
-                <viewController storyboardIdentifier="V2" id="Lg4-hU-ejT" customClass="View2" customModule="Roam" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="View2" id="Lg4-hU-ejT" customClass="View2" customModule="Roam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2BM-iK-CuN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -206,7 +206,7 @@
         <!--View3-->
         <scene sceneID="MSp-MP-E7i">
             <objects>
-                <viewController storyboardIdentifier="V3" id="yKx-Q3-s2n" customClass="View3" customModule="Roam" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="View3" id="yKx-Q3-s2n" customClass="View3" customModule="Roam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tx5-OF-AM0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1045,6 +1045,6 @@
         <image name="welcome_logo_square" width="400" height="400"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="n5Z-HE-Jun"/>
+        <segue reference="XFY-cm-hDR"/>
     </inferredMetricsTieBreakers>
 </document>

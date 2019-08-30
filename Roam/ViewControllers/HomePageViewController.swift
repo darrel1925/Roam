@@ -28,7 +28,6 @@ class HomePageViewController: UIViewController {
             // add all of our info to our User class to use globally
             if UserService.userListener == nil {
                 UserService.getCurrentUserForNotifications()
-                
             }
         }
         UserService.dispatchGroup.notify(queue: .main) {

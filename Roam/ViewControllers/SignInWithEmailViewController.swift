@@ -101,26 +101,46 @@ class SignInWithEmailViewController: UIViewController {
         }
     }
     
+    func createFireStoreRoamer(user: User) {
+        
+        // Add a new document in collection "Users"
+        let db = Firestore.firestore()
+        let newUserRef = db.collection(Collections.Users).document(user.email)
+        var data = User.modelToData(user: user)
+        
+        if !UserService.loggedInAsCustomer {
+            data["isCustomer"] = "false"
+        }
+        else {
+            data["isCustomer"] = "true"
+        }
+        data["isApproved"] = true // CHANGE TO FALSE, WE WILL CHAGE TO TRUE AFTER APPROVAL
+        
+        newUserRef.setData(data) { error in
+            if let error = error {
+                print("Error writing document: \(error)")
+                
+            } else {
+                print("Document successfully written!")
+            }
+        }
+    }
+    
     func credentialsAreValid() -> Bool {
         
         if !(self.fullNameField.text!.isValidName) {
             let message = "Please enter valid first and last name. (Ex. Michael Young)"
-            self.displayError(title: "Whoops.", message: message, completion: {_ in
-                // make text field red
-            })
+            self.displayError(title: "Whoops.", message: message)
             return false
         }
         else if !(passwordField.text!.isAlphanumeric) {
             let message = "Password must be at least 6 charaters and contain no spaces."
-            self.displayError(title: "Whoops.", message: message, completion: {_ in
-                // make text field red
-            })
+            self.displayError(title: "Whoops.", message: message)
             return false
         }
         else if !(passwordField.text! == confirmPasswordField.text) {
             let message = "Looks like your passwords don't match. Let's give it another shot."
-            self.displayError(title: "Uh Oh.", message: message, completion: {_ in
-            })
+            self.displayError(title: "Uh Oh.", message: message)
             return false
         }
         return true
@@ -194,8 +214,6 @@ class SignInWithEmailViewController: UIViewController {
             self.createFireStoreUser(user: roamer)
             self.addRoamerToActiveRoamers(email: email)
             self.activityIndicator.stopAnimating()
-            
-
         }
     }
     

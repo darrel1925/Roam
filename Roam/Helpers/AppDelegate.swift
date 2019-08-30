@@ -16,10 +16,10 @@ import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
     let gcmMessageIDKey = "gcm.message_id"
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
@@ -77,79 +77,80 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
                 print("to HomePage")
                 currentController.present(tabBar!, animated: true, completion: nil)
-                }
+            }
         }
         else {
             
-            
-            
-            let storyboard = UIStoryboard(name: StoryBoards.Roamer, bundle: nil)
-            let HomePageVC = storyboard.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
-
-            if let window = self.window, let rootViewController = window.rootViewController {
-                var currentController = rootViewController
-                while let presentedController = currentController.presentedViewController {
-                    currentController = presentedController
+            if UserService.isApproved {
+                
+                // show roamer home page
+                let storyBoard = UIStoryboard(name: StoryBoards.Roamer, bundle: nil)
+                let tabbar: UITabBarController? = (storyBoard.instantiateViewController(withIdentifier: StoryBoardIds.roamerTabBar) as! UITabBarController)
+                
+                if let window = self.window, let rootViewController = window.rootViewController {
+                    var currentController = rootViewController
+                    while let presentedController = currentController.presentedViewController {
+                        currentController = presentedController
+                    }
+                    print("to Romer Home")
+                    currentController.present(tabbar!, animated: true, completion: nil)
                 }
-                print("to mainviewc")
-                currentController.present(HomePageVC, animated: true, completion: nil)
             }
-            
-            
-            
-//            // show roamer home page
-//            let storyBoard = UIStoryboard(name: StoryBoards.Roamer, bundle: nil)
-//            let tabbar: UITabBarController? = (storyBoard.instantiateViewController(withIdentifier: StoryBoardIds.roamerTabBar) as! UITabBarController)
-//
-//            if let window = self.window, let rootViewController = window.rootViewController {
-//                var currentController = rootViewController
-//                while let presentedController = currentController.presentedViewController {
-//                    currentController = presentedController
-//                }
-//                print("to Romer Home")
-//                currentController.present(tabbar!, animated: true, completion: nil)
-//            }
+            else {
+                // show roamer start up page
+                let storyboard = UIStoryboard(name: StoryBoards.Roamer, bundle: nil)
+                let HomePageVC = storyboard.instantiateViewController(withIdentifier: StoryBoardIds.MainViewController) as! MainViewController
+                
+                if let window = self.window, let rootViewController = window.rootViewController {
+                    var currentController = rootViewController
+                    while let presentedController = currentController.presentedViewController {
+                        currentController = presentedController
+                    }
+                    print("to mainviewc")
+                    currentController.present(HomePageVC, animated: true, completion: nil)
+                }
+            }
         }
     }
     
     func presentNotificationPage() {
         checkIfUserLoggedIn()
-//        UserService.dispatchGroup.notify(queue: .main) {
-//
-//            let storyboard = UIStoryboard(name: StoryBoards.Main, bundle: nil)
-//            let NotificationsVC = storyboard.instantiateViewController(withIdentifier: StoryBoardIds.NotificationsController) as! NotificationsController
-//            let navController = UINavigationController.init(rootViewController: NotificationsVC)
-//
-//            if let window = self.window, let rootViewController = window.rootViewController {
-//                var currentController = rootViewController
-//                while let presentedController = currentController.presentedViewController {
-//                    currentController = presentedController
-//                }
-//                print("to Notifications Controller")
-//                currentController.present(navController, animated: true, completion: nil)
-//            }
-//
-//        }
+        //        UserService.dispatchGroup.notify(queue: .main) {
+        //
+        //            let storyboard = UIStoryboard(name: StoryBoards.Main, bundle: nil)
+        //            let NotificationsVC = storyboard.instantiateViewController(withIdentifier: StoryBoardIds.NotificationsController) as! NotificationsController
+        //            let navController = UINavigationController.init(rootViewController: NotificationsVC)
+        //
+        //            if let window = self.window, let rootViewController = window.rootViewController {
+        //                var currentController = rootViewController
+        //                while let presentedController = currentController.presentedViewController {
+        //                    currentController = presentedController
+        //                }
+        //                print("to Notifications Controller")
+        //                currentController.present(navController, animated: true, completion: nil)
+        //            }
+        //
+        //        }
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
     }
-
+    
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
-
+    
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     }
-
+    
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
-
+    
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
@@ -164,15 +165,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         else if ( application.applicationState == .background){
             print("2")
         }
-        // app was already in the foreground
+            // app was already in the foreground
         else if ( application.applicationState == .inactive){
             print("3")
         }
-        // app was just brought from background to foreground
+            // app was just brought from background to foreground
         else {
             print("4")
         }
-
+        
         print("Notification Recieved! 5")
     }
     
@@ -181,7 +182,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If you are receiving a notification message while your app is in the background,
         // this callback will not be fired till the user taps on the notification launching the application.
         // TODO: Handle data of notification
-
+        
         print("Notification Recieved In Background! 6")
         presentNotificationPage()
         
@@ -214,7 +215,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         presentNotificationPage()
         completionHandler()
     }
-
+    
 }
 
 // in order ro register your app to recieve notifications
@@ -230,7 +231,7 @@ extension AppDelegate: MessagingDelegate {
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
         print("got a message: \(remoteMessage.appData)")
-       print("Notification Recieved  9")
+        print("Notification Recieved  9")
     }
-
+    
 }

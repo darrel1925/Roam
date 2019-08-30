@@ -59,7 +59,7 @@ class RoamerProfileController: UIViewController {
         UserService.switchIsRoaming(to: "false")
         UserService.switchIsCustomer(to: "true")
         let storyBoard = UIStoryboard(name: StoryBoards.Main, bundle: nil)
-        let tabBar: UITabBarController? = (storyBoard.instantiateViewController(withIdentifier: StoryBoardIds.roamerTabBar) as! UITabBarController)
+        let tabBar: UITabBarController? = (storyBoard.instantiateViewController(withIdentifier: StoryBoardIds.customerTabBar) as! UITabBarController)
 
         self.present(tabBar!, animated: true, completion: nil)
         

@@ -31,7 +31,9 @@ final class _UserService {
     
     var userListener: ListenerRegistration? = nil // our listener
     var loggedInAsCustomer: Bool!
-    var isCustomer: String!
+    
+    var isCustomer: String! // <-- signed in as customer
+    var isApproved: Bool! // <-- approved to roam
     
     var fcmToken: String = Messaging.messaging().fcmToken!
     var roamersInfoDict: [String: String]! // to send notifications
@@ -66,7 +68,8 @@ final class _UserService {
     func getCurrentUserForNotifications() {
         // if user is logged in
         UserService.dispatchGroup.enter()
-        guard let authUser = Auth.auth().currentUser else {  UserService.dispatchGroup.customLeave(); return }
+        guard let authUser = Auth.auth().currentUser
+            else {  UserService.dispatchGroup.customLeave(); return }
         
         let userRef = db.collection(Collections.Users).document(authUser.email ?? "no email found")
         // if user changes something in document, it will always be up to date in our app
@@ -98,32 +101,32 @@ final class _UserService {
     /************** Log in State Tracking Fucntions ********************/
     /******************************************************************/
     
-    func switchIsRoaming(to isActive: String){
+    func switchIsRoaming(to isRoaming: String){
         let docRef = db.collection(Collections.ActiveRoamers).document(UserService.user.email)
         
         // Set the "capital" field of the city 'DC'
         docRef.updateData([
-            "isRoaming": isActive
+            "isRoaming": isRoaming
         ]) { err in
             if let err = err {
                 print("Error updating isRoaming: \(err.localizedDescription)")
             } else {
-                print("IsActive Updated to \(isActive)")
+                print("IsActive Updated to \(isRoaming)")
             }
         }
     }
     
-    func switchIsCustomer(to isActive: String){
+    func switchIsCustomer(to isCustomer: String){
         let docRef = db.collection(Collections.Users).document(UserService.user.email)
-        
+        self.isCustomer = isCustomer
         // Set the "capital" field of the city 'DC'
         docRef.updateData([
-            "isCustomer": isActive
+            "isCustomer": isCustomer
         ]) { err in
             if let err = err {
                 print("Error updating isCustomer: \(err.localizedDescription)")
             } else {
-                print("IsCustomer Updated to \(isActive)")
+                print("IsCustomer Updated to \(isCustomer)")
             }
             UserService.dispatchGroup.customLeave()
         }
@@ -137,14 +140,16 @@ final class _UserService {
             UserService.dispatchGroup.customLeave()
             
             if let document = document {
-                print("Cached document data: \(document.data()?["isCustomer"] ?? "no param isCustomer")")
-                self.isCustomer = document.data()?["isCustomer"] as? String ?? "true"
+                print("isCustomer data: \(document.data()?["isCustomer"] ?? "no param isCustomer")")
+                self.isCustomer = document.data()?["isCustomer"] as? String ?? "true" // true is default
+                self.isApproved = document.data()?["isApproved"] as? Bool ?? false // false is default
                 return
             }
             
             print("Document does not exist in cache")
         }
     }
+    
     
     /********************************************************************/
     /************* Send Notifiactions Helper Functions *****************/

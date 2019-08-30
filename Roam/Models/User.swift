@@ -26,6 +26,8 @@ class User {
         return self.email.replacingOccurrences(of: "@", with: "")
     }
     
+    let db = Firestore.firestore()
+
     init(id: String = "", email: String = "", firstName: String = "", lastName: String = "", stripeId: String = "") {
         self.id = id
         self.email = email
@@ -42,8 +44,18 @@ class User {
         self.firstName = data["firstName"] as? String ?? ""
         self.lastName = data["lastName"] as? String ?? ""
         
+        
+        UserService.isApproved = data["isApproved"] as? Bool ?? false
+        
+        
         setFCMToken()
-        setRoamerFCMToken()
+        
+        if UserService.isCustomer == "false" {
+            
+            setRoamerFCMToken()
+            
+        }
+        
         print("user is made")
     }
     
@@ -54,6 +66,7 @@ class User {
             "firstName": user.firstName,
             "lastName": user.lastName,
             "stripeId" : user.stripeId,
+            "isApproved": UserService.isApproved ?? false, // <-- check that this works in all situations
             "isCustomer": "true"
         ]
         
@@ -76,7 +89,6 @@ class User {
     }
     
     private func setRoamerFCMToken() {
-        let db = Firestore.firestore()
         
         db.collection(Collections.ActiveRoamers).document(self.email).setData([
             DataParams.FCMToken: UserService.fcmToken,
@@ -89,5 +101,7 @@ class User {
             }
         }
     }
+    
+
     
 }
