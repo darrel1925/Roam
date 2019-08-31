@@ -13,9 +13,9 @@ In [this link](https://devpost.com/software/roam-d9gbya), you will find the init
 
 ## Video Walkthrough
 
-Here's a short walkthrough of implemented ordering flow:
+Here's a short walkthrough of implemented ordering flow (video 1) and of the view of the app logged in as a Roamer (video 2):
 
-<img src="http://g.recordit.co/BWIJ0TBmFA.gif" title="Order flow for custoemrs" width=200> <img src="http://g.recordit.co/SI1LPoXfRS.gif" title="View of Roamer's profile" width=200>
+<img src="http://g.recordit.co/BWIJ0TBmFA.gif" alt="Order flow for custoemrs" width=200> <img src="http://g.recordit.co/SI1LPoXfRS.gif" alt="View of Roamer's profile" width=200>
 
 
 
