@@ -15,7 +15,7 @@ In [this link](https://devpost.com/software/roam-d9gbya), you will find the init
 
 Here's a short walkthrough of implemented ordering flow:
 
-<img src="http://g.recordit.co/PkPIhxyYLF.gif" width=200>
+<img src="https://recordit.co/BWIJ0TBmFA" width=200>
 
 ## Built With
 
