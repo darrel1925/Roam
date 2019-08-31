@@ -15,7 +15,9 @@ In [this link](https://devpost.com/software/roam-d9gbya), you will find the init
 
 Here's a short walkthrough of implemented ordering flow:
 
-<img src="http://g.recordit.co/BWIJ0TBmFA.gif" width=200>
+<img src="http://g.recordit.co/BWIJ0TBmFA.gif" title="Order flow for custoemrs" width=200> <img src="http://g.recordit.co/SI1LPoXfRS.gif" title="View of Roamer's profile" width=200>
+
+
 
 ## Built With
 
