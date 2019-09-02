@@ -99,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             else {
                 // show roamer start up page
                 let storyboard = UIStoryboard(name: StoryBoards.Roamer, bundle: nil)
-                let HomePageVC = storyboard.instantiateViewController(withIdentifier: StoryBoardIds.MainViewController) as! MainViewController
+                let HomePageVC = storyboard.instantiateViewController(withIdentifier: StoryBoardIds.PageViewController) as! PageViewController
                 
                 if let window = self.window, let rootViewController = window.rootViewController {
                     var currentController = rootViewController

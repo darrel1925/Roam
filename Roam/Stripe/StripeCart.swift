@@ -23,12 +23,19 @@ class _StripeCart {
         return cartItems.count == 0
     }
     
+    var tax: Int {
+        let tax = Double(subtotal) * 0.08
+        let taxInPennies = Int(tax)
+        print("tax in pennies", taxInPennies)
+        return taxInPennies
+    }
+    
     var deliveryFee: Int {
         if cartItems.count == 0 { return 0 }
-        return 350
+        return 300
     }
     var subtotal: Int {
-        var amount = 0  
+        var amount = 0
         for item in cartItems {
             let pricePennies = Int(item.price * Double(item.amountOrdered) * 100)
             amount += pricePennies
@@ -39,13 +46,13 @@ class _StripeCart {
     var processingFees : Int {
         if subtotal == 0 { return 0 }
         let sub = Double(subtotal)
-        let feesAndSub = Int(sub * stripeCreditCardCut) + flatFeeCents + ourFee
+        let feesAndSub = Int((sub + Double(tax)) * stripeCreditCardCut) + flatFeeCents + ourFee
         print("processing fees", feesAndSub)
         return feesAndSub
     }
     
     var total: Int {
-        return subtotal + processingFees + deliveryFee
+        return subtotal + processingFees + deliveryFee + tax
     }
     
     var count: Int {

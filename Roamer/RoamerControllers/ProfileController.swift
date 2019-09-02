@@ -88,7 +88,7 @@ class ProfileController: UIViewController {
     
     func presentRoamerIntroPage() {
         let storyBoard = UIStoryboard(name: StoryBoards.Roamer, bundle: nil)
-        let mainViewController = storyBoard.instantiateViewController(withIdentifier: StoryBoardIds.MainViewController) as! MainViewController
+        let mainViewController = storyBoard.instantiateViewController(withIdentifier: StoryBoardIds.PageViewController ) as! PageViewController
         self.present(mainViewController, animated: true, completion: nil)
     }
     
