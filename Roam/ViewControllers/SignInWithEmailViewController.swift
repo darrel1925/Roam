@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseFirestore
+import FirebaseAuth
 
 //Chinenye - made this to change the padding of a text field to only one border under it
 extension UITextField{

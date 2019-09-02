@@ -137,7 +137,7 @@ extension RoamerProfileController: UITableViewDelegate, UITableViewDataSource {
         case 2: // Account Info
             return 1
         case 3: // payment info
-            return 4
+            return 5
         default:
             return 1
         }
@@ -203,6 +203,10 @@ extension RoamerProfileController: UITableViewDelegate, UITableViewDataSource {
                 cell.infoTitle.textColor = #colorLiteral(red: 0.7788676168, green: 0.1122596166, blue: 0.07396716866, alpha: 1)
                 cell.accessoryType = .disclosureIndicator
                 return cell
+            case 4:
+                cell.infoTitle.text = ""
+                cell.infoDescription.text = ""
+                return cell
             default:
                 return cell
             }
@@ -218,6 +222,7 @@ extension RoamerProfileController: UITableViewDelegate, UITableViewDataSource {
         switch section {
         case 3:
             switch row {
+                
             case 1: // Change Roaming Status
                 let changeRoamingStatusVC = ChangeRomingStatusController()
                 
