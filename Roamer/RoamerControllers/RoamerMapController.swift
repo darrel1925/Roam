@@ -15,6 +15,7 @@ import FirebaseAuth
 class RoamerMapController: UIViewController {
 
     @IBOutlet weak var map: MKMapView!
+    @IBOutlet weak var orderView: RoundedView!
     
     var locationManager = LocationService.locationManager
     var region: MKCoordinateRegion!
@@ -30,13 +31,45 @@ class RoamerMapController: UIViewController {
         super.viewDidLoad()
         checkLocationServices()
         setUpLocation()
-
+        setUpOrderDetails()
+        
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
         locationManager.stopUpdatingLocation()
     }
     
+    func setUpOrderDetails() {
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(toggleHightUp))
+        swipeUp.direction = .up
+        orderView.addGestureRecognizer(swipeUp)
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(toggleHightDown))
+        swipeDown.direction = .down
+        orderView.addGestureRecognizer(swipeDown)
+    }
+    
+    @objc func toggleHightUp() {
+        print("up \(orderView.frame.height)")
+//        if orderView.frame.height == 25.0 {
+//            orderView.frame.size.height = 215.0
+//        }
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.orderView.frame =  CGRect(x: 0, y: self.map.frame.maxY - 215, width: self.view.frame.width, height: self.view.frame.height)
+        }, completion: nil)
+    }
+    
+    @objc func toggleHightDown() {
+        print("down")
+//        if orderView.frame.height == 215.0 {
+//            orderView.frame.size.height = 25.0
+//        }
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.orderView.frame =  CGRect(x: 0, y: self.map.frame.maxY - 75, width: self.view.frame.width, height: self.view.frame.height)
+        }, completion: nil)
+    }
+
     func setUpLocation() {
         // only request to use when the app is running
         locationManager.requestWhenInUseAuthorization()
@@ -80,8 +113,8 @@ class RoamerMapController: UIViewController {
         LocationService.updateLocationWith(latitude: latitude, longitude: longitude)
         
         if count >= 5 {
-            LocationService.sendLocationToFirebaseAsRoamer()
-            getCustomersLocationFromFireBase()
+          //  LocationService.sendLocationToFirebaseAsRoamer()
+          //  getCustomersLocationFromFireBase()
             count = 0
         }
     }

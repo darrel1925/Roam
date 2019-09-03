@@ -50,6 +50,8 @@
 		9AA4C4FB2307B3C400194B42 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA4C4FA2307B3C400194B42 /* LocationService.swift */; };
 		9AA4C4FD2307D29000194B42 /* RoamerMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA4C4FC2307D29000194B42 /* RoamerMapController.swift */; };
 		9AA7415022F9F5E100A2ED30 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA7414F22F9F5E100A2ED30 /* CoreLocation.framework */; };
+		9AB0553C231E3C2D00C40F08 /* OrderInProgessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0553A231E3C2D00C40F08 /* OrderInProgessController.swift */; };
+		9AB0553D231E3C2E00C40F08 /* OrderInProgessController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AB0553B231E3C2D00C40F08 /* OrderInProgessController.xib */; };
 		9ACA1A5923134FCC00292334 /* ChangeRomingStatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACA1A5723134FCC00292334 /* ChangeRomingStatusController.swift */; };
 		9ACA1A5A23134FCC00292334 /* ChangeRomingStatusController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ACA1A5823134FCC00292334 /* ChangeRomingStatusController.xib */; };
 		9ADDC47922FD3B020053A1F0 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADDC47822FD3B020053A1F0 /* MapController.swift */; };
@@ -148,6 +150,8 @@
 		9AA4C4FA2307B3C400194B42 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		9AA4C4FC2307D29000194B42 /* RoamerMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoamerMapController.swift; sourceTree = "<group>"; };
 		9AA7414F22F9F5E100A2ED30 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		9AB0553A231E3C2D00C40F08 /* OrderInProgessController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderInProgessController.swift; sourceTree = "<group>"; };
+		9AB0553B231E3C2D00C40F08 /* OrderInProgessController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderInProgessController.xib; sourceTree = "<group>"; };
 		9ACA1A5723134FCC00292334 /* ChangeRomingStatusController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRomingStatusController.swift; sourceTree = "<group>"; };
 		9ACA1A5823134FCC00292334 /* ChangeRomingStatusController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangeRomingStatusController.xib; sourceTree = "<group>"; };
 		9ADDC47822FD3B020053A1F0 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
@@ -297,6 +301,8 @@
 				9AA4C4EF2306543100194B42 /* DeliverRequestController.xib */,
 				9ACA1A5723134FCC00292334 /* ChangeRomingStatusController.swift */,
 				9ACA1A5823134FCC00292334 /* ChangeRomingStatusController.xib */,
+				9AB0553A231E3C2D00C40F08 /* OrderInProgessController.swift */,
+				9AB0553B231E3C2D00C40F08 /* OrderInProgessController.xib */,
 			);
 			name = Xibs;
 			path = ..;
@@ -639,6 +645,7 @@
 				EDE119FC2290B1AE00853117 /* LaunchScreen.storyboard in Resources */,
 				9ADDC48222FF1BCE0053A1F0 /* ForgotPasswordController.xib in Resources */,
 				9A3EB1952310BDF10086532D /* Roamer.storyboard in Resources */,
+				9AB0553D231E3C2E00C40F08 /* OrderInProgessController.xib in Resources */,
 				9ADDC47E22FD4EAB0053A1F0 /* AddLocationController.xib in Resources */,
 				EDE119F92290B1AE00853117 /* Assets.xcassets in Resources */,
 				9AA4C4F12306543100194B42 /* DeliverRequestController.xib in Resources */,
@@ -783,6 +790,7 @@
 				9AA4C4E92303F24800194B42 /* NotificationsController.swift in Sources */,
 				9A6912B022E9815F0058BF2D /* StripeCart.swift in Sources */,
 				9ADDC47922FD3B020053A1F0 /* MapController.swift in Sources */,
+				9AB0553C231E3C2D00C40F08 /* OrderInProgessController.swift in Sources */,
 				9A2CAC16230A5BC6008F376D /* ProfileController.swift in Sources */,
 				ED4CA6AB2294F6180022A095 /* WendysMealSelectionViewController.swift in Sources */,
 				9A6912AD22E980480058BF2D /* ShoppingCartCell.swift in Sources */,

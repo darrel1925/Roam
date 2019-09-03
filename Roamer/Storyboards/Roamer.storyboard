@@ -631,6 +631,7 @@
         <!--Map-->
         <scene sceneID="SyC-aZ-w6v">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qsq-mV-t3P" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="RoamerMapController" id="43Y-t0-Uz3" customClass="RoamerMapController" customModule="Roam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Bp-PQ-sMx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -639,13 +640,76 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dXy-Ca-lUX">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                             </mapView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QJb-hs-fhs" customClass="RoundedView" customModule="Roam" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="598" width="414" height="215"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="o0F-eF-bbp">
+                                        <rect key="frame" x="16" y="54" width="382" height="145"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Panda Express" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOD-1N-dql">
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="25.5"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 Full Plate, Half Fried Rice Half Choa Mein" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zb9-Yj-jUL">
+                                                <rect key="frame" x="0.0" y="32.5" width="382" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWk-aK-2eH">
+                                                <rect key="frame" x="0.0" y="55.5" width="382" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Got the food?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgH-Z7-jVa">
+                                                <rect key="frame" x="0.0" y="78.5" width="382" height="19.5"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDv-93-asR" customClass="RoundedButton" customModule="Roam" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="105" width="382" height="40"/>
+                                                <color key="backgroundColor" red="0.82745098039999998" green="0.94117647059999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="F3q-4x-QIf"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
+                                                <state key="normal" title="Let Sophie know you're on the way">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="145" id="yCk-Zn-1Qa"/>
+                                        </constraints>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expected Delivery Time: 15 min" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYo-JP-8Ld">
+                                        <rect key="frame" x="85" y="8" width="244" height="23"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="o0F-eF-bbp" firstAttribute="leading" secondItem="QJb-hs-fhs" secondAttribute="leading" constant="16" id="NU1-ZG-WcE"/>
+                                    <constraint firstAttribute="bottom" secondItem="o0F-eF-bbp" secondAttribute="bottom" constant="16" id="R6P-xp-YV0"/>
+                                    <constraint firstItem="oYo-JP-8Ld" firstAttribute="top" secondItem="QJb-hs-fhs" secondAttribute="top" constant="8" id="TT4-5i-x8D"/>
+                                    <constraint firstItem="oYo-JP-8Ld" firstAttribute="centerX" secondItem="QJb-hs-fhs" secondAttribute="centerX" id="XNc-Ep-K6B"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="215" id="hkM-XI-Vuq"/>
+                                    <constraint firstAttribute="trailing" secondItem="o0F-eF-bbp" secondAttribute="trailing" constant="16" id="pm8-sR-KkP"/>
+                                    <constraint firstItem="o0F-eF-bbp" firstAttribute="top" secondItem="oYo-JP-8Ld" secondAttribute="bottom" constant="23" id="xv2-63-yA5"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="dXy-Ca-lUX" firstAttribute="bottom" secondItem="aM6-7H-zGq" secondAttribute="bottom" id="1oO-Th-Gzr"/>
                             <constraint firstItem="dXy-Ca-lUX" firstAttribute="top" secondItem="9Bp-PQ-sMx" secondAttribute="top" id="2Ca-66-LkN"/>
-                            <constraint firstItem="dXy-Ca-lUX" firstAttribute="bottom" secondItem="aM6-7H-zGq" secondAttribute="bottom" id="MmA-hi-Q2r"/>
+                            <constraint firstItem="QJb-hs-fhs" firstAttribute="leading" secondItem="aM6-7H-zGq" secondAttribute="leading" id="S1X-If-Lf5"/>
                             <constraint firstItem="dXy-Ca-lUX" firstAttribute="leading" secondItem="aM6-7H-zGq" secondAttribute="leading" id="aQ7-c0-v53"/>
+                            <constraint firstItem="QJb-hs-fhs" firstAttribute="bottom" secondItem="aM6-7H-zGq" secondAttribute="bottom" id="chk-69-Q8X"/>
                             <constraint firstItem="dXy-Ca-lUX" firstAttribute="trailing" secondItem="aM6-7H-zGq" secondAttribute="trailing" id="mfB-Oy-HGh"/>
+                            <constraint firstItem="QJb-hs-fhs" firstAttribute="trailing" secondItem="aM6-7H-zGq" secondAttribute="trailing" id="ook-Wu-Ubc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aM6-7H-zGq"/>
                     </view>
@@ -653,11 +717,11 @@
                     <navigationItem key="navigationItem" id="lIo-Wi-3Wm"/>
                     <connections>
                         <outlet property="map" destination="dXy-Ca-lUX" id="wyH-Y0-xwv"/>
+                        <outlet property="orderView" destination="QJb-hs-fhs" id="FG1-Vx-jC4"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Qsq-mV-t3P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2414" y="-1554"/>
+            <point key="canvasLocation" x="2413.04347826087" y="-1554.2410714285713"/>
         </scene>
         <!--Email Controller-->
         <scene sceneID="fxA-JV-wgv">

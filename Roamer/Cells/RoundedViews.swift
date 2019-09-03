@@ -23,10 +23,10 @@ class RoundedLabel: UILabel {
     }
 }
 
-class RoundedShadowView : UIView {
+class RoundedView : UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
-        layer.cornerRadius = 5
+        layer.cornerRadius = 10
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.4
         layer.shadowOffset = CGSize.zero
