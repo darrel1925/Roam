@@ -21,15 +21,16 @@ Here's a short walkthrough of implemented ordering flow logged in as a Customer 
 
 ## Built With
 
-* [Swift](https://developer.apple.com/swift/) - Front end language used for our app
+* [Swift](https://developer.apple.com/swift/) - Frontend language used for our app
+* [NodeJS](https://nodejs.org/en/) - Backend language used for prcessing payments and directing push notificaitons
 * [XCode](https://developer.apple.com/xcode/) - Used to format and build the app
-* [Parse](https://parseplatform.org/) - Backend server used to store user information
-* [BrainTree](https://www.braintreepayments.com/) - Used to process in-app purchases
+* [Stripe](https://stripe.com/docs/mobile) - Used to process in-app purchases
+* [Google Firedase](https://firebase.google.com/docs/ios/setup) - Backend server used to store user information, authenicate users, varify phone numbers, and send notifications
 
 
 ## Authors
 
-* **Darrel Muonekwu** - *Backend-Design/Api-Integration* - [[LinkedIn]](https://www.linkedin.com/in/darrelmuonekwu/) [[Git]](https://github.com/darrel1925)
+* **Darrel Muonekwu** - *Backend-Development/Api-Integration* - [[LinkedIn]](https://www.linkedin.com/in/darrelmuonekwu/) [[Git]](https://github.com/darrel1925)
 * **Chinenye Ogbuchiekwe** - *Server-Side Development/Frontend-Design* - [[LinkedIn]](https://www.linkedin.com/in/chinenye-ogbuchiekwe/) [[Git]](https://github.com/ChinenyeO)
 
 
