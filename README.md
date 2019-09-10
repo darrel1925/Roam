@@ -4,7 +4,7 @@
 Roam is a sharing economy app made by university students for university students. This app aims to invent a new way for 
 students to request and receive items from local stores and shops around campus! Roam has two types of users:
 
-**Customer** - Students who request to have meals, snacks, scantrons, etc. delivered straight to their classrooms, or study sessions</br>
+**Customers** - Students who request to have meals, snacks, scantrons, etc. delivered straight to their classrooms, or study sessions</br>
 **Roamers** - Students who pick items up and deliver them to customers around campus</br>
 
 Roamers would be a few of the tens of thousands of students on campus picking up items and delivering them to other students. Ideally, students would roam in between classes and roamers will be compensated for their deliveries by delivery fees and tips paid by the customer! Our app is meant to save university students' time and provide a quick and easy source of income for roamers!
